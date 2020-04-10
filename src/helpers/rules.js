@@ -5,7 +5,18 @@ import ElfImage from './../images/races/elf.png'
 import GnomeImage from './../images/races/gnome.png'
 import HalflingImage from './../images/races/halfling.png'
 import HumanImage from './../images/races/human.png'
-
+import PaladinImage from './../images/calsses/paladin.png'
+import BarbaricImage from './../images/calsses/barbaric.png'
+import BardImage from './../images/calsses/bard.png'
+import RogueImage from './../images/calsses/rogue.png'
+import WizardImage from './../images/calsses/wizard.png'
+import ClericImage from './../images/calsses/cleric.png'
+import RangerImage from './../images/calsses/ranger.png'
+import DruidImage from './../images/calsses/druid.png'
+import FighterImage from './../images/calsses/fighter.png'
+import WarlockImage from './../images/calsses/warlock.png'
+import SorcererImage from './../images/calsses/sorcerer.png'
+import MonkImage from './../images/calsses/monk.png'
 
 export const races = [
     {
@@ -95,6 +106,81 @@ export const races = [
         subRace: 1, 
         desc: '+1 FOR, +1 DES, +1 CON, +1 INT, +1 SAB, +1 CAR',
         image: HumanImage
+    },
+]
+
+export const classes = [
+    {
+        id: 1,
+        name: 'Paladino',
+        hp: '1d10',
+        image: PaladinImage,
+    },
+    {
+        id: 2,
+        name: 'Barbaro',
+        hp: '1d12',
+        image: BarbaricImage,
+    },
+    {
+        id: 3,
+        name: 'Bardo',
+        hp: '1d8',
+        image: BardImage,
+    },
+    {
+        id: 4,
+        name: 'Ladino',
+        hp: '1d8',
+        image: RogueImage,
+    },
+    {
+        id: 5,
+        name: 'Mago',
+        hp: '1d6',
+        image: WizardImage,
+    },
+    {
+        id: 6,
+        name: 'Clerigo',
+        hp: '1d8',
+        image: ClericImage,
+    },
+    {
+        id: 7,
+        name: 'Patrulheiro',
+        hp: '1d10',
+        image: RangerImage,
+    },
+    {
+        id: 8,
+        name: 'Druida',
+        hp: '1d8',
+        image: DruidImage,
+    },
+    {
+        id: 9,
+        name: 'Guerreiro',
+        hp: '1d10',
+        image: FighterImage,
+    },
+    {
+        id: 10,
+        name: 'Bruxo',
+        hp: '1d8',
+        image: WarlockImage,
+    },
+    {
+        id: 11,
+        name: 'Feiticeiro',
+        hp: '1d6',
+        image: SorcererImage,
+    },
+    {
+        id: 12,
+        name: 'Monge',
+        hp: '1d8',
+        image: MonkImage,
     },
 ]
 

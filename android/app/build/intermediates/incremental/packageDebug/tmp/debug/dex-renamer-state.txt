@@ -1,4 +1,4 @@
-#Thu Apr 09 12:54:00 BRT 2020
+#Fri Apr 10 13:06:52 BRT 2020
 base.0=/home/luanfv/projetos/app-rpgzando/android/app/build/intermediates/dex/debug/mergeDexDebug/out/classes.dex
 path.0=classes.dex
 renamed.0=classes.dex

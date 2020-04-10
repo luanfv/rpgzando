@@ -1,7 +1,8 @@
 import React, {useState} from 'react'
 import {View, Text, Button} from 'react-native'
 import {handleRace, races, classes} from './helpers/rules'
-import {Background, Container, TextStyled, Title, Images, Select} from './styled'
+import {Background, Container, TextStyled, Title, Images, Select, FlexRow} from './styled'
+import CheckBox from '@react-native-community/checkbox';
 
 export default () => 
 {
@@ -70,7 +71,21 @@ export default () =>
                 </View>
             </Container>
 
-            <Button onPress={() => console.log(handleRace(race.race, race.subRace))} color="#570a0a" title="Confirmar" />
+            <Container>
+                <Title>Escolha {personClass.quantityExpertise} Perícias:</Title>
+                {
+                    personClass.expertise && personClass.expertise.map(e => {
+                        return (
+                            <FlexRow key={e.id}>
+                                <CheckBox value={false} disabled={false} />
+                                <TextStyled>{e.desc}</TextStyled>
+                            </FlexRow>
+                        )
+                    })
+                }
+            </Container>
+
+            <Button onPress={() => console.log(personClass)} color="#570a0a" title="Confirmar" />
         </Background>
     )
 }

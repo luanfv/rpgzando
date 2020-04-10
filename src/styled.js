@@ -41,3 +41,9 @@ export const Images = styled(Image)`
     height: 100px;
     margin: auto;
 `
+
+export const FlexRow = styled(View)`
+    flex-direction: row;
+    align-items: center;
+    margin: 5px 0;
+`

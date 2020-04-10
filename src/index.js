@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {View, Text, Button} from 'react-native'
+import {View, Text, Button, Image} from 'react-native'
 import {handleRace, races} from './helpers/rules'
 import {Picker} from '@react-native-community/picker'
 
@@ -20,10 +20,11 @@ export default () =>
             }
         })
     }
-
+    
     return (
         <View>
             <Text>Selecione sua raça</Text>
+            <Image source={race.image} />
             <Picker
                 selectedValue={raceId}
                 onValueChange={value => handleRaceSelected(value)}

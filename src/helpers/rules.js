@@ -231,6 +231,18 @@ export const classes = [
         name: 'Patrulheiro',
         hp: '1d10',
         image: RangerImage,
+        expertise: [
+            expertise[1],
+            expertise[9],
+            expertise[0],
+            expertise[2],
+            expertise[10],
+            expertise[6],
+            expertise[7],
+            expertise[12],
+            expertise[14],
+        ],
+        quantityExpertise: 3,
     },
     {
         id: 8,

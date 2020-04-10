@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
-import {View, Text, Button, Image} from 'react-native'
+import {View, Text, Button} from 'react-native'
 import {handleRace, races, classes} from './helpers/rules'
-import {Picker} from '@react-native-community/picker'
+import {Background, Container, TextStyled, Title, Images, Select} from './styled'
 
 export default () => 
 {
@@ -37,37 +37,40 @@ export default () =>
     }
     
     return (
-        <View>
-            <Text>Selecione sua raça</Text>
-            <Image source={race.image} />
-            <Picker
-                selectedValue={raceId}
-                onValueChange={value => handleRaceSelected(value)}
-            >
-                {races.map(value => <Picker.Item key={value.id} value={value.id} label={value.name} />)}
-            </Picker>
+        <Background>
+            <Container>
+                <Title>Selecione sua raça</Title>
+                <Images source={race.image} />
+                <Select
+                    selectedValue={raceId}
+                    onValueChange={value => handleRaceSelected(value)}
+                >
+                    {races.map(value => <Select.Item key={value.id} value={value.id} label={value.name} />)}
+                </Select>
 
-            <View key={race.id}>
-                <Text>Raça: {race.name}</Text>
-                <Text>Atributos: {race.desc}</Text>
-            </View>
+                <View key={race.id}>
+                    <TextStyled>Raça: {race.name}</TextStyled>
+                    <TextStyled>Atributos: {race.desc}</TextStyled>
+                </View>
+            </Container>
 
+            <Container>
+                <Title>Selecione sua classe</Title>
+                <Images source={personClass.image} />
+                <Select
+                    selectedValue={PersonClassId}
+                    onValueChange={value => handleClassSelected(value)}
+                >
+                    {classes.map(value => <Select.Item key={value.id} value={value.id} label={value.name} />)}
+                </Select>
 
-            <Text>Selecione sua classe</Text>
-            <Image source={personClass.image} />
-            <Picker
-                selectedValue={PersonClassId}
-                onValueChange={value => handleClassSelected(value)}
-            >
-                {classes.map(value => <Picker.Item key={value.id} value={value.id} label={value.name} />)}
-            </Picker>
+                <View key={personClass.id}>
+                    <TextStyled>Classe: {personClass.name}</TextStyled>
+                    <TextStyled>HP: {personClass.hp}</TextStyled>
+                </View>
+            </Container>
 
-            <View key={personClass.id}>
-                <Text>Classe: {personClass.name}</Text>
-                <Text>HP: {personClass.hp}</Text>
-            </View>
-
-            <Button onPress={() => console.log(handleRace(race.race, race.subRace))} title="Confirmar" />
-        </View>
+            <Button onPress={() => console.log(handleRace(race.race, race.subRace))} color="#570a0a" title="Confirmar" />
+        </Background>
     )
 }

@@ -173,7 +173,6 @@ export const classes = [
         name: 'Bardo',
         hp: '1d8',
         image: BardImage,
-        image: PaladinImage,
         expertise: expertise,
         quantityExpertise: 3,
     },

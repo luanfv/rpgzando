@@ -37,8 +37,8 @@ export const Title = styled(Text)`
 `
 
 export const Images = styled(Image)`
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     margin: auto;
 `
 

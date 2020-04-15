@@ -3,7 +3,6 @@ import {View, Text, Button, TextInput} from 'react-native'
 import {handleRace, races, classes} from './../helpers/rules'
 import {Background, Container, TextStyled, Title, Images, Select, FlexRow, Attribute, AttributeInput} from './../styled'
 import CheckBox from '@react-native-community/checkbox'
-import Slider from '@react-native-community/slider'
 
 export default ({navigation}) => 
 {
@@ -14,16 +13,10 @@ export default ({navigation}) =>
     const [person, setPerson] = useState({
         name: '',
         race: raceId,
+        subRace: race.subRace,
         class: personClassId,
+        attributes: {},
         expertise: []
-    })
-    const [attributes, setAttributes] = useState({
-        for: 0,
-        des: 0,
-        con: 0,
-        int: 0,
-        sab: 0,
-        car: 0,
     })
     
     const handleRaceSelected = key =>
@@ -78,12 +71,23 @@ export default ({navigation}) =>
             return
         }
 
-        setPerson({...person, expertise: expertises, class: personClass.id, race: race.id})
-        navigation.navigate('Destribuindo os Atributos', {person: person})
+        const attrs = handleRace(race.race, race.subRace)
+        if(attrs === null)
+            return
+        
+        setPerson({
+            ...person, 
+            expertise: expertises, 
+            class: personClass.id, 
+            race: race.id, 
+            attributes: attrs
+        })
+        
     }
 
     useEffect(() => {
-        console.log(person)
+        if(person.expertise.length > 0)
+            navigation.navigate('Destribuindo os Atributos', {person: person})
     }, [person])
     
     return (

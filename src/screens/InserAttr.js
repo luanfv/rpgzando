@@ -1,10 +1,11 @@
 import React, {useState, useEffect} from 'react'
 import {View, Text, Button, TextInput} from 'react-native'
-import {Background, Container, TextStyled, Attribute, AttributeInput} from './../styled'
+import {Background, Container, Title, TextStyled, Attribute, AttributeInput} from './../styled'
 import Slider from '@react-native-community/slider'
 
-export default () => 
+export default ({route, navigation}) => 
 {
+    const person = route.params.person
     const [attributes, setAttributes] = useState({
         for: 0,
         des: 0,
@@ -19,8 +20,9 @@ export default () =>
     return (
         <Background>
             <Container>
+                <Title>Defina seus atributos</Title>
                 <Attribute>
-                    <TextStyled>FORÇA:</TextStyled>
+                    <TextStyled>FORÇA: <Title>+{person.attributes.for}</Title></TextStyled>
                     <Slider 
                         minimumValue={1}
                         maximumValue={20}
@@ -37,7 +39,7 @@ export default () =>
                     />
                 </Attribute>
                 <Attribute>
-                    <TextStyled>DESTREZA:</TextStyled>
+                    <TextStyled>DESTREZA: <Title>+{person.attributes.des}</Title></TextStyled>
                     <Slider 
                         minimumValue={1}
                         maximumValue={20}
@@ -54,7 +56,7 @@ export default () =>
                     />
                 </Attribute>
                 <Attribute>
-                    <TextStyled>CONSTITUIÇÃO:</TextStyled>
+                    <TextStyled>CONSTITUIÇÃO: <Title>+{person.attributes.con}</Title></TextStyled>
                     <Slider 
                         minimumValue={1}
                         maximumValue={20}
@@ -71,7 +73,7 @@ export default () =>
                     />
                 </Attribute>
                 <Attribute>
-                    <TextStyled>INTELIGENCIA:</TextStyled>
+                    <TextStyled>INTELIGENCIA: <Title>+{person.attributes.int}</Title></TextStyled>
                     <Slider 
                         minimumValue={1}
                         maximumValue={20}
@@ -88,7 +90,7 @@ export default () =>
                     />
                 </Attribute>
                 <Attribute>
-                    <TextStyled>SABEDORIA:</TextStyled>
+                    <TextStyled>SABEDORIA: <Title>+{person.attributes.sab}</Title></TextStyled>
                     <Slider 
                         minimumValue={1}
                         maximumValue={20}
@@ -105,7 +107,7 @@ export default () =>
                     />
                 </Attribute>
                 <Attribute>
-                    <TextStyled>CARISMA:</TextStyled>
+                    <TextStyled>CARISMA: <Title>+{person.attributes.car}</Title></TextStyled>
                     <Slider 
                         minimumValue={1}
                         maximumValue={20}
@@ -123,7 +125,7 @@ export default () =>
                 </Attribute>
             </Container>
 
-            <Button onPress={() => handlePerson()} color="#570a0a" title="Continuar" />
+            <Button color="#570a0a" title="Continuar" />
         </Background>
     )
 }

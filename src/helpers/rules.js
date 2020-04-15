@@ -358,7 +358,7 @@ export const handleRace = (race, type) =>
                 attributes.int = attributes.int + 1
             else if(type === 2) 
                 attributes.sab = attributes.sab + 1
-            else if(type === 2) 
+            else if(type === 3) 
                 attributes.car = attributes.car + 1
             else
                 isError = true

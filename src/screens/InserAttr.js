@@ -14,13 +14,25 @@ export default ({route, navigation}) =>
         sab: 0,
         car: 0,
     })
+    const randomAttr = () =>
+    {
+        setAttributes({...attributes, 
+            for: Math.floor(Math.random() * 20) + 1, 
+            des: Math.floor(Math.random() * 20) + 1, 
+            con: Math.floor(Math.random() * 20) + 1, 
+            int: Math.floor(Math.random() * 20) + 1,
+            sab: Math.floor(Math.random() * 20) + 1,
+            car: Math.floor(Math.random() * 20) + 1
+        })
+    }
 
-    useEffect(() => {}, [])
+    useEffect(() => {Math.floor(Math.random() * 10) + 1}, [])
     
     return (
         <Background>
             <Container>
                 <Title>Defina seus atributos</Title>
+                <Button title="aleatorio" onPress={() => randomAttr()} />
                 <Attribute>
                     <TextStyled>FORÇA: <Title>+{person.attributes.for}</Title></TextStyled>
                     <Slider 

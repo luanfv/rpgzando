@@ -999,6 +999,11 @@
   resolved "https://registry.yarnpkg.com/@react-native-community/picker/-/picker-1.3.0.tgz#74be7dd93c54426677ddd68080ca253906a57e07"
   integrity sha512-ak4CU6IkpNmXeAt+A4stCr/GLAli/o+5NOREH2YxybBUY0Z8pyf+WPzDL5QQdl1DsyO8wsC5J1pnbrm9NAVKmQ==
 
+"@react-native-community/slider@^2.0.9":
+  version "2.0.9"
+  resolved "https://registry.yarnpkg.com/@react-native-community/slider/-/slider-2.0.9.tgz#bf74045c96f1fb22e3ec961e321300c230c63990"
+  integrity sha512-6GHUKXxiDSs75VZQRa6B+nxo8rqpIEcegZ1iCSQG4aW2oSVepceqDol+0y3/KaBt5WMpD4KybLw8ZZqkT6olaQ==
+
 "@types/babel__core@^7.1.0":
   version "7.1.7"
   resolved "https://registry.yarnpkg.com/@types/babel__core/-/babel__core-7.1.7.tgz#1dacad8840364a57c98d0dd4855c6dd3752c6b89"

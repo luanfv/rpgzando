@@ -81,6 +81,8 @@ target 'apprpg' do
 
   pod 'react-native-checkbox', :path => '../node_modules/@react-native-community/checkbox'
 
+  pod 'react-native-slider', :path => '../node_modules/@react-native-community/slider'
+
   target 'apprpgTests' do
     inherit! :complete
     # Pods for testing

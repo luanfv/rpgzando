@@ -1,4 +1,3 @@
-
 import DwarfImage from './../images/races/dwarf.png'
 import DragonbornImage from './../images/races/dragonborn.png'
 import ElfImage from './../images/races/elf.png'

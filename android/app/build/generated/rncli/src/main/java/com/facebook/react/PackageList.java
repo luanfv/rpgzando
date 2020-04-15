@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import com.reactnativecommunity.checkbox.ReactCheckBoxPackage;
 // @react-native-community/picker
 import com.reactnativecommunity.picker.RNCPickerPackage;
+// @react-native-community/slider
+import com.reactnativecommunity.slider.ReactSliderPackage;
 
 public class PackageList {
   private Application application;
@@ -61,7 +63,8 @@ public class PackageList {
     return new ArrayList<>(Arrays.<ReactPackage>asList(
       new MainReactPackage(mConfig),
       new ReactCheckBoxPackage(),
-      new RNCPickerPackage()
+      new RNCPickerPackage(),
+      new ReactSliderPackage()
     ));
   }
 }

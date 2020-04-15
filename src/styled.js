@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import {ScrollView ,View, Text, Image} from 'react-native'
+import {ScrollView ,View, Text, Image, TextInput} from 'react-native'
 import {Picker} from '@react-native-community/picker'
 
 export const Background = styled(ScrollView)`
@@ -46,4 +46,18 @@ export const FlexRow = styled(View)`
     flex-direction: row;
     align-items: center;
     margin: 5px 0;
+`
+///
+export const Attribute = styled(View)`
+    height: 140px;
+    justify-content: space-between;
+    margin-bottom: 20px;
+`
+
+export const AttributeInput = styled(TextInput)`
+    color: #d9dbde;
+    font-size: 20px;
+    background-color: rgba(255, 255, 255, .1);
+    margin: 10px 0;
+    text-align: center;
 `

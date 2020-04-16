@@ -22,7 +22,7 @@ export const Select = styled(Picker)`
 `
 
 export const TextStyled = styled(Text)`
-    font-size: 16px;
+    font-size: ${props => props.fontsize ? props.fontsize : '16'}px;
     color: ${props => props.color ? props.color : '#d9dbde'};
     font-weight: ${props => props.bold ? 'bold' : 'normal'};
 `
@@ -46,7 +46,11 @@ export const Images = styled(Image)`
 export const FlexRow = styled(View)`
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
     margin: 5px 0;
+    padding: 0 5px;
+    border-radius: 2px;
+    ${props => props.selected && 'background-color: rgba(78, 173, 99, .1)'}
 `
 
 export const Attribute = styled(View)`

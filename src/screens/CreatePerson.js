@@ -129,9 +129,9 @@ export default ({navigation}) =>
                 {
                     personClass.expertise && personClass.expertise.map((e, i) => {
                         return (
-                            <FlexRow key={e.id}>
+                            <FlexRow selected={e.checked} key={e.id}>
+                                <TextStyled fontsize="20">{e.desc}</TextStyled>
                                 <CheckBox value={e.checked} onChange={() => alterCheck(i)} />
-                                <TextStyled>{e.desc}</TextStyled>
                             </FlexRow>
                         )
                     })

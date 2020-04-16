@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import {ScrollView ,View, Text, Image, TextInput} from 'react-native'
+import {ScrollView ,View, Text, Image, TextInput, TouchableOpacity} from 'react-native'
 import {Picker} from '@react-native-community/picker'
 
 export const Background = styled(ScrollView)`
@@ -23,7 +23,8 @@ export const Select = styled(Picker)`
 
 export const TextStyled = styled(Text)`
     font-size: 16px;
-    color: #d9dbde;
+    color: ${props => props.color ? props.color : '#d9dbde'};
+    font-weight: ${props => props.bold ? 'bold' : 'normal'};
 `
 
 export const Title = styled(Text)`
@@ -31,7 +32,7 @@ export const Title = styled(Text)`
     text-align: center;
     justify-content: center;
     text-transform: uppercase;
-    font-weight: 800;
+    font-weight: bold;
     color: #4ead63;
     margin-bottom: 20px;
 `
@@ -47,7 +48,7 @@ export const FlexRow = styled(View)`
     align-items: center;
     margin: 5px 0;
 `
-///
+
 export const Attribute = styled(View)`
     height: 140px;
     justify-content: space-between;
@@ -60,4 +61,13 @@ export const AttributeInput = styled(TextInput)`
     background-color: rgba(255, 255, 255, .1);
     margin: 10px 0;
     text-align: center;
+`
+
+export const Button = styled(TouchableOpacity)`
+    padding: 15px;
+    border-radius: 4px;
+    align-items: center;
+    justify-content: center;
+    background-color: ${props => props.background ? props.background : '#570a0a'};
+    margin-bottom: 20px;
 `

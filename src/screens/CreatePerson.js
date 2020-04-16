@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
-import {View, Text, Button, TextInput} from 'react-native'
+import {View} from 'react-native'
 import {handleRace, races, classes} from './../helpers/rules'
-import {Background, Container, TextStyled, Title, Images, Select, FlexRow, Attribute, AttributeInput} from './../styled'
+import {Background, Container, TextStyled, Title, Images, Select, FlexRow, Button} from './../styled'
 import CheckBox from '@react-native-community/checkbox'
 
 export default ({navigation}) => 
@@ -138,7 +138,9 @@ export default ({navigation}) =>
                 }
             </Container>
 
-            <Button onPress={() => handlePerson()} color="#570a0a" title="Continuar" />
+            <Button onPress={() => handlePerson()}>
+                <TextStyled bold={true}>CONTINUAR</TextStyled>
+            </Button>
         </Background>
     )
 }

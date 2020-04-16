@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
-import {View, Text, Button, TextInput} from 'react-native'
-import {Background, Container, Title, TextStyled, Attribute, AttributeInput} from './../styled'
+import {Background, Container, Title, TextStyled, Attribute, AttributeInput, Button} from './../styled'
 import Slider from '@react-native-community/slider'
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 
 export default ({route, navigation}) => 
 {
@@ -26,13 +26,17 @@ export default ({route, navigation}) =>
         })
     }
 
-    useEffect(() => {Math.floor(Math.random() * 10) + 1}, [])
+    useEffect(() => {}, [])
     
     return (
         <Background>
             <Container>
                 <Title>Defina seus atributos</Title>
-                <Button title="aleatorio" onPress={() => randomAttr()} />
+                <Button background="#D8D8D8" onPress={() => randomAttr()}>
+                    <TextStyled color='#4ead63' bold={true}>
+                        <FontAwesome5 name="dice" size={18} color="#4ead63" />{`  `}ALEATORIO
+                    </TextStyled>
+                </Button>
                 <Attribute>
                     <TextStyled>FORÇA: <Title>+{person.attributes.for}</Title></TextStyled>
                     <Slider 
@@ -137,7 +141,9 @@ export default ({route, navigation}) =>
                 </Attribute>
             </Container>
 
-            <Button color="#570a0a" title="Continuar" />
+            <Button>
+                <TextStyled bold={true}>FINALIZAR</TextStyled>
+            </Button>
         </Background>
     )
 }

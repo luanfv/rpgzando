@@ -83,6 +83,8 @@ target 'apprpg' do
 
   pod 'react-native-slider', :path => '../node_modules/@react-native-community/slider'
 
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
   target 'apprpgTests' do
     inherit! :complete
     # Pods for testing

@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import {View} from 'react-native'
 import {handleRace, races, classes} from './../helpers/rules'
-import {Background, Container, TextStyled, Title, Images, Select, FlexRow, Button} from './../styled'
+import {Background, Container, TextStyled, Title, Images, Select, FlexRow, Button, Input} from './../styled'
 import CheckBox from '@react-native-community/checkbox'
 
 export default ({navigation}) => 
@@ -12,6 +12,7 @@ export default ({navigation}) =>
     const [personClass, setPersonClass] = useState(classes[0])
     const [person, setPerson] = useState({
         name: '',
+        level: 1,
         race: raceId,
         subRace: race.subRace,
         class: personClassId,
@@ -65,6 +66,12 @@ export default ({navigation}) =>
             }
         })
 
+        if(person.name === '')
+        {
+            alert(`Você precisa dar um nome ao seu personagem!`)
+            return
+        }
+
         if(length !== personClass.quantityExpertise)
         {
             alert(`Você tem que escolher ${personClass.quantityExpertise} perícias`)
@@ -92,6 +99,24 @@ export default ({navigation}) =>
     
     return (
         <Background>
+            <Container>
+                <Title>personagem</Title>
+                <TextStyled>Nome:</TextStyled>
+                <Input 
+                    value={person.name}
+                    onChangeText={e => setPerson({...person, name: e})}
+                    align="left" 
+                    placeholder="Luan" 
+                />
+                <TextStyled>Nível:</TextStyled>
+                <Input 
+                    value={person.level ? `${person.level}` : `${1}`} 
+                    onChangeText={e => setPerson({...person, level: e === NaN ? 1 : parseInt(e)})}
+                    keyboardType="numeric"
+                    align="left" 
+                    placeholder="2" 
+                />
+            </Container>
             <Container>
                 <Title>Selecione sua raça</Title>
                 <Images source={race.image} />

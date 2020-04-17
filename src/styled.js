@@ -59,12 +59,13 @@ export const Attribute = styled(View)`
     margin-bottom: 20px;
 `
 
-export const AttributeInput = styled(TextInput)`
+export const Input = styled(TextInput)`
     color: #d9dbde;
     font-size: 20px;
     background-color: rgba(255, 255, 255, .1);
     margin: 10px 0;
-    text-align: center;
+    padding: 10px;
+    text-align: ${props => props.align ? props.align : 'center'};
 `
 
 export const Button = styled(TouchableOpacity)`

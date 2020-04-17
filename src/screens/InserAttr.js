@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import {Background, Container, Title, TextStyled, Attribute, AttributeInput, Button} from './../styled'
+import {Background, Container, Title, TextStyled, Attribute, Input, Button} from './../styled'
 import Slider from '@react-native-community/slider'
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 
@@ -26,7 +26,9 @@ export default ({route, navigation}) =>
         })
     }
 
-    useEffect(() => {}, [])
+    useEffect(() => {
+        console.log(person)
+    }, [])
     
     return (
         <Background>
@@ -48,7 +50,7 @@ export default ({route, navigation}) =>
                         onValueChange={e => setAttributes({...attributes, for: e})}
                         value={attributes.for}
                     />
-                    <AttributeInput 
+                    <Input 
                         keyboardType='numeric'
                         value={''+attributes.for.toFixed(0)}
                         onChangeText={e => setAttributes({...attributes, for: e === '' ? 0 : e > 20 ? 20 : parseInt(e)})}
@@ -65,7 +67,7 @@ export default ({route, navigation}) =>
                         onValueChange={e => setAttributes({...attributes, des: e})}
                         value={attributes.des}
                     />
-                    <AttributeInput 
+                    <Input 
                         keyboardType='numeric'
                         value={''+attributes.des.toFixed(0)}
                         onChangeText={e => setAttributes({...attributes, des: e === '' ? 0 : e > 20 ? 20 : parseInt(e)})}
@@ -82,7 +84,7 @@ export default ({route, navigation}) =>
                         onValueChange={e => setAttributes({...attributes, con: e})}
                         value={attributes.con}
                     />
-                    <AttributeInput 
+                    <Input 
                         keyboardType='numeric'
                         value={''+attributes.con.toFixed(0)}
                         onChangeText={e => setAttributes({...attributes, cont: e === '' ? 0 : e > 20 ? 20 : parseInt(e)})}
@@ -99,7 +101,7 @@ export default ({route, navigation}) =>
                         onValueChange={e => setAttributes({...attributes, int: e})}
                         value={attributes.int}
                     />
-                    <AttributeInput 
+                    <Input 
                         keyboardType='numeric'
                         value={''+attributes.int.toFixed(0)}
                         onChangeText={e => setAttributes({...attributes, int: e === '' ? 0 : e > 20 ? 20 : parseInt(e)})}
@@ -116,7 +118,7 @@ export default ({route, navigation}) =>
                         onValueChange={e => setAttributes({...attributes, sab: e})}
                         value={attributes.sab}
                     />
-                    <AttributeInput 
+                    <Input 
                         keyboardType='numeric'
                         value={''+attributes.sab.toFixed(0)}
                         onChangeText={e => setAttributes({...attributes, sab: e === '' ? 0 : e > 20 ? 20 : parseInt(e)})}
@@ -133,7 +135,7 @@ export default ({route, navigation}) =>
                         onValueChange={e => setAttributes({...attributes, car: e})}
                         value={attributes.car}
                     />
-                    <AttributeInput 
+                    <Input 
                         keyboardType='numeric'
                         value={''+attributes.car.toFixed(0)}
                         onChangeText={e => setAttributes({...attributes, car: e === '' ? 0 : e > 20 ? 20 : parseInt(e)})}

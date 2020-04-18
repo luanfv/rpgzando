@@ -1,7 +1,8 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import {Background, Container, Title, TextStyled, Attribute, Input, Button} from './../styled'
 import Slider from '@react-native-community/slider'
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
+import {warning} from './../helpers/rules'
 
 export default ({route, navigation}) => 
 {
@@ -14,6 +15,7 @@ export default ({route, navigation}) =>
         sab: 0,
         car: 0,
     })
+
     const randomAttr = () =>
     {
         setAttributes({...attributes, 
@@ -26,9 +28,42 @@ export default ({route, navigation}) =>
         })
     }
 
-    useEffect(() => {
-        console.log(person)
-    }, [])
+    const handlePerson = () => 
+    {
+        if(
+            attributes.for === 0 ||
+            attributes.des === 0 ||
+            attributes.con === 0 ||
+            attributes.int === 0 ||
+            attributes.sab === 0 ||
+            attributes.car === 0
+        )
+        {
+            warning(`AVISO`, `Atributos não podem ter o valor de zero (0)`)
+
+            return
+        }
+
+        const personCreated = {
+            name: person.name,
+            level: person.level,
+            race: person.race,
+            raceId: person.raceId,
+            class: person.class,
+            classId:person.classId,
+            expertise: person.expertise,
+            attributes: {
+                for: (person.attributes.for + attributes.for).toFixed(0),
+                con: (person.attributes.con + attributes.con).toFixed(0),
+                des: (person.attributes.des + attributes.des).toFixed(0),
+                int: (person.attributes.int + attributes.int).toFixed(0),
+                sab: (person.attributes.sab + attributes.sab).toFixed(0),
+                car: (person.attributes.car + attributes.car).toFixed(0),
+            }
+        }
+
+        navigation.navigate('Ficha', {person: personCreated})
+    }
     
     return (
         <Background>
@@ -143,7 +178,7 @@ export default ({route, navigation}) =>
                 </Attribute>
             </Container>
 
-            <Button>
+            <Button onPress={() => handlePerson()}>
                 <TextStyled bold={true}>FINALIZAR</TextStyled>
             </Button>
         </Background>

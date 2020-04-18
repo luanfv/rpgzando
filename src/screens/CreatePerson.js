@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
-import {View, Alert} from 'react-native'
-import {handleRace, races, classes} from './../helpers/rules'
+import {View} from 'react-native'
+import {handleRace, races, classes, warning} from './../helpers/rules'
 import {Background, Container, TextStyled, Title, Images, Select, FlexRow, Button, Input} from './../styled'
 import CheckBox from '@react-native-community/checkbox'
 
@@ -68,13 +68,13 @@ export default ({navigation}) =>
 
         if(person.name === '')
         {
-            Alert.alert(`AVISO`,`Você precisa dar um nome ao seu personagem!`)
+            warning(`Você precisa dar um nome ao seu personagem!`)
             return
         }
 
         if(length !== personClass.quantityExpertise)
         {
-            Alert.alert(`AVISO`,`Você tem que escolher ${personClass.quantityExpertise} perícias`)
+            warning(`Você tem que escolher ${personClass.quantityExpertise} perícias`)
             return
         }
 
@@ -85,8 +85,10 @@ export default ({navigation}) =>
         setPerson({
             ...person, 
             expertise: expertises, 
-            class: personClass.id, 
-            race: race.id, 
+            classId: personClass.id,
+            class: personClass.name,
+            raceId: race.id,
+            race: race.name,
             attributes: attrs
         })
         

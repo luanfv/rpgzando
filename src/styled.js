@@ -14,6 +14,11 @@ export const Container = styled(View)`
     margin: 20px 0 40px;
 `
 
+export const ContainerInfo = styled(View)`
+    width: ${props => props.width ? props.width : '100'}%;
+    margin-bottom: 20px;
+`
+
 export const Select = styled(Picker)`
     color: #d9dbde;
     font-size: 20px;
@@ -75,4 +80,10 @@ export const Button = styled(TouchableOpacity)`
     justify-content: center;
     background-color: ${props => props.background ? props.background : '#570a0a'};
     margin-bottom: 20px;
+`
+
+export const Column2 = styled(View)`
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
 `

@@ -16,6 +16,7 @@ import FighterImage from './../images/calsses/fighter.png'
 import WarlockImage from './../images/calsses/warlock.png'
 import SorcererImage from './../images/calsses/sorcerer.png'
 import MonkImage from './../images/calsses/monk.png'
+import {Alert} from 'react-native'
 
 export const races = [
     {
@@ -397,4 +398,9 @@ export const handleRace = (race, type) =>
     }
 
     return isError ? null : attributes
+}
+
+export const warning = text =>
+{
+    Alert.alert(`ATENÇÃO`, `${text}`)
 }

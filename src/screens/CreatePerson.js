@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import {View} from 'react-native'
+import {View, Alert} from 'react-native'
 import {handleRace, races, classes} from './../helpers/rules'
 import {Background, Container, TextStyled, Title, Images, Select, FlexRow, Button, Input} from './../styled'
 import CheckBox from '@react-native-community/checkbox'
@@ -68,13 +68,13 @@ export default ({navigation}) =>
 
         if(person.name === '')
         {
-            alert(`Você precisa dar um nome ao seu personagem!`)
+            Alert.alert(`AVISO`,`Você precisa dar um nome ao seu personagem!`)
             return
         }
 
         if(length !== personClass.quantityExpertise)
         {
-            alert(`Você tem que escolher ${personClass.quantityExpertise} perícias`)
+            Alert.alert(`AVISO`,`Você tem que escolher ${personClass.quantityExpertise} perícias`)
             return
         }
 
@@ -111,7 +111,7 @@ export default ({navigation}) =>
                 <TextStyled>Nível:</TextStyled>
                 <Input 
                     value={person.level ? `${person.level}` : `${1}`} 
-                    onChangeText={e => setPerson({...person, level: e === NaN ? 1 : parseInt(e)})}
+                    onChangeText={e => setPerson({...person, level: e ? parseInt(e) : 1})}
                     keyboardType="numeric"
                     align="left" 
                     placeholder="2" 

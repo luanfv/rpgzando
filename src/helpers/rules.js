@@ -404,3 +404,5 @@ export const warning = text =>
 {
     Alert.alert(`ATENÇÃO`, `${text}`)
 }
+
+export const calcModifier = value => ((value - 10) / 2).toFixed(0) < 0 ? ((value - 10) / 2).toFixed(0) : `+${((value - 10) / 2).toFixed(0)}`

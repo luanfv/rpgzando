@@ -1,4 +1,5 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
+import {View} from 'react-native'
 import {Background, Container, Title, TextStyled, Attribute, Input, Button} from './../styled'
 import Slider from '@react-native-community/slider'
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
@@ -7,6 +8,7 @@ import {warning} from './../helpers/rules'
 export default ({route, navigation}) => 
 {
     const person = route.params.person
+    const [hp, setHp] = useState(new Array(person.level))
     const [attributes, setAttributes] = useState({
         for: 0,
         des: 0,
@@ -26,6 +28,22 @@ export default ({route, navigation}) =>
             sab: Math.floor(Math.random() * 20) + 1,
             car: Math.floor(Math.random() * 20) + 1
         })
+    }
+
+    const randomHp = () =>
+    {
+        let newHp = hp
+        for(let i = 0; i < hp.length; i++)
+            newHp[i] = Math.floor(Math.random() * person.level) + 1
+
+        setHp(newHp)
+    }
+
+    const alterHp = (local, value) =>
+    {
+        let newHp = hp
+        newHp[local] = value
+        setHp(newHp)
     }
 
     const handlePerson = () => 
@@ -64,9 +82,31 @@ export default ({route, navigation}) =>
 
         navigation.navigate('Ficha', {person: personCreated})
     }
+
+    useEffect(() => {
+        console.log(hp)
+        console.log(hp.length)
+    }, [hp])
     
     return (
         <Background>
+            <Container>
+                <Title>Defina seu HP2</Title>
+                <Button background="#D8D8D8" onPress={() => randomHp()}>
+                    <TextStyled color='#4ead63' bold={true}>
+                        <FontAwesome5 name="dice" size={18} color="#4ead63" />{`  `}ALEATORIO
+                    </TextStyled>
+                </Button>
+                {hp.forEach((value, i) => {
+                    console.log(value)
+                    return (
+                        <View key={value}>
+                            <TextStyled>Nível {i + 1}</TextStyled>
+                            <Input placeholder={`1d${person.hp}`} value={value} onChangeText={e => alterHp(i, e)} />
+                        </View>
+                    )
+                })}
+            </Container>
             <Container>
                 <Title>Defina seus atributos</Title>
                 <Button background="#D8D8D8" onPress={() => randomAttr()}>

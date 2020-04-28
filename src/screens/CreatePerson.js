@@ -89,6 +89,7 @@ export default ({navigation}) =>
             class: personClass.name,
             raceId: race.id,
             race: race.name,
+            hp: personClass.hp,
             attributes: attrs
         })
         
@@ -147,7 +148,7 @@ export default ({navigation}) =>
 
                 <View key={personClass.id}>
                     <TextStyled>Classe: {personClass.name}</TextStyled>
-                    <TextStyled>HP: {personClass.hp}</TextStyled>
+                    <TextStyled>HP: 1d{personClass.hp}</TextStyled>
                 </View>
             </Container>
 

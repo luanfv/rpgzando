@@ -141,7 +141,7 @@ export const classes = [
     {
         id: 1,
         name: 'Paladino',
-        hp: '1d10',
+        hp: 10,
         image: PaladinImage,
         expertise: [
             expertise[0],
@@ -156,7 +156,7 @@ export const classes = [
     {
         id: 2,
         name: 'Barbaro',
-        hp: '1d12',
+        hp: 12,
         image: BarbaricImage,
         expertise: [
             expertise[0],
@@ -171,7 +171,7 @@ export const classes = [
     {
         id: 3,
         name: 'Bardo',
-        hp: '1d8',
+        hp: 8,
         image: BardImage,
         expertise: expertise,
         quantityExpertise: 3,
@@ -179,7 +179,7 @@ export const classes = [
     {
         id: 4,
         name: 'Ladino',
-        hp: '1d8',
+        hp: 8,
         image: RogueImage,
         expertise: [
             expertise[0],
@@ -199,7 +199,7 @@ export const classes = [
     {
         id: 5,
         name: 'Mago',
-        hp: '1d6',
+        hp: 6,
         image: WizardImage,
         expertise: [
             expertise[4],
@@ -214,7 +214,7 @@ export const classes = [
     {
         id: 6,
         name: 'Clerigo',
-        hp: '1d8',
+        hp: 8,
         image: ClericImage,
         expertise: [
             expertise[5],
@@ -228,7 +228,7 @@ export const classes = [
     {
         id: 7,
         name: 'Patrulheiro',
-        hp: '1d10',
+        hp: 10,
         image: RangerImage,
         expertise: [
             expertise[1],
@@ -246,7 +246,7 @@ export const classes = [
     {
         id: 8,
         name: 'Druida',
-        hp: '1d8',
+        hp: 8,
         image: DruidImage,
         expertise: [
             expertise[4],
@@ -263,7 +263,7 @@ export const classes = [
     {
         id: 9,
         name: 'Guerreiro',
-        hp: '1d10',
+        hp: 10,
         image: FighterImage,
         expertise: [
             expertise[1],
@@ -280,7 +280,7 @@ export const classes = [
     {
         id: 10,
         name: 'Bruxo',
-        hp: '1d8',
+        hp: 8,
         image: WarlockImage,
         expertise: [
             expertise[4],
@@ -296,7 +296,7 @@ export const classes = [
     {
         id: 11,
         name: 'Feiticeiro',
-        hp: '1d6',
+        hp: 6,
         image: SorcererImage,
         expertise: [
             expertise[4],
@@ -311,7 +311,7 @@ export const classes = [
     {
         id: 12,
         name: 'Monge',
-        hp: '1d8',
+        hp: 8,
         image: MonkImage,
         expertise: [
             expertise[1],

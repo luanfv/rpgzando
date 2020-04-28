@@ -8,7 +8,7 @@ import {warning} from './../helpers/rules'
 export default ({route, navigation}) => 
 {
     const person = route.params.person
-    const [hp, setHp] = useState(new Array(person.level))
+    const [hp, setHp] = useState(0)
     const [attributes, setAttributes] = useState({
         for: 0,
         des: 0,
@@ -32,22 +32,21 @@ export default ({route, navigation}) =>
 
     const randomHp = () =>
     {
-        let newHp = hp
-        for(let i = 0; i < hp.length; i++)
-            newHp[i] = Math.floor(Math.random() * person.level) + 1
+        let newHp = 0
+        for(let i = 0; i < person.level; i++)
+            newHp += Math.floor(Math.random() * person.hp) + 1
 
-        setHp(newHp)
-    }
-
-    const alterHp = (local, value) =>
-    {
-        let newHp = hp
-        newHp[local] = value
         setHp(newHp)
     }
 
     const handlePerson = () => 
     {
+        if(hp < person.level || hp > (person.level * person.hp))
+        {
+            warning(`Valor do hp inválido`)
+            return
+        }
+
         if(
             attributes.for === 0 ||
             attributes.des === 0 ||
@@ -57,19 +56,13 @@ export default ({route, navigation}) =>
             attributes.car === 0
         )
         {
-            warning(`AVISO`, `Atributos não podem ter o valor de zero (0)`)
-
+            warning(`Atributos não podem ter o valor de zero (0)`)
             return
         }
 
         const personCreated = {
-            name: person.name,
-            level: person.level,
-            race: person.race,
-            raceId: person.raceId,
-            class: person.class,
-            classId:person.classId,
-            expertise: person.expertise,
+            ...person,
+            fullHp: hp,
             attributes: {
                 for: (person.attributes.for + attributes.for).toFixed(0),
                 con: (person.attributes.con + attributes.con).toFixed(0),
@@ -82,30 +75,22 @@ export default ({route, navigation}) =>
 
         navigation.navigate('Ficha', {person: personCreated})
     }
-
-    useEffect(() => {
-        console.log(hp)
-        console.log(hp.length)
-    }, [hp])
     
     return (
         <Background>
             <Container>
-                <Title>Defina seu HP2</Title>
+                <Title>Defina seu HP</Title>
                 <Button background="#D8D8D8" onPress={() => randomHp()}>
                     <TextStyled color='#4ead63' bold={true}>
                         <FontAwesome5 name="dice" size={18} color="#4ead63" />{`  `}ALEATORIO
                     </TextStyled>
                 </Button>
-                {hp.forEach((value, i) => {
-                    console.log(value)
-                    return (
-                        <View key={value}>
-                            <TextStyled>Nível {i + 1}</TextStyled>
-                            <Input placeholder={`1d${person.hp}`} value={value} onChangeText={e => alterHp(i, e)} />
-                        </View>
-                    )
-                })}
+                <TextStyled>HP TOTAL ({person.level} x 1d{person.hp})</TextStyled>
+                <Input 
+                    keyboardType='numeric'
+                    value={''+hp}
+                    onChangeText={e => setHp(e === '' ? 0 : e > person.level * person.hp ? person.level * person.hp : parseInt(e))}
+                />
             </Container>
             <Container>
                 <Title>Defina seus atributos</Title>

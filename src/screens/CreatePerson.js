@@ -72,6 +72,12 @@ export default ({navigation}) =>
             return
         }
 
+        if(person.level <= 0)
+        {
+            warning(`Seu nível deve ser pelo menos 1`)
+            return
+        }
+
         if(length !== personClass.quantityExpertise)
         {
             warning(`Você tem que escolher ${personClass.quantityExpertise} perícias`)
@@ -113,8 +119,8 @@ export default ({navigation}) =>
                 />
                 <TextStyled>Nível:</TextStyled>
                 <Input 
-                    value={person.level ? `${person.level}` : `${1}`} 
-                    onChangeText={e => setPerson({...person, level: e ? parseInt(e) : 1})}
+                    value={person.level ? `${person.level}` : `${0}`} 
+                    onChangeText={e => setPerson({...person, level: e ? parseInt(e) : 0})}
                     keyboardType="numeric"
                     align="left" 
                     placeholder="2" 

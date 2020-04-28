@@ -30,6 +30,11 @@ export default ({route, navigation}) =>
                     <TextStyled color={color} fontsize="14">Classe:</TextStyled>
                     <TextStyled fontsize="22">{person.class}</TextStyled>
                 </ContainerInfo>
+
+                <ContainerInfo>
+                    <TextStyled color={color} fontsize="14">HP:</TextStyled>
+                    <TextStyled fontsize="22">{person.fullHp}</TextStyled>
+                </ContainerInfo>
             </Container>
 
             <Container>

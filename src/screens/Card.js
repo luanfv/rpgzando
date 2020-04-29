@@ -11,7 +11,7 @@ export default ({route, navigation}) =>
     const Expertises = (props) =>
     {
         const value = props.data.item
-        const handleAttr = (value, id) =>
+        const handleAttr = value =>
         {
             if(value === 1)
                 return person.attributes.for
@@ -27,12 +27,31 @@ export default ({route, navigation}) =>
                 return person.attributes.car
         }
 
+        const handleExpertise = id =>
+        {
+            let value = 0
+            person.expertise.forEach(e => {
+                if(id === e)
+                    if(person.level < 5)
+                        value = 2
+                    else if(person.level < 9)
+                        value = 3
+                    else if(person.level < 13)
+                        value = 4
+                    else if(person.level < 17)
+                        value = 5
+                    else
+                        value = 6
+            })
+
+            return value
+        }
+
         return (
             <Column2 marginBottom="10">
                 <TextStyled color={color} fontsize="22">{value.desc}:</TextStyled>
-                <TextStyled fontsize="22">{calcModifier(handleAttr(value.type, value.id))}</TextStyled>
+                <TextStyled fontsize="22">{parseInt(calcModifier(handleAttr(value.type))) + handleExpertise(value.id)}</TextStyled>
             </Column2>
-            
         )
     }
 

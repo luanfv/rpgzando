@@ -116,7 +116,7 @@ export const races = [
 // 5- SAB
 // 6- CAR
 
-const expertise = [
+export const expertise = [
     {id: 1, desc: 'Atletismo', type: 1, checked: false},
     {id: 2, desc: 'Acrobacia', type: 2, checked: false},
     {id: 3, desc: 'Furtividade', type: 2, checked: false},

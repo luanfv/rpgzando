@@ -1,11 +1,40 @@
 import React from 'react'
-import {Background, Container, ContainerInfo, TextStyled, Title, Column2, Images, Select, FlexRow, Button, Input} from './../styled'
-import {calcModifier} from './../helpers/rules'
+import {FlatList} from 'react-native'
+import {Background, Container, ContainerInfo, TextStyled, Title, Column2} from './../styled'
+import {calcModifier, expertise} from './../helpers/rules'
 
 export default ({route, navigation}) =>
 {
-    const person = route.params.person
     const color = `rgba(255, 255, 255, .4)`
+    const person = route.params.person
+
+    const Expertises = (props) =>
+    {
+        const value = props.data.item
+        const handleAttr = (value, id) =>
+        {
+            if(value === 1)
+                return person.attributes.for
+            else if(value === 2)
+                return person.attributes.des
+            else if(value === 3)
+                return person.attributes.con
+            else if(value === 4)
+                return person.attributes.int
+            else if(value === 5)
+                return person.attributes.sab
+            else if(value === 6)
+                return person.attributes.car
+        }
+
+        return (
+            <Column2 marginBottom="10">
+                <TextStyled color={color} fontsize="22">{value.desc}:</TextStyled>
+                <TextStyled fontsize="22">{calcModifier(handleAttr(value.type, value.id))}</TextStyled>
+            </Column2>
+            
+        )
+    }
 
     return (
         <Background>
@@ -41,7 +70,7 @@ export default ({route, navigation}) =>
                 <Title>atributos:</Title>
 
                 <Column2>
-                <ContainerInfo width="48">
+                    <ContainerInfo   ContainerInfo width="48">
                         <TextStyled color={color} fontsize="14">FORÇA:</TextStyled>
                         <TextStyled fontsize="22">{person.attributes.for} ({calcModifier(person.attributes.for)})</TextStyled>
                     </ContainerInfo>
@@ -71,6 +100,15 @@ export default ({route, navigation}) =>
                         <TextStyled fontsize="22">{person.attributes.car} ({calcModifier(person.attributes.car)})</TextStyled>
                     </ContainerInfo>
                 </Column2>
+            </Container>
+
+            <Container>
+                <Title>Perícias:</Title>
+                <FlatList
+                    data={expertise}
+                    keyExtractor={expertise.id}
+                    renderItem={e => <Expertises data={e} attributes={person.attributes} />}
+                />
             </Container>
         </Background>
     )

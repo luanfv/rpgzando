@@ -86,4 +86,5 @@ export const Column2 = styled(View)`
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
+    ${props => props.marginBottom ? `margin-bottom: ${props.marginBottom}px;` : ''}
 `

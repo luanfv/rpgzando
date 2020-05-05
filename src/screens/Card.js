@@ -1,12 +1,52 @@
 import React from 'react'
-import {FlatList} from 'react-native'
-import {Background, Container, ContainerInfo, TextStyled, Title, Column2} from './../styled'
+import {FlatList, Share} from 'react-native'
+import {Background, Container, ContainerInfo, TextStyled, Title, Column2, Button} from './../styled'
 import {calcModifier, expertise} from './../helpers/rules'
 
 export default ({route, navigation}) =>
 {
     const color = `rgba(255, 255, 255, .4)`
     const person = route.params.person
+    const onShare = async () => {
+        try 
+        {
+          await Share.share({
+            message: `
+                Minha ficha criada criada no RPGZando!
+                \n\n
+                PERSONAGEM:
+                \n
+                Nome: ${person.name}
+                \n
+                Nível: ${person.level}
+                \n
+                Raça: ${person.race}
+                \n
+                Classe: ${person.class}
+                \n
+                HP Total: ${person.fullHp}
+                \n\n
+                ATRIBUTOS:
+                \n
+                Força: ${`${person.attributes.for} (${calcModifier(person.attributes.for)})`}
+                \n
+                Constituição: ${`${person.attributes.con} (${calcModifier(person.attributes.con)})`}
+                \n
+                Destrza: ${`${person.attributes.des} (${calcModifier(person.attributes.des)})`}
+                \n
+                Inteligência: ${`${person.attributes.int} (${calcModifier(person.attributes.int)})`}
+                \n
+                Sabedoria: ${`${person.attributes.sab} (${calcModifier(person.attributes.sab)})`}
+                \n
+                Carisma: ${`${person.attributes.car} (${calcModifier(person.attributes.car)})`}
+            `
+          })
+        }
+        catch(e)
+        {
+
+        }
+    }
 
     const Expertises = (props) =>
     {
@@ -129,6 +169,14 @@ export default ({route, navigation}) =>
                     renderItem={e => <Expertises data={e} attributes={person.attributes} />}
                 />
             </Container>
+
+            <Button onPress={onShare}>
+                <TextStyled bold={true}>COMPARTILHAR</TextStyled>
+            </Button>
+
+            <Button onPress={() => navigation.navigate('Criando Personagem')}>
+                <TextStyled bold={true}>CRIAR OUTRA FICHA</TextStyled>
+            </Button>
         </Background>
     )
 }

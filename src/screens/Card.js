@@ -90,7 +90,7 @@ export default ({route, navigation}) =>
         return (
             <Column2 marginBottom="10">
                 <TextStyled color={color} fontsize="22">{value.desc}:</TextStyled>
-                <TextStyled fontsize="22">{parseInt(calcModifier(handleAttr(value.type))) + handleExpertise(value.id)}</TextStyled>
+                <TextStyled fontsize="22">{`${parseInt(calcModifier(handleAttr(value.type))) + handleExpertise(value.id)} `}</TextStyled>
             </Column2>
         )
     }
@@ -106,7 +106,7 @@ export default ({route, navigation}) =>
                 
                 <ContainerInfo>
                     <TextStyled color={color} fontsize="14">Nível:</TextStyled>
-                    <TextStyled fontsize="22">{person.level}</TextStyled>
+                    <TextStyled fontsize="22">{`${person.level} `}</TextStyled>
                 </ContainerInfo>
 
                 <ContainerInfo>
@@ -121,7 +121,15 @@ export default ({route, navigation}) =>
 
                 <ContainerInfo>
                     <TextStyled color={color} fontsize="14">HP:</TextStyled>
-                    <TextStyled fontsize="22">{person.fullHp}</TextStyled>
+                    <TextStyled fontsize="22">
+                        {
+                            parseInt(calcModifier(person.attributes.for)) > 0 
+                            ?
+                            person.fullHp + (person.level * parseInt(calcModifier(person.attributes.con)))
+                            :
+                            person.fullHp
+                        }
+                    </TextStyled>
                 </ContainerInfo>
             </Container>
 
@@ -131,32 +139,32 @@ export default ({route, navigation}) =>
                 <Column2>
                     <ContainerInfo   ContainerInfo width="48">
                         <TextStyled color={color} fontsize="14">FORÇA:</TextStyled>
-                        <TextStyled fontsize="22">{person.attributes.for} ({calcModifier(person.attributes.for)})</TextStyled>
+                        <TextStyled fontsize="22">{`${person.attributes.for} `} ({calcModifier(person.attributes.for)})</TextStyled>
                     </ContainerInfo>
 
                     <ContainerInfo width="48">
                         <TextStyled color={color} fontsize="14">CONSTITUIÇÃO:</TextStyled>
-                        <TextStyled fontsize="22">{person.attributes.con} ({calcModifier(person.attributes.con)})</TextStyled>
+                        <TextStyled fontsize="22">{`${person.attributes.con} `} ({calcModifier(person.attributes.con)})</TextStyled>
                     </ContainerInfo>
 
                     <ContainerInfo width="48">
                         <TextStyled color={color} fontsize="14">DESTRZA:</TextStyled>
-                        <TextStyled fontsize="22">{person.attributes.des} ({calcModifier(person.attributes.des)})</TextStyled>
+                        <TextStyled fontsize="22">{`${person.attributes.des} `} ({calcModifier(person.attributes.des)})</TextStyled>
                     </ContainerInfo>
 
                     <ContainerInfo width="48">
                         <TextStyled color={color} fontsize="14">INTELIGENCIA:</TextStyled>
-                        <TextStyled fontsize="22">{person.attributes.int} ({calcModifier(person.attributes.int)})</TextStyled>
+                        <TextStyled fontsize="22">{`${person.attributes.int} `} ({calcModifier(person.attributes.int)})</TextStyled>
                     </ContainerInfo>
 
                     <ContainerInfo width="48">
                         <TextStyled color={color} fontsize="14">SABEDORIA:</TextStyled>
-                        <TextStyled fontsize="22">{person.attributes.sab} ({calcModifier(person.attributes.sab)})</TextStyled>
+                        <TextStyled fontsize="22">{`${person.attributes.sab} `} ({calcModifier(person.attributes.sab)})</TextStyled>
                     </ContainerInfo>
 
                     <ContainerInfo width="48">
                         <TextStyled color={color} fontsize="14">CARISMA:</TextStyled>
-                        <TextStyled fontsize="22">{person.attributes.car} ({calcModifier(person.attributes.car)})</TextStyled>
+                        <TextStyled fontsize="22">{`${person.attributes.car} `} ({calcModifier(person.attributes.car)})</TextStyled>
                     </ContainerInfo>
                 </Column2>
             </Container>

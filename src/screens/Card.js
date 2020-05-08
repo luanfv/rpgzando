@@ -11,35 +11,7 @@ export default ({route, navigation}) =>
         try 
         {
           await Share.share({
-            message: `
-                Minha ficha criada criada no RPGZando!
-                \n\n
-                PERSONAGEM:
-                \n
-                Nome: ${person.name}
-                \n
-                Nível: ${person.level}
-                \n
-                Raça: ${person.race}
-                \n
-                Classe: ${person.class}
-                \n
-                HP Total: ${person.fullHp}
-                \n\n
-                ATRIBUTOS:
-                \n
-                Força: ${`${person.attributes.for} (${calcModifier(person.attributes.for)})`}
-                \n
-                Constituição: ${`${person.attributes.con} (${calcModifier(person.attributes.con)})`}
-                \n
-                Destrza: ${`${person.attributes.des} (${calcModifier(person.attributes.des)})`}
-                \n
-                Inteligência: ${`${person.attributes.int} (${calcModifier(person.attributes.int)})`}
-                \n
-                Sabedoria: ${`${person.attributes.sab} (${calcModifier(person.attributes.sab)})`}
-                \n
-                Carisma: ${`${person.attributes.car} (${calcModifier(person.attributes.car)})`}
-            `
+            message: `Minha ficha criada criada no RPGZando!\n\nPERSONAGEM:\nNome: ${person.name}\nNível: ${person.level}\nRaça: ${person.race}\nClasse: ${person.class}\nHP Total: ${person.fullHp}\n\nATRIBUTOS:\nForça: ${`${person.attributes.for} (${calcModifier(person.attributes.for)})`}\nConstituição: ${`${person.attributes.con} (${calcModifier(person.attributes.con)})`}\nDestrza: ${`${person.attributes.des} (${calcModifier(person.attributes.des)})`}\nInteligência: ${`${person.attributes.int} (${calcModifier(person.attributes.int)})`}\nSabedoria: ${`${person.attributes.sab} (${calcModifier(person.attributes.sab)})`}\nCarisma: ${`${person.attributes.car} (${calcModifier(person.attributes.car)})`}\n\nPerícias:\nAtletismo: ${parseInt(calcModifier(person.attributes.for)) + handleExpertise(1)}\nAcrobacia: ${parseInt(calcModifier(person.attributes.des)) + handleExpertise(2)}\nFurtividade: ${parseInt(calcModifier(person.attributes.des)) + handleExpertise(3)}\nPrestidigitação:  ${parseInt(calcModifier(person.attributes.des)) + handleExpertise(4)}\nArcanismo:  ${parseInt(calcModifier(person.attributes.int)) + handleExpertise(5)}\nHistoria:  ${parseInt(calcModifier(person.attributes.int)) + handleExpertise(6)}\nInvestigação:  ${parseInt(calcModifier(person.attributes.int)) + handleExpertise(7)}\nNatureza:  ${parseInt(calcModifier(person.attributes.int)) + handleExpertise(8)}\nReligião:  ${parseInt(calcModifier(person.attributes.int)) + handleExpertise(9)}\nAdestrar Animais:  ${parseInt(calcModifier(person.attributes.sab)) + handleExpertise(10)}\nIntuição:  ${parseInt(calcModifier(person.attributes.sab)) + handleExpertise(11)}\nMedicina: ${parseInt(calcModifier(person.attributes.sab)) + handleExpertise(12)}\nPercepção: ${parseInt(calcModifier(person.attributes.sab)) + handleExpertise(13)}\nSobrevivência: ${parseInt(calcModifier(person.attributes.sab)) + handleExpertise(14)}\nAtuação: ${parseInt(calcModifier(person.attributes.car)) + handleExpertise(15)}\nEnganação: ${parseInt(calcModifier(person.attributes.car)) + handleExpertise(16)}\nIntimidação: ${parseInt(calcModifier(person.attributes.car)) + handleExpertise(17)}\nPersuasão: ${parseInt(calcModifier(person.attributes.car)) + handleExpertise(18)}`
           })
         }
         catch(e)

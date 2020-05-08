@@ -147,7 +147,7 @@ export default ({route, navigation}) =>
                     <Input 
                         keyboardType='numeric'
                         value={''+attributes.con.toFixed(0)}
-                        onChangeText={e => setAttributes({...attributes, cont: e === '' ? 0 : e > 20 ? 20 : parseInt(e)})}
+                        onChangeText={e => setAttributes({...attributes, con: e === '' ? 0 : e > 20 ? 20 : parseInt(e)})}
                     />
                 </Attribute>
                 <Attribute>

@@ -64,12 +64,12 @@ export default ({route, navigation}) =>
             ...person,
             fullHp: hp,
             attributes: {
-                for: (person.attributes.for + attributes.for).toFixed(0),
-                con: (person.attributes.con + attributes.con).toFixed(0),
-                des: (person.attributes.des + attributes.des).toFixed(0),
-                int: (person.attributes.int + attributes.int).toFixed(0),
-                sab: (person.attributes.sab + attributes.sab).toFixed(0),
-                car: (person.attributes.car + attributes.car).toFixed(0),
+                for: Math.trunc((person.attributes.for + attributes.for)),
+                con: Math.trunc((person.attributes.con + attributes.con)),
+                des: Math.trunc((person.attributes.des + attributes.des)),
+                int: Math.trunc((person.attributes.int + attributes.int)),
+                sab: Math.trunc((person.attributes.sab + attributes.sab)),
+                car: Math.trunc((person.attributes.car + attributes.car)),
             }
         }
 
@@ -112,7 +112,7 @@ export default ({route, navigation}) =>
                     />
                     <Input 
                         keyboardType='numeric'
-                        value={''+attributes.for.toFixed(0)}
+                        value={''+Math.trunc(attributes.for)}
                         onChangeText={e => setAttributes({...attributes, for: e === '' ? 0 : e > 20 ? 20 : parseInt(e)})}
                     />
                 </Attribute>
@@ -129,7 +129,7 @@ export default ({route, navigation}) =>
                     />
                     <Input 
                         keyboardType='numeric'
-                        value={''+attributes.des.toFixed(0)}
+                        value={''+Math.trunc(attributes.des)}
                         onChangeText={e => setAttributes({...attributes, des: e === '' ? 0 : e > 20 ? 20 : parseInt(e)})}
                     />
                 </Attribute>
@@ -146,7 +146,7 @@ export default ({route, navigation}) =>
                     />
                     <Input 
                         keyboardType='numeric'
-                        value={''+attributes.con.toFixed(0)}
+                        value={''+Math.trunc(attributes.con)}
                         onChangeText={e => setAttributes({...attributes, con: e === '' ? 0 : e > 20 ? 20 : parseInt(e)})}
                     />
                 </Attribute>
@@ -163,7 +163,7 @@ export default ({route, navigation}) =>
                     />
                     <Input 
                         keyboardType='numeric'
-                        value={''+attributes.int.toFixed(0)}
+                        value={''+Math.trunc(attributes.int)}
                         onChangeText={e => setAttributes({...attributes, int: e === '' ? 0 : e > 20 ? 20 : parseInt(e)})}
                     />
                 </Attribute>
@@ -180,7 +180,7 @@ export default ({route, navigation}) =>
                     />
                     <Input 
                         keyboardType='numeric'
-                        value={''+attributes.sab.toFixed(0)}
+                        value={''+Math.trunc(attributes.sab)}
                         onChangeText={e => setAttributes({...attributes, sab: e === '' ? 0 : e > 20 ? 20 : parseInt(e)})}
                     />
                 </Attribute>
@@ -197,7 +197,7 @@ export default ({route, navigation}) =>
                     />
                     <Input 
                         keyboardType='numeric'
-                        value={''+attributes.car.toFixed(0)}
+                        value={''+Math.trunc(attributes.car)}
                         onChangeText={e => setAttributes({...attributes, car: e === '' ? 0 : e > 20 ? 20 : parseInt(e)})}
                     />
                 </Attribute>

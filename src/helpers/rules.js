@@ -405,4 +405,10 @@ export const warning = text =>
     Alert.alert(`ATENÇÃO`, `${text}`)
 }
 
-export const calcModifier = value => (Math.trunc((value - 10) / 2)) < 0 ? Math.trunc(((value - 10) / 2)) : `+${Math.trunc(((value - 10) / 2))}`
+export const calcModifier = value => 
+{
+    let result = (value - 10) / 2
+    result = result > 0 ? `+${Math.trunc(result)}` : result.toFixed(0)
+    
+    return result
+}

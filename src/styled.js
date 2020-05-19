@@ -79,7 +79,9 @@ export const Button = styled(TouchableOpacity)`
     align-items: center;
     justify-content: center;
     background-color: ${props => props.background ? props.background : '#570a0a'};
-    margin-bottom: 20px;
+    margin-bottom: ${props => props.bottom ? props.bottom : '20'}px;
+    margin-top: ${props => props.top ? props.top : '0'}px;
+    flex-direction: row;
 `
 
 export const Column2 = styled(View)`

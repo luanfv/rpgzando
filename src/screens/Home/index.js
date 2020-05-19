@@ -1,7 +1,11 @@
 import React from 'react'
-import {View, Text, FlatList} from 'react-native'
-import {Background, Header, Main, Card, Class, Txt} from './styled'
+import {View} from 'react-native'
+import {Background, Header, HeaderLogo, HeaderTxt, Main, Content, Card, Class, Txt} from './styled'
 import {races} from './../../helpers/rules'
+import Logo from './../../images/icon.png'
+import {Button, TextStyled} from './../../styled'
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
+
 
 export default () =>
 {
@@ -27,25 +31,38 @@ export default () =>
 
     return (
         <Background>
-            <Header />
+            <Header>
+                <HeaderLogo source={Logo} />
+                <HeaderTxt>
+                    RPGZando
+                </HeaderTxt>
+
+                <Button top={20}>
+                    <TextStyled bold>NOVA FICHA{'   '}</TextStyled>
+                    <FontAwesome5 name="dice-d20" size={24} color="#fff" />
+                </Button>
+            </Header>
             <Main>
-                {
-                    cards.map(person => {
-                        return (
-                            <Card key={person.id}>
-                                <Class source={handleImg(person.race)}/>
-                                <View>
-                                    <Txt fontsize={20}>
-                                        {person.name}, {person.class}
-                                    </Txt>
-                                    <Txt color="rgba(255,255,255,0.5)">
-                                        NÍVEL: {person.level}
-                                    </Txt>
-                                </View>
-                            </Card>
-                        )
-                    })
-                }
+                <Content>
+                    <Txt color="rgba(255,255,255,0.5)">Fichas: {cards.length}/3</Txt>
+                    {
+                        cards.map(person => {
+                            return (
+                                <Card key={person.id}>
+                                    <Class source={handleImg(person.race)}/>
+                                    <View>
+                                        <Txt fontsize={20}>
+                                            {person.name}, {person.class}
+                                        </Txt>
+                                        <Txt color="rgba(255,255,255,0.5)">
+                                            NÍVEL: {person.level}
+                                        </Txt>
+                                    </View>
+                                </Card>
+                            )
+                        })
+                    }
+                </Content>
             </Main>
         </Background>
     )

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import {View} from 'react-native'
 import {Background, Header, HeaderLogo, HeaderTxt, Main, Content, Card, Class, Txt} from './styled'
 import {races} from './../../helpers/rules'
@@ -7,7 +7,7 @@ import {Button, TextStyled} from './../../styled'
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 
 
-export default () =>
+export default ({navigation}) =>
 {
     const cards = [
         {id: 1, name: 'Robson', level: 2, class: 'Barbaro', race: 2},
@@ -29,6 +29,11 @@ export default () =>
         return img
     }
 
+    useEffect(() => {
+        if(cards.length === 0)
+            navigation.navigate('Nova Ficha')
+    }, [])
+
     return (
         <Background>
             <Header>
@@ -40,7 +45,7 @@ export default () =>
                 {
                     cards.length < 3
                     &&
-                    <Button top={20}>
+                    <Button top={20} onPress={() => navigation.navigate('Nova Ficha')}>
                         <TextStyled bold>NOVA FICHA{'   '}</TextStyled>
                         <FontAwesome5 name="dice-d20" size={24} color="#fff" />
                     </Button>

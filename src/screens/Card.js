@@ -18,7 +18,7 @@ export default ({route, navigation}) =>
         }
         catch(e)
         {
-
+            warning('Ocorreu um erro, não foi compartilhar sua ficha!')
         }
     }
 
@@ -35,6 +35,7 @@ export default ({route, navigation}) =>
 
             cards.push(person)
             await AsyncStorage.setItem('@Cards', JSON.stringify(cards))
+            navigation.navigate('Home')
         } 
         catch(err)
         {
@@ -233,10 +234,6 @@ export default ({route, navigation}) =>
 
             <Button onPress={onShare}>
                 <TextStyled bold={true}>COMPARTILHAR</TextStyled>
-            </Button>
-
-            <Button onPress={() => navigation.navigate('Criando Personagem')}>
-                <TextStyled bold={true}>CRIAR OUTRA FICHA</TextStyled>
             </Button>
 
             <Button onPress={saveCard}>

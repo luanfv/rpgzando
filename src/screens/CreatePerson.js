@@ -103,7 +103,7 @@ export default ({navigation}) =>
 
     useEffect(() => {
         if(person.expertise.length > 0)
-            navigation.navigate('Destribuindo os Atributos', {person: person})
+            navigation.navigate('Atributos', {person: person})
     }, [person])
     
     return (

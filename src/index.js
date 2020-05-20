@@ -7,31 +7,23 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import Home from './screens/Home'
 
-// export default () => 
-// {
-//     return (
-//         <>
-//             <StatusBar backgroundColor="#171d2b" />
-//             <Home />
-//         </>
-//     )
-// }
+const Stack = createStackNavigator()
+const Options = {
+    headerShown: false,
+}
 
-export default () => {
-    const Stack = createStackNavigator()
-    const Options = {
-        headerShown: false,
-    }
-
+export default () => 
+{
     return (
         <NavigationContainer>
             <StatusBar backgroundColor="#171d2b" />
             <Stack.Navigator 
                 screenOptions={Options}
-                initialRouteName="Criando Personagem"
+                initialRouteName="Home"
             >
-                <Stack.Screen name="Criando Personagem" component={CreatePerson} />
-                <Stack.Screen name="Destribuindo os Atributos" component={InsertAttr} />
+                <Stack.Screen name="Home" component={Home} />
+                <Stack.Screen name="Nova Ficha" component={CreatePerson} />
+                <Stack.Screen name="Atributos" component={InsertAttr} />
                 <Stack.Screen name="Ficha" component={Card} />
             </Stack.Navigator>
         </NavigationContainer>

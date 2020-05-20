@@ -37,10 +37,14 @@ export default () =>
                     RPGZando
                 </HeaderTxt>
 
-                <Button top={20}>
-                    <TextStyled bold>NOVA FICHA{'   '}</TextStyled>
-                    <FontAwesome5 name="dice-d20" size={24} color="#fff" />
-                </Button>
+                {
+                    cards.length < 3
+                    &&
+                    <Button top={20}>
+                        <TextStyled bold>NOVA FICHA{'   '}</TextStyled>
+                        <FontAwesome5 name="dice-d20" size={24} color="#fff" />
+                    </Button>
+                }
             </Header>
             <Main>
                 <Content>

@@ -1,4 +1,4 @@
-package com.apprpg;
+package com.rpgzando;
 
 import android.app.Application;
 import android.content.Context;

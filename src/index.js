@@ -1,4 +1,5 @@
 import React from 'react'
+import {StatusBar} from 'react-native'
 import CreatePerson from './screens/CreatePerson'
 import InsertAttr from './screens/InserAttr'
 import Card from './screens/Card'
@@ -6,7 +7,15 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import Home from './screens/Home'
 
-export default () => <Home />
+export default () => 
+{
+    return (
+        <>
+            <StatusBar backgroundColor="#171d2b" />
+            <Home />
+        </>
+    )
+}
 
 // export default () => {
 //     const Stack = createStackNavigator()
@@ -16,6 +25,7 @@ export default () => <Home />
 
 //     return (
 //         <NavigationContainer>
+//             <StatusBar backgroundColor="#171d2b" />
 //             <Stack.Navigator 
 //                 screenOptions={Options}
 //                 initialRouteName="Criando Personagem"

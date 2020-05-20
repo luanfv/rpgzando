@@ -85,6 +85,8 @@ target 'apprpg' do
 
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
+
+
   target 'apprpgTests' do
     inherit! :complete
     # Pods for testing

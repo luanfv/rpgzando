@@ -1,13 +1,15 @@
 import React from 'react'
-import {FlatList, Share, View} from 'react-native'
+import {AsyncStorage, Share, View} from 'react-native'
 import {Background, Container, ContainerInfo, TextStyled, Title, Column2, Button} from './../styled'
-import {calcModifier, expertise} from './../helpers/rules'
+import {calcModifier, warning} from './../helpers/rules'
 
 export default ({route, navigation}) =>
 {
     const color = `rgba(255, 255, 255, .4)`
     const person = route.params.person
-    const onShare = async () => {
+
+    const onShare = async () => 
+    {
         try 
         {
           await Share.share({
@@ -17,6 +19,26 @@ export default ({route, navigation}) =>
         catch(e)
         {
 
+        }
+    }
+
+    const saveCard = async () =>
+    {
+        let cards = []
+
+        try 
+        {
+            const response = await AsyncStorage.getItem('@Cards')
+
+            if(response !== null)
+                cards.push(JSON.parse(response))
+
+            cards.push(person)
+            await AsyncStorage.setItem('@Cards', JSON.stringify(cards))
+        } 
+        catch(err)
+        {
+            warning('Ocorreu um erro, não foi possivel salvar sua ficha!')
         }
     }
 
@@ -215,6 +237,10 @@ export default ({route, navigation}) =>
 
             <Button onPress={() => navigation.navigate('Criando Personagem')}>
                 <TextStyled bold={true}>CRIAR OUTRA FICHA</TextStyled>
+            </Button>
+
+            <Button onPress={saveCard}>
+                <TextStyled bold={true}>SALVAR</TextStyled>
             </Button>
         </Background>
     )

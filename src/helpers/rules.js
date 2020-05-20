@@ -402,7 +402,7 @@ export const handleRace = (race, type) =>
 
 export const warning = text =>
 {
-    Alert.alert(`ATENÇÃO`, `${text}`)
+    Alert.alert(`AVISO`, `${text}`)
 }
 
 export const calcModifier = value => 

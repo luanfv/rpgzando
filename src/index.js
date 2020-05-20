@@ -1,4 +1,5 @@
 import React from 'react'
+import {StatusBar} from 'react-native'
 import CreatePerson from './screens/CreatePerson'
 import InsertAttr from './screens/InserAttr'
 import Card from './screens/Card'
@@ -13,6 +14,7 @@ export default () => {
 
     return (
         <NavigationContainer>
+            <StatusBar backgroundColor="#171d2b" />
             <Stack.Navigator 
                 screenOptions={Options}
                 initialRouteName="Criando Personagem"

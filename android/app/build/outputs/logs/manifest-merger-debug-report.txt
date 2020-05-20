@@ -63,9 +63,9 @@ INJECTED from /home/luanfv/projetos/app-rpgzando/android/app/src/debug/AndroidMa
 INJECTED from /home/luanfv/projetos/app-rpgzando/android/app/src/debug/AndroidManifest.xml:2:1-8:12
 INJECTED from /home/luanfv/projetos/app-rpgzando/android/app/src/debug/AndroidManifest.xml:2:1-8:12
 	package
-		ADDED from /home/luanfv/projetos/app-rpgzando/android/app/src/main/AndroidManifest.xml:2:3-23
+		ADDED from /home/luanfv/projetos/app-rpgzando/android/app/src/main/AndroidManifest.xml:2:3-25
 		INJECTED from /home/luanfv/projetos/app-rpgzando/android/app/src/main/AndroidManifest.xml
-		ADDED from /home/luanfv/projetos/app-rpgzando/android/app/src/main/AndroidManifest.xml:2:3-23
+		ADDED from /home/luanfv/projetos/app-rpgzando/android/app/src/main/AndroidManifest.xml:2:3-25
 		INJECTED from /home/luanfv/projetos/app-rpgzando/android/app/src/debug/AndroidManifest.xml
 	android:versionName
 		INJECTED from /home/luanfv/projetos/app-rpgzando/android/app/src/main/AndroidManifest.xml
@@ -124,7 +124,7 @@ MERGED from [com.facebook.soloader:annotation:0.8.2] /home/luanfv/.gradle/caches
 	android:name
 		ADDED from /home/luanfv/projetos/app-rpgzando/android/app/src/main/AndroidManifest.xml:7:7-38
 		ADDED from /home/luanfv/projetos/app-rpgzando/android/app/src/main/AndroidManifest.xml:7:7-38
-activity#com.apprpg.MainActivity
+activity#com.rpgzando.MainActivity
 ADDED from /home/luanfv/projetos/app-rpgzando/android/app/src/main/AndroidManifest.xml:12:7-22:18
 	android:label
 		ADDED from /home/luanfv/projetos/app-rpgzando/android/app/src/main/AndroidManifest.xml:14:9-41

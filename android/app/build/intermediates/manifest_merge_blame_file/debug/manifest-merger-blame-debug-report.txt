@@ -1,6 +1,6 @@
 1<?xml version="1.0" encoding="utf-8"?>
 2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-3    package="com.apprpg"
+3    package="com.rpgzando"
 4    android:versionCode="1"
 5    android:versionName="1.0" >
 6
@@ -20,7 +20,7 @@
 14
 15    <application
 15-->/home/luanfv/projetos/app-rpgzando/android/app/src/main/AndroidManifest.xml:6:5-24:19
-16        android:name="com.apprpg.MainApplication"
+16        android:name="com.rpgzando.MainApplication"
 16-->/home/luanfv/projetos/app-rpgzando/android/app/src/main/AndroidManifest.xml:7:7-38
 17        android:allowBackup="false"
 17-->/home/luanfv/projetos/app-rpgzando/android/app/src/main/AndroidManifest.xml:10:7-34
@@ -37,7 +37,7 @@
 23-->/home/luanfv/projetos/app-rpgzando/android/app/src/debug/AndroidManifest.xml:7:18-53
 24        <activity
 24-->/home/luanfv/projetos/app-rpgzando/android/app/src/main/AndroidManifest.xml:12:7-22:18
-25            android:name="com.apprpg.MainActivity"
+25            android:name="com.rpgzando.MainActivity"
 25-->/home/luanfv/projetos/app-rpgzando/android/app/src/main/AndroidManifest.xml:13:9-37
 26            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"
 26-->/home/luanfv/projetos/app-rpgzando/android/app/src/main/AndroidManifest.xml:15:9-86

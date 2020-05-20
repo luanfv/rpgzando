@@ -1,4 +1,4 @@
-package com.apprpg;
+package com.rpgzando;
 
 import com.facebook.react.ReactActivity;
 

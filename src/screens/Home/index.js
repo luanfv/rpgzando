@@ -1,18 +1,16 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import {View} from 'react-native'
 import {Background, Header, HeaderLogo, HeaderTxt, Main, Content, Card, Class, Txt} from './styled'
 import {races} from './../../helpers/rules'
 import Logo from './../../images/icon.png'
 import {Button, TextStyled} from './../../styled'
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
+import AsyncStorage from '@react-native-community/async-storage'
 
 
-export default ({navigation}) =>
+export default ({route, navigation}) =>
 {
-    const cards = [
-        {id: 1, name: 'Robson', level: 2, class: 'Barbaro', race: 2},
-        {id: 2, name: 'Cleydomares Jr.', level: 4, class: 'Guerreiro', race: 11},
-    ]
+    const [cards, setCards] = useState([])
 
     const handleImg = (id) =>
     {
@@ -30,9 +28,19 @@ export default ({navigation}) =>
     }
 
     useEffect(() => {
-        if(cards.length === 0)
-            navigation.navigate('Nova Ficha')
-    }, [])
+        const handleCards = async () =>
+        {
+            const response = JSON.parse(await AsyncStorage.getItem('@Cards'))
+
+            if(response === null)
+                return true
+
+            setCards(response)
+            return false
+        }
+
+        handleCards()
+    }, [route])
 
     return (
         <Background>
@@ -55,10 +63,10 @@ export default ({navigation}) =>
                 <Content>
                     <Txt color="rgba(255,255,255,0.5)">Fichas: {cards.length}/3</Txt>
                     {
-                        cards.map(person => {
+                        cards.map((person, key) => {
                             return (
-                                <Card key={person.id}>
-                                    <Class source={handleImg(person.race)}/>
+                                <Card key={key}>
+                                    <Class source={handleImg(person.raceId)}/>
                                     <View>
                                         <Txt fontsize={20}>
                                             {person.name}, {person.class}

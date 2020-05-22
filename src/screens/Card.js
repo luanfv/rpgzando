@@ -1,7 +1,8 @@
 import React from 'react'
-import {AsyncStorage, Share, View} from 'react-native'
+import {Share, View} from 'react-native'
 import {Background, Container, ContainerInfo, TextStyled, Title, Column2, Button} from './../styled'
 import {calcModifier, warning} from './../helpers/rules'
+import AsyncStorage from '@react-native-community/async-storage'
 
 export default ({route, navigation}) =>
 {
@@ -28,14 +29,14 @@ export default ({route, navigation}) =>
 
         try 
         {
-            const response = await AsyncStorage.getItem('@Cards')
+            const response = JSON.parse(await AsyncStorage.getItem('@Cards'))
 
             if(response !== null)
-                cards.push(JSON.parse(response))
+                cards = response
 
             cards.push(person)
             await AsyncStorage.setItem('@Cards', JSON.stringify(cards))
-            navigation.navigate('Home')
+            navigation.navigate('Home', {update: true})
         } 
         catch(err)
         {

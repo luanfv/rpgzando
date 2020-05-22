@@ -2,7 +2,7 @@ Arguments:
   /usr/local/bin/node /home/luanfv/node_modules/.bin/yarn add -D @babel/core @babel/runtime @react-native-community/eslint-config eslint jest babel-jest metro-react-native-babel-preset react-test-renderer@16.11.0
 
 PATH: 
-  /home/luanfv/projetos/apprpg/node_modules/.bin:/home/luanfv/projetos/node_modules/.bin:/home/luanfv/node_modules/.bin:/home/node_modules/.bin:/node_modules/.bin:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/luanfv/Android/Sdk/tools:/home/luanfv/Android/Sdk/platform-tools
+  /home/luanfv/projetos/rpgzando/node_modules/.bin:/home/luanfv/projetos/node_modules/.bin:/home/luanfv/node_modules/.bin:/home/node_modules/.bin:/node_modules/.bin:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/luanfv/Android/Sdk/tools:/home/luanfv/Android/Sdk/platform-tools
 
 Yarn version: 
   1.21.1
@@ -23,7 +23,7 @@ Trace:
 
 npm manifest: 
   {
-    "name": "apprpg",
+    "name": "rpgzando",
     "version": "0.0.1",
     "private": true,
     "scripts": {

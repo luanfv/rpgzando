@@ -1,13 +1,15 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {Share, View} from 'react-native'
-import {Background, Container, ContainerInfo, TextStyled, Title, Column2, Button} from './../styled'
+import {Background, Container, ContainerInfo, TextStyled, Title, Column2, Button, ModalContainer} from './../styled'
 import {calcModifier, warning} from './../helpers/rules'
 import AsyncStorage from '@react-native-community/async-storage'
+import Modal from 'react-native-modal'
 
 export default ({route, navigation}) =>
 {
     const color = `rgba(255, 255, 255, .4)`
     const person = route.params.person
+    const [isModal, setIsModal] = useState(false)
 
     const onShare = async () => 
     {
@@ -70,6 +72,8 @@ export default ({route, navigation}) =>
         let response = JSON.parse(await AsyncStorage.getItem('@Cards'))
         response.splice(id, 1)
         await AsyncStorage.setItem('@Cards', JSON.stringify(response))
+        setIsModal(false)
+        navigation.navigate('Home', {update: true})
     }
 
     return (
@@ -232,7 +236,7 @@ export default ({route, navigation}) =>
                 Number.isInteger(route.params.cardId)
                 ?
                 <>
-                    <Button onPress={() => removeCard(route.params.cardId)}>
+                    <Button onPress={() => setIsModal(true)}>
                         <TextStyled bold={true}>REMOVER</TextStyled>
                     </Button>
                     <Button onPress={() => navigation.navigate('Home', {update: true})}>
@@ -244,6 +248,22 @@ export default ({route, navigation}) =>
                     <TextStyled bold={true}>SALVAR</TextStyled>
                 </Button>
             }
+
+            <Modal isVisible={isModal}>
+                <ModalContainer>
+                    <TextStyled fontsize="22">
+                        Tem certeza que deseja excluir essa ficha ?
+                    </TextStyled>
+                    <View>
+                        <Button bottom="10" onPress={() => removeCard(route.params.cardId)}>
+                            <TextStyled bold={true}>SIM</TextStyled>
+                        </Button>
+                        <Button background="#fff" onPress={() => setIsModal(false)}>
+                            <TextStyled color="#570a0a" bold={true}>NÃO</TextStyled>
+                        </Button>
+                    </View>
+                </ModalContainer>
+            </Modal>
         </Background>
     )
 }

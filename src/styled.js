@@ -90,3 +90,13 @@ export const Column2 = styled(View)`
     justify-content: space-between;
     ${props => props.marginBottom ? `margin-bottom: ${props.marginBottom}px;` : ''}
 `
+
+export const ModalContainer = styled(View)`
+    background-color: #171d2b;
+    width: 100%;
+    height: 300px;
+    padding: 5%;
+    justify-content: space-between;
+    align-content: center;
+    border-radius: 4px;
+`

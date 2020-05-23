@@ -65,7 +65,7 @@ export default ({route, navigation}) =>
                     {
                         cards.map((person, key) => {
                             return (
-                                <Card key={key}>
+                                <Card key={key} onPress={() => navigation.navigate('Ficha', {person: person, cardId: key})}>
                                     <Class source={handleImg(person.raceId)}/>
                                     <View>
                                         <Txt fontsize={20}>

@@ -65,20 +65,11 @@ export default ({route, navigation}) =>
         return value
     }
 
-    const handleAttr = value =>
+    const removeCard = async id =>
     {
-        if(value === 1)
-            return person.attributes.for
-        else if(value === 2)
-            return person.attributes.des
-        else if(value === 3)
-            return person.attributes.con
-        else if(value === 4)
-            return person.attributes.int
-        else if(value === 5)
-            return person.attributes.sab
-        else if(value === 6)
-            return person.attributes.car
+        let response = JSON.parse(await AsyncStorage.getItem('@Cards'))
+        response.splice(id, 1)
+        await AsyncStorage.setItem('@Cards', JSON.stringify(response))
     }
 
     return (
@@ -237,9 +228,22 @@ export default ({route, navigation}) =>
                 <TextStyled bold={true}>COMPARTILHAR</TextStyled>
             </Button>
 
-            <Button onPress={saveCard}>
-                <TextStyled bold={true}>SALVAR</TextStyled>
-            </Button>
+            {
+                Number.isInteger(route.params.cardId)
+                ?
+                <>
+                    <Button onPress={() => removeCard(route.params.cardId)}>
+                        <TextStyled bold={true}>REMOVER</TextStyled>
+                    </Button>
+                    <Button onPress={() => navigation.navigate('Home', {update: true})}>
+                        <TextStyled bold={true}>VOLTAR</TextStyled>
+                    </Button>
+                </>
+                :
+                <Button onPress={saveCard}>
+                    <TextStyled bold={true}>SALVAR</TextStyled>
+                </Button>
+            }
         </Background>
     )
 }

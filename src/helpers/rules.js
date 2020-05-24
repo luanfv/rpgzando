@@ -268,7 +268,7 @@ export const classes = [
         expertise: [
             expertise[1],
             expertise[9],
-            expertise[1],
+            expertise[0],
             expertise[5],
             expertise[10],
             expertise[16],

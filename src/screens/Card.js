@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import {Share, View} from 'react-native'
-import {Background, Container, ContainerInfo, TextStyled, Title, Column2, Button, ModalContainer} from './../styled'
+import {Background, Container, ContainerInfo, TextStyled, Title, Column2, Button, ModalContainer} from './../themes/styled'
 import {calcModifier, warning} from './../helpers/rules'
 import AsyncStorage from '@react-native-community/async-storage'
 import Modal from 'react-native-modal'

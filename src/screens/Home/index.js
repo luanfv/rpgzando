@@ -3,7 +3,7 @@ import {View} from 'react-native'
 import {Background, Header, HeaderLogo, HeaderTxt, Main, Content, Card, Class, Txt} from './styled'
 import {races} from './../../helpers/rules'
 import Logo from './../../images/icon.png'
-import {Button, TextStyled} from './../../styled'
+import {Button, TextStyled} from './../../themes/styled'
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 import AsyncStorage from '@react-native-community/async-storage'
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import {StatusBar} from 'react-native'
-import CreatePerson from './screens/CreatePerson'
+import CreateCard from './screens/CreateCard'
 import InsertAttr from './screens/InserAttr'
 import Card from './screens/Card'
 import { NavigationContainer } from '@react-navigation/native'
@@ -22,7 +22,7 @@ export default () =>
                 initialRouteName="Home"
             >
                 <Stack.Screen name="Home" component={Home} />
-                <Stack.Screen name="Nova Ficha" component={CreatePerson} />
+                <Stack.Screen name="Nova Ficha" component={CreateCard} />
                 <Stack.Screen name="Atributos" component={InsertAttr} />
                 <Stack.Screen name="Ficha" component={Card} />
             </Stack.Navigator>

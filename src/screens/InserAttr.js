@@ -1,6 +1,5 @@
-import React, {useState, useEffect} from 'react'
-import {View} from 'react-native'
-import {Background, Container, Title, TextStyled, Attribute, Input, Button} from './../styled'
+import React, {useState} from 'react'
+import {Background, Container, Title, TextStyled, Attribute, Input, Button} from './../themes/styled'
 import Slider from '@react-native-community/slider'
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 import {warning} from './../helpers/rules'

@@ -1,7 +1,7 @@
 import React from 'react'
 import {StatusBar} from 'react-native'
 import CreateCard from './screens/CreateCard'
-import InsertAttr from './screens/InserAttr'
+import InsertAttr from './screens/InsertAttr'
 import Card from './screens/Card'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'

@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import {Share, View} from 'react-native'
-import {Background, Container, ContainerInfo, TextStyled, Title, Column2, Button, ModalContainer} from './../themes/styled'
-import {calcModifier, warning} from './../helpers/rules'
+import {Background, Container, ContainerInfo, TextStyled, Title, Column2, Button, ModalContainer} from './../../themes/styled'
+import {calcModifier, warning, expertise} from './../../helpers/rules'
 import AsyncStorage from '@react-native-community/async-storage'
 import Modal from 'react-native-modal'
 
@@ -65,6 +65,20 @@ export default ({route, navigation}) =>
         })
 
         return value
+    }
+
+    const handleExpertiseName = attr =>
+    {
+        if(attr === 1)
+            return person.attributes.for
+        else if(attr < 5)
+            return person.attributes.des
+        else if(attr < 10)
+            return person.attributes.int
+        else if(attr < 15)
+            return person.attributes.sab
+        else if(attr < 19)
+            return person.attributes.car
     }
 
     const removeCard = async id =>
@@ -153,78 +167,16 @@ export default ({route, navigation}) =>
             <Container>
                 <Title>Perícias:</Title>
                 <View>
-                    <Column2 marginBottom="10">
-                        <TextStyled color={color} fontsize="22">Atletismo:</TextStyled>
-                        <TextStyled fontsize="22">{`${parseInt(calcModifier(person.attributes.for)) + handleExpertise(1)} `}</TextStyled>
-                    </Column2>
-                    <Column2 marginBottom="10">
-                        <TextStyled color={color} fontsize="22">Acrobacia:</TextStyled>
-                        <TextStyled fontsize="22">{`${parseInt(calcModifier(person.attributes.des)) + handleExpertise(2)} `}</TextStyled>
-                    </Column2>
-                    <Column2 marginBottom="10">
-                        <TextStyled color={color} fontsize="22">Furtividade:</TextStyled>
-                        <TextStyled fontsize="22">{`${parseInt(calcModifier(person.attributes.des)) + handleExpertise(3)} `}</TextStyled>
-                    </Column2>
-                    <Column2 marginBottom="10">
-                        <TextStyled color={color} fontsize="22">Prestidigitação:</TextStyled>
-                        <TextStyled fontsize="22">{`${parseInt(calcModifier(person.attributes.des)) + handleExpertise(4)} `}</TextStyled>
-                    </Column2>
-                    <Column2 marginBottom="10">
-                        <TextStyled color={color} fontsize="22">Arcanismo:</TextStyled>
-                        <TextStyled fontsize="22">{`${parseInt(calcModifier(person.attributes.int)) + handleExpertise(5)} `}</TextStyled>
-                    </Column2>
-                    <Column2 marginBottom="10">
-                        <TextStyled color={color} fontsize="22">Historia:</TextStyled>
-                        <TextStyled fontsize="22">{`${parseInt(calcModifier(person.attributes.int)) + handleExpertise(6)} `}</TextStyled>
-                    </Column2>
-                    <Column2 marginBottom="10">
-                        <TextStyled color={color} fontsize="22">Investigação:</TextStyled>
-                        <TextStyled fontsize="22">{`${parseInt(calcModifier(person.attributes.int)) + handleExpertise(7)} `}</TextStyled>
-                    </Column2>
-                    <Column2 marginBottom="10">
-                        <TextStyled color={color} fontsize="22">Natureza:</TextStyled>
-                        <TextStyled fontsize="22">{`${parseInt(calcModifier(person.attributes.int)) + handleExpertise(8)} `}</TextStyled>
-                    </Column2>
-                    <Column2 marginBottom="10">
-                        <TextStyled color={color} fontsize="22">Religião:</TextStyled>
-                        <TextStyled fontsize="22">{`${parseInt(calcModifier(person.attributes.int)) + handleExpertise(9)} `}</TextStyled>
-                    </Column2>
-                    <Column2 marginBottom="10">
-                        <TextStyled color={color} fontsize="22">Adestrar Animais:</TextStyled>
-                        <TextStyled fontsize="22">{`${parseInt(calcModifier(person.attributes.sab)) + handleExpertise(10)} `}</TextStyled>
-                    </Column2>
-                    <Column2 marginBottom="10">
-                        <TextStyled color={color} fontsize="22">Intuição:</TextStyled>
-                        <TextStyled fontsize="22">{`${parseInt(calcModifier(person.attributes.sab)) + handleExpertise(11)} `}</TextStyled>
-                    </Column2>
-                    <Column2 marginBottom="10">
-                        <TextStyled color={color} fontsize="22">Medicina:</TextStyled>
-                        <TextStyled fontsize="22">{`${parseInt(calcModifier(person.attributes.sab)) + handleExpertise(12)} `}</TextStyled>
-                    </Column2>
-                    <Column2 marginBottom="10">
-                        <TextStyled color={color} fontsize="22">Percepção:</TextStyled>
-                        <TextStyled fontsize="22">{`${parseInt(calcModifier(person.attributes.sab)) + handleExpertise(13)} `}</TextStyled>
-                    </Column2>
-                    <Column2 marginBottom="10">
-                        <TextStyled color={color} fontsize="22">Sobrevivência:</TextStyled>
-                        <TextStyled fontsize="22">{`${parseInt(calcModifier(person.attributes.sab)) + handleExpertise(14)} `}</TextStyled>
-                    </Column2>
-                    <Column2 marginBottom="10">
-                        <TextStyled color={color} fontsize="22">Atuação:</TextStyled>
-                        <TextStyled fontsize="22">{`${parseInt(calcModifier(person.attributes.car)) + handleExpertise(15)} `}</TextStyled>
-                    </Column2>
-                    <Column2 marginBottom="10">
-                        <TextStyled color={color} fontsize="22">Enganação:</TextStyled>
-                        <TextStyled fontsize="22">{`${parseInt(calcModifier(person.attributes.car)) + handleExpertise(16)} `}</TextStyled>
-                    </Column2>
-                    <Column2 marginBottom="10">
-                        <TextStyled color={color} fontsize="22">Intimidação:</TextStyled>
-                        <TextStyled fontsize="22">{`${parseInt(calcModifier(person.attributes.car)) + handleExpertise(17)} `}</TextStyled>
-                    </Column2>
-                    <Column2 marginBottom="10">
-                        <TextStyled color={color} fontsize="22">Persuasão:</TextStyled>
-                        <TextStyled fontsize="22">{`${parseInt(calcModifier(person.attributes.car)) + handleExpertise(18)} `}</TextStyled>
-                    </Column2>
+                    {
+                        expertise.map((res, key) => {
+                            return (
+                                <Column2 marginBottom="10" key={key}>
+                                    <TextStyled color={color} fontsize="22">{res.desc}:</TextStyled>
+                                    <TextStyled fontsize="22">{`${parseInt(calcModifier(handleExpertiseName(key + 1))) + handleExpertise(key + 1)} `}</TextStyled>
+                                </Column2>
+                            )
+                        })
+                    }
                 </View>
             </Container>
 

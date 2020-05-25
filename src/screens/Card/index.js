@@ -4,6 +4,8 @@ import {Background, Container, ContainerInfo, TextStyled, Title, Column2, Button
 import {calcModifier, warning, expertise} from './../../helpers/rules'
 import AsyncStorage from '@react-native-community/async-storage'
 import Modal from 'react-native-modal'
+import {Header, Icons} from './styled'
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 
 export default ({route, navigation}) =>
 {
@@ -91,131 +93,136 @@ export default ({route, navigation}) =>
     }
 
     return (
-        <Background>
-            <Container>
-                <Title>personagem:</Title>
-                <ContainerInfo>
-                    <TextStyled color={color} fontsize="14">Nome:</TextStyled>
-                    <TextStyled fontsize="22">{person.name}</TextStyled>
-                </ContainerInfo>
-                
-                <ContainerInfo>
-                    <TextStyled color={color} fontsize="14">Nível:</TextStyled>
-                    <TextStyled fontsize="22">{`${person.level} `}</TextStyled>
-                </ContainerInfo>
-
-                <ContainerInfo>
-                    <TextStyled color={color} fontsize="14">Raça:</TextStyled>
-                    <TextStyled fontsize="22">{person.race}</TextStyled>
-                </ContainerInfo>
-
-                <ContainerInfo>
-                    <TextStyled color={color} fontsize="14">Classe:</TextStyled>
-                    <TextStyled fontsize="22">{person.class}</TextStyled>
-                </ContainerInfo>
-
-                <ContainerInfo>
-                    <TextStyled color={color} fontsize="14">HP:</TextStyled>
-                    <TextStyled fontsize="22">
-                        {
-                            parseInt(calcModifier(person.attributes.for)) > 0 
-                            ?
-                            person.fullHp + (person.level * parseInt(calcModifier(person.attributes.con)))
-                            :
-                            person.fullHp
-                        }
-                    </TextStyled>
-                </ContainerInfo>
-            </Container>
-
-            <Container>
-                <Title>atributos:</Title>
-
-                <Column2>
-                    <ContainerInfo   ContainerInfo width="48">
-                        <TextStyled color={color} fontsize="14">FORÇA:</TextStyled>
-                        <TextStyled fontsize="22">{`${person.attributes.for} `} ({calcModifier(person.attributes.for)})</TextStyled>
+        <>
+            <Header>
+                {
+                    Number.isInteger(route.params.cardId)
+                    &&
+                    <Icons onPress={() => setIsModal(true)}>
+                        <MaterialIcons name="delete" size={28} color="#fff" />
+                    </Icons>
+                }
+                <Icons onPress={onShare}>
+                    <MaterialIcons name="share" size={28} color="#fff" />
+                </Icons>
+            </Header>
+            <Background>
+                <Container>
+                    <Title>personagem:</Title>
+                    <ContainerInfo>
+                        <TextStyled color={color} fontsize="14">Nome:</TextStyled>
+                        <TextStyled fontsize="22">{person.name}</TextStyled>
+                    </ContainerInfo>
+                    
+                    <ContainerInfo>
+                        <TextStyled color={color} fontsize="14">Nível:</TextStyled>
+                        <TextStyled fontsize="22">{`${person.level} `}</TextStyled>
                     </ContainerInfo>
 
-                    <ContainerInfo width="48">
-                        <TextStyled color={color} fontsize="14">CONSTITUIÇÃO:</TextStyled>
-                        <TextStyled fontsize="22">{`${person.attributes.con} `} ({calcModifier(person.attributes.con)})</TextStyled>
+                    <ContainerInfo>
+                        <TextStyled color={color} fontsize="14">Raça:</TextStyled>
+                        <TextStyled fontsize="22">{person.race}</TextStyled>
                     </ContainerInfo>
 
-                    <ContainerInfo width="48">
-                        <TextStyled color={color} fontsize="14">DESTRZA:</TextStyled>
-                        <TextStyled fontsize="22">{`${person.attributes.des} `} ({calcModifier(person.attributes.des)})</TextStyled>
+                    <ContainerInfo>
+                        <TextStyled color={color} fontsize="14">Classe:</TextStyled>
+                        <TextStyled fontsize="22">{person.class}</TextStyled>
                     </ContainerInfo>
 
-                    <ContainerInfo width="48">
-                        <TextStyled color={color} fontsize="14">INTELIGENCIA:</TextStyled>
-                        <TextStyled fontsize="22">{`${person.attributes.int} `} ({calcModifier(person.attributes.int)})</TextStyled>
+                    <ContainerInfo>
+                        <TextStyled color={color} fontsize="14">HP:</TextStyled>
+                        <TextStyled fontsize="22">
+                            {
+                                parseInt(calcModifier(person.attributes.for)) > 0 
+                                ?
+                                person.fullHp + (person.level * parseInt(calcModifier(person.attributes.con)))
+                                :
+                                person.fullHp
+                            }
+                        </TextStyled>
                     </ContainerInfo>
+                </Container>
 
-                    <ContainerInfo width="48">
-                        <TextStyled color={color} fontsize="14">SABEDORIA:</TextStyled>
-                        <TextStyled fontsize="22">{`${person.attributes.sab} `} ({calcModifier(person.attributes.sab)})</TextStyled>
-                    </ContainerInfo>
+                <Container>
+                    <Title>atributos:</Title>
 
-                    <ContainerInfo width="48">
-                        <TextStyled color={color} fontsize="14">CARISMA:</TextStyled>
-                        <TextStyled fontsize="22">{`${person.attributes.car} `} ({calcModifier(person.attributes.car)})</TextStyled>
-                    </ContainerInfo>
-                </Column2>
-            </Container>
+                    <Column2>
+                        <ContainerInfo   ContainerInfo width="48">
+                            <TextStyled color={color} fontsize="14">FORÇA:</TextStyled>
+                            <TextStyled fontsize="22">{`${person.attributes.for} `} ({calcModifier(person.attributes.for)})</TextStyled>
+                        </ContainerInfo>
 
-            <Container>
-                <Title>Perícias:</Title>
-                <View>
-                    {
-                        expertise.map((res, key) => {
-                            return (
-                                <Column2 marginBottom="10" key={key}>
-                                    <TextStyled color={color} fontsize="22">{res.desc}:</TextStyled>
-                                    <TextStyled fontsize="22">{`${parseInt(calcModifier(handleExpertiseName(key + 1))) + handleExpertise(key + 1)} `}</TextStyled>
-                                </Column2>
-                            )
-                        })
-                    }
-                </View>
-            </Container>
+                        <ContainerInfo width="48">
+                            <TextStyled color={color} fontsize="14">CONSTITUIÇÃO:</TextStyled>
+                            <TextStyled fontsize="22">{`${person.attributes.con} `} ({calcModifier(person.attributes.con)})</TextStyled>
+                        </ContainerInfo>
 
-            <Button onPress={onShare}>
-                <TextStyled bold={true}>COMPARTILHAR</TextStyled>
-            </Button>
+                        <ContainerInfo width="48">
+                            <TextStyled color={color} fontsize="14">DESTRZA:</TextStyled>
+                            <TextStyled fontsize="22">{`${person.attributes.des} `} ({calcModifier(person.attributes.des)})</TextStyled>
+                        </ContainerInfo>
 
-            {
-                Number.isInteger(route.params.cardId)
-                ?
-                <>
-                    <Button onPress={() => setIsModal(true)}>
-                        <TextStyled bold={true}>REMOVER</TextStyled>
-                    </Button>
-                    <Button onPress={() => navigation.navigate('Home', {update: true})}>
-                        <TextStyled bold={true}>VOLTAR</TextStyled>
-                    </Button>
-                </>
-                :
-                <Button onPress={saveCard}>
-                    <TextStyled bold={true}>SALVAR</TextStyled>
-                </Button>
-            }
+                        <ContainerInfo width="48">
+                            <TextStyled color={color} fontsize="14">INTELIGENCIA:</TextStyled>
+                            <TextStyled fontsize="22">{`${person.attributes.int} `} ({calcModifier(person.attributes.int)})</TextStyled>
+                        </ContainerInfo>
 
-            <Modal isVisible={isModal}>
-                <ModalContainer>
-                    <TextStyled fontsize="22">
-                        Tem certeza que deseja excluir essa ficha ?
-                    </TextStyled>
+                        <ContainerInfo width="48">
+                            <TextStyled color={color} fontsize="14">SABEDORIA:</TextStyled>
+                            <TextStyled fontsize="22">{`${person.attributes.sab} `} ({calcModifier(person.attributes.sab)})</TextStyled>
+                        </ContainerInfo>
+
+                        <ContainerInfo width="48">
+                            <TextStyled color={color} fontsize="14">CARISMA:</TextStyled>
+                            <TextStyled fontsize="22">{`${person.attributes.car} `} ({calcModifier(person.attributes.car)})</TextStyled>
+                        </ContainerInfo>
+                    </Column2>
+                </Container>
+
+                <Container>
+                    <Title>Perícias:</Title>
                     <View>
-                        <Button bottom="10" onPress={() => removeCard(route.params.cardId)}>
-                            <TextStyled bold={true}>SIM</TextStyled>
-                        </Button>
-                        <Button background="#fff" onPress={() => setIsModal(false)}>
-                            <TextStyled color="#570a0a" bold={true}>NÃO</TextStyled>
-                        </Button>
+                        {
+                            expertise.map((res, key) => {
+                                return (
+                                    <Column2 marginBottom="10" key={key}>
+                                        <TextStyled color={color} fontsize="22">{res.desc}:</TextStyled>
+                                        <TextStyled fontsize="22">{`${parseInt(calcModifier(handleExpertiseName(key + 1))) + handleExpertise(key + 1)} `}</TextStyled>
+                                    </Column2>
+                                )
+                            })
+                        }
                     </View>
-                </ModalContainer>
-            </Modal>
-        </Background>
+                </Container>
+
+
+                <Button onPress={() => navigation.navigate('Home', {update: true})}>
+                    <TextStyled bold={true}>VOLTAR</TextStyled>
+                </Button>
+                {
+                    !Number.isInteger(route.params.cardId)
+                    &&
+                    <Button onPress={saveCard}>
+                        <TextStyled bold={true}>SALVAR</TextStyled>
+                    </Button>
+                }
+
+                <Modal isVisible={isModal}>
+                    <ModalContainer>
+                        <TextStyled fontsize="22">
+                            Tem certeza que deseja excluir essa ficha ?
+                        </TextStyled>
+                        <View>
+                            <Button bottom="10" onPress={() => removeCard(route.params.cardId)}>
+                                <TextStyled bold={true}>SIM</TextStyled>
+                            </Button>
+                            <Button background="#fff" onPress={() => setIsModal(false)}>
+                                <TextStyled color="#570a0a" bold={true}>NÃO</TextStyled>
+                            </Button>
+                        </View>
+                    </ModalContainer>
+                </Modal>
+            </Background>
+        </>
     )
 }

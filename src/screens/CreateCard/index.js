@@ -94,7 +94,7 @@ export default ({navigation}) =>
             expertise: expertises, 
             classId: personClass.id,
             class: personClass.name,
-            personRaceId: personRace.id,
+            raceId: personRace.id,
             race: personRace.name,
             hp: personClass.hp,
             attributes: attrs

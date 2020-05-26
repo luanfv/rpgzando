@@ -44,8 +44,8 @@ def flipper_post_install(installer)
   end
 end
 
-target 'apprpg' do
-  # Pods for apprpg
+target 'rpgzando' do
+  # Pods for rpgzando
   pod 'FBLazyVector', :path => "../node_modules/react-native/Libraries/FBLazyVector"
   pod 'FBReactNativeSpec', :path => "../node_modules/react-native/Libraries/FBReactNativeSpec"
   pod 'RCTRequired', :path => "../node_modules/react-native/Libraries/RCTRequired"
@@ -85,7 +85,9 @@ target 'apprpg' do
 
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
-  target 'apprpgTests' do
+
+
+  target 'rpgzandoTests' do
     inherit! :complete
     # Pods for testing
   end
@@ -102,10 +104,10 @@ target 'apprpg' do
   end
 end
 
-target 'apprpg-tvOS' do
-  # Pods for apprpg-tvOS
+target 'rpgzando-tvOS' do
+  # Pods for rpgzando-tvOS
 
-  target 'apprpg-tvOSTests' do
+  target 'rpgzando-tvOSTests' do
     inherit! :search_paths
     # Pods for testing
   end

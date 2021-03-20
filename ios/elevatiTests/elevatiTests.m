@@ -7,11 +7,11 @@
 #define TIMEOUT_SECONDS 600
 #define TEXT_TO_LOOK_FOR @"Welcome to React"
 
-@interface rpgzandoV2Tests : XCTestCase
+@interface rpgzandoTests : XCTestCase
 
 @end
 
-@implementation rpgzandoV2Tests
+@implementation rpgzandoTests
 
 - (BOOL)findSubviewInView:(UIView *)view matching:(BOOL(^)(UIView *view))test
 {

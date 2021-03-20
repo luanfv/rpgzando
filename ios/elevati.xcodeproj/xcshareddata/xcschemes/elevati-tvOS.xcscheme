@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-               BuildableName = "rpgzandoV2-tvOS.app"
-               BlueprintName = "rpgzandoV2-tvOS"
-               ReferencedContainer = "container:rpgzandoV2.xcodeproj">
+               BuildableName = "rpgzando-tvOS.app"
+               BlueprintName = "rpgzando-tvOS"
+               ReferencedContainer = "container:rpgzando.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D02E48F1E0B4A5D006451C7"
-               BuildableName = "rpgzandoV2-tvOSTests.xctest"
-               BlueprintName = "rpgzandoV2-tvOSTests"
-               ReferencedContainer = "container:rpgzandoV2.xcodeproj">
+               BuildableName = "rpgzando-tvOSTests.xctest"
+               BlueprintName = "rpgzando-tvOSTests"
+               ReferencedContainer = "container:rpgzando.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-            BuildableName = "rpgzandoV2-tvOS.app"
-            BlueprintName = "rpgzandoV2-tvOS"
-            ReferencedContainer = "container:rpgzandoV2.xcodeproj">
+            BuildableName = "rpgzando-tvOS.app"
+            BlueprintName = "rpgzando-tvOS"
+            ReferencedContainer = "container:rpgzando.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-            BuildableName = "rpgzandoV2-tvOS.app"
-            BlueprintName = "rpgzandoV2-tvOS"
-            ReferencedContainer = "container:rpgzandoV2.xcodeproj">
+            BuildableName = "rpgzando-tvOS.app"
+            BlueprintName = "rpgzando-tvOS"
+            ReferencedContainer = "container:rpgzando.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

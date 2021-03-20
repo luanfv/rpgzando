@@ -129,7 +129,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.rpgzandoV2"
+        applicationId "com.rpgzando"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

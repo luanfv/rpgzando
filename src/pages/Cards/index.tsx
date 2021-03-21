@@ -1,15 +1,15 @@
 import React from 'react';
-import { Text } from 'react-native';
 
 import Content from '../../components/Content';
 import ButtonFixed from '../../components/ButtonFixed';
 
+import Card from './Card';
 import { Br } from './style';
 
 const Collectors: React.FC = () => {
   return (
     <Content title="Player">
-      <Text>Lista de personagens!</Text>
+      <Card />
 
       <Br />
 

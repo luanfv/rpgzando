@@ -18,6 +18,9 @@ import WarlockImage from '../assets/images/profession/warlock.png';
 import SorcererImage from '../assets/images/profession/sorcerer.png';
 import MonkImage from '../assets/images/profession/monk.png';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { ImageSourcePropType } from 'react-native';
+
 interface IAttributes {
   for: Number;
   con: Number;
@@ -33,7 +36,7 @@ interface IRace {
   race: Number;
   subRace: Number;
   desc: String;
-  image: FileReader;
+  image: ImageSourcePropType;
 }
 
 interface IExpertise {
@@ -47,7 +50,7 @@ interface IProfession {
   id: Number;
   name: String;
   hp: Number;
-  image: FileReader;
+  image: ImageSourcePropType;
   expertises: IExpertise[];
   quantityExpertise: Number;
 }

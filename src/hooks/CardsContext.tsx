@@ -11,7 +11,7 @@ export interface IAttributes {
   for: Number;
   con: Number;
   dex: Number;
-  char: Number;
+  cha: Number;
   wis: Number;
   int: Number;
 }

@@ -18,7 +18,41 @@ import WarlockImage from '../assets/images/profession/warlock.png';
 import SorcererImage from '../assets/images/profession/sorcerer.png';
 import MonkImage from '../assets/images/profession/monk.png';
 
-export const races = [
+interface IAttributes {
+  for: Number;
+  con: Number;
+  dex: Number;
+  cha: Number;
+  wis: Number;
+  int: Number;
+}
+
+interface IRace {
+  id: Number;
+  name: String;
+  race: Number;
+  subRace: Number;
+  desc: String;
+  image: FileReader;
+}
+
+interface IExpertise {
+  id: Number;
+  desc: String;
+  type: Number;
+  checked: Boolean;
+}
+
+interface IProfession {
+  id: Number;
+  name: String;
+  hp: Number;
+  image: FileReader;
+  expertises: IExpertise[];
+  quantityExpertise: Number;
+}
+
+export const races: IRace[] = [
   {
     id: 1,
     name: 'Anão da Colina',
@@ -116,7 +150,7 @@ export const races = [
 // 5- SAB
 // 6- CAR
 
-export const expertise = [
+export const expertises: IExpertise[] = [
   { id: 1, desc: 'Atletismo', type: 1, checked: false },
   { id: 2, desc: 'Acrobacia', type: 2, checked: false },
   { id: 3, desc: 'Furtividade', type: 2, checked: false },
@@ -137,19 +171,19 @@ export const expertise = [
   { id: 18, desc: 'Persuasão', type: 6, checked: false },
 ];
 
-export const professions = [
+export const professions: IProfession[] = [
   {
     id: 1,
     name: 'Paladino',
     hp: 10,
     image: PaladinImage,
-    expertise: [
-      expertise[0],
-      expertise[10],
-      expertise[16],
-      expertise[11],
-      expertise[17],
-      expertise[8],
+    expertises: [
+      expertises[0],
+      expertises[10],
+      expertises[16],
+      expertises[11],
+      expertises[17],
+      expertises[8],
     ],
     quantityExpertise: 2,
   },
@@ -158,13 +192,13 @@ export const professions = [
     name: 'Barbaro',
     hp: 12,
     image: BarbaricImage,
-    expertise: [
-      expertise[0],
-      expertise[9],
-      expertise[16],
-      expertise[7],
-      expertise[12],
-      expertise[13],
+    expertises: [
+      expertises[0],
+      expertises[9],
+      expertises[16],
+      expertises[7],
+      expertises[12],
+      expertises[13],
     ],
     quantityExpertise: 2,
   },
@@ -173,7 +207,7 @@ export const professions = [
     name: 'Bardo',
     hp: 8,
     image: BardImage,
-    expertise: expertise,
+    expertises: expertises,
     quantityExpertise: 3,
   },
   {
@@ -181,18 +215,18 @@ export const professions = [
     name: 'Ladino',
     hp: 8,
     image: RogueImage,
-    expertise: [
-      expertise[0],
-      expertise[1],
-      expertise[14],
-      expertise[15],
-      expertise[2],
-      expertise[16],
-      expertise[10],
-      expertise[6],
-      expertise[12],
-      expertise[17],
-      expertise[3],
+    expertises: [
+      expertises[0],
+      expertises[1],
+      expertises[14],
+      expertises[15],
+      expertises[2],
+      expertises[16],
+      expertises[10],
+      expertises[6],
+      expertises[12],
+      expertises[17],
+      expertises[3],
     ],
     quantityExpertise: 4,
   },
@@ -201,13 +235,13 @@ export const professions = [
     name: 'Mago',
     hp: 6,
     image: WizardImage,
-    expertise: [
-      expertise[4],
-      expertise[5],
-      expertise[10],
-      expertise[6],
-      expertise[11],
-      expertise[8],
+    expertises: [
+      expertises[4],
+      expertises[5],
+      expertises[10],
+      expertises[6],
+      expertises[11],
+      expertises[8],
     ],
     quantityExpertise: 2,
   },
@@ -216,12 +250,12 @@ export const professions = [
     name: 'Clerigo',
     hp: 8,
     image: ClericImage,
-    expertise: [
-      expertise[5],
-      expertise[10],
-      expertise[11],
-      expertise[17],
-      expertise[8],
+    expertises: [
+      expertises[5],
+      expertises[10],
+      expertises[11],
+      expertises[17],
+      expertises[8],
     ],
     quantityExpertise: 2,
   },
@@ -230,16 +264,16 @@ export const professions = [
     name: 'Patrulheiro',
     hp: 10,
     image: RangerImage,
-    expertise: [
-      expertise[1],
-      expertise[9],
-      expertise[0],
-      expertise[2],
-      expertise[10],
-      expertise[6],
-      expertise[7],
-      expertise[12],
-      expertise[14],
+    expertises: [
+      expertises[1],
+      expertises[9],
+      expertises[0],
+      expertises[2],
+      expertises[10],
+      expertises[6],
+      expertises[7],
+      expertises[12],
+      expertises[14],
     ],
     quantityExpertise: 3,
   },
@@ -248,15 +282,15 @@ export const professions = [
     name: 'Druida',
     hp: 8,
     image: DruidImage,
-    expertise: [
-      expertise[4],
-      expertise[9],
-      expertise[10],
-      expertise[11],
-      expertise[7],
-      expertise[12],
-      expertise[8],
-      expertise[13],
+    expertises: [
+      expertises[4],
+      expertises[9],
+      expertises[10],
+      expertises[11],
+      expertises[7],
+      expertises[12],
+      expertises[8],
+      expertises[13],
     ],
     quantityExpertise: 2,
   },
@@ -265,15 +299,15 @@ export const professions = [
     name: 'Guerreiro',
     hp: 10,
     image: FighterImage,
-    expertise: [
-      expertise[1],
-      expertise[9],
-      expertise[0],
-      expertise[5],
-      expertise[10],
-      expertise[16],
-      expertise[12],
-      expertise[13],
+    expertises: [
+      expertises[1],
+      expertises[9],
+      expertises[0],
+      expertises[5],
+      expertises[10],
+      expertises[16],
+      expertises[12],
+      expertises[13],
     ],
     quantityExpertise: 2,
   },
@@ -282,14 +316,14 @@ export const professions = [
     name: 'Bruxo',
     hp: 8,
     image: WarlockImage,
-    expertise: [
-      expertise[4],
-      expertise[15],
-      expertise[5],
-      expertise[16],
-      expertise[6],
-      expertise[7],
-      expertise[8],
+    expertises: [
+      expertises[4],
+      expertises[15],
+      expertises[5],
+      expertises[16],
+      expertises[6],
+      expertises[7],
+      expertises[8],
     ],
     quantityExpertise: 2,
   },
@@ -298,13 +332,13 @@ export const professions = [
     name: 'Feiticeiro',
     hp: 6,
     image: SorcererImage,
-    expertise: [
-      expertise[4],
-      expertise[15],
-      expertise[10],
-      expertise[16],
-      expertise[17],
-      expertise[8],
+    expertises: [
+      expertises[4],
+      expertises[15],
+      expertises[10],
+      expertises[16],
+      expertises[17],
+      expertises[8],
     ],
     quantityExpertise: 2,
   },
@@ -313,99 +347,109 @@ export const professions = [
     name: 'Monge',
     hp: 8,
     image: MonkImage,
-    expertise: [
-      expertise[1],
-      expertise[0],
-      expertise[2],
-      expertise[5],
-      expertise[10],
-      expertise[8],
+    expertises: [
+      expertises[1],
+      expertises[0],
+      expertises[2],
+      expertises[5],
+      expertises[10],
+      expertises[8],
     ],
     quantityExpertise: 2,
   },
 ];
 
-export const handleRace = (race, type) => {
-  let isError = false;
-  const attributes = {
+export const handleRace = (
+  race: Number,
+  type: Number,
+): IAttributes | undefined => {
+  let isError: Boolean = false;
+  const attributes: IAttributes = {
     for: 0,
-    des: 0,
+    dex: 0,
     con: 0,
-    sab: 0,
+    wis: 0,
     int: 0,
-    car: 0,
+    cha: 0,
   };
 
   switch (race) {
     case 1:
-      attributes.con = attributes.con + 2;
+      attributes.con = Number(attributes.con) + 2;
 
       if (type === 1) {
-        attributes.sab = attributes.sab + 1;
+        attributes.wis = Number(attributes.wis) + 1;
       } else if (type === 2) {
-        attributes.for = attributes.for + 2;
+        attributes.for = Number(attributes.for) + 2;
       } else {
         isError = true;
       }
       break;
     case 2:
-      attributes.for = attributes.for + 2;
-      attributes.car = attributes.car + 1;
+      attributes.for = Number(attributes.for) + 2;
+      attributes.cha = Number(attributes.cha) + 1;
       break;
     case 3:
-      attributes.des = attributes.des + 2;
+      attributes.dex = Number(attributes.dex) + 2;
 
       if (type === 1) {
-        attributes.int = attributes.int + 1;
+        attributes.int = Number(attributes.int) + 1;
       } else if (type === 2) {
-        attributes.sab = attributes.sab + 1;
+        attributes.wis = Number(attributes.wis) + 1;
       } else if (type === 3) {
-        attributes.car = attributes.car + 1;
+        attributes.cha = Number(attributes.cha) + 1;
       } else {
         isError = true;
       }
       break;
     case 4:
-      attributes.int = attributes.int + 2;
+      attributes.int = Number(attributes.int) + 2;
 
       if (type === 1) {
-        attributes.des = attributes.des + 1;
+        attributes.dex = Number(attributes.dex) + 1;
       } else if (type === 2) {
-        attributes.con = attributes.con + 1;
+        attributes.con = Number(attributes.con) + 1;
       } else {
         isError = true;
       }
       break;
     case 5:
-      attributes.des = attributes.des + 2;
+      attributes.dex = Number(attributes.dex) + 2;
 
       if (type === 1) {
-        attributes.car = attributes.car + 1;
+        attributes.cha = Number(attributes.cha) + 1;
       } else if (type === 2) {
-        attributes.con = attributes.con + 1;
+        attributes.con = Number(attributes.con) + 1;
       } else {
         isError = true;
       }
       break;
     case 6:
-      attributes.for = attributes.for + 1;
-      attributes.des = attributes.des + 1;
-      attributes.con = attributes.con + 1;
-      attributes.sab = attributes.sab + 1;
-      attributes.int = attributes.int + 1;
-      attributes.car = attributes.car + 1;
+      attributes.for = Number(attributes.for) + 1;
+      attributes.dex = Number(attributes.dex) + 1;
+      attributes.con = Number(attributes.con) + 1;
+      attributes.wis = Number(attributes.wis) + 1;
+      attributes.int = Number(attributes.int) + 1;
+      attributes.cha = Number(attributes.cha) + 1;
       break;
     default:
       isError = true;
       break;
   }
 
-  return isError ? { error: { race, type } } : attributes;
+  if (isError) {
+    return undefined;
+  }
+
+  return attributes;
 };
 
-export const calcModifier = (value) => {
-  let result = (value - 10) / 2;
-  result = result > 0 ? `+${Math.trunc(result)}` : result.toFixed(0);
+export const calcModifier = (modifier: Number): String => {
+  const value: Number = (Number(modifier) - 10) / 2;
 
-  return result;
+  if (value > 0) {
+    return `+${Math.trunc(Number(value))}`;
+  }
+
+  return `${Number(value).toFixed(0)}`;
 };

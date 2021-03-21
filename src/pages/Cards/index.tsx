@@ -8,13 +8,15 @@ import { Br } from './style';
 
 const Collectors: React.FC = () => {
   return (
-    <Content title="Player">
-      <Card />
+    <>
+      <Content title="Player">
+        <Card />
 
-      <Br />
+        <Br />
+      </Content>
 
       <ButtonFixed onPress={() => console.log('botão apertado')} />
-    </Content>
+    </>
   );
 };
 

@@ -7,6 +7,8 @@ import React, {
 } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import { professions, races } from '../utils/rules';
+
 export interface IAttributes {
   for: Number;
   con: Number;
@@ -51,8 +53,8 @@ interface ICard {
 
 interface ICardsData {
   cards: ICard[];
-  createCharacter: (data: ICreateICharacterData) => Boolean;
-  createCard: (attributes: IAttributes, hp: Number) => Boolean;
+  createCharacter: (_data: ICreateICharacterData) => Boolean;
+  createCard: (_attributes: IAttributes, _hp: Number) => Boolean;
 }
 
 const CardsContext = createContext<ICardsData>({} as ICardsData);
@@ -80,21 +82,55 @@ export const CardsProvider: React.FC = ({ children }) => {
   );
 
   const createCharacter = useCallback(
-    (data: ICreateICharacterData): Boolean => {
+    (_data: ICreateICharacterData): Boolean => {
       try {
-        if (data.name.length < 1) {
-          throw Error('Você precisa preencher um nome para seu personagem!');
+        if (_data.name.length < 1) {
+          throw Error('Você precisa preencher um nome para seu personagem');
         }
 
-        if (data.level < 1) {
+        if (_data.level < 1) {
           throw Error('Você precisa possuir adicionar um nível válido');
         }
 
-        setName(data.name);
-        setLevel(data.level);
-        setExpertise(data.expertises);
-        setProfession(data.profession);
-        setRace(data.race);
+        const foundProfession = professions.find(
+          (_profession) => _profession.id === _data.profession.id,
+        );
+
+        if (!foundProfession) {
+          throw Error('Sua profissão não foi encontrada');
+        }
+
+        let quantityExpertise: Number = 0;
+
+        foundProfession.expertises.forEach((_expertise) => {
+          _data.expertises.forEach((id) => {
+            if (id === _expertise.id) {
+              quantityExpertise = Number(quantityExpertise) + 1;
+            }
+          });
+        });
+
+        if (foundProfession.quantityExpertise !== quantityExpertise) {
+          throw Error(
+            'Quantidade de perícias da profissão escolhida está incorreto',
+          );
+        }
+
+        const foundRace = races.find(
+          (_race) =>
+            _race.id === _data.race.id &&
+            _race.subRace === _data.race.idSecondary,
+        );
+
+        if (!foundRace) {
+          throw Error('Raça selecionado não foi encontrada');
+        }
+
+        setName(_data.name);
+        setLevel(_data.level);
+        setProfession(_data.profession);
+        setExpertise(_data.expertises);
+        setRace(_data.race);
 
         return true;
       } catch (err) {
@@ -105,7 +141,7 @@ export const CardsProvider: React.FC = ({ children }) => {
   );
 
   const createCard = useCallback(
-    (attributes: IAttributes, hp: Number): Boolean => {
+    (_attributes: IAttributes, _hp: Number): Boolean => {
       try {
         const date = new Date();
         const id = date.getTime();
@@ -117,8 +153,8 @@ export const CardsProvider: React.FC = ({ children }) => {
           expertise: expertise,
           profession: profession,
           race: race,
-          hp,
-          attributes,
+          hp: _hp,
+          attributes: _attributes,
           createdAt: `${date}`,
           updatedAt: `${date}`,
         } as ICard;

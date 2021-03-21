@@ -18,8 +18,6 @@ import WarlockImage from '../assets/images/profession/warlock.png';
 import SorcererImage from '../assets/images/profession/sorcerer.png';
 import MonkImage from '../assets/images/profession/monk.png';
 
-import { Alert } from 'react-native';
-
 export const races = [
   {
     id: 1,
@@ -342,9 +340,13 @@ export const handleRace = (race, type) => {
     case 1:
       attributes.con = attributes.con + 2;
 
-      if (type === 1) attributes.sab = attributes.sab + 1;
-      else if (type === 2) attributes.for = attributes.for + 2;
-      else isError = true;
+      if (type === 1) {
+        attributes.sab = attributes.sab + 1;
+      } else if (type === 2) {
+        attributes.for = attributes.for + 2;
+      } else {
+        isError = true;
+      }
       break;
     case 2:
       attributes.for = attributes.for + 2;
@@ -353,24 +355,37 @@ export const handleRace = (race, type) => {
     case 3:
       attributes.des = attributes.des + 2;
 
-      if (type === 1) attributes.int = attributes.int + 1;
-      else if (type === 2) attributes.sab = attributes.sab + 1;
-      else if (type === 3) attributes.car = attributes.car + 1;
-      else isError = true;
+      if (type === 1) {
+        attributes.int = attributes.int + 1;
+      } else if (type === 2) {
+        attributes.sab = attributes.sab + 1;
+      } else if (type === 3) {
+        attributes.car = attributes.car + 1;
+      } else {
+        isError = true;
+      }
       break;
     case 4:
       attributes.int = attributes.int + 2;
 
-      if (type === 1) attributes.des = attributes.des + 1;
-      else if (type === 2) attributes.con = attributes.con + 1;
-      else isError = true;
+      if (type === 1) {
+        attributes.des = attributes.des + 1;
+      } else if (type === 2) {
+        attributes.con = attributes.con + 1;
+      } else {
+        isError = true;
+      }
       break;
     case 5:
       attributes.des = attributes.des + 2;
 
-      if (type === 1) attributes.car = attributes.car + 1;
-      else if (type === 2) attributes.con = attributes.con + 1;
-      else isError = true;
+      if (type === 1) {
+        attributes.car = attributes.car + 1;
+      } else if (type === 2) {
+        attributes.con = attributes.con + 1;
+      } else {
+        isError = true;
+      }
       break;
     case 6:
       attributes.for = attributes.for + 1;
@@ -386,10 +401,6 @@ export const handleRace = (race, type) => {
   }
 
   return isError ? { error: { race, type } } : attributes;
-};
-
-export const warning = (text) => {
-  Alert.alert(`AVISO`, `${text}`);
 };
 
 export const calcModifier = (value) => {

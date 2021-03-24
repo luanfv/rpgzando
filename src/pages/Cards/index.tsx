@@ -11,7 +11,7 @@ const Collectors: React.FC = () => {
   return (
     <>
       <Content title="Player">
-        <ProgressBar />
+        <ProgressBar phase={3} />
 
         <Card />
 

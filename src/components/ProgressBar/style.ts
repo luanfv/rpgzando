@@ -15,11 +15,12 @@ export const Bar = styled.View`
   background-color: rgba(255, 255, 255, 0.5);
 `;
 
-export const Progress = styled.View`
+export const Progress = styled.View<any>`
   position: absolute;
   height: 3px;
   width: 50%;
   background-color: ${styles.secondary};
+  width: ${({ percent }) => (percent ? percent : '0%')};
 `;
 
 export const Phase = styled.View<any>`

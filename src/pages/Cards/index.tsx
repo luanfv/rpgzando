@@ -1,24 +1,24 @@
 import React from 'react';
+import { useNavigation } from '@react-navigation/core';
 
 import Content from '../../components/Content';
 import ButtonFixed from '../../components/ButtonFixed';
-import ProgressBar from '../../components/ProgressBar';
 
 import Card from './Card';
 import { Br } from './style';
 
 const Collectors: React.FC = () => {
+  const { navigate } = useNavigation();
+
   return (
     <>
       <Content title="Player">
-        <ProgressBar phase={3} />
-
         <Card />
 
         <Br />
       </Content>
 
-      <ButtonFixed onPress={() => console.log('botão apertado')} />
+      <ButtonFixed onPress={() => navigate('createCard')} />
     </>
   );
 };

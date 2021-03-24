@@ -2,6 +2,7 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import Cards from '../pages/Cards';
+import CreateCard from '../pages/CreateCard';
 import About from '../pages/About';
 import Settings from '../pages/Settings';
 
@@ -14,6 +15,7 @@ const Routes: React.FC = () => {
       initialRouteName="collectors"
     >
       <Stack.Screen name="cards" component={Cards} />
+      <Stack.Screen name="createCard" component={CreateCard} />
       <Stack.Screen name="about" component={About} />
       <Stack.Screen name="settings" component={Settings} />
     </Stack.Navigator>

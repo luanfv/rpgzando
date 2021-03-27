@@ -12,10 +12,10 @@ interface IProps {
 const Content: React.FC<IProps> = ({ children, title, goBack }) => {
   return (
     <Body>
+      <Header title={title} goBack={goBack} />
+
       {/* eslint-disable-next-line react-native/no-inline-styles */}
       <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-        <Header title={title} goBack={goBack} />
-
         <Main>{children}</Main>
       </ScrollView>
     </Body>

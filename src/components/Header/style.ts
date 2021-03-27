@@ -10,6 +10,8 @@ export const Container = styled.View`
   justify-content: space-between;
   align-items: center;
   background-color: ${styles.primary};
+  border-bottom-width: 1px;
+  border-color: rgba(0, 0, 0, 0.1);
 `;
 
 export const TitleContainer = styled.View`

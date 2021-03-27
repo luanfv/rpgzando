@@ -9,6 +9,7 @@ import { races, professions, IExpertise } from '../../utils/rules';
 import Content from '../../components/Content';
 import ProgressBar from '../../components/ProgressBar';
 import Input from '../../components/Input';
+import Button from '../../components/Button';
 
 import {
   Main,
@@ -135,6 +136,14 @@ const CreateCard: React.FC = () => {
                     </Expertise>
                   );
                 })}
+            </Container>
+
+            <Container>
+              <Button
+                title="Continuar"
+                icon="arrow-right"
+                onPress={() => console.log('Continuar')}
+              />
             </Container>
           </Container>
         </Form>

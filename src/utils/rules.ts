@@ -21,7 +21,7 @@ import MonkImage from '../assets/images/profession/monk.png';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { ImageSourcePropType } from 'react-native';
 
-interface IAttributes {
+export interface IAttributes {
   for: Number;
   con: Number;
   dex: Number;
@@ -30,7 +30,7 @@ interface IAttributes {
   int: Number;
 }
 
-interface IRace {
+export interface IRace {
   id: Number;
   name: String;
   race: Number;
@@ -39,14 +39,14 @@ interface IRace {
   image: ImageSourcePropType;
 }
 
-interface IExpertise {
+export interface IExpertise {
   id: Number;
   desc: String;
   type: Number;
   checked: Boolean;
 }
 
-interface IProfession {
+export interface IProfession {
   id: Number;
   name: String;
   hp: Number;

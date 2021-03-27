@@ -1,9 +1,11 @@
 import React, { useRef, useState, useCallback } from 'react';
+import CheckBox from '@react-native-community/checkbox';
 import { Form } from '@unform/mobile';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { FormHandles } from '@unform/core';
 
-import { races, professions } from '../../utils/rules';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { races, professions, IExpertise } from '../../utils/rules';
 import Content from '../../components/Content';
 import ProgressBar from '../../components/ProgressBar';
 import Input from '../../components/Input';
@@ -16,7 +18,8 @@ import {
   SelectImage,
   SelectContainer,
   Select,
-  SelectText,
+  Text,
+  Expertise,
 } from './style';
 
 const CreateCard: React.FC = () => {
@@ -34,14 +37,32 @@ const CreateCard: React.FC = () => {
   }, []);
 
   const handleProfessionSelected = useCallback((key) => {
-    const findProfession = professions.find(
-      (_profession) => _profession.id === key,
-    );
+    let expertisesReseted: IExpertise[] = [];
+
+    const findProfession = professions.find((_profession) => {
+      if (_profession.id === key) {
+        expertisesReseted = _profession.expertises.map((_expertise) => {
+          return { ..._expertise, checked: false };
+        });
+
+        return { ..._profession, expertises: expertisesReseted };
+      }
+    });
 
     if (findProfession) {
-      setProfession(findProfession);
+      setProfession({ ...findProfession, expertises: expertisesReseted });
     }
   }, []);
+
+  const alterCheck = useCallback(
+    (_position) => {
+      const newExpertises = profession.expertises;
+      newExpertises[_position].checked = !newExpertises[_position].checked;
+
+      setProfession({ ...profession, expertises: newExpertises });
+    },
+    [profession],
+  );
 
   return (
     <Content title="Nova Ficha" goBack>
@@ -54,50 +75,66 @@ const CreateCard: React.FC = () => {
             <Container>
               <Input title="Nome" />
               <Input title="Nível" keyboardType="numeric" />
+
+              <Container>
+                <SelectImageContainer>
+                  <SelectImage source={race.image} />
+                </SelectImageContainer>
+
+                <SelectContainer>
+                  <Select
+                    selectedValue={Number(race.id)}
+                    onValueChange={(value) => handleRaceSelected(value)}
+                  >
+                    {races.map((value) => (
+                      <Select.Item
+                        key={String(value.id)}
+                        value={Number(value.id)}
+                        label={String(value.name)}
+                      />
+                    ))}
+                  </Select>
+                </SelectContainer>
+                <Text>{race.desc}</Text>
+              </Container>
+
+              <Container>
+                <SelectImageContainer>
+                  <SelectImage source={profession.image} />
+                </SelectImageContainer>
+
+                <SelectContainer>
+                  <Select
+                    selectedValue={Number(profession.id)}
+                    onValueChange={(value) => handleProfessionSelected(value)}
+                  >
+                    {professions.map((value) => (
+                      <Select.Item
+                        key={String(value.id)}
+                        value={Number(value.id)}
+                        label={String(value.name)}
+                      />
+                    ))}
+                  </Select>
+                </SelectContainer>
+                <Text>HP: 1d{profession.hp} (por nível)</Text>
+              </Container>
             </Container>
 
+            <Title>Perícias (escolha {profession.quantityExpertise})</Title>
             <Container>
-              <SelectImageContainer>
-                <SelectImage source={race.image} />
-              </SelectImageContainer>
-
-              <SelectContainer>
-                <Select
-                  selectedValue={Number(race.id)}
-                  onValueChange={(value) => handleRaceSelected(value)}
-                >
-                  {races.map((value) => (
-                    <Select.Item
-                      key={String(value.id)}
-                      value={Number(value.id)}
-                      label={String(value.name)}
-                    />
-                  ))}
-                </Select>
-              </SelectContainer>
-              <SelectText>{race.desc}</SelectText>
-            </Container>
-
-            <Container>
-              <SelectImageContainer>
-                <SelectImage source={profession.image} />
-              </SelectImageContainer>
-
-              <SelectContainer>
-                <Select
-                  selectedValue={Number(profession.id)}
-                  onValueChange={(value) => handleProfessionSelected(value)}
-                >
-                  {professions.map((value) => (
-                    <Select.Item
-                      key={String(value.id)}
-                      value={Number(value.id)}
-                      label={String(value.name)}
-                    />
-                  ))}
-                </Select>
-              </SelectContainer>
-              <SelectText>HP: 1d{profession.hp} (por nível)</SelectText>
+              {profession.expertises &&
+                profession.expertises.map((value, key) => {
+                  return (
+                    <Expertise selected={value.checked} key={String(value.id)}>
+                      <Text>{value.desc}</Text>
+                      <CheckBox
+                        value={Boolean(value.checked)}
+                        onChange={() => alterCheck(key)}
+                      />
+                    </Expertise>
+                  );
+                })}
             </Container>
           </Container>
         </Form>

@@ -17,6 +17,12 @@ export const Title = styled.Text`
   color: #fff;
 `;
 
+export const Text = styled.Text`
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+`;
+
 export const SelectImageContainer = styled.View`
   width: 100px;
   height: 100px;
@@ -45,8 +51,12 @@ export const Select = styled(Picker)`
   padding: 8px 12px;
 `;
 
-export const SelectText = styled.Text`
-  color: #fff;
-  font-size: 16px;
-  font-weight: bold;
+export const Expertise = styled.View<any>`
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin: 5px 0;
+  padding: 0 5px;
+  border-radius: 2px;
+  ${(props) => props.selected && 'background-color: rgba(7, 78, 65, .2)'}
 `;

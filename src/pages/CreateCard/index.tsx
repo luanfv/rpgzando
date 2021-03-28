@@ -82,8 +82,8 @@ const CreateCard: React.FC = () => {
         formRef.current?.setErrors({});
 
         const schema = Yup.object().shape({
-          name: Yup.string().required('Seu personagem precisa de um nome'),
-          level: Yup.string().required('Seu personagem precisa de um nível'),
+          name: Yup.string().required('Seu personagem precisa de um nome.'),
+          level: Yup.string().required('Seu personagem precisa de um nível.'),
         });
 
         await schema.validate(data, {
@@ -92,11 +92,25 @@ const CreateCard: React.FC = () => {
 
         const { name, level } = data;
 
-        if (!Number(level) || Number.isInteger(Number(level))) {
-          throw Error('Informe um número inteiro em seu nível');
+        if (!Number(level) || !Number.isInteger(Number(level))) {
+          throw Error('Informe um número inteiro em seu nível.');
         }
 
-        console.log(`Só falta cadastrar o ${name}, nível ${level}`);
+        let quantityExpertise: Number = 0;
+
+        profession.expertises.forEach((_expertise) => {
+          if (_expertise.checked) {
+            quantityExpertise = Number(quantityExpertise) + 1;
+          }
+        });
+
+        if (quantityExpertise !== profession.quantityExpertise) {
+          throw new Error(
+            `Você precisar escolher exatamente ${profession.quantityExpertise} perícias.`,
+          );
+        }
+
+        console.log(`Só falta cadastrar o ${name}, nível ${level}.`);
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
           const errors: { name?: String; level?: String } = getValidationErrors(
@@ -119,7 +133,7 @@ const CreateCard: React.FC = () => {
         }
       }
     },
-    [addWarnning],
+    [addWarnning, profession],
   );
 
   return (

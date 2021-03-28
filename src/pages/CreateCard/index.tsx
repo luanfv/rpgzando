@@ -10,6 +10,7 @@ import { races, professions, IExpertise } from '../../utils/rules';
 import getValidationErrors from '../../utils/getValidationErrors';
 
 import { useApp } from '../../hooks/AppContext';
+import { useCards } from '../../hooks/CardsContext';
 
 import Content from '../../components/Content';
 import ProgressBar from '../../components/ProgressBar';
@@ -35,6 +36,8 @@ interface IHandleSubmit {
 
 const CreateCard: React.FC = () => {
   const { addWarnning } = useApp();
+  const { createCharacter } = useCards();
+
   const formRef = useRef<FormHandles>(null);
 
   const [race, setRace] = useState(races[0]);
@@ -93,21 +96,37 @@ const CreateCard: React.FC = () => {
         const { name, level } = data;
 
         if (!Number(level) || !Number.isInteger(Number(level))) {
-          throw Error('Informe um número inteiro em seu nível.');
+          throw Error('Number');
         }
 
-        let quantityExpertise: Number = 0;
+        const persoExpertises: Number[] = [];
 
         profession.expertises.forEach((_expertise) => {
           if (_expertise.checked) {
-            quantityExpertise = Number(quantityExpertise) + 1;
+            persoExpertises.push(_expertise.id);
           }
         });
 
-        if (quantityExpertise !== profession.quantityExpertise) {
+        if (persoExpertises.length !== profession.quantityExpertise) {
           throw new Error(
             `Você precisar escolher exatamente ${profession.quantityExpertise} perícias.`,
           );
+        }
+
+        const response = createCharacter({
+          name,
+          level: Number(level),
+          profession,
+          expertises: persoExpertises,
+          race: {
+            name: race.name,
+            id: race.id,
+            idSecondary: race.subRace,
+          },
+        });
+
+        if (!response) {
+          return;
         }
 
         console.log(`Só falta cadastrar o ${name}, nível ${level}.`);
@@ -124,16 +143,20 @@ const CreateCard: React.FC = () => {
           }
 
           formRef.current?.setErrors(errors);
+        } else if (err.message === 'Number') {
+          addWarnning('Informe um número inteiro em seu nível.');
+
+          formRef.current?.setErrors({
+            level: 'Informe um número inteiro em seu nível.',
+          });
         } else {
           const { message } = err;
 
           addWarnning(message);
-
-          formRef.current?.setErrors({ level: message });
         }
       }
     },
-    [addWarnning, profession],
+    [addWarnning, createCharacter, profession, race],
   );
 
   return (

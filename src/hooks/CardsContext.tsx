@@ -7,6 +7,7 @@ import React, {
 } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import { useApp } from './AppContext';
 import { professions, races } from '../utils/rules';
 
 export interface IAttributes {
@@ -30,7 +31,6 @@ export interface IRace {
 }
 
 export interface ICreateICharacterData {
-  id: String;
   name: String;
   level: Number;
   expertises: Number[];
@@ -60,6 +60,8 @@ interface ICardsData {
 const CardsContext = createContext<ICardsData>({} as ICardsData);
 
 export const CardsProvider: React.FC = ({ children }) => {
+  const { addWarnning } = useApp();
+
   const [cards, setCards] = useState([] as ICard[]);
   const [name, setName] = useState('' as String);
   const [level, setLevel] = useState(1 as Number);
@@ -134,10 +136,13 @@ export const CardsProvider: React.FC = ({ children }) => {
 
         return true;
       } catch (err) {
+        const { message } = err;
+        addWarnning(message);
+
         return false;
       }
     },
-    [],
+    [addWarnning],
   );
 
   const createCard = useCallback(

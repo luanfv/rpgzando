@@ -39,16 +39,16 @@ export const SelectImage = styled.Image`
 `;
 
 export const SelectContainer = styled.View`
-  border-radius: 4px;
+  border-radius: 10px;
+  border: rgba(255, 255, 255, 0.5) solid 1px;
   overflow: hidden;
   margin: 10px 0;
 `;
 
 export const Select = styled(Picker)`
-  color: ${styles.bg};
+  color: #fff;
   font-size: 18px;
-  background-color: rgba(255, 255, 255, 0.4);
-  padding: 8px 12px;
+  background-color: ${styles.primary};
 `;
 
 export const Expertise = styled.View<any>`

@@ -6,9 +6,9 @@ interface AppData {
   removeWarnning: () => void;
 }
 
-const ModalContext = createContext({} as AppData);
+const AppContext = createContext({} as AppData);
 
-export const ModalProvider: React.FC = ({ children }) => {
+export const AppProvider: React.FC = ({ children }) => {
   const [warnning, setWarnning] = useState('' as String);
 
   const addWarnning = useCallback((message: String) => {
@@ -22,7 +22,7 @@ export const ModalProvider: React.FC = ({ children }) => {
   }, []);
 
   return (
-    <ModalContext.Provider
+    <AppContext.Provider
       value={{
         warnning,
         addWarnning,
@@ -30,15 +30,15 @@ export const ModalProvider: React.FC = ({ children }) => {
       }}
     >
       {children}
-    </ModalContext.Provider>
+    </AppContext.Provider>
   );
 };
 
-export function useModal() {
-  const context = useContext(ModalContext);
+export function useApp() {
+  const context = useContext(AppContext);
 
   if (!context) {
-    throw new Error('useModal must be used within an ModalProvider');
+    throw new Error('useApp must be used within an AppProvider');
   }
 
   return context;

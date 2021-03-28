@@ -9,7 +9,7 @@ import * as Yup from 'yup';
 import { races, professions, IExpertise } from '../../utils/rules';
 import getValidationErrors from '../../utils/getValidationErrors';
 
-import { useModal } from '../../hooks/ModalContext';
+import { useApp } from '../../hooks/AppContext';
 
 import Content from '../../components/Content';
 import ProgressBar from '../../components/ProgressBar';
@@ -34,7 +34,7 @@ interface IHandleSubmit {
 }
 
 const CreateCard: React.FC = () => {
-  const { addWarnning } = useModal();
+  const { addWarnning } = useApp();
   const formRef = useRef<FormHandles>(null);
 
   const [race, setRace] = useState(races[0]);

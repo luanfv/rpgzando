@@ -1,12 +1,12 @@
 import React from 'react';
 
-import { ModalProvider } from './ModalContext';
+import { AppProvider } from './AppContext';
 import { CardsProvider } from './CardsContext';
 
-const ModalProviders: React.FC = ({ children }) => (
-  <ModalProvider>
+const AppProviders: React.FC = ({ children }) => (
+  <AppProvider>
     <CardsProvider>{children}</CardsProvider>
-  </ModalProvider>
+  </AppProvider>
 );
 
-export default ModalProviders;
+export default AppProviders;

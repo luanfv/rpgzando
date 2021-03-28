@@ -1,12 +1,12 @@
 import React from 'react';
 import Modal from 'react-native-modal';
 
-import { useModal } from '../../../hooks/ModalContext';
+import { useApp } from '../../../hooks/AppContext';
 
 import { Container, Text, Button, ButtonText } from './style';
 
 const ModalWarnning: React.FC = () => {
-  const { removeWarnning, warnning } = useModal();
+  const { removeWarnning, warnning } = useApp();
 
   return (
     <Modal

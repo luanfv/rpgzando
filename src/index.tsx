@@ -4,7 +4,7 @@ import React from 'react';
 import { StatusBar } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 
-import ModalProvider from './hooks';
+import AppProvider from './hooks';
 import Routes from './routes';
 import styles from './styles.json';
 
@@ -12,7 +12,7 @@ import ModalWarnning from './components/Modal/Warnning';
 
 const App: React.FC = () => {
   return (
-    <ModalProvider>
+    <AppProvider>
       <StatusBar backgroundColor={styles.primary} />
 
       <NavigationContainer>
@@ -20,7 +20,7 @@ const App: React.FC = () => {
       </NavigationContainer>
 
       <ModalWarnning />
-    </ModalProvider>
+    </AppProvider>
   );
 };
 

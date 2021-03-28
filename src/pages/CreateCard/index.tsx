@@ -3,9 +3,14 @@ import CheckBox from '@react-native-community/checkbox';
 import { Form } from '@unform/mobile';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { FormHandles } from '@unform/core';
+import * as Yup from 'yup';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { races, professions, IExpertise } from '../../utils/rules';
+import getValidationErrors from '../../utils/getValidationErrors';
+
+import { useModal } from '../../hooks/ModalContext';
+
 import Content from '../../components/Content';
 import ProgressBar from '../../components/ProgressBar';
 import Input from '../../components/Input';
@@ -23,7 +28,13 @@ import {
   Expertise,
 } from './style';
 
+interface IHandleSubmit {
+  name: string;
+  level: string;
+}
+
 const CreateCard: React.FC = () => {
+  const { addWarnning } = useModal();
   const formRef = useRef<FormHandles>(null);
 
   const [race, setRace] = useState(races[0]);
@@ -65,17 +76,80 @@ const CreateCard: React.FC = () => {
     [profession],
   );
 
+  const handleSubmit = useCallback(
+    async (data: IHandleSubmit) => {
+      try {
+        formRef.current?.setErrors({});
+
+        const schema = Yup.object().shape({
+          name: Yup.string().required('Seu personagem precisa de um nome'),
+          level: Yup.string().required('Seu personagem precisa de um nível'),
+        });
+
+        await schema.validate(data, {
+          abortEarly: false,
+        });
+
+        const { name, level } = data;
+
+        if (!Number(level) || Number.isInteger(Number(level))) {
+          throw Error('Informe um número inteiro em seu nível');
+        }
+
+        console.log(`Só falta cadastrar o ${name}, nível ${level}`);
+      } catch (err) {
+        if (err instanceof Yup.ValidationError) {
+          const errors: { name?: String; level?: String } = getValidationErrors(
+            err,
+          );
+
+          if (errors.name) {
+            addWarnning(errors.name);
+          } else if (errors.level) {
+            addWarnning(errors.level);
+          }
+
+          formRef.current?.setErrors(errors);
+        } else {
+          const { message } = err;
+
+          addWarnning(message);
+
+          formRef.current?.setErrors({ level: message });
+        }
+      }
+    },
+    [addWarnning],
+  );
+
   return (
     <Content title="Nova Ficha" goBack>
       <Main>
         <ProgressBar phase={1} />
 
-        <Form ref={formRef} onSubmit={() => console.log('submit')}>
+        <Form ref={formRef} onSubmit={handleSubmit}>
           <Container>
             <Title>Informações do base</Title>
             <Container>
-              <Input title="Nome" />
-              <Input title="Nível" keyboardType="numeric" />
+              <Container>
+                <Input
+                  autoCorrect={false}
+                  name="name"
+                  icon="user"
+                  placeholder="Nome"
+                />
+              </Container>
+
+              <Container>
+                <Input
+                  autoCorrect={false}
+                  autoCapitalize="none"
+                  keyboardType="numeric"
+                  name="level"
+                  icon="award"
+                  placeholder="Nível"
+                />
+              </Container>
 
               <Container>
                 <SelectImageContainer>
@@ -142,7 +216,7 @@ const CreateCard: React.FC = () => {
               <Button
                 title="Continuar"
                 icon="arrow-right"
-                onPress={() => console.log('Continuar')}
+                onPress={() => formRef.current?.submitForm()}
               />
             </Container>
           </Container>

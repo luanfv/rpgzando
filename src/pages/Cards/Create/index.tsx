@@ -1,21 +1,21 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useRef, useState, useCallback } from 'react';
 import CheckBox from '@react-native-community/checkbox';
 import { Form } from '@unform/mobile';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
+import { useNavigation } from '@react-navigation/native';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { races, professions, IExpertise } from '../../utils/rules';
-import getValidationErrors from '../../utils/getValidationErrors';
+import { races, professions, IExpertise } from '../../../utils/rules';
+import getValidationErrors from '../../../utils/getValidationErrors';
 
-import { useApp } from '../../hooks/AppContext';
-import { useCards } from '../../hooks/CardsContext';
+import { useApp } from '../../../hooks/AppContext';
+import { useCards } from '../../../hooks/CardsContext';
 
-import Content from '../../components/Content';
-import ProgressBar from '../../components/ProgressBar';
-import Input from '../../components/Input';
-import Button from '../../components/Button';
+import Content from '../../../components/Content';
+import ProgressBar from '../../../components/ProgressBar';
+import Input from '../../../components/Input';
+import Button from '../../../components/Button';
 
 import {
   Main,
@@ -37,6 +37,7 @@ interface IHandleSubmit {
 const CreateCard: React.FC = () => {
   const { addWarnning } = useApp();
   const { createCharacter } = useCards();
+  const { navigate } = useNavigation();
 
   const formRef = useRef<FormHandles>(null);
 
@@ -129,7 +130,7 @@ const CreateCard: React.FC = () => {
           return;
         }
 
-        console.log(`Só falta cadastrar o ${name}, nível ${level}.`);
+        navigate('createAttributes');
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
           const errors: { name?: String; level?: String } = getValidationErrors(
@@ -156,7 +157,15 @@ const CreateCard: React.FC = () => {
         }
       }
     },
-    [addWarnning, createCharacter, profession, race],
+    [
+      addWarnning,
+      createCharacter,
+      navigate,
+      profession,
+      race.id,
+      race.name,
+      race.subRace,
+    ],
   );
 
   return (

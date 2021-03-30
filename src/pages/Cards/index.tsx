@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/core';
 import Content from '../../components/Content';
 import ButtonFixed from '../../components/ButtonFixed';
 
-import Card from './Card';
+import List from './components/List';
 import { Br } from './style';
 
 const Collectors: React.FC = () => {
@@ -13,7 +13,7 @@ const Collectors: React.FC = () => {
   return (
     <>
       <Content title="Player">
-        <Card />
+        <List />
 
         <Br />
       </Content>

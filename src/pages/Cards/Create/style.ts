@@ -1,7 +1,7 @@
 import styled from 'styled-components/native';
 import { Picker } from '@react-native-community/picker';
 
-import styles from '../../styles.json';
+import styles from '../../../styles.json';
 
 export const Main = styled.View`
   margin: 20px;

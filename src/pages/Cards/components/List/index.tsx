@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { professions, races } from '../../../utils/rules';
+import { professions, races } from '../../../../utils/rules';
 import { Container, Img, Description, Name, Text } from './style';
 
-const Card: React.FC = () => {
+const List: React.FC = () => {
   return (
     <Container>
       <Img source={races[0].image} />
@@ -16,4 +16,4 @@ const Card: React.FC = () => {
   );
 };
 
-export default Card;
+export default List;

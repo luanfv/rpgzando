@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import styles from '../../../styles.json';
+import styles from '../../../../styles.json';
 
 export const Container = styled.TouchableOpacity`
   flex-direction: row;

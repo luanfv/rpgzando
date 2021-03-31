@@ -52,6 +52,11 @@ interface ICard {
 }
 
 interface ICardsData {
+  name: String;
+  level: Number;
+  expertise: Number[];
+  profession: IProfession;
+  race: IRace;
   cards: ICard[];
   createCharacter: (_data: ICreateICharacterData) => Boolean;
   createCard: (_attributes: IAttributes, _hp: Number) => Boolean;
@@ -191,7 +196,18 @@ export const CardsProvider: React.FC = ({ children }) => {
   }, []);
 
   return (
-    <CardsContext.Provider value={{ cards, createCharacter, createCard }}>
+    <CardsContext.Provider
+      value={{
+        name,
+        level,
+        expertise,
+        profession,
+        race,
+        cards,
+        createCharacter,
+        createCard,
+      }}
+    >
       {children}
     </CardsContext.Provider>
   );

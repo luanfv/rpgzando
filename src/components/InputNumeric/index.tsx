@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
 import styles from '../../styles.json';
@@ -13,31 +13,53 @@ import {
 
 interface IProps {
   title: String;
+  value: Number;
+  min: Number;
+  max: Number;
   random?: Boolean;
+  onChange: (value: Number) => void;
 }
 
-const InputNumeric: React.FC<IProps> = ({ title, random }) => {
+const InputNumeric: React.FC<IProps> = ({
+  title,
+  value,
+  onChange,
+  min,
+  max,
+  random,
+}) => {
+  const handleRandom = useCallback(() => {
+    onChange(
+      Number(
+        Math.floor(Math.random() * (Number(max) - Number(Number(min) - 1))) +
+          Number(min),
+      ),
+    );
+  }, [max, min, onChange]);
+
   return (
     <Container>
       <TitleContainer>
         <TitleText>{title}</TitleText>
 
         {random && (
-          <TitleRandom>
+          <TitleRandom onPress={handleRandom}>
             <Icon name="dice" size={24} color="#fff" />
           </TitleRandom>
         )}
       </TitleContainer>
 
       <Input
-        value={1}
-        min={1}
-        rounded
+        value={Number(value)}
+        onChange={onChange}
+        min={Number(min)}
+        max={Number(max)}
         textColor="#fff"
         fontSize={18}
         colorLeft={styles.primary}
         colorRight={styles.primary}
         colorPress={styles.secondary}
+        rounded
       />
     </Container>
   );

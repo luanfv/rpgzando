@@ -10,7 +10,7 @@ export const Input = styled(InputSpinner)`
 `;
 
 export const Container = styled.View`
-  margin: 20px 0;
+  margin: 8px 0;
 `;
 
 export const TitleContainer = styled.View`
@@ -23,6 +23,7 @@ export const TitleContainer = styled.View`
 
 export const TitleText = styled.Text`
   font-size: 16px;
+  font-weight: bold;
   color: #fff;
 `;
 

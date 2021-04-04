@@ -58,8 +58,9 @@ interface ICardsData {
   profession: IProfession;
   race: IRace;
   cards: ICard[];
+  findCard: (_id: String) => ICard | undefined;
   createCharacter: (_data: ICreateICharacterData) => Boolean;
-  createCard: (_attributes: IAttributes, _hp: Number) => Boolean;
+  createCard: (_attributes: IAttributes, _hp: Number) => String | undefined;
 }
 
 const CardsContext = createContext<ICardsData>({} as ICardsData);
@@ -86,6 +87,11 @@ export const CardsProvider: React.FC = ({ children }) => {
       }
     },
     [],
+  );
+
+  const findCard = useCallback(
+    (_id: String): ICard | undefined => cards.find((card) => card.id === _id),
+    [cards],
   );
 
   const createCharacter = useCallback(
@@ -151,10 +157,10 @@ export const CardsProvider: React.FC = ({ children }) => {
   );
 
   const createCard = useCallback(
-    (_attributes: IAttributes, _hp: Number): Boolean => {
+    (_attributes: IAttributes, _hp: Number): String | undefined => {
       try {
         const date = new Date();
-        const id = date.getTime();
+        const id = `RPGZando:${date.getTime()}`;
 
         const benefits = handleRace(race.id, race.idSecondary);
 
@@ -172,7 +178,7 @@ export const CardsProvider: React.FC = ({ children }) => {
         } as IAttributes;
 
         const newCard = {
-          id: `RPGZando:${id}`,
+          id,
           name: name,
           level: level,
           expertise: expertise,
@@ -190,9 +196,9 @@ export const CardsProvider: React.FC = ({ children }) => {
           throw Error('not created card');
         }
 
-        return true;
+        return id;
       } catch (err) {
-        return false;
+        return undefined;
       }
     },
     [name, level, expertise, profession, race, updateCards, cards],
@@ -221,6 +227,7 @@ export const CardsProvider: React.FC = ({ children }) => {
         cards,
         createCharacter,
         createCard,
+        findCard,
       }}
     >
       {children}

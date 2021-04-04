@@ -1,19 +1,31 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useNavigation } from '@react-navigation/core';
 
-import { professions, races } from '../../../../utils/rules';
+import { races } from '../../../../utils/rules';
+
 import { Container, Img, Description, Name, Text } from './style';
 
-const List: React.FC = () => {
+interface IProps {
+  id: String;
+  name: String;
+  profession: String;
+  level: Number;
+  raceId: Number;
+}
+
+const List: React.FC<IProps> = ({ id, name, profession, level, raceId }) => {
   const { navigate } = useNavigation();
+  const race = useMemo(() => races.find((_race) => _race.id === raceId), [
+    raceId,
+  ]);
 
   return (
-    <Container onPress={() => navigate('showCard', { id: 'teste' })}>
-      <Img source={races[0].image} />
+    <Container onPress={() => navigate('showCard', { id })}>
+      {race?.image && <Img source={race?.image} />}
       <Description>
-        <Name>Player</Name>
-        <Text>{professions[0].name}</Text>
-        <Text>Nível: 1</Text>
+        <Name>{name}</Name>
+        <Text>{profession}</Text>
+        <Text>Nível: {level}</Text>
       </Description>
     </Container>
   );

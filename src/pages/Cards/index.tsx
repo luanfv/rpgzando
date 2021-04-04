@@ -1,6 +1,8 @@
 import React from 'react';
 import { useNavigation } from '@react-navigation/core';
 
+import { useCards } from '../../hooks/CardsContext';
+
 import Content from '../../components/Content';
 import ButtonFixed from '../../components/ButtonFixed';
 
@@ -9,11 +11,20 @@ import { Br } from './style';
 
 const Collectors: React.FC = () => {
   const { navigate } = useNavigation();
+  const { cards } = useCards();
 
   return (
     <>
       <Content title="Player">
-        <List />
+        {cards.map((_card) => (
+          <List
+            id={_card.id}
+            level={_card.level}
+            name={_card.name}
+            profession={_card.profession.name}
+            raceId={_card.race.id}
+          />
+        ))}
 
         <Br />
       </Content>

@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useMemo, useState, useEffect, useCallback } from 'react';
+import { useNavigation } from '@react-navigation/native';
 
 import { useCards } from '../../../../hooks/CardsContext';
 import { useApp } from '../../../../hooks/AppContext';
@@ -16,6 +17,7 @@ import { Main, Title, Container } from '../style';
 const Attributes: React.FC = () => {
   const { level, profession, race, createCard } = useCards();
   const { addWarnning } = useApp();
+  const { navigate } = useNavigation();
 
   const [hp, setHp] = useState(level as Number);
   const [force, setForce] = useState(1 as Number);
@@ -51,6 +53,8 @@ const Attributes: React.FC = () => {
       if (!response) {
         throw Error('Ocorreu um erro inesperado, tente novamente');
       }
+
+      navigate('showCard', { id: response, newCard: true });
     } catch (err) {
       const { message } = err;
 
@@ -65,6 +69,7 @@ const Attributes: React.FC = () => {
     force,
     hp,
     intelligence,
+    navigate,
     wisdom,
   ]);
 

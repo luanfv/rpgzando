@@ -58,5 +58,5 @@ export const Expertise = styled.View<any>`
   margin: 5px 0;
   padding: 0 5px;
   border-radius: 2px;
-  ${(props) => props.selected && 'background-color: rgba(7, 78, 65, .2)'}
+  ${(props) => props.selected && 'background-color: rgba(7, 78, 65, .4)'}
 `;

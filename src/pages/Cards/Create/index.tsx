@@ -122,7 +122,6 @@ const CreateCard: React.FC = () => {
           race: {
             name: race.name,
             id: race.id,
-            idSecondary: race.subRace,
           },
         });
 
@@ -157,15 +156,7 @@ const CreateCard: React.FC = () => {
         }
       }
     },
-    [
-      addWarnning,
-      createCharacter,
-      navigate,
-      profession,
-      race.id,
-      race.name,
-      race.subRace,
-    ],
+    [addWarnning, createCharacter, navigate, profession, race.id, race.name],
   );
 
   return (

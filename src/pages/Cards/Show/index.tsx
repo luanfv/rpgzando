@@ -130,6 +130,7 @@ const Show: React.FC = () => {
 
           {!!card &&
             expertises.map((_expertise) => {
+              const proficiency = Number(calcProficiency(card.level));
               const foundId = card.expertise.find(
                 (_id) => _id === _expertise.id,
               );
@@ -138,9 +139,6 @@ const Show: React.FC = () => {
                 if (_expertise.type === 1) {
                   if (foundId) {
                     const modifier = Number(calcModifier(card.attributes.for));
-                    const proficiency = Number(
-                      calcProficiency(card.attributes.for),
-                    );
 
                     return `+${modifier + proficiency}`;
                   }
@@ -149,9 +147,6 @@ const Show: React.FC = () => {
                 } else if (_expertise.type === 2) {
                   if (foundId) {
                     const modifier = Number(calcModifier(card.attributes.dex));
-                    const proficiency = Number(
-                      calcProficiency(card.attributes.dex),
-                    );
 
                     return `+${modifier + proficiency}`;
                   }
@@ -160,9 +155,6 @@ const Show: React.FC = () => {
                 } else if (_expertise.type === 3) {
                   if (foundId) {
                     const modifier = Number(calcModifier(card.attributes.con));
-                    const proficiency = Number(
-                      calcProficiency(card.attributes.con),
-                    );
 
                     return `+${modifier + proficiency}`;
                   }
@@ -171,9 +163,6 @@ const Show: React.FC = () => {
                 } else if (_expertise.type === 4) {
                   if (foundId) {
                     const modifier = Number(calcModifier(card.attributes.int));
-                    const proficiency = Number(
-                      calcProficiency(card.attributes.int),
-                    );
 
                     return `+${modifier + proficiency}`;
                   }
@@ -182,9 +171,6 @@ const Show: React.FC = () => {
                 } else if (_expertise.type === 5) {
                   if (foundId) {
                     const modifier = Number(calcModifier(card.attributes.wis));
-                    const proficiency = Number(
-                      calcProficiency(card.attributes.wis),
-                    );
 
                     return `+${modifier + proficiency}`;
                   }
@@ -193,9 +179,6 @@ const Show: React.FC = () => {
                 } else if (_expertise.type === 6) {
                   if (foundId) {
                     const modifier = Number(calcModifier(card.attributes.cha));
-                    const proficiency = Number(
-                      calcProficiency(card.attributes.cha),
-                    );
 
                     return `+${modifier + proficiency}`;
                   }

@@ -34,7 +34,6 @@ export interface IRace {
   id: Number;
   name: String;
   race: Number;
-  subRace: Number;
   desc: String;
   image: ImageSourcePropType;
 }
@@ -60,7 +59,6 @@ export const races: IRace[] = [
     id: 1,
     name: 'Anão da Colina',
     race: 1,
-    subRace: 1,
     desc: '+2 CON, +1 SAB',
     image: DwarfImage,
   },
@@ -68,7 +66,6 @@ export const races: IRace[] = [
     id: 2,
     name: 'Anão da Montanha',
     race: 1,
-    subRace: 2,
     desc: '+2 CON, +2 FOR',
     image: DwarfImage,
   },
@@ -76,7 +73,6 @@ export const races: IRace[] = [
     id: 3,
     name: 'Draconato',
     race: 2,
-    subRace: 1,
     desc: '+2 FOR, +1 CAR',
     image: DragonbornImage,
   },
@@ -84,7 +80,6 @@ export const races: IRace[] = [
     id: 4,
     name: 'Elfo Alto',
     race: 3,
-    subRace: 1,
     desc: '+2 DES, +1 INT',
     image: ElfImage,
   },
@@ -92,7 +87,6 @@ export const races: IRace[] = [
     id: 5,
     name: 'Elfo da Floresta',
     race: 3,
-    subRace: 2,
     desc: '+2 DES, +1 SAB',
     image: ElfImage,
   },
@@ -100,15 +94,13 @@ export const races: IRace[] = [
     id: 6,
     name: 'Elfo Negro',
     race: 3,
-    subRace: 3,
-    desc: '+2 DES, +1 INT',
+    desc: '+2 DES, +1 CAR',
     image: ElfImage,
   },
   {
     id: 7,
     name: 'Gnomo da Floresta',
     race: 4,
-    subRace: 1,
     desc: '+2 INT, +1 DES',
     image: GnomeImage,
   },
@@ -116,7 +108,6 @@ export const races: IRace[] = [
     id: 8,
     name: 'Gnomo da Pedra',
     race: 4,
-    subRace: 2,
     desc: '+2 INT, +1 CON',
     image: GnomeImage,
   },
@@ -124,7 +115,6 @@ export const races: IRace[] = [
     id: 9,
     name: 'Halfling Leve',
     race: 5,
-    subRace: 1,
     desc: '+2 DES, +1 CAR',
     image: HalflingImage,
   },
@@ -132,7 +122,6 @@ export const races: IRace[] = [
     id: 10,
     name: 'Halfing Robusto',
     race: 5,
-    subRace: 2,
     desc: '+2 DES, +1 CON',
     image: HalflingImage,
   },
@@ -140,7 +129,6 @@ export const races: IRace[] = [
     id: 11,
     name: 'Humano',
     race: 6,
-    subRace: 1,
     desc: '+1 FOR, +1 DES, +1 CON, +1 INT, +1 SAB, +1 CAR',
     image: HumanImage,
   },
@@ -362,10 +350,7 @@ export const professions: IProfession[] = [
   },
 ];
 
-export const handleRace = (
-  race: Number,
-  type: Number,
-): IAttributes | undefined => {
+export const handleRace = (race: Number): IAttributes | undefined => {
   let isError: Boolean = false;
   const attributes: IAttributes = {
     for: 0,
@@ -379,55 +364,59 @@ export const handleRace = (
   switch (race) {
     case 1:
       attributes.con = Number(attributes.con) + 2;
-
-      if (type === 1) {
-        attributes.wis = Number(attributes.wis) + 1;
-      } else if (type === 2) {
-        attributes.for = Number(attributes.for) + 2;
-      } else {
-        isError = true;
-      }
+      attributes.wis = Number(attributes.wis) + 1;
       break;
+
     case 2:
+      attributes.con = Number(attributes.con) + 2;
+      attributes.for = Number(attributes.for) + 2;
+      break;
+
+    case 3:
       attributes.for = Number(attributes.for) + 2;
       attributes.cha = Number(attributes.cha) + 1;
       break;
-    case 3:
-      attributes.dex = Number(attributes.dex) + 2;
 
-      if (type === 1) {
-        attributes.int = Number(attributes.int) + 1;
-      } else if (type === 2) {
-        attributes.wis = Number(attributes.wis) + 1;
-      } else if (type === 3) {
-        attributes.cha = Number(attributes.cha) + 1;
-      } else {
-        isError = true;
-      }
-      break;
     case 4:
-      attributes.int = Number(attributes.int) + 2;
-
-      if (type === 1) {
-        attributes.dex = Number(attributes.dex) + 1;
-      } else if (type === 2) {
-        attributes.con = Number(attributes.con) + 1;
-      } else {
-        isError = true;
-      }
+      attributes.dex = Number(attributes.dex) + 2;
+      attributes.int = Number(attributes.int) + 1;
       break;
+
     case 5:
       attributes.dex = Number(attributes.dex) + 2;
-
-      if (type === 1) {
-        attributes.cha = Number(attributes.cha) + 1;
-      } else if (type === 2) {
-        attributes.con = Number(attributes.con) + 1;
-      } else {
-        isError = true;
-      }
+      attributes.wis = Number(attributes.wis) + 1;
       break;
+
     case 6:
+      attributes.dex = Number(attributes.dex) + 2;
+      attributes.cha = Number(attributes.cha) + 1;
+      break;
+
+    case 7:
+      attributes.int = Number(attributes.int) + 2;
+      attributes.dex = Number(attributes.dex) + 1;
+
+      break;
+
+    case 8:
+      attributes.int = Number(attributes.int) + 2;
+      attributes.con = Number(attributes.con) + 1;
+
+      break;
+
+    case 9:
+      attributes.dex = Number(attributes.dex) + 2;
+      attributes.cha = Number(attributes.cha) + 1;
+
+      break;
+
+    case 10:
+      attributes.dex = Number(attributes.dex) + 2;
+      attributes.con = Number(attributes.con) + 1;
+
+      break;
+
+    case 11:
       attributes.for = Number(attributes.for) + 1;
       attributes.dex = Number(attributes.dex) + 1;
       attributes.con = Number(attributes.con) + 1;
@@ -435,6 +424,7 @@ export const handleRace = (
       attributes.int = Number(attributes.int) + 1;
       attributes.cha = Number(attributes.cha) + 1;
       break;
+
     default:
       isError = true;
       break;
@@ -458,6 +448,7 @@ export const calcModifier = (modifier: Number): String => {
 };
 
 export const calcProficiency = (level: Number): Number => {
+  console.log(level);
   if (level < 5) {
     return 2;
   } else if (level < 9) {

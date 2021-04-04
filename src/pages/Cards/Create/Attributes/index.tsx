@@ -74,12 +74,12 @@ const Attributes: React.FC = () => {
   ]);
 
   useEffect(() => {
-    const attributes = handleRace(race.id, race.idSecondary);
+    const attributes = handleRace(race.id);
 
     if (attributes) {
       setBenefits(attributes);
     }
-  }, [race.id, race.idSecondary]);
+  }, [race.id]);
 
   return (
     <Content title="Nova Ficha" goBack>

@@ -26,7 +26,6 @@ export interface IProfession {
 
 export interface IRace {
   id: Number;
-  idSecondary: Number;
   name: String;
 }
 
@@ -129,11 +128,7 @@ export const CardsProvider: React.FC = ({ children }) => {
           );
         }
 
-        const foundRace = races.find(
-          (_race) =>
-            _race.id === _data.race.id &&
-            _race.subRace === _data.race.idSecondary,
-        );
+        const foundRace = races.find((_race) => _race.id === _data.race.id);
 
         if (!foundRace) {
           throw Error('Raça selecionado não foi encontrada');
@@ -162,7 +157,7 @@ export const CardsProvider: React.FC = ({ children }) => {
         const date = new Date();
         const id = `RPGZando:${date.getTime()}`;
 
-        const benefits = handleRace(race.id, race.idSecondary);
+        const benefits = handleRace(race.id);
 
         if (!benefits) {
           throw Error('fail at benefits');

@@ -1,18 +1,21 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useMemo, useState, useEffect } from 'react';
+import React, { useMemo, useState, useEffect, useCallback } from 'react';
 
 import { useCards } from '../../../../hooks/CardsContext';
+import { useApp } from '../../../../hooks/AppContext';
 
 import { professions, handleRace, IAttributes } from '../../../../utils/rules';
 
 import Content from '../../../../components/Content';
 import ProgressBar from '../../../../components/ProgressBar';
 import InputNumeric from '../../../../components/InputNumeric';
+import Button from '../../../../components/Button';
 
 import { Main, Title, Container } from '../style';
 
 const Attributes: React.FC = () => {
-  const { level, profession, race } = useCards();
+  const { level, profession, race, createCard } = useCards();
+  const { addWarnning } = useApp();
 
   const [hp, setHp] = useState(level as Number);
   const [force, setForce] = useState(1 as Number);
@@ -31,6 +34,39 @@ const Attributes: React.FC = () => {
     return Number(found?.hp);
   }, [profession.id]);
   const maxHp = useMemo(() => Number(level) * Number(fullHp), [fullHp, level]);
+
+  const submit = useCallback(() => {
+    try {
+      const attributes = {
+        for: force,
+        con: constitution,
+        dex: dexterity,
+        cha: charisma,
+        wis: wisdom,
+        int: intelligence,
+      } as IAttributes;
+
+      const response = createCard(attributes, hp);
+
+      if (!response) {
+        throw Error('Ocorreu um erro inesperado, tente novamente');
+      }
+    } catch (err) {
+      const { message } = err;
+
+      addWarnning(message);
+    }
+  }, [
+    addWarnning,
+    charisma,
+    constitution,
+    createCard,
+    dexterity,
+    force,
+    hp,
+    intelligence,
+    wisdom,
+  ]);
 
   useEffect(() => {
     const attributes = handleRace(race.id, race.idSecondary);
@@ -107,6 +143,9 @@ const Attributes: React.FC = () => {
             max={20}
             random
           />
+        </Container>
+        <Container>
+          <Button title="Continuar" icon="arrow-right" onPress={submit} />
         </Container>
       </Main>
     </Content>

@@ -8,7 +8,7 @@ import React, {
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { useApp } from './AppContext';
-import { professions, races } from '../utils/rules';
+import { professions, races, handleRace, calcModifier } from '../utils/rules';
 
 export interface IAttributes {
   for: Number;
@@ -156,6 +156,21 @@ export const CardsProvider: React.FC = ({ children }) => {
         const date = new Date();
         const id = date.getTime();
 
+        const benefits = handleRace(race.id, race.idSecondary);
+
+        if (!benefits) {
+          throw Error('fail at benefits');
+        }
+
+        const attributes = {
+          for: Number(_attributes.for) + Number(benefits.for),
+          con: Number(_attributes.con) + Number(benefits.con),
+          dex: Number(_attributes.dex) + Number(benefits.dex),
+          cha: Number(_attributes.cha) + Number(benefits.cha),
+          wis: Number(_attributes.wis) + Number(benefits.wis),
+          int: Number(_attributes.int) + Number(benefits.int),
+        } as IAttributes;
+
         const newCard = {
           id: `RPGZando:${id}`,
           name: name,
@@ -163,8 +178,8 @@ export const CardsProvider: React.FC = ({ children }) => {
           expertise: expertise,
           profession: profession,
           race: race,
-          hp: _hp,
-          attributes: _attributes,
+          hp: Number(_hp) + Number(calcModifier(attributes.con)),
+          attributes,
           createdAt: `${date}`,
           updatedAt: `${date}`,
         } as ICard;

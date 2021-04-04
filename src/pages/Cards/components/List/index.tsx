@@ -1,11 +1,14 @@
 import React from 'react';
+import { useNavigation } from '@react-navigation/core';
 
 import { professions, races } from '../../../../utils/rules';
 import { Container, Img, Description, Name, Text } from './style';
 
 const List: React.FC = () => {
+  const { navigate } = useNavigation();
+
   return (
-    <Container>
+    <Container onPress={() => navigate('showCard', { id: 'teste' })}>
       <Img source={races[0].image} />
       <Description>
         <Name>Player</Name>

@@ -16,8 +16,9 @@ const Collectors: React.FC = () => {
   return (
     <>
       <Content title="Player">
-        {cards.map((_card) => (
+        {cards.map((_card, _index) => (
           <List
+            key={_index}
             id={_card.id}
             level={_card.level}
             name={_card.name}

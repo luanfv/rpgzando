@@ -38,7 +38,7 @@ const Show: React.FC = () => {
   const card = useMemo(() => findCard(routeParams.id), [findCard, routeParams]);
 
   return (
-    <Content title="Ficha" goBack>
+    <Content title="Ficha" goBack card>
       <Main>
         {!!routeParams.newCard && <ProgressBar phase={3} />}
 

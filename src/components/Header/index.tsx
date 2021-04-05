@@ -19,9 +19,10 @@ import {
 interface Props {
   title: String;
   goBack?: Boolean;
+  card?: Boolean;
 }
 
-const Header: React.FC<Props> = ({ title, goBack = false }) => {
+const Header: React.FC<Props> = ({ title, goBack = false, card = false }) => {
   const navigation = useNavigation();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -60,9 +61,15 @@ const Header: React.FC<Props> = ({ title, goBack = false }) => {
         )}
       </TitleContainer>
 
-      <Options onPress={() => setIsModalOpen(true)}>
-        <Icon name="bars" color="#fff" size={26} />
-      </Options>
+      {card ? (
+        <Options onPress={() => setIsModalOpen(true)}>
+          <Icon name="cog" color="#fff" size={26} />
+        </Options>
+      ) : (
+        <Options onPress={() => setIsModalOpen(true)}>
+          <Icon name="bars" color="#fff" size={26} />
+        </Options>
+      )}
 
       <Modal
         isVisible={isModalOpen}

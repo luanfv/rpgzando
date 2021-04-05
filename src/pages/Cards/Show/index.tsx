@@ -129,7 +129,7 @@ const Show: React.FC = () => {
           <Title>Perícias</Title>
 
           {!!card &&
-            expertises.map((_expertise) => {
+            expertises.map((_expertise, _index) => {
               const proficiency = Number(calcProficiency(card.level));
               const foundId = card.expertise.find(
                 (_id) => _id === _expertise.id,
@@ -190,7 +190,7 @@ const Show: React.FC = () => {
               };
 
               return (
-                <Expertise selected={!!foundId}>
+                <Expertise selected={!!foundId} key={_index}>
                   <Text>{_expertise.desc}</Text>
                   <Text>{handleValue()}</Text>
                 </Expertise>

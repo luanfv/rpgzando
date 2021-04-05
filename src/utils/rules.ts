@@ -448,7 +448,6 @@ export const calcModifier = (modifier: Number): String => {
 };
 
 export const calcProficiency = (level: Number): Number => {
-  console.log(level);
   if (level < 5) {
     return 2;
   } else if (level < 9) {

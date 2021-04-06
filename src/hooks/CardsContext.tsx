@@ -58,6 +58,7 @@ interface ICardsData {
   race: IRace;
   cards: ICard[];
   findCard: (_id: String) => ICard | undefined;
+  resetCard: () => void;
   createCharacter: (_data: ICreateICharacterData) => Boolean;
   createCard: (_attributes: IAttributes, _hp: Number) => String | undefined;
 }
@@ -65,7 +66,7 @@ interface ICardsData {
 const CardsContext = createContext<ICardsData>({} as ICardsData);
 
 export const CardsProvider: React.FC = ({ children }) => {
-  const { addWarnning } = useApp();
+  const { addWarnning, deselectIdCard } = useApp();
 
   const [cards, setCards] = useState([] as ICard[]);
   const [name, setName] = useState('' as String);
@@ -92,6 +93,16 @@ export const CardsProvider: React.FC = ({ children }) => {
     (_id: String): ICard | undefined => cards.find((card) => card.id === _id),
     [cards],
   );
+
+  const resetCard = useCallback((): void => {
+    setName('' as String);
+    setLevel(1 as Number);
+    setExpertise([] as Number[]);
+    setProfession({} as IProfession);
+    setRace({} as IRace);
+
+    deselectIdCard();
+  }, [deselectIdCard]);
 
   const createCharacter = useCallback(
     (_data: ICreateICharacterData): Boolean => {
@@ -220,9 +231,10 @@ export const CardsProvider: React.FC = ({ children }) => {
         profession,
         race,
         cards,
+        findCard,
+        resetCard,
         createCharacter,
         createCard,
-        findCard,
       }}
     >
       {children}

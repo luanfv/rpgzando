@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import { useRoute } from '@react-navigation/native';
 
 import { useCards } from '../../../hooks/CardsContext';
+import { useApp } from '../../../hooks/AppContext';
 
 import {
   calcModifier,
@@ -25,22 +26,25 @@ import {
 } from './style';
 
 interface IRouteParams {
-  id: String;
   newCard?: Boolean;
 }
 
 const Show: React.FC = () => {
   const { findCard } = useCards();
+  const { idCardSelected } = useApp();
   const { params } = useRoute();
 
-  const routeParams = params as IRouteParams;
+  const routeParams = params as IRouteParams | undefined;
 
-  const card = useMemo(() => findCard(routeParams.id), [findCard, routeParams]);
+  const card = useMemo(() => findCard(idCardSelected), [
+    findCard,
+    idCardSelected,
+  ]);
 
   return (
     <Content title="Ficha" goBack card>
       <Main>
-        {!!routeParams.newCard && <ProgressBar phase={3} />}
+        {!!routeParams && !!routeParams.newCard && <ProgressBar phase={3} />}
 
         <Container>
           <Title>Personagem</Title>

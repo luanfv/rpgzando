@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigation } from '@react-navigation/core';
 
 import { useCards } from '../../hooks/CardsContext';
@@ -11,7 +11,11 @@ import { Br } from './style';
 
 const Collectors: React.FC = () => {
   const { navigate } = useNavigation();
-  const { cards } = useCards();
+  const { cards, resetCard } = useCards();
+
+  useEffect(() => {
+    resetCard();
+  }, [resetCard]);
 
   return (
     <>

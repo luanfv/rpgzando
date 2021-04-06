@@ -79,15 +79,31 @@ const Header: React.FC<Props> = ({ title, goBack = false, card = false }) => {
         onBackdropPress={() => setIsModalOpen(false)}
         onBackButtonPress={() => setIsModalOpen(false)}
       >
-        <Tooltip>
-          <TooltipButton onPress={() => navigate('settings')}>
-            <TooltipButtonText>Configurações</TooltipButtonText>
-          </TooltipButton>
+        {card ? (
+          <Tooltip>
+            <TooltipButton onPress={() => console.log('Editar')}>
+              <TooltipButtonText>Editar</TooltipButtonText>
+            </TooltipButton>
 
-          <TooltipButton onPress={() => navigate('about')}>
-            <TooltipButtonText>Sobre</TooltipButtonText>
-          </TooltipButton>
-        </Tooltip>
+            <TooltipButton onPress={() => console.log('Compartilhar')}>
+              <TooltipButtonText>Compartilhar</TooltipButtonText>
+            </TooltipButton>
+
+            <TooltipButton onPress={() => console.log('Excluir')}>
+              <TooltipButtonText>Excluir</TooltipButtonText>
+            </TooltipButton>
+          </Tooltip>
+        ) : (
+          <Tooltip>
+            <TooltipButton onPress={() => navigate('settings')}>
+              <TooltipButtonText>Configurações</TooltipButtonText>
+            </TooltipButton>
+
+            <TooltipButton onPress={() => navigate('about')}>
+              <TooltipButtonText>Sobre</TooltipButtonText>
+            </TooltipButton>
+          </Tooltip>
+        )}
       </Modal>
     </Container>
   );

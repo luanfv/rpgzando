@@ -1,5 +1,7 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useCallback } from 'react';
 import { useNavigation } from '@react-navigation/core';
+
+import { useApp } from '../../../../hooks/AppContext';
 
 import { races } from '../../../../utils/rules';
 
@@ -15,12 +17,19 @@ interface IProps {
 
 const List: React.FC<IProps> = ({ id, name, profession, level, raceId }) => {
   const { navigate } = useNavigation();
+  const { selectIdCard } = useApp();
+
   const race = useMemo(() => races.find((_race) => _race.id === raceId), [
     raceId,
   ]);
 
+  const showCard = useCallback(() => {
+    selectIdCard(id);
+    navigate('showCard');
+  }, [id, navigate, selectIdCard]);
+
   return (
-    <Container onPress={() => navigate('showCard', { id })}>
+    <Container onPress={showCard}>
       {race?.image && <Img source={race?.image} />}
       <Description>
         <Name>{name}</Name>

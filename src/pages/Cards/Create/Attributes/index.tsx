@@ -16,7 +16,7 @@ import { Main, Title, Container } from '../style';
 
 const Attributes: React.FC = () => {
   const { level, profession, race, createCard } = useCards();
-  const { addWarnning } = useApp();
+  const { addWarnning, selectIdCard } = useApp();
   const { navigate } = useNavigation();
 
   const [hp, setHp] = useState(level as Number);
@@ -54,7 +54,9 @@ const Attributes: React.FC = () => {
         throw Error('Ocorreu um erro inesperado, tente novamente');
       }
 
-      navigate('showCard', { id: response, newCard: true });
+      selectIdCard(response);
+
+      navigate('showCard', { newCard: true });
     } catch (err) {
       const { message } = err;
 
@@ -71,6 +73,7 @@ const Attributes: React.FC = () => {
     intelligence,
     navigate,
     wisdom,
+    selectIdCard,
   ]);
 
   useEffect(() => {

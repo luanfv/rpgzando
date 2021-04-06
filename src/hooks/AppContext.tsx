@@ -2,17 +2,21 @@ import React, { createContext, useCallback, useContext, useState } from 'react';
 
 interface AppData {
   warnning: String;
-  addWarnning: (message: String) => void;
+  idCardSelected: String;
+  addWarnning: (_message: String) => void;
   removeWarnning: () => void;
+  selectIdCard: (_id: String) => void;
+  deselectIdCard: () => void;
 }
 
 const AppContext = createContext({} as AppData);
 
 export const AppProvider: React.FC = ({ children }) => {
   const [warnning, setWarnning] = useState('' as String);
+  const [idCardSelected, setIdCardSelected] = useState('' as String);
 
-  const addWarnning = useCallback((message: String) => {
-    setWarnning(message);
+  const addWarnning = useCallback((_message: String) => {
+    setWarnning(_message);
   }, []);
 
   const removeWarnning = useCallback(() => {
@@ -21,12 +25,21 @@ export const AppProvider: React.FC = ({ children }) => {
     }, 300);
   }, []);
 
+  const selectIdCard = useCallback((_id: String): void => {
+    setIdCardSelected(_id);
+  }, []);
+
+  const deselectIdCard = useCallback((): void => setIdCardSelected(''), []);
+
   return (
     <AppContext.Provider
       value={{
         warnning,
+        idCardSelected,
         addWarnning,
         removeWarnning,
+        selectIdCard,
+        deselectIdCard,
       }}
     >
       {children}

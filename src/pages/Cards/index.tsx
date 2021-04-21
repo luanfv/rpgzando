@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useNavigation } from '@react-navigation/core';
 
 import { useCards } from '../../hooks/CardsContext';
+import { useApp } from '../../hooks/AppContext';
 
 import Content from '../../components/Content';
 import ButtonFixed from '../../components/ButtonFixed';
@@ -12,6 +13,7 @@ import { Br } from './style';
 const Collectors: React.FC = () => {
   const { navigate } = useNavigation();
   const { cards, resetCard } = useCards();
+  const { username } = useApp();
 
   useEffect(() => {
     resetCard();
@@ -19,7 +21,7 @@ const Collectors: React.FC = () => {
 
   return (
     <>
-      <Content title="Player">
+      <Content title={username}>
         {cards.map((_card, _index) => (
           <List
             key={_index}

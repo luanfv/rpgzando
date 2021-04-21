@@ -26,8 +26,6 @@ const Settings: React.FC = () => {
       try {
         formRef.current?.setErrors({});
 
-        console.log(data);
-
         const schema = Yup.object().shape({
           username: Yup.string().required('Você precisar ter um username.'),
         });

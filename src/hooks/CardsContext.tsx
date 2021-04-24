@@ -37,7 +37,7 @@ export interface ICreateICharacterData {
   race: IRace;
 }
 
-interface ICard {
+export interface ICard {
   id: String;
   name: String;
   level: Number;

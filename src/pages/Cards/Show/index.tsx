@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import { useRoute } from '@react-navigation/native';
+import Icon from 'react-native-vector-icons/Feather';
 
 import { useCards } from '../../../hooks/CardsContext';
 import { useApp } from '../../../hooks/AppContext';
@@ -13,11 +14,15 @@ import {
 import Content from '../../../components/Content';
 import ProgressBar from '../../../components/ProgressBar';
 
+import UpdateCharacter from '../components/update/Character';
+
 import {
   Main,
   Container,
   Information,
   Title,
+  TitleText,
+  TitleIcon,
   Description,
   Text,
   AttributesContet,
@@ -30,9 +35,10 @@ interface IRouteParams {
 }
 
 const Show: React.FC = () => {
+  const { params } = useRoute();
+
   const { findCard } = useCards();
   const { idCardSelected } = useApp();
-  const { params } = useRoute();
 
   const routeParams = params as IRouteParams | undefined;
 
@@ -41,13 +47,20 @@ const Show: React.FC = () => {
     idCardSelected,
   ]);
 
+  console.log(card);
+
   return (
     <Content title="Ficha" goBack card>
       <Main>
         {!!routeParams && !!routeParams.newCard && <ProgressBar phase={3} />}
 
         <Container>
-          <Title>Personagem</Title>
+          <Title>
+            <TitleText>Personagem</TitleText>
+            <TitleIcon>
+              <Icon name="edit" size={22} color="#fff" />
+            </TitleIcon>
+          </Title>
 
           <Information>
             <Description>Nome</Description>
@@ -76,7 +89,12 @@ const Show: React.FC = () => {
         </Container>
 
         <Container>
-          <Title>Atributos</Title>
+          <Title>
+            <TitleText>Atributos</TitleText>
+            <TitleIcon>
+              <Icon name="edit" size={22} color="#fff" />
+            </TitleIcon>
+          </Title>
 
           <Attributes>
             <AttributesContet>
@@ -130,7 +148,9 @@ const Show: React.FC = () => {
         </Container>
 
         <Container>
-          <Title>Perícias</Title>
+          <Title>
+            <TitleText>Perícias</TitleText>
+          </Title>
 
           {!!card &&
             expertises.map((_expertise, _index) => {
@@ -202,6 +222,8 @@ const Show: React.FC = () => {
             })}
         </Container>
       </Main>
+
+      {!!card && <UpdateCharacter card={card} open={true} />}
     </Content>
   );
 };

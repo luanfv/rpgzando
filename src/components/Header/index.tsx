@@ -81,10 +81,6 @@ const Header: React.FC<Props> = ({ title, goBack = false, card = false }) => {
       >
         {card ? (
           <Tooltip>
-            <TooltipButton onPress={() => console.log('Editar')}>
-              <TooltipButtonText>Editar</TooltipButtonText>
-            </TooltipButton>
-
             <TooltipButton onPress={() => console.log('Compartilhar')}>
               <TooltipButtonText>Compartilhar</TooltipButtonText>
             </TooltipButton>

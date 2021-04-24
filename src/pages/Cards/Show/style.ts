@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import style from '../../../styles.json';
 
 export const Main = styled.View`
   margin: 20px;
@@ -15,11 +16,21 @@ export const Information = styled.View`
   margin: 8px 0;
 `;
 
-export const Title = styled.Text`
+export const Title = styled.View`
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  margin-bottom: 20px;
+`;
+
+export const TitleText = styled.Text`
   color: #fff;
   font-size: 20px;
   font-weight: bold;
-  margin-bottom: 20px;
+`;
+
+export const TitleIcon = styled.TouchableOpacity`
+  padding-left: 20px;
 `;
 
 export const Description = styled.Text`
@@ -54,4 +65,10 @@ export const Expertise = styled.View<any>`
   padding: 0 5px;
   border-radius: 2px;
   ${(props) => props.selected && 'background-color: rgba(7, 78, 65, .4)'}
+`;
+
+export const ModalContainer = styled.View`
+  flex: 1;
+  background-color: ${style.primary};
+  border-radius: 6px;
 `;

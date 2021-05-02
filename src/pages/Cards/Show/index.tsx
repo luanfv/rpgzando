@@ -14,7 +14,8 @@ import {
 import Content from '../../../components/Content';
 import ProgressBar from '../../../components/ProgressBar';
 
-import UpdateCharacter from '../components/update/Character';
+import UpdateCharacter from '../components/Update/Character';
+import UpdateAttributes from '../components/Update/Attributes';
 
 import {
   Main,
@@ -36,6 +37,8 @@ interface IRouteParams {
 
 const Show: React.FC = () => {
   const [updateCharacterIsOpen, setUpdateCharacterIsOpen] = useState(false);
+  const [updateAttributesIsOpen, setUpdateAttributesIsOpen] = useState(false);
+
   const { params } = useRoute();
 
   const { findCard } = useCards();
@@ -90,7 +93,7 @@ const Show: React.FC = () => {
         <Container>
           <Title>
             <TitleText>Atributos</TitleText>
-            <TitleIcon>
+            <TitleIcon onPress={() => setUpdateAttributesIsOpen(true)}>
               <Icon name="edit" size={22} color="#fff" />
             </TitleIcon>
           </Title>
@@ -227,6 +230,14 @@ const Show: React.FC = () => {
           card={card}
           open={updateCharacterIsOpen}
           close={() => setUpdateCharacterIsOpen(false)}
+        />
+      )}
+
+      {!!card && (
+        <UpdateAttributes
+          card={card}
+          open={updateAttributesIsOpen}
+          close={() => setUpdateAttributesIsOpen(false)}
         />
       )}
     </Content>

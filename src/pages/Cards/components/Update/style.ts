@@ -3,9 +3,15 @@ import style from '../../../../styles.json';
 
 export const Body = styled.View`
   flex: 1;
-  justify-content: space-between;
-  background-color: ${style.primary};
+  background-color: #fff;
   border-radius: 6px;
+  overflow: hidden;
+`;
+
+export const Main = styled.View`
+  flex: 1;
+  justify-content: space-between;
+  background-color: ${style.bg};
 `;
 
 export const Container = styled.View`
@@ -13,10 +19,11 @@ export const Container = styled.View`
 `;
 
 export const Title = styled.View`
+  background-color: ${style.primary};
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin: 20px;
+  padding: 20px;
 `;
 
 export const TitleText = styled.Text`

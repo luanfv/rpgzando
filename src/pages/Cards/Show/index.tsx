@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import { useRoute } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Feather';
 
@@ -35,6 +35,7 @@ interface IRouteParams {
 }
 
 const Show: React.FC = () => {
+  const [updateCharacterIsOpen, setUpdateCharacterIsOpen] = useState(false);
   const { params } = useRoute();
 
   const { findCard } = useCards();
@@ -47,8 +48,6 @@ const Show: React.FC = () => {
     idCardSelected,
   ]);
 
-  console.log(card);
-
   return (
     <Content title="Ficha" goBack card>
       <Main>
@@ -57,7 +56,7 @@ const Show: React.FC = () => {
         <Container>
           <Title>
             <TitleText>Personagem</TitleText>
-            <TitleIcon>
+            <TitleIcon onPress={() => setUpdateCharacterIsOpen(true)}>
               <Icon name="edit" size={22} color="#fff" />
             </TitleIcon>
           </Title>
@@ -223,7 +222,13 @@ const Show: React.FC = () => {
         </Container>
       </Main>
 
-      {!!card && <UpdateCharacter card={card} open={true} />}
+      {!!card && (
+        <UpdateCharacter
+          card={card}
+          open={updateCharacterIsOpen}
+          close={() => setUpdateCharacterIsOpen(false)}
+        />
+      )}
     </Content>
   );
 };

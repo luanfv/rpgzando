@@ -160,58 +160,60 @@ const Show: React.FC = () => {
               const foundId = card.expertise.find(
                 (_id) => _id === _expertise.id,
               );
+              const formatModifier = (
+                _modifier: Number,
+                _proficiency: Number,
+              ) => {
+                const response = Number(_modifier) + Number(_proficiency);
+
+                return response > 0 ? `+${response}` : response;
+              };
 
               const handleValue = () => {
                 if (_expertise.type === 1) {
                   if (foundId) {
                     const modifier = Number(calcModifier(card.attributes.for));
-
-                    return `+${modifier + proficiency}`;
+                    return formatModifier(modifier, proficiency);
                   }
 
                   return calcModifier(card.attributes.for);
                 } else if (_expertise.type === 2) {
                   if (foundId) {
                     const modifier = Number(calcModifier(card.attributes.dex));
-
-                    return `+${modifier + proficiency}`;
+                    return formatModifier(modifier, proficiency);
                   }
 
                   return calcModifier(card.attributes.dex);
                 } else if (_expertise.type === 3) {
                   if (foundId) {
                     const modifier = Number(calcModifier(card.attributes.con));
-
-                    return `+${modifier + proficiency}`;
+                    return formatModifier(modifier, proficiency);
                   }
 
                   return calcModifier(card.attributes.con);
                 } else if (_expertise.type === 4) {
                   if (foundId) {
                     const modifier = Number(calcModifier(card.attributes.int));
-
-                    return `+${modifier + proficiency}`;
+                    return formatModifier(modifier, proficiency);
                   }
 
                   return calcModifier(card.attributes.int);
                 } else if (_expertise.type === 5) {
                   if (foundId) {
                     const modifier = Number(calcModifier(card.attributes.wis));
-
-                    return `+${modifier + proficiency}`;
+                    return formatModifier(modifier, proficiency);
                   }
 
                   return calcModifier(card.attributes.wis);
                 } else if (_expertise.type === 6) {
                   if (foundId) {
                     const modifier = Number(calcModifier(card.attributes.cha));
-
-                    return `+${modifier + proficiency}`;
+                    return formatModifier(modifier, proficiency);
                   }
 
                   return calcModifier(card.attributes.cha);
                 } else {
-                  return '+0';
+                  return '0';
                 }
               };
 

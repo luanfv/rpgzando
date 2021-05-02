@@ -55,7 +55,7 @@ const Header: React.FC<Props> = ({ title, goBack = false, card = false }) => {
           </>
         ) : (
           <View>
-            <SubTitle>Seja bem-vindo(a)</SubTitle>
+            <SubTitle>Seja bem-vindo(a),</SubTitle>
             <Title>{title}</Title>
           </View>
         )}

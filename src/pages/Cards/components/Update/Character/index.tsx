@@ -60,18 +60,11 @@ const UpdateCharacter: React.FC<IProps> = ({ open, card, close }) => {
           throw Error('Seu nível precisa ser um número inteiro e maior que 0.');
         }
 
-        const response = updateCharacter({
-          id: _data.id,
-          name: _data.name,
-          level: _data.level,
-          hp: _data.hp,
-        });
+        const response = updateCharacter(_data);
 
-        if (!response) {
-          throw Error('Não foi possível atualizar seu personagem.');
+        if (response) {
+          close();
         }
-
-        close();
       } catch (err) {
         const { message } = err;
 

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useMemo, useCallback } from 'react';
 import { ScrollView } from 'react-native';
 import Modal from 'react-native-modal';
 import { Form } from '@unform/mobile';
@@ -6,8 +6,14 @@ import { Form } from '@unform/mobile';
 import { FormHandles } from '@unform/core';
 import Icon from 'react-native-vector-icons/Feather';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { ICard } from '../../../../../hooks/CardsContext';
+import {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  ICard,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  IUpdateAttributesData,
+  useCards,
+} from '../../../../../hooks/CardsContext';
+import { useApp } from '../../../../../hooks/AppContext';
 
 import InputNumeric from '../../../../../components/InputNumeric';
 import Button from '../../../../../components/Button';
@@ -20,14 +26,41 @@ interface IProps {
   close: () => void;
 }
 
-const UpdateCharacter: React.FC<IProps> = ({ open, card, close }) => {
+const UpdateAttributes: React.FC<IProps> = ({ open, card, close }) => {
+  const { addWarnning } = useApp();
+  const { updateAttributes } = useCards();
+
   const formRef = useRef<FormHandles>(null);
+
+  const id = useMemo(() => card.id, [card]);
+
   const [force, setForce] = useState(card.attributes.for);
   const [dexterity, setDexterity] = useState(card.attributes.dex);
   const [constitution, setConstitution] = useState(card.attributes.con);
   const [wisdom, setWisdom] = useState(card.attributes.wis);
   const [intelligence, setIntelligence] = useState(card.attributes.int);
   const [charisma, setCharisma] = useState(card.attributes.cha);
+
+  const handleSubmit = useCallback(
+    async (_data: IUpdateAttributesData) => {
+      try {
+        if (!_data.id) {
+          throw Error('Seu personagem não foi encontrado.');
+        }
+
+        const response = updateAttributes(_data);
+
+        if (response) {
+          close();
+        }
+      } catch (err) {
+        const { message } = err;
+
+        addWarnning(message);
+      }
+    },
+    [addWarnning, close, updateAttributes],
+  );
 
   return (
     <Modal
@@ -48,7 +81,20 @@ const UpdateCharacter: React.FC<IProps> = ({ open, card, close }) => {
             // eslint-disable-next-line react-native/no-inline-styles
             contentContainerStyle={{ flexGrow: 1 }}
           >
-            <Form ref={formRef} onSubmit={() => console.log('submit')}>
+            <Form
+              ref={formRef}
+              onSubmit={() =>
+                handleSubmit({
+                  id: id,
+                  for: force,
+                  dex: dexterity,
+                  con: constitution,
+                  wis: wisdom,
+                  int: intelligence,
+                  cha: charisma,
+                })
+              }
+            >
               <Container>
                 <InputNumeric
                   title="Força:"
@@ -113,4 +159,4 @@ const UpdateCharacter: React.FC<IProps> = ({ open, card, close }) => {
   );
 };
 
-export default UpdateCharacter;
+export default UpdateAttributes;

@@ -16,6 +16,16 @@ interface IUpdateCharacterData {
   level: String;
   hp: Number;
 }
+
+export interface IUpdateAttributesData {
+  id: String;
+  for: Number;
+  con: Number;
+  dex: Number;
+  cha: Number;
+  wis: Number;
+  int: Number;
+}
 export interface IAttributes {
   for: Number;
   con: Number;
@@ -68,6 +78,7 @@ interface ICardsData {
   createCharacter: (_data: ICreateICharacterData) => Boolean;
   createCard: (_attributes: IAttributes, _hp: Number) => String | undefined;
   updateCharacter: (_character: IUpdateCharacterData) => Boolean;
+  updateAttributes: (_attributes: IUpdateAttributesData) => Boolean;
 }
 
 const CardsContext = createContext<ICardsData>({} as ICardsData);
@@ -252,6 +263,46 @@ export const CardsProvider: React.FC = ({ children }) => {
     [cards, updateCards, addWarnning],
   );
 
+  const updateAttributes = useCallback(
+    (_attributes: IUpdateAttributesData) => {
+      try {
+        const updatedCards = cards.map((_card) => {
+          if (_card.id === _attributes.id) {
+            return {
+              ..._card,
+              attributes: {
+                for: _attributes.for,
+                dex: _attributes.dex,
+                con: _attributes.con,
+                wis: _attributes.wis,
+                int: _attributes.int,
+                cha: _attributes.cha,
+              },
+            };
+          }
+
+          return _card;
+        });
+
+        const response = updateCards(updatedCards as ICard[]);
+
+        if (!response) {
+          throw Error(
+            'Não foi possível atualizar o personagem, tente novamente.',
+          );
+        }
+
+        return true;
+      } catch (err) {
+        const { message } = err;
+        addWarnning(message);
+
+        return false;
+      }
+    },
+    [addWarnning, cards, updateCards],
+  );
+
   useEffect(() => {
     const getStorage = async () => {
       const storageCards = await AsyncStorage.getItem('@RPGZando:cards');
@@ -278,6 +329,7 @@ export const CardsProvider: React.FC = ({ children }) => {
         createCharacter,
         createCard,
         updateCharacter,
+        updateAttributes,
       }}
     >
       {children}

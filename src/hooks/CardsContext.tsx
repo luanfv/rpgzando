@@ -10,6 +10,12 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useApp } from './AppContext';
 import { professions, races, handleRace, calcModifier } from '../utils/rules';
 
+interface IUpdateCharacterData {
+  id: String;
+  name: String;
+  level: String;
+  hp: Number;
+}
 export interface IAttributes {
   for: Number;
   con: Number;
@@ -61,6 +67,7 @@ interface ICardsData {
   resetCard: () => void;
   createCharacter: (_data: ICreateICharacterData) => Boolean;
   createCard: (_attributes: IAttributes, _hp: Number) => String | undefined;
+  updateCharacter: (_character: IUpdateCharacterData) => Boolean;
 }
 
 const CardsContext = createContext<ICardsData>({} as ICardsData);
@@ -210,6 +217,41 @@ export const CardsProvider: React.FC = ({ children }) => {
     [name, level, expertise, profession, race, updateCards, cards],
   );
 
+  const updateCharacter = useCallback(
+    (_character: IUpdateCharacterData): Boolean => {
+      try {
+        const updatedCards = cards.map((_card) => {
+          if (_card.id === _character.id) {
+            return {
+              ..._card,
+              name: _character.name,
+              hp: _character.hp,
+              level: _character.level,
+            };
+          }
+
+          return _card;
+        });
+
+        const response = updateCards(updatedCards as ICard[]);
+
+        if (!response) {
+          throw Error(
+            'Não foi possível atualizar o personagem, tente novamente.',
+          );
+        }
+
+        return true;
+      } catch (err) {
+        const { message } = err;
+        addWarnning(message);
+
+        return false;
+      }
+    },
+    [cards, updateCards, addWarnning],
+  );
+
   useEffect(() => {
     const getStorage = async () => {
       const storageCards = await AsyncStorage.getItem('@RPGZando:cards');
@@ -235,6 +277,7 @@ export const CardsProvider: React.FC = ({ children }) => {
         resetCard,
         createCharacter,
         createCard,
+        updateCharacter,
       }}
     >
       {children}

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useCallback, useMemo } from 'react';
 import { ScrollView } from 'react-native';
 import Modal from 'react-native-modal';
 import { Form } from '@unform/mobile';
@@ -7,7 +7,8 @@ import { FormHandles } from '@unform/core';
 import Icon from 'react-native-vector-icons/Feather';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { ICard } from '../../../../../hooks/CardsContext';
+import { ICard, useCards } from '../../../../../hooks/CardsContext';
+import { useApp } from '../../../../../hooks/AppContext';
 
 import Input from '../../../../../components/Input';
 import InputNumeric from '../../../../../components/InputNumeric';
@@ -21,9 +22,64 @@ interface IProps {
   close: () => void;
 }
 
+interface IHandleSubmit {
+  id: String;
+  name: String;
+  level: String;
+  hp: Number;
+}
+
 const UpdateCharacter: React.FC<IProps> = ({ open, card, close }) => {
+  const { addWarnning } = useApp();
+  const { updateCharacter } = useCards();
+
   const formRef = useRef<FormHandles>(null);
+  const [name, setName] = useState(card.name);
+  const [level, setLevel] = useState(String(card.level));
   const [hp, setHp] = useState(card.hp);
+  const id = useMemo(() => card.id, [card]);
+
+  const handleSubmit = useCallback(
+    async (_data: IHandleSubmit) => {
+      try {
+        if (!_data.id) {
+          throw Error('Seu personagem não foi encontrado.');
+        }
+
+        if (_data.name.length < 1) {
+          throw Error('Seu personagem precisa de um nome.');
+        }
+
+        if (
+          !_data.level ||
+          _data.level.indexOf('.') !== -1 ||
+          _data.level.indexOf(',') !== -1 ||
+          !Number(_data.level) ||
+          Number(_data.level) < 1
+        ) {
+          throw Error('Seu nível precisa ser um número inteiro e maior que 0.');
+        }
+
+        const response = updateCharacter({
+          id: _data.id,
+          name: _data.name,
+          level: _data.level,
+          hp: _data.hp,
+        });
+
+        if (!response) {
+          throw Error('Não foi possível atualizar seu personagem.');
+        }
+
+        close();
+      } catch (err) {
+        const { message } = err;
+
+        addWarnning(message);
+      }
+    },
+    [addWarnning, close, updateCharacter],
+  );
 
   return (
     <Modal
@@ -48,14 +104,18 @@ const UpdateCharacter: React.FC<IProps> = ({ open, card, close }) => {
               justifyContent: 'space-between',
             }}
           >
-            <Form ref={formRef} onSubmit={() => console.log('submit')}>
+            <Form
+              ref={formRef}
+              onSubmit={() => handleSubmit({ id, name, level, hp })}
+            >
               <Container>
                 <Input
                   autoCorrect={false}
                   name="name"
                   icon="user"
                   placeholder="Nome"
-                  defaultValue={String(card.name)}
+                  value={String(name)}
+                  onChangeText={(value) => setName(value)}
                 />
               </Container>
 
@@ -67,7 +127,8 @@ const UpdateCharacter: React.FC<IProps> = ({ open, card, close }) => {
                   name="level"
                   icon="award"
                   placeholder="Nível"
-                  defaultValue={String(card.level)}
+                  value={String(level)}
+                  onChangeText={(value) => setLevel(value)}
                 />
               </Container>
 

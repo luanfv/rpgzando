@@ -52,7 +52,7 @@ const Show: React.FC = () => {
   ]);
 
   return (
-    <Content title="Ficha" goBack card>
+    <Content title="Ficha" goBack card idCard={idCardSelected}>
       <Main>
         {!!routeParams && !!routeParams.newCard && <ProgressBar phase={3} />}
 

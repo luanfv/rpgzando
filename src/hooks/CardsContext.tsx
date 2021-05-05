@@ -79,6 +79,7 @@ interface ICardsData {
   createCard: (_attributes: IAttributes, _hp: Number) => String | undefined;
   updateCharacter: (_character: IUpdateCharacterData) => Boolean;
   updateAttributes: (_attributes: IUpdateAttributesData) => Boolean;
+  removeCard: (_id: String) => Boolean;
 }
 
 const CardsContext = createContext<ICardsData>({} as ICardsData);
@@ -303,6 +304,32 @@ export const CardsProvider: React.FC = ({ children }) => {
     [addWarnning, cards, updateCards],
   );
 
+  const removeCard = useCallback(
+    (_id: String): Boolean => {
+      try {
+        const updatedCards = cards.filter(({ id }) => id !== _id);
+
+        if (!updatedCards) {
+          throw Error('Sua ficha não foi encontrada.');
+        }
+
+        const response = updateCards(updatedCards);
+
+        if (!response) {
+          throw Error('Ocorreu um erro ao remover sua ficha.');
+        }
+
+        return true;
+      } catch (err) {
+        const { message } = err;
+        addWarnning(message);
+
+        return false;
+      }
+    },
+    [addWarnning, cards, updateCards],
+  );
+
   useEffect(() => {
     const getStorage = async () => {
       const storageCards = await AsyncStorage.getItem('@RPGZando:cards');
@@ -330,6 +357,7 @@ export const CardsProvider: React.FC = ({ children }) => {
         createCard,
         updateCharacter,
         updateAttributes,
+        removeCard,
       }}
     >
       {children}

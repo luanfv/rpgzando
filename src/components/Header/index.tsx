@@ -4,6 +4,8 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import Modal from 'react-native-modal';
 import { useNavigation } from '@react-navigation/core';
 
+import { useCards } from '../../hooks/CardsContext';
+
 import {
   Container,
   TitleContainer,
@@ -20,10 +22,18 @@ interface Props {
   title: String;
   goBack?: Boolean;
   card?: Boolean;
+  idCard?: String;
 }
 
-const Header: React.FC<Props> = ({ title, goBack = false, card = false }) => {
+const Header: React.FC<Props> = ({
+  title,
+  goBack = false,
+  card = false,
+  idCard,
+}) => {
   const navigation = useNavigation();
+
+  const { removeCard } = useCards();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -41,6 +51,14 @@ const Header: React.FC<Props> = ({ title, goBack = false, card = false }) => {
     },
     [navigation],
   );
+
+  const remove = useCallback(() => {
+    const response = removeCard(String(idCard));
+
+    if (response) {
+      goToHome();
+    }
+  }, [goToHome, idCard, removeCard]);
 
   return (
     <Container>
@@ -85,7 +103,7 @@ const Header: React.FC<Props> = ({ title, goBack = false, card = false }) => {
               <TooltipButtonText>Compartilhar</TooltipButtonText>
             </TooltipButton>
 
-            <TooltipButton onPress={() => console.log('Excluir')}>
+            <TooltipButton onPress={remove}>
               <TooltipButtonText>Excluir</TooltipButtonText>
             </TooltipButton>
           </Tooltip>

@@ -80,8 +80,13 @@ const Header: React.FC<Props> = ({ title, goBack = false, idCard }) => {
       </TitleContainer>
 
       {idCard ? (
-        <Options onPress={() => setIsModalOpen(true)}>
-          <Icon name="cog" color="#fff" size={26} />
+        <Options
+          onPress={() => {
+            setIsModalOpen(false);
+            setIsConfirmationRemove(true);
+          }}
+        >
+          <Icon name="trash" color="#fff" size={20} />
         </Options>
       ) : (
         <Options onPress={() => setIsModalOpen(true)}>
@@ -97,32 +102,15 @@ const Header: React.FC<Props> = ({ title, goBack = false, idCard }) => {
         onBackdropPress={() => setIsModalOpen(false)}
         onBackButtonPress={() => setIsModalOpen(false)}
       >
-        {idCard ? (
-          <Tooltip>
-            <TooltipButton onPress={() => console.log('Compartilhar')}>
-              <TooltipButtonText>Compartilhar</TooltipButtonText>
-            </TooltipButton>
+        <Tooltip>
+          <TooltipButton onPress={() => navigate('settings')}>
+            <TooltipButtonText>Configurações</TooltipButtonText>
+          </TooltipButton>
 
-            <TooltipButton
-              onPress={() => {
-                setIsModalOpen(false);
-                setIsConfirmationRemove(true);
-              }}
-            >
-              <TooltipButtonText>Excluir</TooltipButtonText>
-            </TooltipButton>
-          </Tooltip>
-        ) : (
-          <Tooltip>
-            <TooltipButton onPress={() => navigate('settings')}>
-              <TooltipButtonText>Configurações</TooltipButtonText>
-            </TooltipButton>
-
-            <TooltipButton onPress={() => navigate('about')}>
-              <TooltipButtonText>Sobre</TooltipButtonText>
-            </TooltipButton>
-          </Tooltip>
-        )}
+          <TooltipButton onPress={() => navigate('about')}>
+            <TooltipButtonText>Sobre</TooltipButtonText>
+          </TooltipButton>
+        </Tooltip>
       </Modal>
 
       <ModalConfirmation

@@ -4,7 +4,7 @@ import styles from '../../../styles.json';
 
 export const Container = styled.View`
   border-radius: 10px;
-  background-color: #fff;
+  background-color: ${styles.primary};
   width: 100%;
   padding: 40px 40px 20px;
 `;
@@ -12,7 +12,7 @@ export const Container = styled.View`
 export const Text = styled.Text<any>`
   font-size: 18px;
   font-weight: bold;
-  color: ${styles.dark};
+  color: #fff;
 `;
 
 export const ButtonsContainer = styled.View`
@@ -31,5 +31,5 @@ export const ButtonText = styled.Text<any>`
   font-size: 16px;
   font-weight: bold;
   text-align: center;
-  color: ${({ secondary }) => (secondary ? styles.secondary : styles.primary)};
+  color: ${({ secondary }) => (secondary ? styles.error : '#fff')};
 `;

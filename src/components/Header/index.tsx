@@ -6,6 +6,8 @@ import { useNavigation } from '@react-navigation/core';
 
 import { useCards } from '../../hooks/CardsContext';
 
+import ModalConfirmation from '../../components/Modal/Confirmation';
+
 import {
   Container,
   TitleContainer,
@@ -21,21 +23,16 @@ import {
 interface Props {
   title: String;
   goBack?: Boolean;
-  card?: Boolean;
   idCard?: String;
 }
 
-const Header: React.FC<Props> = ({
-  title,
-  goBack = false,
-  card = false,
-  idCard,
-}) => {
+const Header: React.FC<Props> = ({ title, goBack = false, idCard }) => {
   const navigation = useNavigation();
 
   const { removeCard } = useCards();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isConfirmationRemove, setIsConfirmationRemove] = useState(false);
 
   const goToHome = useCallback(() => {
     navigation.reset({
@@ -52,13 +49,16 @@ const Header: React.FC<Props> = ({
     [navigation],
   );
 
-  const remove = useCallback(() => {
-    const response = removeCard(String(idCard));
+  const remove = useCallback(
+    (_id) => {
+      const response = removeCard(String(_id));
 
-    if (response) {
-      goToHome();
-    }
-  }, [goToHome, idCard, removeCard]);
+      if (response) {
+        goToHome();
+      }
+    },
+    [goToHome, removeCard],
+  );
 
   return (
     <Container>
@@ -79,7 +79,7 @@ const Header: React.FC<Props> = ({
         )}
       </TitleContainer>
 
-      {card ? (
+      {idCard ? (
         <Options onPress={() => setIsModalOpen(true)}>
           <Icon name="cog" color="#fff" size={26} />
         </Options>
@@ -97,13 +97,18 @@ const Header: React.FC<Props> = ({
         onBackdropPress={() => setIsModalOpen(false)}
         onBackButtonPress={() => setIsModalOpen(false)}
       >
-        {card ? (
+        {idCard ? (
           <Tooltip>
             <TooltipButton onPress={() => console.log('Compartilhar')}>
               <TooltipButtonText>Compartilhar</TooltipButtonText>
             </TooltipButton>
 
-            <TooltipButton onPress={remove}>
+            <TooltipButton
+              onPress={() => {
+                setIsModalOpen(false);
+                setIsConfirmationRemove(true);
+              }}
+            >
               <TooltipButtonText>Excluir</TooltipButtonText>
             </TooltipButton>
           </Tooltip>
@@ -119,6 +124,13 @@ const Header: React.FC<Props> = ({
           </Tooltip>
         )}
       </Modal>
+
+      <ModalConfirmation
+        isOpen={isConfirmationRemove}
+        message="Tem certeza que deseja remover essa ficha?"
+        confirmed={() => remove(idCard)}
+        close={() => setIsConfirmationRemove(false)}
+      />
     </Container>
   );
 };

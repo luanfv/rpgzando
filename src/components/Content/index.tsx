@@ -11,16 +11,10 @@ interface IProps {
   idCard?: String;
 }
 
-const Content: React.FC<IProps> = ({
-  children,
-  title,
-  goBack,
-  card,
-  idCard,
-}) => {
+const Content: React.FC<IProps> = ({ children, title, goBack, idCard }) => {
   return (
     <Body>
-      <Header title={title} goBack={goBack} card={card} idCard={idCard} />
+      <Header title={title} goBack={goBack} idCard={idCard} />
 
       {/* eslint-disable-next-line react-native/no-inline-styles */}
       <ScrollView contentContainerStyle={{ flexGrow: 1 }}>

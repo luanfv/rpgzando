@@ -5,11 +5,12 @@ import styles from '../../styles.json';
 interface ContainerProps {
   isFocus: boolean;
   isError: boolean;
+  textarea: boolean;
 }
 
 export const Container = styled.View<ContainerProps>`
   width: 100%;
-  height: 50px;
+  ${({ textarea }) => !textarea && 'height: 50px;'}
   padding: 0 16px;
   background: ${styles.bg};
   border-radius: 10px;

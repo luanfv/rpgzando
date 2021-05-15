@@ -26,6 +26,12 @@ export interface IUpdateAttributesData {
   wis: Number;
   int: Number;
 }
+
+export interface IUpdateAnnotationsData {
+  id: String;
+  annotations: String;
+}
+
 export interface IAttributes {
   for: Number;
   con: Number;
@@ -64,6 +70,7 @@ export interface ICard {
   attributes: IAttributes;
   createdAt: String;
   updatedAt: String;
+  annotations: String;
 }
 
 interface ICardsData {
@@ -79,6 +86,7 @@ interface ICardsData {
   createCard: (_attributes: IAttributes, _hp: Number) => String | undefined;
   updateCharacter: (_character: IUpdateCharacterData) => Boolean;
   updateAttributes: (_attributes: IUpdateAttributesData) => Boolean;
+  updateAnnotations: (_data: IUpdateAnnotationsData) => Boolean;
   removeCard: (_id: String) => Boolean;
 }
 
@@ -213,6 +221,7 @@ export const CardsProvider: React.FC = ({ children }) => {
           attributes,
           createdAt: `${date}`,
           updatedAt: `${date}`,
+          annotations: '',
         } as ICard;
 
         const response = updateCards([...cards, newCard]);
@@ -239,6 +248,7 @@ export const CardsProvider: React.FC = ({ children }) => {
               name: _character.name,
               hp: _character.hp,
               level: _character.level,
+              updatedAt: `${new Date()}`,
             };
           }
 
@@ -279,6 +289,7 @@ export const CardsProvider: React.FC = ({ children }) => {
                 int: _attributes.int,
                 cha: _attributes.cha,
               },
+              updatedAt: `${new Date()}`,
             };
           }
 
@@ -290,6 +301,40 @@ export const CardsProvider: React.FC = ({ children }) => {
         if (!response) {
           throw Error(
             'Não foi possível atualizar o personagem, tente novamente.',
+          );
+        }
+
+        return true;
+      } catch (err) {
+        const { message } = err;
+        addWarnning(message);
+
+        return false;
+      }
+    },
+    [addWarnning, cards, updateCards],
+  );
+
+  const updateAnnotations = useCallback(
+    (_data: IUpdateAnnotationsData) => {
+      try {
+        const updatedCards = cards.map((_card) => {
+          if (_card.id === _data.id) {
+            return {
+              ..._card,
+              annotations: _data.annotations,
+              updatedAt: `${new Date()}`,
+            };
+          }
+
+          return _card;
+        });
+
+        const response = updateCards(updatedCards as ICard[]);
+
+        if (!response) {
+          throw Error(
+            'Não foi possível atualizar suas anotações, tente novamente.',
           );
         }
 
@@ -357,6 +402,7 @@ export const CardsProvider: React.FC = ({ children }) => {
         createCard,
         updateCharacter,
         updateAttributes,
+        updateAnnotations,
         removeCard,
       }}
     >

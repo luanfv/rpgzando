@@ -20,6 +20,7 @@ interface InputProps extends TextInputProps {
   name: string;
   icon: string;
   containerStyle?: {};
+  textarea?: Boolean;
 }
 
 interface InputValueReference {
@@ -31,7 +32,7 @@ interface InputRef {
 }
 
 const Input: React.RefForwardingComponent<InputRef, InputProps> = (
-  { name, icon, containerStyle = {}, ...rest },
+  { name, icon, containerStyle = {}, textarea, ...rest },
   ref,
 ) => {
   const { registerField, defaultValue = '', fieldName, error } = useField(name);
@@ -81,7 +82,12 @@ const Input: React.RefForwardingComponent<InputRef, InputProps> = (
   }, [fieldName, registerField]);
 
   return (
-    <Container isFocus={isFocus} isError={!!error} style={containerStyle}>
+    <Container
+      isFocus={isFocus}
+      isError={!!error}
+      style={containerStyle}
+      textarea={!!textarea}
+    >
       <Icon name={icon} size={20} color={iconColor} />
 
       <TextInput

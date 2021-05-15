@@ -16,6 +16,7 @@ import ProgressBar from '../../../components/ProgressBar';
 
 import UpdateCharacter from '../components/Update/Character';
 import UpdateAttributes from '../components/Update/Attributes';
+import UpdateAnnotations from '../components/Update/Annotations';
 
 import {
   Main,
@@ -38,6 +39,7 @@ interface IRouteParams {
 const Show: React.FC = () => {
   const [updateCharacterIsOpen, setUpdateCharacterIsOpen] = useState(false);
   const [updateAttributesIsOpen, setUpdateAttributesIsOpen] = useState(false);
+  const [updateAnnotationsIsOpen, setUpdateAnnotationsIsOpen] = useState(false);
 
   const { params } = useRoute();
 
@@ -225,6 +227,22 @@ const Show: React.FC = () => {
               );
             })}
         </Container>
+
+        <Container>
+          <Title>
+            <TitleText>Anotações</TitleText>
+            <TitleIcon onPress={() => setUpdateAnnotationsIsOpen(true)}>
+              <Icon name="edit" size={22} color="#fff" />
+            </TitleIcon>
+          </Title>
+          <Information>
+            {!!card?.annotations && card?.annotations.trim() ? (
+              <Text>{card?.annotations}</Text>
+            ) : (
+              <Description>Nenhuma anotação...</Description>
+            )}
+          </Information>
+        </Container>
       </Main>
 
       {!!card && (
@@ -240,6 +258,14 @@ const Show: React.FC = () => {
           card={card}
           open={updateAttributesIsOpen}
           close={() => setUpdateAttributesIsOpen(false)}
+        />
+      )}
+
+      {!!card && (
+        <UpdateAnnotations
+          card={card}
+          open={updateAnnotationsIsOpen}
+          close={() => setUpdateAnnotationsIsOpen(false)}
         />
       )}
     </Content>

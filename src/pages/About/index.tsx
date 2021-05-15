@@ -10,8 +10,8 @@ const About: React.FC = () => {
       <Main>
         <Container>
           <Text>
-            O RPGZando é um aplicativo de criação de fichas de RPG do D&D 5
-            edição, através dele você podera criar e manter suas fichas sem a
+            O RPGZando é um aplicativo de criação de fichas de RPG baseado no
+            D&D. Através dele você podera criar e manter suas fichas sem a
             necessidade de papel e caneta, facilitando toda a logística que você
             precisa ter ao seu redor, sendo assim, mantendo o maior foco no que
             realmente importa, a campanha.

@@ -1,5 +1,6 @@
 import React, { useCallback } from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import Sound from 'react-native-sound';
 
 import styles from '../../styles.json';
 
@@ -29,6 +30,12 @@ const InputNumeric: React.FC<IProps> = ({
   random,
 }) => {
   const handleRandom = useCallback(() => {
+    Sound.setCategory('Playback');
+
+    const dices = new Sound('dice.WAV', Sound.MAIN_BUNDLE, () => {
+      dices.play();
+    });
+
     onChange(
       Number(
         Math.floor(Math.random() * (Number(max) - Number(Number(min) - 1))) +

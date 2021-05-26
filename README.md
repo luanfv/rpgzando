@@ -1,103 +1,98 @@
-# RPGZando
-RPGZando é um app desenvolvido para android com react-native.
 
-<table>
+<p align="center">
+  <a href="https://github.com/Luanfv/app-rpgzando">
+    <img src="./src/assets/images/app/logo.png" alt="Logo - RPGZando" width="80" height="80">
+  </a>
+
+  <h3 align="center">RPGZando</h3>
+
+  <p align="center">
+    Gerador de fichas de RPG, desenvolvido com React-Native + TypeScript
+  </p>
+  
+  <div align="center">
+  <a href="https://www.linkedin.com/in/luanfv/">
+    <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" />
+  </a>
+  <a href="https://github.com/Luanfv">
+    <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" />
+  </a>
+  <img src="https://img.shields.io/badge/Yarn-2C8EBB?style=for-the-badge&logo=yarn&logoColor=white"   />
+  <img src="https://img.shields.io/badge/React_Native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB"  />
+  <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white"   />
+  <img src="https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white"   />
+  <img src="https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white"   />
+  
+  </div>
+</p>
+
+<p align="center">
+  <img src="./src/assets/images/app/preview.gif" />
+</p>
+
+<br />
+<br />
+
+<!-- ABOUT THE PROJECT -->
+## SOBRE O PROJETO
+
+<p align="center">
+<table  style="border: none">
   <tr>
-    <td><img src="screenshots/home.jpeg" width="200" /> </td>
-    <td><img src="screenshots/create-card-part1.jpeg" width="200" /> </td>
-    <td><img src="screenshots/create-card-part2.jpeg" width="200" /> </td>
-  </tr>
-  <tr>
-    <td><img src="screenshots/create-card-part3.jpeg" width="200" /></td>
-    <td><img src="screenshots/card-1.jpeg" width="200" /></td>
-    <td><img src="screenshots/card-2.jpeg" width="200" /></td>
+    <td>
+      <img src="./src/assets/images/app/1.png" />
+    </td>
+    <td>
+      <img src="./src/assets/images/app/2.png" />
+    </td>
+    <td>
+      <img src="./src/assets/images/app/3.png" />
+    </td>
+    <td>
+      <img src="./src/assets/images/app/4.png" />
+    </td>
   </tr>
 </table>
+</p>
 
-## Baixando
-- Google Play: https://play.google.com/store/apps/details?id=com.rpgzando
-- Caso queira realizar um clone do projeto unica coisa que irá precisar ter é `node`, `npm` e/ou `yarn`, `react-native cli` e `android studio` configurado. Se tiver esse pré-requisitos é apenas baixar um versão do projeto `git clone https://github.com/Luanfv/app-rpgzando.git` e rodar os seguintes comandos dentro do projeto.
-
-`yarn` ou `npm i`
-`react-native run-android`
-
-
-## Desenvolvimento
-O app funciona 100% offline e sem nenhuma integração com api externa, toda sua lógica e conteudo está dentro do build.
-
-Para o desenvolvimento do app foi utilizado as libs;
-
-- react-native-community/async-storage
-- react-native-community/checkbox
-- react-native-community/picker
-- react-native-community/slider
-- react-navigation/native
-- react-navigation/stack
-- react-native-modal
-- react-native-vector-icons
-- styled-components
+O RPGZando é um aplicativo de criação de fichas de RPG baseado no
+D&D. Através dele você podera criar e manter suas fichas sem a
+necessidade de papel e caneta, facilitando toda a logística que você
+precisa ter ao seu redor, sendo assim, mantendo o maior foco no que
+realmente importa, a campanha.
 
 
-## Sobre
-O aplicativo foi desenvolvido com o intuito de facilidar e auxiliar o desenvolvimento de fichas de rpg de D&D 5e.
+O aplicativo nasceu de uma dificuldade que os jogadores iniciantes
+de RPG possuem no momento de criar suas primeiras fichas e/ou
+mante-las.
 
-No app o usuário pode criar até 3 personagens que sera guardado no async storage e/ou compartilhar com seus contatos. Depois que o personagem for criado sera possivel visualizar a ficha ou deletar.
-Os personagens terão raças, classes, pericias e atributos, sendo elas;
 
-<table>
-  <tr>
-    <td><img src="screenshots/race.jpeg" width="200" /> </td>
-    <td><img src="screenshots/class.jpeg" width="200" /> </td>
-    <td><img src="screenshots/delete-card.jpeg" width="200" /> </td>
-  </tr>
-</table>
+<!-- Getting Started -->
+## INICIANDO O PROJETO
 
-### Raças:
-- Anão (Anão da colina, Anão da montanha)
-- Draconato
-- Elfo (Elfo alto, Elfo da Floresta, Elfo negro)
-- Gnomo (Gnomo da floresta, Gnomo da pedra)
-- Halfling (Halfling Leve, Halfling robusto)
-- Humano
+Para instalar o projeto em sua maquina siga os passos abaixo.
 
-### Classes:
-- Paladino
-- Barbaro
-- Bardo
-- Ladino
-- Mago
-- Clerigo
-- Patrulheiro
-- Druida
-- Guerreiro
-- Bruxo
-- Feiticeiro
-- Monge
+### PRÉ-REQUISITOS
 
-### Perícias:
-- Atletismo
-- Acrobacia
-- Furtuvidade
-- Prestidigitação
-- Arcanismo
-- História
-- Investigação
-- Natureza
-- Religião
-- Adestrar Animais
-- Intuição
-- Medicina
-- Percepção
-- Sobrevivência
-- Atuação
-- Enganação
-- Intimidação
-- Persuasão
+Tenha instalado em sua máquina as seguintes ferramentas:
+[Git](https://git-scm.com), [Node.js](https://nodejs.org/en/), [Android Studio](https://developer.android.com/studio),
+Opcionalmente pode-se instalar o [Yarn](https://yarnpkg.com/) como gerenciador de pacotes.
 
-### Atributos:
-- Força
-- Destreza
-- Constituição
-- Inteligencia
-- Sabedoria
-- Carisma
+### INSTALAÇÃO
+
+1. Clone o repositório
+   ```sh
+   git clone https://github.com/Luanfv/app-rpgzando.git
+   ```
+2. Entre na pasta
+   ```sh
+   cd app-rpgzando
+   ```
+3. Instale as dependências
+   ```sh
+   yarn
+   ```
+   ou
+   ```sh
+   npm i
+   ```

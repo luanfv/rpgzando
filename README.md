@@ -73,7 +73,7 @@ O aplicativo nasceu de uma dificuldade que os jogadores iniciantes
 de RPG possuem no momento de criar suas primeiras fichas e/ou
 mante-las.
 
-Caso queira baixar o aplicativo, <a href="https://play.google.com/store/apps/details?id=com.rpgzando">clique aqui</a>.
+Para baixar o aplicativo, <a href="https://play.google.com/store/apps/details?id=com.rpgzando">clique aqui</a>.
 
 <!-- Getting Started -->
 ## INICIANDO O PROJETO

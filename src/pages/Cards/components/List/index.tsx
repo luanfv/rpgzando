@@ -7,19 +7,25 @@ import { races } from '../../../../utils/rules';
 
 import { Container, Img, Description, Name, Text } from './style';
 
-interface IProps {
-  id: String;
-  name: String;
-  profession: String;
-  level: Number;
-  raceId: Number;
+interface IListProps {
+  id: string;
+  name: string;
+  profession: string;
+  level: number;
+  raceId: number;
 }
 
-const List: React.FC<IProps> = ({ id, name, profession, level, raceId }) => {
+const List: React.FC<IListProps> = ({
+  id,
+  name,
+  profession,
+  level,
+  raceId,
+}) => {
   const { navigate } = useNavigation();
   const { selectIdCard } = useApp();
 
-  const race = useMemo(() => races.find((_race) => _race.id === raceId), [
+  const race = useMemo(() => races.find((item) => item.id === raceId), [
     raceId,
   ]);
 

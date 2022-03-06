@@ -33,7 +33,7 @@ import {
 } from './style';
 
 interface IRouteParams {
-  newCard?: Boolean;
+  newCard?: boolean;
 }
 
 const Show: React.FC = () => {
@@ -157,57 +157,55 @@ const Show: React.FC = () => {
           </Title>
 
           {!!card &&
-            expertises.map((_expertise, _index) => {
-              const proficiency = Number(calcProficiency(card.level));
-              const foundId = card.expertise.find(
-                (_id) => _id === _expertise.id,
-              );
+            expertises.map((expertise, index) => {
+              const proficiency = calcProficiency(card.level);
+              const foundId = card.expertise.find((id) => id === expertise.id);
               const formatModifier = (
-                _modifier: Number,
-                _proficiency: Number,
+                modifierValue: number,
+                proficiencyValue: number,
               ) => {
-                const response = Number(_modifier) + Number(_proficiency);
+                const response = modifierValue + proficiencyValue;
 
                 return response > 0 ? `+${response}` : response;
               };
 
               const handleValue = () => {
-                if (_expertise.type === 1) {
+                if (expertise.type === 1) {
                   if (foundId) {
                     const modifier = Number(calcModifier(card.attributes.for));
                     return formatModifier(modifier, proficiency);
                   }
 
                   return calcModifier(card.attributes.for);
-                } else if (_expertise.type === 2) {
+                } else if (expertise.type === 2) {
                   if (foundId) {
                     const modifier = Number(calcModifier(card.attributes.dex));
                     return formatModifier(modifier, proficiency);
                   }
 
                   return calcModifier(card.attributes.dex);
-                } else if (_expertise.type === 3) {
+                } else if (expertise.type === 3) {
                   if (foundId) {
                     const modifier = Number(calcModifier(card.attributes.con));
                     return formatModifier(modifier, proficiency);
                   }
 
                   return calcModifier(card.attributes.con);
-                } else if (_expertise.type === 4) {
+                } else if (expertise.type === 4) {
                   if (foundId) {
                     const modifier = Number(calcModifier(card.attributes.int));
                     return formatModifier(modifier, proficiency);
                   }
 
                   return calcModifier(card.attributes.int);
-                } else if (_expertise.type === 5) {
+                } else if (expertise.type === 5) {
                   if (foundId) {
                     const modifier = Number(calcModifier(card.attributes.wis));
                     return formatModifier(modifier, proficiency);
                   }
 
                   return calcModifier(card.attributes.wis);
-                } else if (_expertise.type === 6) {
+                } else if (expertise.type === 6) {
                   if (foundId) {
                     const modifier = Number(calcModifier(card.attributes.cha));
                     return formatModifier(modifier, proficiency);
@@ -220,8 +218,8 @@ const Show: React.FC = () => {
               };
 
               return (
-                <Expertise selected={!!foundId} key={_index}>
-                  <Text>{_expertise.desc}</Text>
+                <Expertise selected={!!foundId} key={index}>
+                  <Text>{expertise.desc}</Text>
                   <Text>{handleValue()}</Text>
                 </Expertise>
               );

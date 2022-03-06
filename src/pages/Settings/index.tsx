@@ -36,8 +36,8 @@ const Settings: React.FC = () => {
 
         updateUsername(data.username);
         addWarnning('Seu username foi alterado com sucesso!');
-      } catch (err) {
-        const errors: { username?: String } = getValidationErrors(err);
+      } catch (err: any) {
+        const errors: { username?: string } = getValidationErrors(err);
 
         if (errors.username) {
           addWarnning(errors.username);

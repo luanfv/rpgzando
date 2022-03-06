@@ -19,22 +19,26 @@ const Attributes: React.FC = () => {
   const { addWarnning, selectIdCard } = useApp();
   const { navigate } = useNavigation();
 
-  const [hp, setHp] = useState(level as Number);
-  const [force, setForce] = useState(1 as Number);
-  const [constitution, setConstitution] = useState(1 as Number);
-  const [dexterity, setDexterity] = useState(1 as Number);
-  const [charisma, setCharisma] = useState(1 as Number);
-  const [wisdom, setWisdom] = useState(1 as Number);
-  const [intelligence, setIntelligence] = useState(1 as Number);
-  const [benefits, setBenefits] = useState({} as IAttributes);
+  const [hp, setHp] = useState(level);
+  const [force, setForce] = useState(1);
+  const [constitution, setConstitution] = useState(1);
+  const [dexterity, setDexterity] = useState(1);
+  const [charisma, setCharisma] = useState(1);
+  const [wisdom, setWisdom] = useState(1);
+  const [intelligence, setIntelligence] = useState(1);
+  const [benefits, setBenefits] = useState<IAttributes | undefined>();
 
   const fullHp = useMemo(() => {
-    const found = professions.find(
-      (_profession) => _profession.id === profession.id,
-    );
+    if (profession) {
+      const found = professions.find((item) => item.id === profession.id);
 
-    return Number(found?.hp);
-  }, [profession.id]);
+      if (found) {
+        return found.hp;
+      }
+    }
+
+    return 0;
+  }, [profession]);
   const maxHp = useMemo(() => Number(level) * Number(fullHp), [fullHp, level]);
 
   const submit = useCallback(() => {
@@ -57,10 +61,10 @@ const Attributes: React.FC = () => {
       selectIdCard(response);
 
       navigate('showCard', { newCard: true });
-    } catch (err) {
-      const { message } = err;
-
-      addWarnning(message);
+    } catch (err: any) {
+      if (err) {
+        addWarnning(err.message);
+      }
     }
   }, [
     addWarnning,
@@ -77,12 +81,14 @@ const Attributes: React.FC = () => {
   ]);
 
   useEffect(() => {
-    const attributes = handleRace(race.id);
+    if (race) {
+      const attributes = handleRace(race.id);
 
-    if (attributes) {
-      setBenefits(attributes);
+      if (attributes) {
+        setBenefits(attributes);
+      }
     }
-  }, [race.id]);
+  }, [race]);
 
   return (
     <Content title="Nova Ficha" goBack>
@@ -104,48 +110,48 @@ const Attributes: React.FC = () => {
 
         <Container>
           <InputNumeric
-            title={`Força (+${benefits.for})`}
-            value={Number(force)}
+            title={`Força ${benefits && `(+${benefits.for})`}`}
+            value={force}
             onChange={setForce}
             min={1}
             max={20}
             random
           />
           <InputNumeric
-            title={`Destreza (+${benefits.dex})`}
-            value={Number(dexterity)}
+            title={`Destreza ${benefits && `(+${benefits.dex})`}`}
+            value={dexterity}
             onChange={setDexterity}
             min={1}
             max={20}
             random
           />
           <InputNumeric
-            title={`Constituição (+${benefits.con})`}
-            value={Number(constitution)}
+            title={`Constituição ${benefits && `(+${benefits.con})`}`}
+            value={constitution}
             onChange={setConstitution}
             min={1}
             max={20}
             random
           />
           <InputNumeric
-            title={`Inteligência (+${benefits.int})`}
-            value={Number(intelligence)}
+            title={`Inteligência ${benefits && `(+${benefits.int})`}`}
+            value={intelligence}
             onChange={setIntelligence}
             min={1}
             max={20}
             random
           />
           <InputNumeric
-            title={`Sabedoria (+${benefits.wis})`}
-            value={Number(wisdom)}
+            title={`Sabedoria ${benefits && `(+${benefits.wis})`}`}
+            value={wisdom}
             onChange={setWisdom}
             min={1}
             max={20}
             random
           />
           <InputNumeric
-            title={`Carisma (+${benefits.cha})`}
-            value={Number(charisma)}
+            title={`Carisma ${benefits && `(+${benefits.cha})`}`}
+            value={charisma}
             onChange={setCharisma}
             min={1}
             max={20}

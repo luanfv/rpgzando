@@ -22,36 +22,36 @@ import MonkImage from '../assets/images/profession/monk.png';
 import { ImageSourcePropType } from 'react-native';
 
 export interface IAttributes {
-  for: Number;
-  con: Number;
-  dex: Number;
-  cha: Number;
-  wis: Number;
-  int: Number;
+  for: number;
+  con: number;
+  dex: number;
+  cha: number;
+  wis: number;
+  int: number;
 }
 
 export interface IRace {
-  id: Number;
-  name: String;
-  race: Number;
-  desc: String;
+  id: number;
+  name: string;
+  race: number;
+  desc: string;
   image: ImageSourcePropType;
 }
 
 export interface IExpertise {
-  id: Number;
-  desc: String;
-  type: Number;
-  checked: Boolean;
+  id: number;
+  desc: string;
+  type: number;
+  checked: boolean;
 }
 
 export interface IProfession {
-  id: Number;
-  name: String;
-  hp: Number;
+  id: number;
+  name: string;
+  hp: number;
   image: ImageSourcePropType;
   expertises: IExpertise[];
-  quantityExpertise: Number;
+  quantityExpertise: number;
 }
 
 export const races: IRace[] = [
@@ -350,7 +350,7 @@ export const professions: IProfession[] = [
   },
 ];
 
-export const handleRace = (race: Number): IAttributes | undefined => {
+export const handleRace = (race: number): IAttributes | undefined => {
   let isError: Boolean = false;
   const attributes: IAttributes = {
     for: 0,
@@ -437,17 +437,17 @@ export const handleRace = (race: Number): IAttributes | undefined => {
   return attributes;
 };
 
-export const calcModifier = (modifier: Number): String => {
-  const value: Number = (Number(modifier) - 10) / 2;
+export const calcModifier = (modifier: number): string => {
+  const value = (Number(modifier) - 10) / 2;
 
   if (value > 0) {
-    return `+${Math.trunc(Number(value))}`;
+    return `+${Math.trunc(value)}`;
   }
 
-  return `${Number(value).toFixed(0)}`;
+  return `${value.toFixed(0)}`;
 };
 
-export const calcProficiency = (level: Number): Number => {
+export const calcProficiency = (level: number): number => {
   if (level < 5) {
     return 2;
   } else if (level < 9) {

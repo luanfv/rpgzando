@@ -15,18 +15,22 @@ import Button from '../../../../../components/Button';
 
 import { Body, Main, Container, Title, TitleText, TitleIcon } from '../style';
 
-interface IProps {
-  open: Boolean;
+interface IUpdateCharacterProps {
+  open: boolean;
   card: ICard;
   close: () => void;
 }
 
 interface IHandleSubmit {
-  id: String;
-  annotations: String;
+  id: string;
+  annotations: string;
 }
 
-const UpdateCharacter: React.FC<IProps> = ({ open, card, close }) => {
+const UpdateCharacter: React.FC<IUpdateCharacterProps> = ({
+  open,
+  card,
+  close,
+}) => {
   const { addWarnning } = useApp();
   const { updateAnnotations } = useCards();
 
@@ -35,21 +39,21 @@ const UpdateCharacter: React.FC<IProps> = ({ open, card, close }) => {
   const id = useMemo(() => card.id, [card]);
 
   const handleSubmit = useCallback(
-    async (_data: IHandleSubmit) => {
+    async (data: IHandleSubmit) => {
       try {
-        if (!_data.id) {
+        if (!data.id) {
           throw Error('Seu personagem não foi encontrado.');
         }
 
-        const response = updateAnnotations(_data);
+        const response = updateAnnotations(data);
 
         if (response) {
           close();
         }
-      } catch (err) {
-        const { message } = err;
-
-        addWarnning(message);
+      } catch (err: any) {
+        if (err) {
+          addWarnning(err.message);
+        }
       }
     },
     [addWarnning, close, updateAnnotations],
@@ -88,7 +92,7 @@ const UpdateCharacter: React.FC<IProps> = ({ open, card, close }) => {
                   name="annotations"
                   icon="file-text"
                   placeholder="Adicione anotações..."
-                  value={String(annotations)}
+                  value={annotations}
                   onChangeText={(value) => setAnnotations(value)}
                   multiline={true}
                   numberOfLines={4}

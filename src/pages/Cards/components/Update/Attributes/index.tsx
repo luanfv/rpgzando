@@ -20,13 +20,17 @@ import Button from '../../../../../components/Button';
 
 import { Body, Main, Container, Title, TitleText, TitleIcon } from '../style';
 
-interface IProps {
-  open: Boolean;
+interface IUpdateAttributesProps {
+  open: boolean;
   card: ICard;
   close: () => void;
 }
 
-const UpdateAttributes: React.FC<IProps> = ({ open, card, close }) => {
+const UpdateAttributes: React.FC<IUpdateAttributesProps> = ({
+  open,
+  card,
+  close,
+}) => {
   const { addWarnning } = useApp();
   const { updateAttributes } = useCards();
 
@@ -42,21 +46,21 @@ const UpdateAttributes: React.FC<IProps> = ({ open, card, close }) => {
   const [charisma, setCharisma] = useState(card.attributes.cha);
 
   const handleSubmit = useCallback(
-    async (_data: IUpdateAttributesData) => {
+    async (data: IUpdateAttributesData) => {
       try {
-        if (!_data.id) {
+        if (!data.id) {
           throw Error('Seu personagem não foi encontrado.');
         }
 
-        const response = updateAttributes(_data);
+        const response = updateAttributes(data);
 
         if (response) {
           close();
         }
-      } catch (err) {
-        const { message } = err;
-
-        addWarnning(message);
+      } catch (err: any) {
+        if (err) {
+          addWarnning(err.message);
+        }
       }
     },
     [addWarnning, close, updateAttributes],
@@ -98,7 +102,7 @@ const UpdateAttributes: React.FC<IProps> = ({ open, card, close }) => {
               <Container>
                 <InputNumeric
                   title="Força:"
-                  value={Number(force)}
+                  value={force}
                   min={1}
                   max={99}
                   onChange={(value) => setForce(value)}
@@ -106,7 +110,7 @@ const UpdateAttributes: React.FC<IProps> = ({ open, card, close }) => {
 
                 <InputNumeric
                   title="Destreza:"
-                  value={Number(dexterity)}
+                  value={dexterity}
                   min={1}
                   max={99}
                   onChange={(value) => setDexterity(value)}
@@ -114,7 +118,7 @@ const UpdateAttributes: React.FC<IProps> = ({ open, card, close }) => {
 
                 <InputNumeric
                   title="Constituição:"
-                  value={Number(constitution)}
+                  value={constitution}
                   min={1}
                   max={99}
                   onChange={(value) => setConstitution(value)}
@@ -122,7 +126,7 @@ const UpdateAttributes: React.FC<IProps> = ({ open, card, close }) => {
 
                 <InputNumeric
                   title="Sabedoria:"
-                  value={Number(wisdom)}
+                  value={wisdom}
                   min={1}
                   max={99}
                   onChange={(value) => setWisdom(value)}
@@ -130,7 +134,7 @@ const UpdateAttributes: React.FC<IProps> = ({ open, card, close }) => {
 
                 <InputNumeric
                   title="Inteligência:"
-                  value={Number(intelligence)}
+                  value={intelligence}
                   min={1}
                   max={99}
                   onChange={(value) => setIntelligence(value)}
@@ -138,7 +142,7 @@ const UpdateAttributes: React.FC<IProps> = ({ open, card, close }) => {
 
                 <InputNumeric
                   title="Carisma:"
-                  value={Number(charisma)}
+                  value={charisma}
                   min={1}
                   max={99}
                   onChange={(value) => setCharisma(value)}

@@ -4,14 +4,19 @@ import { ScrollView } from 'react-native';
 import Header from '../Header';
 import { Body, Main } from './style';
 
-interface IProps {
-  title: String;
-  goBack?: Boolean;
-  card?: Boolean;
-  idCard?: String;
+interface IContentProps {
+  title: string;
+  goBack?: boolean;
+  card?: boolean;
+  idCard?: string;
 }
 
-const Content: React.FC<IProps> = ({ children, title, goBack, idCard }) => {
+const Content: React.FC<IContentProps> = ({
+  children,
+  title,
+  goBack,
+  idCard,
+}) => {
   return (
     <Body>
       <Header title={title} goBack={goBack} idCard={idCard} />

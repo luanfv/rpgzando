@@ -3,11 +3,11 @@ import Icon from 'react-native-vector-icons/Feather';
 
 import { Container, Button } from './style';
 
-interface Props {
+interface IButtonFixedProps {
   onPress: () => void;
 }
 
-const ButtonFixed: React.FC<Props> = ({ onPress }) => {
+const ButtonFixed: React.FC<IButtonFixedProps> = ({ onPress }) => {
   return (
     <Container>
       <Button onPress={onPress}>

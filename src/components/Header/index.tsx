@@ -20,13 +20,13 @@ import {
   TooltipButtonText,
 } from './style';
 
-interface Props {
-  title: String;
-  goBack?: Boolean;
-  idCard?: String;
+interface IHeaderProps {
+  title: string;
+  goBack?: boolean;
+  idCard?: string;
 }
 
-const Header: React.FC<Props> = ({ title, goBack = false, idCard }) => {
+const Header: React.FC<IHeaderProps> = ({ title, goBack = false, idCard }) => {
   const navigation = useNavigation();
 
   const { removeCard } = useCards();
@@ -42,16 +42,16 @@ const Header: React.FC<Props> = ({ title, goBack = false, idCard }) => {
   }, [navigation]);
 
   const navigate = useCallback(
-    (screen: String) => {
+    (screen: string) => {
       setIsModalOpen(false);
-      navigation.navigate(String(screen));
+      navigation.navigate(screen);
     },
     [navigation],
   );
 
   const remove = useCallback(
-    (_id) => {
-      const response = removeCard(String(_id));
+    (id: string) => {
+      const response = removeCard(id);
 
       if (response) {
         goToHome();
@@ -116,7 +116,7 @@ const Header: React.FC<Props> = ({ title, goBack = false, idCard }) => {
       <ModalConfirmation
         isOpen={isConfirmationRemove}
         message="Tem certeza que deseja remover essa ficha?"
-        confirmed={() => remove(idCard)}
+        confirmed={() => idCard && remove(idCard)}
         close={() => setIsConfirmationRemove(false)}
       />
     </Container>

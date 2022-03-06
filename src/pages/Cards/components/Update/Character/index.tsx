@@ -16,20 +16,24 @@ import Button from '../../../../../components/Button';
 
 import { Body, Main, Container, Title, TitleText, TitleIcon } from '../style';
 
-interface IProps {
-  open: Boolean;
+interface IUpdateCharacterProps {
+  open: boolean;
   card: ICard;
   close: () => void;
 }
 
 interface IHandleSubmit {
-  id: String;
-  name: String;
-  level: String;
-  hp: Number;
+  id: string;
+  name: string;
+  level: string;
+  hp: number;
 }
 
-const UpdateCharacter: React.FC<IProps> = ({ open, card, close }) => {
+const UpdateCharacter: React.FC<IUpdateCharacterProps> = ({
+  open,
+  card,
+  close,
+}) => {
   const { addWarnning } = useApp();
   const { updateCharacter } = useCards();
 
@@ -40,35 +44,35 @@ const UpdateCharacter: React.FC<IProps> = ({ open, card, close }) => {
   const id = useMemo(() => card.id, [card]);
 
   const handleSubmit = useCallback(
-    async (_data: IHandleSubmit) => {
+    async (data: IHandleSubmit) => {
       try {
-        if (!_data.id) {
+        if (!data.id) {
           throw Error('Seu personagem não foi encontrado.');
         }
 
-        if (_data.name.length < 1) {
+        if (data.name.length < 1) {
           throw Error('Seu personagem precisa de um nome.');
         }
 
         if (
-          !_data.level ||
-          _data.level.indexOf('.') !== -1 ||
-          _data.level.indexOf(',') !== -1 ||
-          !Number(_data.level) ||
-          Number(_data.level) < 1
+          !data.level ||
+          data.level.indexOf('.') !== -1 ||
+          data.level.indexOf(',') !== -1 ||
+          !data.level ||
+          Number(data.level) < 1
         ) {
           throw Error('Seu nível precisa ser um número inteiro e maior que 0.');
         }
 
-        const response = updateCharacter(_data);
+        const response = updateCharacter(data);
 
         if (response) {
           close();
         }
-      } catch (err) {
-        const { message } = err;
-
-        addWarnning(message);
+      } catch (err: any) {
+        if (err) {
+          addWarnning(err.message);
+        }
       }
     },
     [addWarnning, close, updateCharacter],
@@ -107,7 +111,7 @@ const UpdateCharacter: React.FC<IProps> = ({ open, card, close }) => {
                   name="name"
                   icon="user"
                   placeholder="Nome"
-                  value={String(name)}
+                  value={name}
                   onChangeText={(value) => setName(value)}
                 />
               </Container>
@@ -120,7 +124,7 @@ const UpdateCharacter: React.FC<IProps> = ({ open, card, close }) => {
                   name="level"
                   icon="award"
                   placeholder="Nível"
-                  value={String(level)}
+                  value={level}
                   onChangeText={(value) => setLevel(value)}
                 />
               </Container>
@@ -128,7 +132,7 @@ const UpdateCharacter: React.FC<IProps> = ({ open, card, close }) => {
               <Container>
                 <InputNumeric
                   title="HP:"
-                  value={Number(hp)}
+                  value={hp}
                   min={1}
                   max={999}
                   onChange={(value) => setHp(value)}

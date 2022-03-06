@@ -20,7 +20,7 @@ interface InputProps extends TextInputProps {
   name: string;
   icon: string;
   containerStyle?: {};
-  textarea?: Boolean;
+  textarea?: boolean;
 }
 
 interface InputValueReference {
@@ -70,7 +70,7 @@ const Input: React.RefForwardingComponent<InputRef, InputProps> = (
       name: fieldName,
       ref: inputValueRef.current,
       path: 'value',
-      setValue(_ref: any, value) {
+      setValue(_, value) {
         inputValueRef.current.value = value;
         inputElementRef.current.setNativeProps({ text: value });
       },

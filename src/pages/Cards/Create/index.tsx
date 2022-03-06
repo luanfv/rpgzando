@@ -45,7 +45,7 @@ const CreateCard: React.FC = () => {
   const [profession, setProfession] = useState(professions[0]);
 
   const handleRaceSelected = useCallback((key) => {
-    const raceSelected = races.find((_race) => _race.id === key);
+    const raceSelected = races.find((item) => item.id === key);
 
     if (raceSelected) {
       setRace(raceSelected);
@@ -55,13 +55,13 @@ const CreateCard: React.FC = () => {
   const handleProfessionSelected = useCallback((key) => {
     let expertisesReseted: IExpertise[] = [];
 
-    const findProfession = professions.find((_profession) => {
-      if (_profession.id === key) {
-        expertisesReseted = _profession.expertises.map((_expertise) => {
-          return { ..._expertise, checked: false };
+    const findProfession = professions.find((item) => {
+      if (item.id === key) {
+        expertisesReseted = item.expertises.map((value) => {
+          return { ...value, checked: false };
         });
 
-        return { ..._profession, expertises: expertisesReseted };
+        return { ...item, expertises: expertisesReseted };
       }
     });
 
@@ -71,9 +71,9 @@ const CreateCard: React.FC = () => {
   }, []);
 
   const alterCheck = useCallback(
-    (_position) => {
+    (item) => {
       const newExpertises = profession.expertises;
-      newExpertises[_position].checked = !newExpertises[_position].checked;
+      newExpertises[item].checked = !newExpertises[item].checked;
 
       setProfession({ ...profession, expertises: newExpertises });
     },
@@ -100,11 +100,11 @@ const CreateCard: React.FC = () => {
           throw Error('Number');
         }
 
-        const persoExpertises: Number[] = [];
+        const persoExpertises: number[] = [];
 
-        profession.expertises.forEach((_expertise) => {
-          if (_expertise.checked) {
-            persoExpertises.push(_expertise.id);
+        profession.expertises.forEach((item) => {
+          if (item.checked) {
+            persoExpertises.push(item.id);
           }
         });
 
@@ -130,9 +130,9 @@ const CreateCard: React.FC = () => {
         }
 
         navigate('createAttributes');
-      } catch (err) {
+      } catch (err: any) {
         if (err instanceof Yup.ValidationError) {
-          const errors: { name?: String; level?: String } = getValidationErrors(
+          const errors: { name?: string; level?: string } = getValidationErrors(
             err,
           );
 
@@ -201,8 +201,8 @@ const CreateCard: React.FC = () => {
                     {races.map((value) => (
                       <Select.Item
                         key={String(value.id)}
-                        value={Number(value.id)}
-                        label={String(value.name)}
+                        value={value.id}
+                        label={value.name}
                       />
                     ))}
                   </Select>
@@ -223,8 +223,8 @@ const CreateCard: React.FC = () => {
                     {professions.map((value) => (
                       <Select.Item
                         key={String(value.id)}
-                        value={Number(value.id)}
-                        label={String(value.name)}
+                        value={value.id}
+                        label={value.name}
                       />
                     ))}
                   </Select>

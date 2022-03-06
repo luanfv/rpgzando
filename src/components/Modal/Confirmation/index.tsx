@@ -3,14 +3,14 @@ import Modal from 'react-native-modal';
 
 import { Container, Text, ButtonsContainer, Button, ButtonText } from './style';
 
-interface Props {
-  isOpen: Boolean;
-  message: String;
+interface IModalWarnningProps {
+  isOpen: boolean;
+  message: string;
   confirmed: () => void;
   close: () => void;
 }
 
-const ModalWarnning: React.FC<Props> = ({
+const ModalWarnning: React.FC<IModalWarnningProps> = ({
   isOpen,
   message,
   close,

@@ -2,11 +2,11 @@ import React, { useMemo } from 'react';
 
 import { Container, Bar, Progress, Phase, PhaseText } from './style';
 
-interface IProps {
+interface IProgressBarProps {
   phase: 1 | 2 | 3;
 }
 
-const ProgressBar: React.FC<IProps> = ({ phase }) => {
+const ProgressBar: React.FC<IProgressBarProps> = ({ phase }) => {
   const percent = useMemo(() => {
     if (phase === 1) {
       return '0%';

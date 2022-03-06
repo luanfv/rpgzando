@@ -7,26 +7,26 @@ import React, {
 } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-interface AppData {
-  warnning: String;
-  idCardSelected: String;
-  username: String;
-  addWarnning: (_message: String) => void;
+interface IAppData {
+  warnning: string;
+  idCardSelected: string;
+  username: string;
+  addWarnning: (message: string) => void;
   removeWarnning: () => void;
-  selectIdCard: (_id: String) => void;
+  selectIdCard: (id: string) => void;
   deselectIdCard: () => void;
-  updateUsername: (_username: String) => void;
+  updateUsername: (username: string) => void;
 }
 
-const AppContext = createContext({} as AppData);
+const AppContext = createContext({} as IAppData);
 
 export const AppProvider: React.FC = ({ children }) => {
-  const [warnning, setWarnning] = useState('' as String);
-  const [idCardSelected, setIdCardSelected] = useState('' as String);
-  const [username, setUsername] = useState('Player' as String);
+  const [warnning, setWarnning] = useState('');
+  const [idCardSelected, setIdCardSelected] = useState('');
+  const [username, setUsername] = useState('Player');
 
-  const addWarnning = useCallback((_message: String) => {
-    setWarnning(_message);
+  const addWarnning = useCallback((message: string) => {
+    setWarnning(message);
   }, []);
 
   const removeWarnning = useCallback(() => {
@@ -35,15 +35,18 @@ export const AppProvider: React.FC = ({ children }) => {
     }, 300);
   }, []);
 
-  const selectIdCard = useCallback((_id: String): void => {
-    setIdCardSelected(_id);
+  const selectIdCard = useCallback((id: string): void => {
+    setIdCardSelected(id);
   }, []);
 
   const deselectIdCard = useCallback((): void => setIdCardSelected(''), []);
 
-  const updateUsername = useCallback(async (_username): Promise<void> => {
-    setUsername(_username);
-    await AsyncStorage.setItem('@RPGZando:username', JSON.stringify(_username));
+  const updateUsername = useCallback(async (newUserName) => {
+    setUsername(newUserName);
+    await AsyncStorage.setItem(
+      '@RPGZando:username',
+      JSON.stringify(newUserName),
+    );
   }, []);
 
   useEffect(() => {
@@ -51,7 +54,7 @@ export const AppProvider: React.FC = ({ children }) => {
       const storageUsername = await AsyncStorage.getItem('@RPGZando:username');
 
       if (storageUsername) {
-        setUsername(JSON.parse(storageUsername) as String);
+        setUsername(JSON.parse(storageUsername));
       }
     }
 

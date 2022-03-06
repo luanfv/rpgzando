@@ -22,14 +22,14 @@ const Collectors: React.FC = () => {
   return (
     <>
       <Content title={username}>
-        {cards.map((_card, _index) => (
+        {cards.map((card, index) => (
           <List
-            key={_index}
-            id={_card.id}
-            level={_card.level}
-            name={_card.name}
-            profession={_card.profession.name}
-            raceId={_card.race.id}
+            key={index}
+            id={card.id}
+            level={card.level}
+            name={card.name}
+            profession={card.profession.name}
+            raceId={card.race.id}
           />
         ))}
 

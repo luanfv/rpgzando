@@ -12,16 +12,16 @@ import {
   TitleText,
 } from './style';
 
-interface IProps {
-  title: String;
-  value: Number;
-  min: Number;
-  max: Number;
-  random?: Boolean;
-  onChange: (value: Number) => void;
+interface IInputNumericProps {
+  title: string;
+  value: number;
+  min: number;
+  max: number;
+  random?: boolean;
+  onChange: (value: number) => void;
 }
 
-const InputNumeric: React.FC<IProps> = ({
+const InputNumeric: React.FC<IInputNumericProps> = ({
   title,
   value,
   onChange,
@@ -36,12 +36,7 @@ const InputNumeric: React.FC<IProps> = ({
       dices.play();
     });
 
-    onChange(
-      Number(
-        Math.floor(Math.random() * (Number(max) - Number(Number(min) - 1))) +
-          Number(min),
-      ),
-    );
+    onChange(Math.floor(Math.random() * (max - (min - 1))) + min);
   }, [max, min, onChange]);
 
   return (
@@ -57,10 +52,10 @@ const InputNumeric: React.FC<IProps> = ({
       </TitleContainer>
 
       <Input
-        value={Number(value)}
+        value={value}
         onChange={onChange}
-        min={Number(min)}
-        max={Number(max)}
+        min={min}
+        max={max}
         textColor="#fff"
         fontSize={18}
         colorLeft={styles.primary}

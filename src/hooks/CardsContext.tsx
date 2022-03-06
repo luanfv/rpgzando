@@ -11,83 +11,83 @@ import { useApp } from './AppContext';
 import { professions, races, handleRace, calcModifier } from '../utils/rules';
 
 interface IUpdateCharacterData {
-  id: String;
-  name: String;
-  level: String;
-  hp: Number;
+  id: string;
+  name: string;
+  level: string;
+  hp: number;
 }
 
 export interface IUpdateAttributesData {
-  id: String;
-  for: Number;
-  con: Number;
-  dex: Number;
-  cha: Number;
-  wis: Number;
-  int: Number;
+  id: string;
+  for: number;
+  con: number;
+  dex: number;
+  cha: number;
+  wis: number;
+  int: number;
 }
 
 export interface IUpdateAnnotationsData {
-  id: String;
-  annotations: String;
+  id: string;
+  annotations: string;
 }
 
 export interface IAttributes {
-  for: Number;
-  con: Number;
-  dex: Number;
-  cha: Number;
-  wis: Number;
-  int: Number;
+  for: number;
+  con: number;
+  dex: number;
+  cha: number;
+  wis: number;
+  int: number;
 }
 
 export interface IProfession {
-  id: Number;
-  name: String;
+  id: number;
+  name: string;
 }
 
 export interface IRace {
-  id: Number;
-  name: String;
+  id: number;
+  name: string;
 }
 
 export interface ICreateICharacterData {
-  name: String;
-  level: Number;
-  expertises: Number[];
+  name: string;
+  level: number;
+  expertises: number[];
   profession: IProfession;
   race: IRace;
 }
 
 export interface ICard {
-  id: String;
-  name: String;
-  level: Number;
-  hp: Number;
-  expertise: Number[];
+  id: string;
+  name: string;
+  level: number;
+  hp: number;
+  expertise: number[];
   profession: IProfession;
   race: IRace;
   attributes: IAttributes;
-  createdAt: String;
-  updatedAt: String;
-  annotations: String;
+  createdAt: string;
+  updatedAt: string;
+  annotations: string;
 }
 
 interface ICardsData {
-  name: String;
-  level: Number;
-  expertise: Number[];
-  profession: IProfession;
-  race: IRace;
+  name: string;
+  level: number;
+  expertise: number[];
+  profession: IProfession | undefined;
+  race: IRace | undefined;
   cards: ICard[];
-  findCard: (_id: String) => ICard | undefined;
+  findCard: (id: string) => ICard | undefined;
   resetCard: () => void;
-  createCharacter: (_data: ICreateICharacterData) => Boolean;
-  createCard: (_attributes: IAttributes, _hp: Number) => String | undefined;
-  updateCharacter: (_character: IUpdateCharacterData) => Boolean;
-  updateAttributes: (_attributes: IUpdateAttributesData) => Boolean;
-  updateAnnotations: (_data: IUpdateAnnotationsData) => Boolean;
-  removeCard: (_id: String) => Boolean;
+  createCharacter: (data: ICreateICharacterData) => boolean;
+  createCard: (attributes: IAttributes, hp: number) => string | undefined;
+  updateCharacter: (character: IUpdateCharacterData) => boolean;
+  updateAttributes: (attributes: IUpdateAttributesData) => boolean;
+  updateAnnotations: (data: IUpdateAnnotationsData) => boolean;
+  removeCard: (id: string) => boolean;
 }
 
 const CardsContext = createContext<ICardsData>({} as ICardsData);
@@ -95,12 +95,12 @@ const CardsContext = createContext<ICardsData>({} as ICardsData);
 export const CardsProvider: React.FC = ({ children }) => {
   const { addWarnning, deselectIdCard } = useApp();
 
-  const [cards, setCards] = useState([] as ICard[]);
-  const [name, setName] = useState('' as String);
-  const [level, setLevel] = useState(1 as Number);
-  const [expertise, setExpertise] = useState([] as Number[]);
-  const [profession, setProfession] = useState({} as IProfession);
-  const [race, setRace] = useState({} as IRace);
+  const [cards, setCards] = useState<ICard[]>([]);
+  const [name, setName] = useState('');
+  const [level, setLevel] = useState(1);
+  const [expertise, setExpertise] = useState<number[]>([]);
+  const [profession, setProfession] = useState<IProfession>();
+  const [race, setRace] = useState<IRace>();
 
   const updateCards = useCallback(
     async (newCards: ICard[]): Promise<Boolean> => {
@@ -117,45 +117,45 @@ export const CardsProvider: React.FC = ({ children }) => {
   );
 
   const findCard = useCallback(
-    (_id: String): ICard | undefined => cards.find((card) => card.id === _id),
+    (id: string): ICard | undefined => cards.find((card) => card.id === id),
     [cards],
   );
 
   const resetCard = useCallback((): void => {
-    setName('' as String);
-    setLevel(1 as Number);
-    setExpertise([] as Number[]);
-    setProfession({} as IProfession);
-    setRace({} as IRace);
+    setName('');
+    setLevel(1);
+    setExpertise([]);
+    setProfession(undefined);
+    setRace(undefined);
 
     deselectIdCard();
   }, [deselectIdCard]);
 
   const createCharacter = useCallback(
-    (_data: ICreateICharacterData): Boolean => {
+    (data: ICreateICharacterData): boolean => {
       try {
-        if (_data.name.length < 1) {
+        if (data.name.length < 1) {
           throw Error('Você precisa preencher um nome para seu personagem');
         }
 
-        if (_data.level < 1) {
+        if (data.level < 1) {
           throw Error('Você precisa possuir adicionar um nível válido');
         }
 
         const foundProfession = professions.find(
-          (_profession) => _profession.id === _data.profession.id,
+          (item) => item.id === data.profession.id,
         );
 
         if (!foundProfession) {
           throw Error('Sua profissão não foi encontrada');
         }
 
-        let quantityExpertise: Number = 0;
+        let quantityExpertise = 0;
 
-        foundProfession.expertises.forEach((_expertise) => {
-          _data.expertises.forEach((id) => {
-            if (id === _expertise.id) {
-              quantityExpertise = Number(quantityExpertise) + 1;
+        foundProfession.expertises.forEach((item) => {
+          data.expertises.forEach((id) => {
+            if (id === item.id) {
+              quantityExpertise = quantityExpertise + 1;
             }
           });
         });
@@ -166,22 +166,23 @@ export const CardsProvider: React.FC = ({ children }) => {
           );
         }
 
-        const foundRace = races.find((_race) => _race.id === _data.race.id);
+        const foundRace = races.find((item) => item.id === data.race.id);
 
         if (!foundRace) {
           throw Error('Raça selecionado não foi encontrada');
         }
 
-        setName(_data.name);
-        setLevel(_data.level);
-        setProfession(_data.profession);
-        setExpertise(_data.expertises);
-        setRace(_data.race);
+        setName(data.name);
+        setLevel(data.level);
+        setProfession(data.profession);
+        setExpertise(data.expertises);
+        setRace(data.race);
 
         return true;
-      } catch (err) {
-        const { message } = err;
-        addWarnning(message);
+      } catch (err: any) {
+        if (err) {
+          addWarnning(err.message);
+        }
 
         return false;
       }
@@ -190,25 +191,25 @@ export const CardsProvider: React.FC = ({ children }) => {
   );
 
   const createCard = useCallback(
-    (_attributes: IAttributes, _hp: Number): String | undefined => {
+    (attributes: IAttributes, hp: number): string | undefined => {
       try {
         const date = new Date();
         const id = `RPGZando:${date.getTime()}`;
 
-        const benefits = handleRace(race.id);
+        const benefits = race && handleRace(race.id);
 
         if (!benefits) {
           throw Error('fail at benefits');
         }
 
-        const attributes = {
-          for: Number(_attributes.for) + Number(benefits.for),
-          con: Number(_attributes.con) + Number(benefits.con),
-          dex: Number(_attributes.dex) + Number(benefits.dex),
-          cha: Number(_attributes.cha) + Number(benefits.cha),
-          wis: Number(_attributes.wis) + Number(benefits.wis),
-          int: Number(_attributes.int) + Number(benefits.int),
-        } as IAttributes;
+        const attributesUpdated = {
+          for: attributes.for + benefits.for,
+          con: attributes.con + benefits.con,
+          dex: attributes.dex + benefits.dex,
+          cha: attributes.cha + benefits.cha,
+          wis: attributes.wis + benefits.wis,
+          int: attributes.int + benefits.int,
+        };
 
         const newCard = {
           id,
@@ -217,8 +218,8 @@ export const CardsProvider: React.FC = ({ children }) => {
           expertise: expertise,
           profession: profession,
           race: race,
-          hp: Number(_hp) + Number(calcModifier(attributes.con)),
-          attributes,
+          hp: Number(hp) + Number(calcModifier(attributes.con)),
+          attributes: attributesUpdated,
           createdAt: `${date}`,
           updatedAt: `${date}`,
           annotations: '',
@@ -239,20 +240,20 @@ export const CardsProvider: React.FC = ({ children }) => {
   );
 
   const updateCharacter = useCallback(
-    (_character: IUpdateCharacterData): Boolean => {
+    (character: IUpdateCharacterData): boolean => {
       try {
-        const updatedCards = cards.map((_card) => {
-          if (_card.id === _character.id) {
+        const updatedCards = cards.map((card) => {
+          if (card.id === character.id) {
             return {
-              ..._card,
-              name: _character.name,
-              hp: _character.hp,
-              level: _character.level,
+              ...card,
+              name: character.name,
+              hp: character.hp,
+              level: character.level,
               updatedAt: `${new Date()}`,
             };
           }
 
-          return _card;
+          return card;
         });
 
         const response = updateCards(updatedCards as ICard[]);
@@ -264,9 +265,10 @@ export const CardsProvider: React.FC = ({ children }) => {
         }
 
         return true;
-      } catch (err) {
-        const { message } = err;
-        addWarnning(message);
+      } catch (err: any) {
+        if (err) {
+          addWarnning(err.message);
+        }
 
         return false;
       }
@@ -275,28 +277,28 @@ export const CardsProvider: React.FC = ({ children }) => {
   );
 
   const updateAttributes = useCallback(
-    (_attributes: IUpdateAttributesData) => {
+    (attributes: IUpdateAttributesData) => {
       try {
-        const updatedCards = cards.map((_card) => {
-          if (_card.id === _attributes.id) {
+        const updatedCards = cards.map((card) => {
+          if (card.id === attributes.id) {
             return {
-              ..._card,
+              ...card,
               attributes: {
-                for: _attributes.for,
-                dex: _attributes.dex,
-                con: _attributes.con,
-                wis: _attributes.wis,
-                int: _attributes.int,
-                cha: _attributes.cha,
+                for: attributes.for,
+                dex: attributes.dex,
+                con: attributes.con,
+                wis: attributes.wis,
+                int: attributes.int,
+                cha: attributes.cha,
               },
               updatedAt: `${new Date()}`,
             };
           }
 
-          return _card;
+          return card;
         });
 
-        const response = updateCards(updatedCards as ICard[]);
+        const response = updateCards(updatedCards);
 
         if (!response) {
           throw Error(
@@ -305,9 +307,10 @@ export const CardsProvider: React.FC = ({ children }) => {
         }
 
         return true;
-      } catch (err) {
-        const { message } = err;
-        addWarnning(message);
+      } catch (err: any) {
+        if (err) {
+          addWarnning(err.message);
+        }
 
         return false;
       }
@@ -316,21 +319,21 @@ export const CardsProvider: React.FC = ({ children }) => {
   );
 
   const updateAnnotations = useCallback(
-    (_data: IUpdateAnnotationsData) => {
+    (data: IUpdateAnnotationsData) => {
       try {
-        const updatedCards = cards.map((_card) => {
-          if (_card.id === _data.id) {
+        const updatedCards = cards.map((card) => {
+          if (card.id === data.id) {
             return {
-              ..._card,
-              annotations: _data.annotations,
+              ...card,
+              annotations: data.annotations,
               updatedAt: `${new Date()}`,
             };
           }
 
-          return _card;
+          return card;
         });
 
-        const response = updateCards(updatedCards as ICard[]);
+        const response = updateCards(updatedCards);
 
         if (!response) {
           throw Error(
@@ -339,9 +342,10 @@ export const CardsProvider: React.FC = ({ children }) => {
         }
 
         return true;
-      } catch (err) {
-        const { message } = err;
-        addWarnning(message);
+      } catch (err: any) {
+        if (err) {
+          addWarnning(err.message);
+        }
 
         return false;
       }
@@ -350,9 +354,9 @@ export const CardsProvider: React.FC = ({ children }) => {
   );
 
   const removeCard = useCallback(
-    (_id: String): Boolean => {
+    (id): boolean => {
       try {
-        const updatedCards = cards.filter(({ id }) => id !== _id);
+        const updatedCards = cards.filter((item) => item.id !== id);
 
         if (!updatedCards) {
           throw Error('Sua ficha não foi encontrada.');
@@ -365,9 +369,10 @@ export const CardsProvider: React.FC = ({ children }) => {
         }
 
         return true;
-      } catch (err) {
-        const { message } = err;
-        addWarnning(message);
+      } catch (err: any) {
+        if (err) {
+          addWarnning(err.message);
+        }
 
         return false;
       }
@@ -380,7 +385,7 @@ export const CardsProvider: React.FC = ({ children }) => {
       const storageCards = await AsyncStorage.getItem('@RPGZando:cards');
 
       if (storageCards) {
-        setCards(JSON.parse(storageCards) as ICard[]);
+        setCards(JSON.parse(storageCards));
       }
     };
 

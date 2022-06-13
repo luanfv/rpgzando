@@ -5,6 +5,7 @@ const Container = styled.View`
     background-color: ${theme.colors.primary};
     color: ${theme.colors.text};
     border-color: ${theme.colors.textLight};
+    margin-bottom: ${theme.spacing * 2}px;
   `}
 
   border-width: 1px;

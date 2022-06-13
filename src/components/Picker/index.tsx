@@ -10,7 +10,11 @@ const Picker: React.FC<IPicker> = ({ items, ...rest }) => {
 
   return (
     <Container>
-      <PickerRN {...rest} style={{ color: theme.colors.text }}>
+      <PickerRN
+        {...rest}
+        style={{ color: theme.colors.text }}
+        dropdownIconColor={theme.colors.text}
+      >
         {items.map(({ label, value }, index) => (
           <PickerRN.Item
             key={index}

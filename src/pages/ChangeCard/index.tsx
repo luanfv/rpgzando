@@ -9,12 +9,7 @@ import { Input, Picker } from '@src/components';
 import { serviceClasses } from '@src/services';
 import { Container } from './styles';
 import { IPickerItem } from '@src/types/components';
-
-interface IForm {
-  name: string;
-  level: string;
-  class: string;
-}
+import { ICardForm } from '@src/types';
 
 const schema = Yup.object().shape({
   name: Yup.string().required('Você precisa informar o nome!'),
@@ -48,7 +43,7 @@ const ChangeCard: React.FC = () => {
 
   const theme = useTheme();
 
-  const onSubmit = useCallback((data: IForm) => {
+  const onSubmit = useCallback((data: ICardForm) => {
     console.log(data);
   }, []);
 

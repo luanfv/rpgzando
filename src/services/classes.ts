@@ -1,16 +1,6 @@
-import axios, { AxiosResponse } from 'axios';
+import axios from 'axios';
 
-interface IServiceClasse {
-  index: string;
-  name: string;
-}
-
-interface IServiceClassesResponse extends AxiosResponse {
-  data: {
-    count: 12;
-    results: IServiceClasse[];
-  };
-}
+import { IServiceClassesResponse } from '@src/types/services';
 
 const serviceClasses = {
   get: async () => {

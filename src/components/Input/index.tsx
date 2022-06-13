@@ -1,12 +1,7 @@
+import { IInput } from '@src/types/components';
 import React from 'react';
-import { TextInput, TextInputProps } from 'react-native';
 import { useTheme } from 'styled-components/native';
 import { Container, Message } from './styles';
-
-interface IInput extends TextInputProps {
-  errorMessage?: string;
-  reference?: React.Ref<TextInput>;
-}
 
 const Input: React.FC<IInput> = ({ errorMessage, reference, ...rest }) => {
   const theme = useTheme();

@@ -1,5 +1,4 @@
 import React from 'react';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { Text, TextInput, TextInputProps } from 'react-native';
 import { Container } from './styles';
 

@@ -1,5 +1,4 @@
 import React, { useRef, useCallback } from 'react';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { View, Button, TextInput } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';

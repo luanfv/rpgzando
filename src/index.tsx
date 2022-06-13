@@ -1,26 +1,11 @@
-import 'react-native-gesture-handler';
-
 import React from 'react';
-import { StatusBar } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-
-import AppProvider from './hooks';
-import Routes from './routes';
-import styles from './styles.json';
-
-import ModalWarnning from './components/Modal/Warnning';
+import { Text, View } from 'react-native';
 
 const App: React.FC = () => {
   return (
-    <AppProvider>
-      <StatusBar backgroundColor={styles.primary} />
-
-      <NavigationContainer>
-        <Routes />
-      </NavigationContainer>
-
-      <ModalWarnning />
-    </AppProvider>
+    <View>
+      <Text>RPGZando</Text>
+    </View>
   );
 };
 

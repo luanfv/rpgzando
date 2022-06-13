@@ -1,8 +1,28 @@
 import { TextInput } from 'react-native';
-import styled from 'styled-components/native';
+import styled, { css } from 'styled-components/native';
 
-const Container = styled(TextInput)`
-  border: red solid 1px;
+interface IContainer {
+  hasError: boolean;
+}
+
+const Container = styled(TextInput)<IContainer>`
+  ${({ theme, hasError }) => css`
+    background-color: ${theme.colors.primary};
+    color: ${theme.colors.text};
+    border-color: ${hasError ? theme.colors.attention : theme.colors.textLight};
+  `}
+
+  border-width: 1px;
+  border-radius: 4px;
+  padding: 12px;
 `;
 
-export { Container };
+const Message = styled.Text`
+  ${({ theme }) => css`
+    color: ${theme.colors.attention};
+    margin-left: ${theme.spacing / 2}px;
+    height: ${theme.spacing * 2}px;
+  `}
+`;
+
+export { Container, Message };

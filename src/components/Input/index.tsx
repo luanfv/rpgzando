@@ -1,6 +1,7 @@
 import React from 'react';
-import { Text, TextInput, TextInputProps } from 'react-native';
-import { Container } from './styles';
+import { TextInput, TextInputProps } from 'react-native';
+import { useTheme } from 'styled-components/native';
+import { Container, Message } from './styles';
 
 interface IInput extends TextInputProps {
   errorMessage?: string;
@@ -8,10 +9,17 @@ interface IInput extends TextInputProps {
 }
 
 const Input: React.FC<IInput> = ({ errorMessage, reference, ...rest }) => {
+  const theme = useTheme();
+
   return (
     <>
-      <Container {...rest} ref={reference} />
-      {errorMessage && <Text>{errorMessage}</Text>}
+      <Container
+        ref={reference}
+        hasError={!!errorMessage}
+        placeholderTextColor={theme.colors.textLight}
+        {...rest}
+      />
+      <Message>{errorMessage}</Message>
     </>
   );
 };

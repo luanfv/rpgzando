@@ -7,7 +7,7 @@ interface IServiceClasse {
 
 interface IServiceClassesResponse extends AxiosResponse {
   data: {
-    count: 12;
+    count: number;
     results: IServiceClasse[];
   };
 }

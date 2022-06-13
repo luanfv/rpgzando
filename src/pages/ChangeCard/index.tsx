@@ -6,7 +6,7 @@ import * as Yup from 'yup';
 import { useTheme } from 'styled-components';
 
 import { Input, Picker } from '@src/components';
-import { serviceClasses } from '@src/services';
+import { serviceClasses, serviceRaces } from '@src/services';
 import { Container } from './styles';
 import { IPickerItem } from '@src/types/components';
 import { ICardForm } from '@src/types';
@@ -20,6 +20,8 @@ const schema = Yup.object().shape({
     .integer('Você precisa passar um número inteiro!'),
 
   class: Yup.string().required(),
+
+  races: Yup.string().required(),
 });
 
 const ChangeCard: React.FC = () => {
@@ -32,6 +34,7 @@ const ChangeCard: React.FC = () => {
       name: '',
       level: '',
       class: '',
+      races: '',
     },
     resolver: yupResolver(schema),
   });
@@ -40,6 +43,7 @@ const ChangeCard: React.FC = () => {
   const levelRef = useRef<TextInput>(null);
 
   const [classes, setClasses] = useState<IPickerItem[]>([]);
+  const [races, setRaces] = useState<IPickerItem[]>([]);
 
   const theme = useTheme();
 
@@ -57,6 +61,19 @@ const ChangeCard: React.FC = () => {
       }));
 
       setClasses(newClasses);
+    });
+  }, []);
+
+  useEffect(() => {
+    serviceRaces.get().then((response) => {
+      const { data } = response;
+
+      const newRaces = data.results.map((item) => ({
+        label: item.name,
+        value: item.index,
+      }));
+
+      setRaces(newRaces);
     });
   }, []);
 
@@ -108,6 +125,19 @@ const ChangeCard: React.FC = () => {
           />
         )}
         name="class"
+      />
+
+      <Controller
+        control={control}
+        render={({ field: { onChange, onBlur, value } }) => (
+          <Picker
+            items={races}
+            selectedValue={value}
+            onValueChange={onChange}
+            onBlur={onBlur}
+          />
+        )}
+        name="races"
       />
 
       <Button

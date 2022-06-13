@@ -9,6 +9,6 @@ const App: React.FC = () => {
       <ChangeCard />
     </ThemeProvider>
   );
-}
+};
 
 export default App;

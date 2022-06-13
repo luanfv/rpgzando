@@ -14,8 +14,10 @@ interface IServiceClassesResponse extends AxiosResponse {
 
 const serviceClasses = {
   get: async () => {
-    return await axios.get('https://www.dnd5eapi.co/api/classes/') as IServiceClassesResponse;
+    return (await axios.get(
+      'https://www.dnd5eapi.co/api/classes/',
+    )) as IServiceClassesResponse;
   },
-}
+};
 
 export { serviceClasses };

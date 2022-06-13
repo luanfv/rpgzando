@@ -9,4 +9,4 @@ interface IPicker extends PickerProps {
   items: IPickerItem[];
 }
 
-export { IPicker, IPickerItem }
+export { IPicker, IPickerItem };

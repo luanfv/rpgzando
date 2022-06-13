@@ -24,7 +24,7 @@ const schema = Yup.object().shape({
     .typeError('Esta entrada precisa ser do tipo númerica!')
     .integer('Você precisa passar um número inteiro!'),
 
-    class: Yup.string().required(),
+  class: Yup.string().required(),
 });
 
 const ChangeCard: React.FC = () => {
@@ -53,18 +53,16 @@ const ChangeCard: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    serviceClasses
-      .get()
-      .then((response) => {
-        const { data } = response;
+    serviceClasses.get().then((response) => {
+      const { data } = response;
 
-        const newClasses = data.results.map((item) => ({
-          label: item.name,
-          value: item.index,
-        }));
+      const newClasses = data.results.map((item) => ({
+        label: item.name,
+        value: item.index,
+      }));
 
-        setClasses(newClasses);
-      });
+      setClasses(newClasses);
+    });
   }, []);
 
   return (
@@ -117,7 +115,11 @@ const ChangeCard: React.FC = () => {
         name="class"
       />
 
-      <Button title="Confirmar" onPress={handleSubmit(onSubmit)} color={theme.colors.secondary} />
+      <Button
+        title="Confirmar"
+        onPress={handleSubmit(onSubmit)}
+        color={theme.colors.secondary}
+      />
     </Container>
   );
 };

@@ -18,6 +18,6 @@ const theme: IStyleGuide = {
   },
 
   spacing: 20,
-}
+};
 
 export { theme };

@@ -10,6 +10,7 @@ const Container = styled(TextInput)<IContainer>`
     background-color: ${theme.colors.primary};
     color: ${theme.colors.text};
     border-color: ${hasError ? theme.colors.attention : theme.colors.textLight};
+    font-size: ${theme.fonts.medium}px;
   `}
 
   border-width: 1px;
@@ -22,6 +23,7 @@ const Message = styled.Text`
     color: ${theme.colors.attention};
     margin-left: ${theme.spacing / 2}px;
     height: ${theme.spacing * 2}px;
+    font-size: ${theme.fonts.small}px;
   `}
 `;
 

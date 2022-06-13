@@ -1,24 +1,30 @@
-import React, { useRef, useCallback } from 'react';
+import React, { useRef, useCallback, useEffect, useState } from 'react';
 import { Button, TextInput } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
-
-import { Input } from '@src/components';
-import { Container } from './styles';
 import { useTheme } from 'styled-components';
+
+import { Input, Picker } from '@src/components';
+import { serviceClasses } from '@src/services';
+import { Container } from './styles';
+import { IPickerItem } from '@src/types/components';
 
 interface IForm {
   name: string;
   level: string;
+  class: string;
 }
 
 const schema = Yup.object().shape({
   name: Yup.string().required('Você precisa informar o nome!'),
+
   level: Yup.number()
     .required('Você precisa informar o nível!')
     .typeError('Esta entrada precisa ser do tipo númerica!')
     .integer('Você precisa passar um número inteiro!'),
+
+    class: Yup.string().required(),
 });
 
 const ChangeCard: React.FC = () => {
@@ -30,6 +36,7 @@ const ChangeCard: React.FC = () => {
     defaultValues: {
       name: '',
       level: '',
+      class: '',
     },
     resolver: yupResolver(schema),
   });
@@ -37,20 +44,33 @@ const ChangeCard: React.FC = () => {
   const nameRef = useRef<TextInput>(null);
   const levelRef = useRef<TextInput>(null);
 
+  const [classes, setClasses] = useState<IPickerItem[]>([]);
+
   const theme = useTheme();
 
   const onSubmit = useCallback((data: IForm) => {
     console.log(data);
   }, []);
 
+  useEffect(() => {
+    serviceClasses
+      .get()
+      .then((response) => {
+        const { data } = response;
+
+        const newClasses = data.results.map((item) => ({
+          label: item.name,
+          value: item.index,
+        }));
+
+        setClasses(newClasses);
+      });
+  }, []);
+
   return (
     <Container>
       <Controller
         control={control}
-        rules={{
-          maxLength: 100,
-          required: true,
-        }}
         render={({ field: { onChange, onBlur, value } }) => (
           <Input
             placeholder="Nome..."
@@ -58,6 +78,7 @@ const ChangeCard: React.FC = () => {
             onBlur={onBlur}
             onChangeText={onChange}
             value={value}
+            maxLength={40}
             errorMessage={errors.name && errors.name.message}
             onSubmitEditing={() => levelRef.current?.focus()}
           />
@@ -67,10 +88,6 @@ const ChangeCard: React.FC = () => {
 
       <Controller
         control={control}
-        rules={{
-          max: 100,
-          required: true,
-        }}
         render={({ field: { onChange, onBlur, value } }) => (
           <Input
             placeholder="Nível..."
@@ -85,6 +102,19 @@ const ChangeCard: React.FC = () => {
           />
         )}
         name="level"
+      />
+
+      <Controller
+        control={control}
+        render={({ field: { onChange, onBlur, value } }) => (
+          <Picker
+            items={classes}
+            selectedValue={value}
+            onValueChange={onChange}
+            onBlur={onBlur}
+          />
+        )}
+        name="class"
       />
 
       <Button title="Confirmar" onPress={handleSubmit(onSubmit)} color={theme.colors.secondary} />

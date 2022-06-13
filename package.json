@@ -11,12 +11,14 @@
     "commit": "git-cz"
   },
   "dependencies": {
+    "@hookform/resolvers": "^2.9.1",
     "commitizen": "^4.2.4",
     "husky": "^8.0.1",
     "react": "17.0.2",
     "react-hook-form": "^7.32.0",
     "react-native": "0.68.2",
-    "styled-components": "^5.3.5"
+    "styled-components": "^5.3.5",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

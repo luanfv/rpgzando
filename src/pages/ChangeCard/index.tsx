@@ -82,7 +82,7 @@ const ChangeCard: React.FC = () => {
         control={control}
         render={({ field: { onChange, onBlur, value } }) => (
           <Input
-            placeholder="Nome..."
+            placeholder="Name..."
             reference={nameRef}
             onBlur={onBlur}
             onChangeText={onChange}
@@ -99,7 +99,7 @@ const ChangeCard: React.FC = () => {
         control={control}
         render={({ field: { onChange, onBlur, value } }) => (
           <Input
-            placeholder="Nível..."
+            placeholder="Level..."
             reference={levelRef}
             onBlur={onBlur}
             onChangeText={onChange}
@@ -117,20 +117,6 @@ const ChangeCard: React.FC = () => {
         control={control}
         render={({ field: { onChange, onBlur, value } }) => (
           <Picker
-            title="Classe"
-            items={classes}
-            selectedValue={value}
-            onValueChange={onChange}
-            onBlur={onBlur}
-          />
-        )}
-        name="class"
-      />
-
-      <Controller
-        control={control}
-        render={({ field: { onChange, onBlur, value } }) => (
-          <Picker
             title="Race"
             items={races}
             selectedValue={value}
@@ -141,8 +127,22 @@ const ChangeCard: React.FC = () => {
         name="races"
       />
 
+      <Controller
+        control={control}
+        render={({ field: { onChange, onBlur, value } }) => (
+          <Picker
+            title="Classe"
+            items={classes}
+            selectedValue={value}
+            onValueChange={onChange}
+            onBlur={onBlur}
+          />
+        )}
+        name="class"
+      />
+
       <Button
-        title="Confirmar"
+        title="Confirm"
         onPress={handleSubmit(onSubmit)}
         color={theme.colors.secondary}
       />

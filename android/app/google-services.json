@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "909652152956",
+    "firebase_url": "https://rpgzando-49e56-default-rtdb.firebaseio.com",
+    "project_id": "rpgzando-49e56",
+    "storage_bucket": "rpgzando-49e56.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:909652152956:android:ae8a673a575ea34a54eff9",
+        "android_client_info": {
+          "package_name": "com.rpgzando"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "909652152956-gsekuuv7330491do6cu7vckh038pvif0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rpgzando",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "909652152956-ia139ts2pm1fccsas01ucaji1cf6j99d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDg0ZyT-Pz6Heb3QoG43jzevf5cAfZnfZo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "909652152956-ia139ts2pm1fccsas01ucaji1cf6j99d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

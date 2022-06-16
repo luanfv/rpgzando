@@ -15,7 +15,6 @@
     "@react-native-firebase/app": "^14.11.0",
     "@react-native-firebase/firestore": "^14.11.0",
     "@react-native-picker/picker": "^2.4.1",
-    "axios": "^0.27.2",
     "commitizen": "^4.2.4",
     "husky": "^8.0.1",
     "react": "17.0.2",

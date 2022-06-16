@@ -6,7 +6,7 @@ const theme: IStyleGuide = {
     secondary: '#074e41',
     background: 'rgba(23, 29, 43, 0.85)',
     text: '#fff',
-    textLight: 'rgba(255, 255, 255, 0.7)',
+    textLight: '#a9a9a9',
     attention: '#C83737',
     warning: '#C9AF2A',
   },

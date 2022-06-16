@@ -5,7 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import { useTheme } from 'styled-components';
 
-import { Input, Picker } from '@src/components';
+import { Input, InputNumeric, Picker } from '@src/components';
 import { serviceClasses, serviceRaces } from '@src/services';
 import { Container } from './styles';
 import { IPickerItem } from '@src/types/components';
@@ -22,6 +22,15 @@ const schema = Yup.object().shape({
   class: Yup.string().required(),
 
   races: Yup.string().required(),
+
+  hp: Yup.number().required(),
+
+  for: Yup.number().required(),
+  dex: Yup.number().required(),
+  con: Yup.number().required(),
+  int: Yup.number().required(),
+  wis: Yup.number().required(),
+  cha: Yup.number().required(),
 });
 
 const ChangeCard: React.FC = () => {
@@ -35,6 +44,13 @@ const ChangeCard: React.FC = () => {
       level: '',
       class: '',
       races: '',
+      hp: 1,
+      for: 1,
+      dex: 1,
+      con: 1,
+      int: 1,
+      wis: 1,
+      cha: 1,
     },
     resolver: yupResolver(schema),
   });
@@ -52,28 +68,34 @@ const ChangeCard: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    serviceClasses.get().then((response) => {
-      const newClasses = response.map((item) => ({
-        label: item.name,
-        value: item.index,
-        image: item.image,
-      }));
+    serviceClasses
+      .get()
+      .then((response) => {
+        const newClasses = response.map((item) => ({
+          label: item.name,
+          value: item.index,
+          image: item.image,
+        }));
 
-      setClasses(newClasses);
-    });
+        setClasses(newClasses);
+      })
+      .catch((err) => console.log(err));
   }, []);
 
   useEffect(() => {
-    serviceRaces.get().then((response) => {
-      const newRaces = response.map((item) => ({
-        label: item.name,
-        value: item.index,
-        image: item.image,
-        description: item.description,
-      }));
+    serviceRaces
+      .get()
+      .then((response) => {
+        const newRaces = response.map((item) => ({
+          label: item.name,
+          value: item.index,
+          image: item.image,
+          description: item.description,
+        }));
 
-      setRaces(newRaces);
-    });
+        setRaces(newRaces);
+      })
+      .catch((err) => console.log(err));
   }, []);
 
   return (
@@ -139,6 +161,118 @@ const ChangeCard: React.FC = () => {
           />
         )}
         name="class"
+      />
+
+      <Controller
+        control={control}
+        render={({ field: { onChange, onBlur, value } }) => (
+          <InputNumeric
+            title="HP"
+            value={value}
+            onChange={onChange}
+            onBlur={onBlur}
+            min={1}
+            max={20}
+            random
+          />
+        )}
+        name="hp"
+      />
+
+      <Controller
+        control={control}
+        render={({ field: { onChange, onBlur, value } }) => (
+          <InputNumeric
+            title="Force"
+            value={value}
+            onChange={onChange}
+            onBlur={onBlur}
+            min={1}
+            max={20}
+            random
+          />
+        )}
+        name="for"
+      />
+
+      <Controller
+        control={control}
+        render={({ field: { onChange, onBlur, value } }) => (
+          <InputNumeric
+            title="Dexterity"
+            value={value}
+            onChange={onChange}
+            onBlur={onBlur}
+            min={1}
+            max={20}
+            random
+          />
+        )}
+        name="dex"
+      />
+
+      <Controller
+        control={control}
+        render={({ field: { onChange, onBlur, value } }) => (
+          <InputNumeric
+            title="Constitution"
+            value={value}
+            onChange={onChange}
+            onBlur={onBlur}
+            min={1}
+            max={20}
+            random
+          />
+        )}
+        name="con"
+      />
+
+      <Controller
+        control={control}
+        render={({ field: { onChange, onBlur, value } }) => (
+          <InputNumeric
+            title="Intelligence"
+            value={value}
+            onChange={onChange}
+            onBlur={onBlur}
+            min={1}
+            max={20}
+            random
+          />
+        )}
+        name="int"
+      />
+
+      <Controller
+        control={control}
+        render={({ field: { onChange, onBlur, value } }) => (
+          <InputNumeric
+            title="Wisdom"
+            value={value}
+            onChange={onChange}
+            onBlur={onBlur}
+            min={1}
+            max={20}
+            random
+          />
+        )}
+        name="wis"
+      />
+
+      <Controller
+        control={control}
+        render={({ field: { onChange, onBlur, value } }) => (
+          <InputNumeric
+            title="Charisma"
+            value={value}
+            onChange={onChange}
+            onBlur={onBlur}
+            min={1}
+            max={20}
+            random
+          />
+        )}
+        name="cha"
       />
 
       <Button

@@ -69,6 +69,8 @@ const ChangeCard: React.FC = () => {
       const newRaces = response.map((item) => ({
         label: item.name,
         value: item.index,
+        image: item.image,
+        description: item.description,
       }));
 
       setRaces(newRaces);
@@ -116,6 +118,7 @@ const ChangeCard: React.FC = () => {
         control={control}
         render={({ field: { onChange, onBlur, value } }) => (
           <Picker
+            title="Classe"
             items={classes}
             selectedValue={value}
             onValueChange={onChange}
@@ -129,6 +132,7 @@ const ChangeCard: React.FC = () => {
         control={control}
         render={({ field: { onChange, onBlur, value } }) => (
           <Picker
+            title="Race"
             items={races}
             selectedValue={value}
             onValueChange={onChange}

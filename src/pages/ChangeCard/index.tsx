@@ -66,9 +66,7 @@ const ChangeCard: React.FC = () => {
 
   useEffect(() => {
     serviceRaces.get().then((response) => {
-      const { data } = response;
-
-      const newRaces = data.results.map((item) => ({
+      const newRaces = response.map((item) => ({
         label: item.name,
         value: item.index,
       }));

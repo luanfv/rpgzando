@@ -1,15 +1,9 @@
-import { AxiosResponse } from 'axios';
-
-interface IServiceRace {
+interface IServiceRaceGet {
   index: string;
+  race: string;
+  image: string;
   name: string;
+  description: string;
 }
 
-interface IServiceRacesResponse extends AxiosResponse {
-  data: {
-    count: number;
-    results: IServiceRace[];
-  };
-}
-
-export { IServiceRace, IServiceRacesResponse };
+export { IServiceRaceGet };

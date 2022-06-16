@@ -1,12 +1,25 @@
-import axios from 'axios';
-
-import { IServiceClassesResponse } from '@src/types/services';
+import firestore from '@react-native-firebase/firestore';
+import { IServiceClasseGet } from '@src/types/services/classes';
 
 const serviceClasses = {
-  get: async () => {
-    return (await axios.get(
-      'https://www.dnd5eapi.co/api/classes/',
-    )) as IServiceClassesResponse;
+  get: async (language = 'en') => {
+    const response = await firestore()
+      .collection('classes')
+      .orderBy('index')
+      .get();
+
+    const classes = response.docs.map((doc) => {
+      const data = doc.data();
+
+      const name = language === 'en' ? data.nameEN : data.namePT;
+
+      return {
+        ...data,
+        name,
+      };
+    }) as IServiceClasseGet[];
+
+    return classes;
   },
 };
 

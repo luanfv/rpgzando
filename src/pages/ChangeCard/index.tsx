@@ -53,11 +53,10 @@ const ChangeCard: React.FC = () => {
 
   useEffect(() => {
     serviceClasses.get().then((response) => {
-      const { data } = response;
-
-      const newClasses = data.results.map((item) => ({
+      const newClasses = response.map((item) => ({
         label: item.name,
         value: item.index,
+        image: item.image,
       }));
 
       setClasses(newClasses);

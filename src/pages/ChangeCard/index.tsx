@@ -21,7 +21,7 @@ const schema = Yup.object().shape({
 
   class: Yup.string().required(),
 
-  races: Yup.string().required(),
+  race: Yup.string().required(),
 
   hp: Yup.number().required(),
 
@@ -41,9 +41,9 @@ const ChangeCard: React.FC = () => {
   } = useForm({
     defaultValues: {
       name: '',
-      level: '',
+      level: 1,
       class: '',
-      races: '',
+      race: '',
       hp: 1,
       for: 1,
       dex: 1,
@@ -120,16 +120,13 @@ const ChangeCard: React.FC = () => {
       <Controller
         control={control}
         render={({ field: { onChange, onBlur, value } }) => (
-          <Input
-            placeholder="Level..."
-            reference={levelRef}
-            onBlur={onBlur}
-            onChangeText={onChange}
+          <InputNumeric
+            title="Level"
             value={value}
-            keyboardType="decimal-pad"
-            autoCorrect={false}
-            maxLength={3}
-            errorMessage={errors.level && errors.level.message}
+            onChange={onChange}
+            onBlur={onBlur}
+            min={1}
+            max={99}
           />
         )}
         name="level"
@@ -146,7 +143,7 @@ const ChangeCard: React.FC = () => {
             onBlur={onBlur}
           />
         )}
-        name="races"
+        name="race"
       />
 
       <Controller

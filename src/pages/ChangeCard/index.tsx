@@ -5,11 +5,20 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import { useTheme } from 'styled-components';
 
-import { Input, InputNumeric, Picker } from '@src/components';
+import { Checkbox, Input, InputNumeric, Picker } from '@src/components';
 import { serviceClasses, serviceRaces } from '@src/services';
 import { Container } from './styles';
 import { IPickerItem } from '@src/types/components';
 import { ICardForm } from '@src/types';
+
+interface IProficiencie {
+  index: string;
+  choose: number;
+  data: {
+    index: string;
+    name: string;
+  }[];
+}
 
 const schema = Yup.object().shape({
   name: Yup.string().required('Você precisa informar o nome!'),
@@ -37,6 +46,7 @@ const ChangeCard: React.FC = () => {
   const {
     control,
     handleSubmit,
+    getValues,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -60,24 +70,89 @@ const ChangeCard: React.FC = () => {
 
   const [classes, setClasses] = useState<IPickerItem[]>([]);
   const [races, setRaces] = useState<IPickerItem[]>([]);
+  const [proficiencies, setProficiencies] = useState<IProficiencie[]>([]);
+  const [proficiency, setProficiency] = useState<IProficiencie | undefined>(
+    undefined,
+  );
+  const [selectedProficiencies, setSelectedProficiencies] = useState<string[]>(
+    [],
+  );
 
   const theme = useTheme();
 
-  const onSubmit = useCallback((data: ICardForm) => {
-    console.log(data);
-  }, []);
+  const onSubmit = useCallback(
+    (data: ICardForm) => {
+      console.log({ ...data, skills: selectedProficiencies });
+    },
+    [selectedProficiencies],
+  );
+
+  const isCheckedCheckbox = useCallback(
+    (skill) => !!selectedProficiencies.find((value) => value === skill),
+    [selectedProficiencies],
+  );
+
+  const handleToggleCheckbox = useCallback(
+    (skill: string) => {
+      if (proficiency) {
+        setSelectedProficiencies((oldState) => {
+          const exists = oldState.find((value) => value === skill);
+
+          if (exists) {
+            return oldState.filter((value) => value !== skill);
+          }
+
+          if (oldState.length >= proficiency.choose) {
+            return oldState;
+          }
+
+          return [...oldState, skill];
+        });
+      }
+    },
+    [proficiency],
+  );
+
+  const handleOnBlurClass = useCallback(
+    (onBlur: () => void) => {
+      onBlur();
+      setSelectedProficiencies([]);
+
+      const selectedClass = proficiencies.find(
+        (item) => item.index === getValues('class'),
+      );
+
+      setProficiency(selectedClass);
+    },
+    [getValues, proficiencies],
+  );
 
   useEffect(() => {
     serviceClasses
       .get()
       .then((response) => {
-        const newClasses = response.map((item) => ({
-          label: item.name,
-          value: item.index,
-          image: item.image,
-        }));
+        const newClasses: IPickerItem[] = [];
+        const newProficiencies: IProficiencie[] = [];
+
+        response.forEach((item) => {
+          newClasses.push({
+            label: item.name,
+            value: item.index,
+            image: item.image,
+            description: `HP: 1d${item.hp} * your level`,
+          });
+
+          if (item.proficiency) {
+            newProficiencies.push({
+              index: item.index,
+              choose: item.proficiency.choose,
+              data: item.proficiency.data,
+            });
+          }
+        });
 
         setClasses(newClasses);
+        setProficiencies(newProficiencies);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -154,11 +229,21 @@ const ChangeCard: React.FC = () => {
             items={classes}
             selectedValue={value}
             onValueChange={onChange}
-            onBlur={onBlur}
+            onBlur={() => handleOnBlurClass(onBlur)}
           />
         )}
         name="class"
       />
+
+      {proficiency &&
+        proficiency.data.map((item) => (
+          <Checkbox
+            key={item.index}
+            checked={isCheckedCheckbox(item.index)}
+            description={item.name}
+            onChange={() => handleToggleCheckbox(item.index)}
+          />
+        ))}
 
       <Controller
         control={control}

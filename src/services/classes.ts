@@ -1,5 +1,8 @@
 import firestore from '@react-native-firebase/firestore';
-import { IServiceClasseGet } from '@src/types/services/classes';
+import {
+  IServiceClasseGet,
+  IServiceClasseGetResponse,
+} from '@src/types/services/classes';
 
 const serviceClasses = {
   get: async (language = 'en') => {
@@ -9,15 +12,35 @@ const serviceClasses = {
       .get();
 
     const classes = response.docs.map((doc) => {
-      const data = doc.data();
+      const data = doc.data() as IServiceClasseGet;
 
       const name = language === 'en' ? data.nameEN : data.namePT;
 
+      if (data.proficiency) {
+        const skills = data.proficiency.data.map((item) => ({
+          index: item.index,
+          name: item.nameEN,
+        }));
+
+        const proficiency = { ...data.proficiency, data: skills };
+
+        return {
+          name,
+          hp: data.hp,
+          image: data.image,
+          index: data.index,
+          proficiency,
+        } as IServiceClasseGetResponse;
+      }
+
       return {
-        ...data,
         name,
-      };
-    }) as IServiceClasseGet[];
+        hp: data.hp,
+        image: data.image,
+        index: data.index,
+        proficiency: undefined,
+      } as IServiceClasseGetResponse;
+    });
 
     return classes;
   },

@@ -4,7 +4,7 @@ interface IContainer {
   selected?: boolean;
 }
 
-const Container = styled.View<IContainer>`
+const Container = styled.TouchableOpacity<IContainer>`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -15,7 +15,7 @@ const Container = styled.View<IContainer>`
   ${({ selected }) =>
     selected &&
     css`
-      background-color: rgba(7, 78, 65, 0.4);
+      background-color: rgba(7, 78, 65, 0.2);
     `}
 `;
 

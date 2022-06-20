@@ -10,15 +10,7 @@ import { serviceClasses, serviceRaces } from '@src/services';
 import { Container } from './styles';
 import { IPickerItem } from '@src/types/components';
 import { ICardForm } from '@src/types';
-
-interface IProficiencie {
-  index: string;
-  choose: number;
-  data: {
-    index: string;
-    name: string;
-  }[];
-}
+import { IClassSkills } from '@src/types/pages';
 
 const schema = Yup.object().shape({
   name: Yup.string().required('Você precisa informar o nome!'),
@@ -68,41 +60,39 @@ const ChangeCard: React.FC = () => {
   const nameRef = useRef<TextInput>(null);
   const levelRef = useRef<TextInput>(null);
 
-  const [classes, setClasses] = useState<IPickerItem[]>([]);
   const [races, setRaces] = useState<IPickerItem[]>([]);
-  const [proficiencies, setProficiencies] = useState<IProficiencie[]>([]);
-  const [proficiency, setProficiency] = useState<IProficiencie | undefined>(
-    undefined,
-  );
-  const [selectedProficiencies, setSelectedProficiencies] = useState<string[]>(
-    [],
-  );
+  const [classes, setClasses] = useState<IPickerItem[]>([]);
+  const [skills, setSkills] = useState<IClassSkills[]>([]);
+  const [selectedClassSkills, setSelectedClassSkills] = useState<
+    IClassSkills | undefined
+  >(undefined);
+  const [selectedSkills, setSelectedSkills] = useState<string[]>([]);
 
   const theme = useTheme();
 
   const onSubmit = useCallback(
     (data: ICardForm) => {
-      console.log({ ...data, skills: selectedProficiencies });
+      console.log({ ...data, skills: selectedSkills });
     },
-    [selectedProficiencies],
+    [selectedSkills],
   );
 
   const isCheckedCheckbox = useCallback(
-    (skill) => !!selectedProficiencies.find((value) => value === skill),
-    [selectedProficiencies],
+    (skill) => !!selectedSkills.find((value) => value === skill),
+    [selectedSkills],
   );
 
   const handleToggleCheckbox = useCallback(
     (skill: string) => {
-      if (proficiency) {
-        setSelectedProficiencies((oldState) => {
+      if (selectedClassSkills) {
+        setSelectedSkills((oldState) => {
           const exists = oldState.find((value) => value === skill);
 
           if (exists) {
             return oldState.filter((value) => value !== skill);
           }
 
-          if (oldState.length >= proficiency.choose) {
+          if (oldState.length >= selectedClassSkills.choose) {
             return oldState;
           }
 
@@ -110,21 +100,19 @@ const ChangeCard: React.FC = () => {
         });
       }
     },
-    [proficiency],
+    [selectedClassSkills],
   );
 
   const handleOnBlurClass = useCallback(
     (onBlur: () => void) => {
       onBlur();
-      setSelectedProficiencies([]);
+      setSelectedSkills([]);
 
-      const selectedClass = proficiencies.find(
-        (item) => item.index === getValues('class'),
-      );
+      const response = skills.find((item) => item.index === getValues('class'));
 
-      setProficiency(selectedClass);
+      setSelectedClassSkills(response);
     },
-    [getValues, proficiencies],
+    [getValues, skills],
   );
 
   useEffect(() => {
@@ -132,7 +120,7 @@ const ChangeCard: React.FC = () => {
       .get()
       .then((response) => {
         const newClasses: IPickerItem[] = [];
-        const newProficiencies: IProficiencie[] = [];
+        const newProficiencies: IClassSkills[] = [];
 
         response.forEach((item) => {
           newClasses.push({
@@ -142,17 +130,15 @@ const ChangeCard: React.FC = () => {
             description: `HP: 1d${item.hp} * your level`,
           });
 
-          if (item.proficiency) {
-            newProficiencies.push({
-              index: item.index,
-              choose: item.proficiency.choose,
-              data: item.proficiency.data,
-            });
-          }
+          newProficiencies.push({
+            index: item.index,
+            choose: item.skills.choose,
+            data: item.skills.data,
+          });
         });
 
         setClasses(newClasses);
-        setProficiencies(newProficiencies);
+        setSkills(newProficiencies);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -235,8 +221,8 @@ const ChangeCard: React.FC = () => {
         name="class"
       />
 
-      {proficiency &&
-        proficiency.data.map((item) => (
+      {selectedClassSkills &&
+        selectedClassSkills.data.map((item) => (
           <Checkbox
             key={item.index}
             checked={isCheckedCheckbox(item.index)}
@@ -254,8 +240,7 @@ const ChangeCard: React.FC = () => {
             onChange={onChange}
             onBlur={onBlur}
             min={1}
-            max={20}
-            random
+            max={999}
           />
         )}
         name="hp"

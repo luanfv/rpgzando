@@ -1,9 +1,9 @@
-interface IProficiency {
+interface ISkillResponse {
   index: string;
   nameEN: string;
 }
 
-interface IProficiencyResponse {
+interface ISkill {
   index: string;
   name: string;
 }
@@ -14,9 +14,10 @@ interface IServiceClasseGet {
   namePT: string;
   image: string;
   hp: number;
-  proficiency?: {
+
+  skills: {
     choose: number;
-    data: IProficiency[];
+    data: ISkillResponse[];
   };
 }
 
@@ -25,10 +26,11 @@ interface IServiceClasseGetResponse {
   name: string;
   image: string;
   hp: number;
-  proficiency?: {
+
+  skills: {
     choose: number;
-    data: IProficiencyResponse[];
+    data: ISkill[];
   };
 }
 
-export { IServiceClasseGet, IServiceClasseGetResponse };
+export { IServiceClasseGet, IServiceClasseGetResponse, ISkill, ISkillResponse };

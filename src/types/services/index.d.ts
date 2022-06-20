@@ -1,2 +1,7 @@
-export type { IServiceClasse, IServiceClassesResponse } from './classes';
-export type { IServiceClasseGet, IServiceClasseGetResponse } from './races';
+export type {
+  IServiceClasseGet,
+  IServiceClasseGetResponse,
+  ISkill,
+  ISkillResponse,
+} from './classes';
+export type { IServiceRaceGet } from './races';

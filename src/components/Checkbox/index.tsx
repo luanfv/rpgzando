@@ -15,7 +15,7 @@ const Checkbox: React.FC<ICheckbox> = ({ checked, description, onChange }) => {
 
   return (
     <Container selected={checked} onPress={onChange} activeOpacity={1}>
-      <Text>{description}</Text>
+      <Text selected={checked}>{description}</Text>
 
       <CheckBox
         value={Boolean(checked)}

@@ -1,10 +1,10 @@
 import styled, { css } from 'styled-components/native';
 
-interface IContainer {
+interface ICheckbox {
   selected?: boolean;
 }
 
-const Container = styled.TouchableOpacity<IContainer>`
+const Container = styled.TouchableOpacity<ICheckbox>`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -19,10 +19,15 @@ const Container = styled.TouchableOpacity<IContainer>`
     `}
 `;
 
-const Text = styled.Text`
+const Text = styled.Text<ICheckbox>`
   color: ${({ theme }) => theme.colors.text};
-  font-weight: bold;
   font-size: ${({ theme }) => theme.fonts.medium}px;
+
+  ${({ selected }) =>
+    selected &&
+    css`
+      font-weight: bold;
+    `}
 `;
 
 export { Container, Text };

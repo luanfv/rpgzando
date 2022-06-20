@@ -5,12 +5,11 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import { useTheme } from 'styled-components';
 
-import { Checkbox, Input, InputNumeric, Picker } from '@src/components';
+import { CheckboxList, Input, InputNumeric, Picker } from '@src/components';
 import { serviceClasses, serviceRaces } from '@src/services';
 import { Container } from './styles';
-import { IPickerItem } from '@src/types/components';
+import { IPickerItem, ISkillList } from '@src/types/components';
 import { ICardForm } from '@src/types';
-import { IClassSkills } from '@src/types/pages';
 
 const schema = Yup.object().shape({
   name: Yup.string().required('Você precisa informar o nome!'),
@@ -62,9 +61,9 @@ const ChangeCard: React.FC = () => {
 
   const [races, setRaces] = useState<IPickerItem[]>([]);
   const [classes, setClasses] = useState<IPickerItem[]>([]);
-  const [skills, setSkills] = useState<IClassSkills[]>([]);
+  const [skills, setSkills] = useState<ISkillList[]>([]);
   const [selectedClassSkills, setSelectedClassSkills] = useState<
-    IClassSkills | undefined
+    ISkillList | undefined
   >(undefined);
   const [selectedSkills, setSelectedSkills] = useState<string[]>([]);
 
@@ -120,7 +119,7 @@ const ChangeCard: React.FC = () => {
       .get()
       .then((response) => {
         const newClasses: IPickerItem[] = [];
-        const newProficiencies: IClassSkills[] = [];
+        const newProficiencies: ISkillList[] = [];
 
         response.forEach((item) => {
           newClasses.push({
@@ -221,15 +220,14 @@ const ChangeCard: React.FC = () => {
         name="class"
       />
 
-      {selectedClassSkills &&
-        selectedClassSkills.data.map((item) => (
-          <Checkbox
-            key={item.index}
-            checked={isCheckedCheckbox(item.index)}
-            description={item.name}
-            onChange={() => handleToggleCheckbox(item.index)}
-          />
-        ))}
+      {selectedClassSkills && (
+        <CheckboxList
+          title={`Select ${selectedClassSkills.choose} skills:`}
+          skills={selectedClassSkills}
+          isCheckedCheckbox={isCheckedCheckbox}
+          handleToggleCheckbox={handleToggleCheckbox}
+        />
+      )}
 
       <Controller
         control={control}

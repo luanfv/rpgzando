@@ -4,20 +4,21 @@ import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import { useTheme } from 'styled-components';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
-import { CheckboxList, Input, InputNumeric, Picker } from '@src/components';
+import { Input, InputNumeric, Picker } from '@src/components';
 import { serviceClasses, serviceRaces } from '@src/services';
 import { Container } from './styles';
 import { IPickerItem, ISkillList } from '@src/types/components';
 import { ICardForm } from '@src/types';
+import { ICard } from '@src/types/card';
+import { IRoutes } from '@src/types/routes';
 
 const schema = Yup.object().shape({
-  name: Yup.string().required('Você precisa informar o nome!'),
+  name: Yup.string().required('You need to have a name!'),
 
-  level: Yup.number()
-    .required('Você precisa informar o nível!')
-    .typeError('Esta entrada precisa ser do tipo númerica!')
-    .integer('Você precisa passar um número inteiro!'),
+  level: Yup.number().required(),
 
   class: Yup.string().required(),
 
@@ -37,7 +38,6 @@ const ChangeCard: React.FC = () => {
   const {
     control,
     handleSubmit,
-    getValues,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -56,62 +56,60 @@ const ChangeCard: React.FC = () => {
     resolver: yupResolver(schema),
   });
 
+  const { navigate } =
+    useNavigation<NativeStackNavigationProp<IRoutes, 'ChangeCard'>>();
+
   const nameRef = useRef<TextInput>(null);
   const levelRef = useRef<TextInput>(null);
 
   const [races, setRaces] = useState<IPickerItem[]>([]);
   const [classes, setClasses] = useState<IPickerItem[]>([]);
-  const [skills, setSkills] = useState<ISkillList[]>([]);
-  const [selectedClassSkills, setSelectedClassSkills] = useState<
-    ISkillList | undefined
-  >(undefined);
-  const [selectedSkills, setSelectedSkills] = useState<string[]>([]);
 
   const theme = useTheme();
 
   const onSubmit = useCallback(
     (data: ICardForm) => {
-      console.log({ ...data, skills: selectedSkills });
-    },
-    [selectedSkills],
-  );
+      const findClass = classes.find((item) => item.value === data.class);
+      const findRace = races.find((item) => item.value === data.race);
 
-  const isCheckedCheckbox = useCallback(
-    (skill) => !!selectedSkills.find((value) => value === skill),
-    [selectedSkills],
-  );
-
-  const handleToggleCheckbox = useCallback(
-    (skill: string) => {
-      if (selectedClassSkills) {
-        setSelectedSkills((oldState) => {
-          const exists = oldState.find((value) => value === skill);
-
-          if (exists) {
-            return oldState.filter((value) => value !== skill);
-          }
-
-          if (oldState.length >= selectedClassSkills.choose) {
-            return oldState;
-          }
-
-          return [...oldState, skill];
-        });
+      if (!findClass) {
+        return;
       }
+
+      if (!findRace) {
+        return;
+      }
+
+      const myClass = {
+        index: findClass.value,
+        name: findClass.label,
+      };
+
+      const myRace = {
+        index: findRace.value,
+        name: findRace.label,
+      };
+
+      const newCard = {
+        attributes: {
+          for: data.for,
+          dex: data.dex,
+          con: data.con,
+          int: data.int,
+          wis: data.wis,
+          cha: data.cha,
+        },
+
+        name: data.name,
+        level: data.level,
+        hp: data.hp,
+        class: myClass,
+        race: myRace,
+      } as ICard;
+
+      navigate('Card', newCard);
     },
-    [selectedClassSkills],
-  );
-
-  const handleOnBlurClass = useCallback(
-    (onBlur: () => void) => {
-      onBlur();
-      setSelectedSkills([]);
-
-      const response = skills.find((item) => item.index === getValues('class'));
-
-      setSelectedClassSkills(response);
-    },
-    [getValues, skills],
+    [classes, navigate, races],
   );
 
   useEffect(() => {
@@ -137,7 +135,6 @@ const ChangeCard: React.FC = () => {
         });
 
         setClasses(newClasses);
-        setSkills(newProficiencies);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -214,20 +211,11 @@ const ChangeCard: React.FC = () => {
             items={classes}
             selectedValue={value}
             onValueChange={onChange}
-            onBlur={() => handleOnBlurClass(onBlur)}
+            onBlur={onBlur}
           />
         )}
         name="class"
       />
-
-      {selectedClassSkills && (
-        <CheckboxList
-          title={`Select ${selectedClassSkills.choose} skills:`}
-          skills={selectedClassSkills}
-          isCheckedCheckbox={isCheckedCheckbox}
-          handleToggleCheckbox={handleToggleCheckbox}
-        />
-      )}
 
       <Controller
         control={control}

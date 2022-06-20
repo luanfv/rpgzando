@@ -1,2 +1,2 @@
 export type { IStyleGuide } from './styled';
-export type { ICardForm } from './card';
+export type { ICardForm, IAttributes, ICard } from './card';

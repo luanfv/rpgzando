@@ -1,12 +1,14 @@
+import 'react-native-gesture-handler';
+
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
-import { ChangeCard } from '@src/pages';
 import { theme } from '@src/settings/styles/theme';
+import { Routes } from '@src/routes';
 
 const App: React.FC = () => {
   return (
     <ThemeProvider theme={theme}>
-      <ChangeCard />
+      <Routes />
     </ThemeProvider>
   );
 };

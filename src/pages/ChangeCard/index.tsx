@@ -7,10 +7,9 @@ import { useTheme } from 'styled-components';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
-import { Input, InputNumeric, Picker } from '@src/components';
+import { Body, Input, InputNumeric, Picker } from '@src/components';
 import { serviceClasses, serviceRaces } from '@src/services';
-import { Container } from './styles';
-import { IPickerItem, ISkillList } from '@src/types/components';
+import { IPickerItem } from '@src/types/components';
 import { ICardForm } from '@src/types';
 import { ICard } from '@src/types/card';
 import { IRoutes } from '@src/types/routes';
@@ -116,22 +115,13 @@ const ChangeCard: React.FC = () => {
     serviceClasses
       .get()
       .then((response) => {
-        const newClasses: IPickerItem[] = [];
-        const newProficiencies: ISkillList[] = [];
-
-        response.forEach((item) => {
-          newClasses.push({
+        const newClasses = response.map((item) => {
+          return {
             label: item.name,
             value: item.index,
             image: item.image,
             description: `HP: 1d${item.hp} * your level`,
-          });
-
-          newProficiencies.push({
-            index: item.index,
-            choose: item.skills.choose,
-            data: item.skills.data,
-          });
+          };
         });
 
         setClasses(newClasses);
@@ -156,7 +146,7 @@ const ChangeCard: React.FC = () => {
   }, []);
 
   return (
-    <Container>
+    <Body>
       <Controller
         control={control}
         render={({ field: { onChange, onBlur, value } }) => (
@@ -333,7 +323,7 @@ const ChangeCard: React.FC = () => {
         onPress={handleSubmit(onSubmit)}
         color={theme.colors.secondary}
       />
-    </Container>
+    </Body>
   );
 };
 

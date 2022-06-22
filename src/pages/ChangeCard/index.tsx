@@ -13,6 +13,7 @@ import { IPickerItem } from '@src/types/components';
 import { ICardForm } from '@src/types';
 import { ICard } from '@src/types/card';
 import { IRoutes } from '@src/types/routes';
+import { useAuth } from '@src/hooks';
 
 const schema = Yup.object().shape({
   name: Yup.string().required('You need to have a name!'),
@@ -65,6 +66,7 @@ const ChangeCard: React.FC = () => {
   const [classes, setClasses] = useState<IPickerItem[]>([]);
 
   const theme = useTheme();
+  const { onSignOut } = useAuth();
 
   const onSubmit = useCallback(
     (data: ICardForm) => {
@@ -147,6 +149,8 @@ const ChangeCard: React.FC = () => {
 
   return (
     <Body>
+      <Button title="Sign Out" onPress={onSignOut} />
+
       <Controller
         control={control}
         render={({ field: { onChange, onBlur, value } }) => (

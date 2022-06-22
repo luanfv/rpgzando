@@ -64,3 +64,5 @@ buck-out/
 
 # Firebase
 /android/app/google-services.json
+
+.env

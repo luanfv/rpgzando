@@ -4,10 +4,9 @@ import { IServiceRaceGet } from '@src/types/services';
 
 const serviceRaces = {
   get: async (language = 'en') => {
-    const response = await firestore()
-      .collection('races')
-      .orderBy('race')
-      .get();
+    const response = await firestore().collection('races').orderBy('race').get({
+      source: 'cache',
+    });
 
     const races = response.docs.map((doc) => {
       const data = doc.data();

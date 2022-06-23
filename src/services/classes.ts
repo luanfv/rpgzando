@@ -10,7 +10,9 @@ const serviceClasses = {
     const response = await firestore()
       .collection('classes')
       .orderBy('index')
-      .get();
+      .get({
+        source: 'cache',
+      });
 
     const classes = response.docs.map((doc) => {
       const data = doc.data() as IServiceClasseGet;

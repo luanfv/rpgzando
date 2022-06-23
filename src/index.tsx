@@ -5,7 +5,7 @@ import { ThemeProvider } from 'styled-components';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 
 import { theme } from '@src/settings/styles/theme';
-import { AppProviders } from '@src/context/providers';
+import { AppProviders } from '@src/contexts/providers';
 import { Routes } from '@src/routes';
 
 GoogleSignin.configure({

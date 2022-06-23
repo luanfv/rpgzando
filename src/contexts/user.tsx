@@ -2,16 +2,9 @@ import React, { createContext, useState, useEffect, useCallback } from 'react';
 import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 
-type IAuthStatus = 'loading' | 'authorized' | 'unauthorized';
+import { IAuthContext, IAuthStatus } from '@src/types/contexts';
 
-interface IAtuhContext {
-  user: FirebaseAuthTypes.User | null;
-  status: IAuthStatus;
-  onGoogleSignIn: () => Promise<void>;
-  onSignOut: () => void;
-}
-
-const AuthContext = createContext({} as IAtuhContext);
+const AuthContext = createContext({} as IAuthContext);
 
 const AuthProvider: React.FC = ({ children }) => {
   const [user, setUser] = useState<FirebaseAuthTypes.User | null>(null);

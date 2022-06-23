@@ -11,6 +11,10 @@ interface ICardForm {
   int: number;
   wis: number;
   cha: number;
+
+  proficiencies: string;
+  items: string;
+  notes: string;
 }
 
 interface IItem {
@@ -32,8 +36,13 @@ interface ICard {
   name: string;
   level: number;
   hp: number;
+
   class: IItem;
   race: IItem;
+
+  proficiencies: string;
+  items: string;
+  notes: string;
 }
 
 export { ICardForm, IAttributes, ICard };

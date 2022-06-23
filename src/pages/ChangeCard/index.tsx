@@ -32,6 +32,10 @@ const schema = Yup.object().shape({
   int: Yup.number().required(),
   wis: Yup.number().required(),
   cha: Yup.number().required(),
+
+  proficiencies: Yup.string().required('You need to have proficiencies!'),
+  items: Yup.string().required('You need to have items!'),
+  notes: Yup.string(),
 });
 
 const ChangeCard: React.FC = () => {
@@ -52,6 +56,9 @@ const ChangeCard: React.FC = () => {
       int: 1,
       wis: 1,
       cha: 1,
+      proficiencies: '',
+      items: '',
+      notes: '',
     },
     resolver: yupResolver(schema),
   });
@@ -106,6 +113,9 @@ const ChangeCard: React.FC = () => {
         hp: data.hp,
         class: myClass,
         race: myRace,
+        items: data.items,
+        notes: data.notes,
+        proficiencies: data.proficiencies,
       } as ICard;
 
       navigate('Card', newCard);
@@ -155,7 +165,8 @@ const ChangeCard: React.FC = () => {
         control={control}
         render={({ field: { onChange, onBlur, value } }) => (
           <Input
-            placeholder="Name..."
+            title="Name"
+            placeholder="My character's name is..."
             reference={nameRef}
             onBlur={onBlur}
             onChangeText={onChange}
@@ -320,6 +331,66 @@ const ChangeCard: React.FC = () => {
           />
         )}
         name="cha"
+      />
+
+      <Controller
+        control={control}
+        render={({ field: { onChange, onBlur, value } }) => (
+          <Input
+            title="Proficiencies"
+            placeholder="My proficiencies are..."
+            reference={nameRef}
+            onBlur={onBlur}
+            onChangeText={onChange}
+            value={value}
+            errorMessage={errors.proficiencies && errors.proficiencies.message}
+            onSubmitEditing={() => levelRef.current?.focus()}
+            multiline
+            numberOfLines={6}
+            textAlignVertical="top"
+          />
+        )}
+        name="proficiencies"
+      />
+
+      <Controller
+        control={control}
+        render={({ field: { onChange, onBlur, value } }) => (
+          <Input
+            title="Items"
+            placeholder="My items are..."
+            reference={nameRef}
+            onBlur={onBlur}
+            onChangeText={onChange}
+            value={value}
+            errorMessage={errors.items && errors.items.message}
+            onSubmitEditing={() => levelRef.current?.focus()}
+            multiline
+            numberOfLines={6}
+            textAlignVertical="top"
+          />
+        )}
+        name="items"
+      />
+
+      <Controller
+        control={control}
+        render={({ field: { onChange, onBlur, value } }) => (
+          <Input
+            title="Notes"
+            placeholder="My notes are..."
+            reference={nameRef}
+            onBlur={onBlur}
+            onChangeText={onChange}
+            value={value}
+            errorMessage={errors.notes && errors.notes.message}
+            onSubmitEditing={() => levelRef.current?.focus()}
+            multiline
+            numberOfLines={6}
+            textAlignVertical="top"
+          />
+        )}
+        name="notes"
       />
 
       <Button

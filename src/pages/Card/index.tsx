@@ -24,6 +24,8 @@ const Card: React.FC = () => {
     return params as ICard;
   }, [params]);
 
+  console.log(card);
+
   return (
     <Body>
       <Information title="Name" value={card.name} />
@@ -90,6 +92,12 @@ const Card: React.FC = () => {
           width={48}
         />
       </Attributes>
+
+      <Information title="Proficiencies" value={card.proficiencies} />
+
+      <Information title="Items" value={card.items} />
+
+      {!!card.notes && <Information title="Notes" value={card.notes} />}
 
       <Button title="Go back" color={theme.colors.secondary} onPress={goBack} />
     </Body>

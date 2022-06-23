@@ -5,6 +5,16 @@ interface IContainer {
   hasError: boolean;
 }
 
+const Title = styled.Text`
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  margin-top: 12px;
+  font-size: ${({ theme }) => theme.fonts.large}px;
+  color: ${({ theme }) => theme.colors.text};
+`;
+
 const Container = styled(TextInput)<IContainer>`
   ${({ theme, hasError }) => css`
     background-color: ${theme.colors.primary};
@@ -27,4 +37,4 @@ const Message = styled.Text`
   `}
 `;
 
-export { Container, Message };
+export { Title, Container, Message };

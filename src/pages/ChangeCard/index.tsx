@@ -8,7 +8,7 @@ import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 import { Body, Input, InputNumeric, Picker } from '@src/components';
-import { serviceClasses, serviceRaces } from '@src/services';
+import { serviceCards, serviceClasses, serviceRaces } from '@src/services';
 import { IPickerItem } from '@src/types/components';
 import { ICardForm } from '@src/types';
 import { ICard } from '@src/types/card';
@@ -73,7 +73,7 @@ const ChangeCard: React.FC = () => {
   const [classes, setClasses] = useState<IPickerItem[]>([]);
 
   const theme = useTheme();
-  const { onSignOut } = useAuth();
+  const { onSignOut, user } = useAuth();
 
   const onSubmit = useCallback(
     (data: ICardForm) => {
@@ -118,9 +118,15 @@ const ChangeCard: React.FC = () => {
         proficiencies: data.proficiencies,
       } as ICard;
 
+      if (user) {
+        serviceCards
+          .post(user.uid, newCard)
+          .then((response) => console.log(response));
+      }
+
       navigate('Card', newCard);
     },
-    [classes, navigate, races],
+    [classes, navigate, races, user],
   );
 
   useEffect(() => {

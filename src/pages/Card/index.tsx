@@ -24,8 +24,6 @@ const Card: React.FC = () => {
     return params as ICard;
   }, [params]);
 
-  console.log(card);
-
   return (
     <Body>
       <Information title="Name" value={card.name} />

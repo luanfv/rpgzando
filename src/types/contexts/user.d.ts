@@ -1,3 +1,5 @@
+import { FirebaseAuthTypes } from '@react-native-firebase/auth';
+
 type IAuthStatus = 'loading' | 'authorized' | 'unauthorized';
 
 interface IAuthContext {

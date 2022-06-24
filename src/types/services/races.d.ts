@@ -1,4 +1,6 @@
-interface IServiceRaceGet {
+import { ILanguage, IRace } from '@src/types/';
+
+interface IServiceRace {
   index: string;
   race: string;
   image: string;
@@ -8,4 +10,10 @@ interface IServiceRaceGet {
   descriptionPT: string;
 }
 
-export { IServiceRaceGet };
+interface IServiceRaces {
+  get: (language: ILanguage) => Promise<IRace[]>;
+
+  find: (index: string) => Promise<IServiceRace>;
+}
+
+export { IServiceRace, IServiceRaces };

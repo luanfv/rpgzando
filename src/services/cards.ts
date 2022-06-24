@@ -1,11 +1,11 @@
 import firestore from '@react-native-firebase/firestore';
 
-import { ICard, ICardForm, IClass, ILanguage, IRace } from '@src/types';
-import { IServiceCard } from '@src/types/services';
+import { ICard, IClass, IRace } from '@src/types';
+import { IServiceCard, IServiceCards } from '@src/types/services';
 import { serviceClasses, serviceRaces } from '@src/services';
 
-const serviceCards = {
-  get: async (language: ILanguage = 'en', userUid?: string) => {
+const serviceCards: IServiceCards = {
+  get: async (language = 'en', userUid) => {
     const response = userUid
       ? await firestore()
           .collection('cards')
@@ -64,11 +64,7 @@ const serviceCards = {
     return cards;
   },
 
-  post: async (
-    userUid: string,
-    card: ICardForm,
-    language: ILanguage = 'en',
-  ) => {
+  post: async (userUid, card, language = 'en') => {
     const raceSelected = await serviceRaces.find(card.race);
     const classSelected = await serviceClasses.find(card.class);
 

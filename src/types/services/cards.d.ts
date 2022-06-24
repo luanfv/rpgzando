@@ -1,13 +1,13 @@
 import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
 
-import { IAttributes } from '@src/types';
-import { IServiceClasseGet, IServiceRaceGet } from '@src/types/services';
+import { IAttributes, ILanguage } from '@src/types';
+import { IServiceClass, IServiceRace } from '@src/types/services';
 
 interface IServiceCard {
   userUid: string;
   attributes: IAttributes;
-  race: IServiceRaceGet;
-  class: IServiceClasseGet;
+  race: IServiceRace;
+  class: IServiceClass;
   name: string;
   hp: number;
   level: number;
@@ -17,4 +17,14 @@ interface IServiceCard {
   createdAt: FirebaseFirestoreTypes.FieldValue;
 }
 
-export { IServiceCard };
+interface IServiceCards {
+  get: (language: ILanguage, userUid?: string) => Promise<ICard>;
+
+  post: (
+    userUid: string,
+    card: ICardForm,
+    language: ILanguage,
+  ) => Promise<ICard>;
+}
+
+export { IServiceCard, IServiceCards };

@@ -119,6 +119,10 @@ const ChangeCard: React.FC = () => {
       .catch((err) => console.log(err));
   }, []);
 
+  useEffect(() => {
+    serviceCards.get('en', user?.uid).then((response) => console.log(response));
+  }, [user?.uid]);
+
   return (
     <Body>
       <Button title="Sign Out" onPress={onSignOut} />

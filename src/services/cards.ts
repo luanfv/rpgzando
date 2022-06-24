@@ -1,12 +1,74 @@
 import firestore from '@react-native-firebase/firestore';
 
-import { ICardForm } from '@src/types';
+import { ICard, ICardForm, IClass, ILanguage, IRace } from '@src/types';
+import { IServiceCard } from '@src/types/services';
 import { serviceClasses, serviceRaces } from '@src/services';
 
 const serviceCards = {
-  get: async () => {},
+  get: async (language: ILanguage = 'en', userUid?: string) => {
+    const response = userUid
+      ? await firestore()
+          .collection('cards')
+          .where('userUid', '==', userUid)
+          .get()
+      : await firestore().collection('cards').get();
 
-  post: async (userUid: string, card: ICardForm) => {
+    const cards: ICard[] = response.docs.map((doc) => {
+      const data = doc.data() as IServiceCard;
+
+      const myClass: IClass =
+        language === 'en'
+          ? {
+              hp: data.class.hp,
+              image: data.class.image,
+              index: data.class.index,
+              name: data.class.nameEN,
+            }
+          : {
+              hp: data.class.hp,
+              image: data.class.image,
+              index: data.class.index,
+              name: data.class.namePT,
+            };
+
+      const myRace: IRace =
+        language === 'en'
+          ? {
+              description: data.race.descriptionEN,
+              image: data.race.image,
+              index: data.race.index,
+              name: data.race.nameEN,
+              race: data.race.race,
+            }
+          : {
+              description: data.race.descriptionPT,
+              image: data.race.image,
+              index: data.race.index,
+              name: data.race.namePT,
+              race: data.race.race,
+            };
+
+      return {
+        class: myClass,
+        race: myRace,
+        attributes: data.attributes,
+        hp: data.hp,
+        items: data.items,
+        level: data.level,
+        name: data.name,
+        notes: data.notes,
+        proficiencies: data.proficiencies,
+      };
+    });
+
+    return cards;
+  },
+
+  post: async (
+    userUid: string,
+    card: ICardForm,
+    language: ILanguage = 'en',
+  ) => {
     const raceSelected = await serviceRaces.find(card.race);
     const classSelected = await serviceClasses.find(card.class);
 
@@ -19,7 +81,7 @@ const serviceCards = {
       cha: card.cha,
     };
 
-    const newCard = {
+    const newCard: IServiceCard = {
       userUid,
       attributes,
       createdAt: firestore.FieldValue.serverTimestamp(),
@@ -35,7 +97,45 @@ const serviceCards = {
 
     await firestore().collection('cards').add(newCard);
 
-    return newCard;
+    const raceName =
+      language === 'en' ? newCard.race.nameEN : newCard.race.namePT;
+
+    const raceDescription =
+      language === 'en'
+        ? newCard.race.descriptionEN
+        : newCard.race.descriptionPT;
+
+    const raceFormatted: IRace = {
+      image: newCard.race.image,
+      index: newCard.race.index,
+      race: newCard.race.race,
+      description: raceDescription,
+      name: raceName,
+    };
+
+    const className =
+      language === 'en' ? newCard.class.nameEN : newCard.class.namePT;
+
+    const classFormatted: IClass = {
+      image: newCard.class.image,
+      index: newCard.class.index,
+      hp: newCard.class.hp,
+      name: className,
+    };
+
+    const newCardFormatted: ICard = {
+      race: raceFormatted,
+      class: classFormatted,
+      attributes: newCard.attributes,
+      hp: newCard.hp,
+      items: newCard.items,
+      level: newCard.level,
+      name: newCard.name,
+      notes: newCard.notes,
+      proficiencies: newCard.proficiencies,
+    };
+
+    return newCardFormatted;
   },
 };
 

@@ -1,15 +1,15 @@
 import firestore from '@react-native-firebase/firestore';
-import { IClass } from '@src/types';
+import { IClass, ILanguage } from '@src/types';
 import { IServiceClasseGet } from '@src/types/services';
 
 const serviceClasses = {
-  get: async (language = 'en') => {
+  get: async (language: ILanguage = 'en') => {
     const response = await firestore()
       .collection('classes')
       .orderBy('index')
       .get();
 
-    const classes = response.docs.map((doc) => {
+    const classes: IClass[] = response.docs.map((doc) => {
       const data = doc.data() as IServiceClasseGet;
       const name = language === 'en' ? data.nameEN : data.namePT;
 
@@ -18,13 +18,13 @@ const serviceClasses = {
         hp: data.hp,
         image: data.image,
         index: data.index,
-      } as IClass;
+      };
     });
 
     return classes;
   },
 
-  find: async (index: string, language = 'en') => {
+  find: async (index: string) => {
     const response = await firestore()
       .collection('classes')
       .where('index', '==', index)
@@ -32,15 +32,8 @@ const serviceClasses = {
       .get();
 
     const classSelected = response.docs[0].data() as IServiceClasseGet;
-    const name =
-      language === 'en' ? classSelected.nameEN : classSelected.namePT;
 
-    return {
-      name,
-      hp: classSelected.hp,
-      image: classSelected.image,
-      index: classSelected.index,
-    } as IClass;
+    return classSelected;
   },
 };
 

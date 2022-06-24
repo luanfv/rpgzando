@@ -5,3 +5,5 @@ export { Checkbox } from './Checkbox';
 export { CheckboxList } from './CheckboxList';
 export { Body } from './Body';
 export { Information } from './Information';
+export { HeaderDashboard } from './HeaderDashboard';
+export { MenuList } from './MenuList';

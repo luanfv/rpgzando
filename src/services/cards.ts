@@ -10,6 +10,7 @@ const serviceCards: IServiceCards = {
       ? await firestore()
           .collection('cards')
           .where('userUid', '==', userUid)
+          .orderBy('createdAt', 'desc')
           .get()
       : await firestore().collection('cards').get();
 

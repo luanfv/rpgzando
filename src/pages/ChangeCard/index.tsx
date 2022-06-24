@@ -72,12 +72,12 @@ const ChangeCard: React.FC = () => {
   const [classes, setClasses] = useState<IPickerItem[]>([]);
 
   const theme = useTheme();
-  const { onSignOut, user } = useAuth();
+  const { user } = useAuth();
 
   const onSubmit = useCallback(
     async (data: ICardForm) => {
       if (user) {
-        const newCard = await serviceCards.post(user.uid, data);
+        const newCard = await serviceCards.post(user.uid, data, 'en');
 
         navigate('Card', newCard);
       }
@@ -87,7 +87,7 @@ const ChangeCard: React.FC = () => {
 
   useEffect(() => {
     serviceClasses
-      .get()
+      .get('en')
       .then((response) => {
         const newClasses = response.map((item) => {
           return {
@@ -105,7 +105,7 @@ const ChangeCard: React.FC = () => {
 
   useEffect(() => {
     serviceRaces
-      .get()
+      .get('en')
       .then((response) => {
         const newRaces = response.map((item) => ({
           label: item.name,
@@ -125,8 +125,6 @@ const ChangeCard: React.FC = () => {
 
   return (
     <Body>
-      <Button title="Sign Out" onPress={onSignOut} />
-
       <Controller
         control={control}
         render={({ field: { onChange, onBlur, value } }) => (

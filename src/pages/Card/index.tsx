@@ -16,7 +16,7 @@ import { Attributes } from './styles';
 
 const Card: React.FC = () => {
   const { params } = useRoute<RouteProp<IRoutes, 'Card'>>();
-  const { goBack } = useNavigation<NavigationProp<IRoutes, 'Card'>>();
+  const { reset } = useNavigation<NavigationProp<IRoutes, 'Card'>>();
   const { calcModifier, calcProficiency } = useSkill();
   const theme = useTheme();
 
@@ -97,7 +97,11 @@ const Card: React.FC = () => {
 
       {!!card.notes && <Information title="Notes" value={card.notes} />}
 
-      <Button title="Go back" color={theme.colors.secondary} onPress={goBack} />
+      <Button
+        title="Go back"
+        color={theme.colors.secondary}
+        onPress={() => reset({ index: 0, routes: [{ name: 'Dashboard' }] })}
+      />
     </Body>
   );
 };

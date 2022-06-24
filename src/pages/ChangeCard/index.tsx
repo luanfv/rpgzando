@@ -11,7 +11,6 @@ import { Body, Input, InputNumeric, Picker } from '@src/components';
 import { serviceCards, serviceClasses, serviceRaces } from '@src/services';
 import { IPickerItem } from '@src/types/components';
 import { ICardForm } from '@src/types';
-import { ICard } from '@src/types/card';
 import { IRoutes } from '@src/types/routes';
 import { useAuth } from '@src/hooks';
 
@@ -76,57 +75,14 @@ const ChangeCard: React.FC = () => {
   const { onSignOut, user } = useAuth();
 
   const onSubmit = useCallback(
-    (data: ICardForm) => {
-      const findClass = classes.find((item) => item.value === data.class);
-      const findRace = races.find((item) => item.value === data.race);
-
-      if (!findClass) {
-        return;
-      }
-
-      if (!findRace) {
-        return;
-      }
-
-      const myClass = {
-        index: findClass.value,
-        name: findClass.label,
-      };
-
-      const myRace = {
-        index: findRace.value,
-        name: findRace.label,
-      };
-
-      const newCard = {
-        attributes: {
-          for: data.for,
-          dex: data.dex,
-          con: data.con,
-          int: data.int,
-          wis: data.wis,
-          cha: data.cha,
-        },
-
-        name: data.name,
-        level: data.level,
-        hp: data.hp,
-        class: myClass,
-        race: myRace,
-        items: data.items,
-        notes: data.notes,
-        proficiencies: data.proficiencies,
-      } as ICard;
-
+    async (data: ICardForm) => {
       if (user) {
-        serviceCards
-          .post(user.uid, newCard)
-          .then((response) => console.log(response));
-      }
+        const newCard = await serviceCards.post(user.uid, data);
 
-      navigate('Card', newCard);
+        navigate('Card', newCard);
+      }
     },
-    [classes, navigate, races, user],
+    [navigate, user],
   );
 
   useEffect(() => {

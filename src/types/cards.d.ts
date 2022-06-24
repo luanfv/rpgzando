@@ -1,7 +1,4 @@
-interface IItem {
-  index: string;
-  name: string;
-}
+import { IRace, IClass } from '@src/types';
 
 interface IAttributes {
   for: number;
@@ -12,26 +9,26 @@ interface IAttributes {
   cha: number;
 }
 
-interface ICard {
-  attributes: IAttributes;
-  name: string;
-  level: number;
-  hp: number;
-
-  class: IItem;
-  race: IItem;
-
-  proficiencies: string;
-  items: string;
-  notes: string;
-}
-
 interface ICardForm extends IAttributes {
   name: string;
   level: number;
   class: string;
   race: string;
   hp: number;
+
+  proficiencies: string;
+  items: string;
+  notes: string;
+}
+
+interface ICard {
+  attributes: IAttributes;
+  name: string;
+  level: number;
+  hp: number;
+
+  class: IClass;
+  race: IRace;
 
   proficiencies: string;
   items: string;

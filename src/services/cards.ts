@@ -22,6 +22,7 @@ const serviceCards: IServiceCards = {
       const myRace = formatRace(data.race, language);
 
       return {
+        id: doc.id,
         class: myClass,
         race: myRace,
         attributes: data.attributes,
@@ -64,12 +65,13 @@ const serviceCards: IServiceCards = {
       proficiencies: card.proficiencies,
     };
 
-    await firestore().collection('cards').add(newCard);
+    const data = await firestore().collection('cards').add(newCard);
 
     const raceFormatted = formatRace(newCard.race, language);
     const classFormatted = formatClass(newCard.class, language);
 
     const newCardFormatted: ICard = {
+      id: data.id,
       race: raceFormatted,
       class: classFormatted,
       attributes: newCard.attributes,

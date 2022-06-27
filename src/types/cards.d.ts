@@ -22,6 +22,8 @@ interface ICardForm extends IAttributes {
 }
 
 interface ICard {
+  id: string;
+
   attributes: IAttributes;
   name: string;
   level: number;

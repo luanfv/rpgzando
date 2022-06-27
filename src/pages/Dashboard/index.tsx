@@ -72,7 +72,7 @@ const Dashboard: React.FC = () => {
         data={cards}
         keyExtractor={(_, index) => String(index)}
         renderItem={({ item }) => (
-          <Container activeOpacity={0.8}>
+          <Container activeOpacity={0.8} onPress={() => navigate('Card', item)}>
             <Image source={{ uri: item.race.image }} />
 
             <Content>

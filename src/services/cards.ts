@@ -1,8 +1,9 @@
 import firestore from '@react-native-firebase/firestore';
 
-import { ICard, IClass, IRace } from '@src/types';
+import { ICard } from '@src/types';
 import { IServiceCard, IServiceCards } from '@src/types/services';
 import { serviceClasses, serviceRaces } from '@src/services';
+import { formatClass, formatRace } from '@src/utils';
 
 const serviceCards: IServiceCards = {
   get: async (language = 'en', userUid) => {
@@ -17,37 +18,8 @@ const serviceCards: IServiceCards = {
     const cards: ICard[] = response.docs.map((doc) => {
       const data = doc.data() as IServiceCard;
 
-      const myClass: IClass =
-        language === 'en'
-          ? {
-              hp: data.class.hp,
-              image: data.class.image,
-              index: data.class.index,
-              name: data.class.nameEN,
-            }
-          : {
-              hp: data.class.hp,
-              image: data.class.image,
-              index: data.class.index,
-              name: data.class.namePT,
-            };
-
-      const myRace: IRace =
-        language === 'en'
-          ? {
-              description: data.race.descriptionEN,
-              image: data.race.image,
-              index: data.race.index,
-              name: data.race.nameEN,
-              race: data.race.race,
-            }
-          : {
-              description: data.race.descriptionPT,
-              image: data.race.image,
-              index: data.race.index,
-              name: data.race.namePT,
-              race: data.race.race,
-            };
+      const myClass = formatClass(data.class, language);
+      const myRace = formatRace(data.race, language);
 
       return {
         class: myClass,
@@ -94,31 +66,8 @@ const serviceCards: IServiceCards = {
 
     await firestore().collection('cards').add(newCard);
 
-    const raceName =
-      language === 'en' ? newCard.race.nameEN : newCard.race.namePT;
-
-    const raceDescription =
-      language === 'en'
-        ? newCard.race.descriptionEN
-        : newCard.race.descriptionPT;
-
-    const raceFormatted: IRace = {
-      image: newCard.race.image,
-      index: newCard.race.index,
-      race: newCard.race.race,
-      description: raceDescription,
-      name: raceName,
-    };
-
-    const className =
-      language === 'en' ? newCard.class.nameEN : newCard.class.namePT;
-
-    const classFormatted: IClass = {
-      image: newCard.class.image,
-      index: newCard.class.index,
-      hp: newCard.class.hp,
-      name: className,
-    };
+    const raceFormatted = formatRace(newCard.race, language);
+    const classFormatted = formatClass(newCard.class, language);
 
     const newCardFormatted: ICard = {
       race: raceFormatted,

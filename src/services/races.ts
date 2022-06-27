@@ -2,6 +2,7 @@ import firestore from '@react-native-firebase/firestore';
 
 import { IRace } from '@src/types';
 import { IServiceRace, IServiceRaces } from '@src/types/services';
+import { formatRace } from '@src/utils';
 
 const serviceRaces: IServiceRaces = {
   get: async (language = 'en') => {
@@ -12,18 +13,9 @@ const serviceRaces: IServiceRaces = {
 
     const races: IRace[] = response.docs.map((doc) => {
       const data = doc.data() as IServiceRace;
+      const myRace = formatRace(data, language);
 
-      const name = language === 'en' ? data.nameEN : data.namePT;
-      const description =
-        language === 'en' ? data.descriptionEN : data.descriptionPT;
-
-      return {
-        index: data.index,
-        race: data.race,
-        image: data.image,
-        name,
-        description,
-      };
+      return myRace;
     });
 
     return races;

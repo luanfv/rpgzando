@@ -26,7 +26,7 @@ const Card: React.FC = () => {
       {
         label: 'Edit',
         onPress: () => {
-          navigate('ChangeCard', card);
+          navigate('FormCard', card);
         },
       },
       {

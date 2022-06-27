@@ -37,7 +37,7 @@ const schema = Yup.object().shape({
   notes: Yup.string(),
 });
 
-const ChangeCard: React.FC = () => {
+const FormCard: React.FC = () => {
   const {
     control,
     handleSubmit,
@@ -64,7 +64,7 @@ const ChangeCard: React.FC = () => {
   });
 
   const { reset, goBack } =
-    useNavigation<NativeStackNavigationProp<IRoutes, 'ChangeCard'>>();
+    useNavigation<NativeStackNavigationProp<IRoutes, 'FormCard'>>();
   const { params } = useRoute<RouteProp<IRoutes, 'Card'>>();
 
   const nameRef = useRef<TextInput>(null);
@@ -403,4 +403,4 @@ const ChangeCard: React.FC = () => {
   );
 };
 
-export { ChangeCard };
+export { FormCard };

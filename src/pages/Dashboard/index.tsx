@@ -25,7 +25,7 @@ const Dashboard: React.FC = () => {
       {
         type: 'create',
         isMain: true,
-        onPress: () => navigate('ChangeCard'),
+        onPress: () => navigate('FormCard'),
       },
       {
         type: 'view',
@@ -54,6 +54,7 @@ const Dashboard: React.FC = () => {
   useEffect(() => {
     if (user && isFocused) {
       serviceCards.get('en', user.uid).then((response) => {
+        console.log(response);
         setCards(response);
       });
     }

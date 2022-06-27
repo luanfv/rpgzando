@@ -2,7 +2,7 @@ import { ICard } from '@src/types';
 
 type IRoutes = {
   Dashboard: undefined;
-  ChangeCard: ICard | undefined;
+  FormCard: ICard | undefined;
   Card: ICard;
 };
 

@@ -14,7 +14,7 @@ import { serviceCards } from '@src/services';
 
 const Card: React.FC = () => {
   const { params } = useRoute<RouteProp<IRoutes, 'Card'>>();
-  const { goBack } = useNavigation<NavigationProp<IRoutes, 'Card'>>();
+  const { goBack, navigate } = useNavigation<NavigationProp<IRoutes, 'Card'>>();
   const { calcModifier, calcProficiency } = useSkill();
 
   const card = useMemo(() => {
@@ -23,7 +23,12 @@ const Card: React.FC = () => {
 
   const options = useMemo(() => {
     return [
-      { label: 'Edit', onPress: () => {} },
+      {
+        label: 'Edit',
+        onPress: () => {
+          navigate('ChangeCard', card);
+        },
+      },
       {
         label: 'Remove',
         onPress: () => {
@@ -31,7 +36,7 @@ const Card: React.FC = () => {
         },
       },
     ];
-  }, [card.id, goBack]);
+  }, [card, goBack, navigate]);
 
   return (
     <Body>

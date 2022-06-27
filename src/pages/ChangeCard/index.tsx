@@ -4,7 +4,7 @@ import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import { useTheme } from 'styled-components';
-import { useNavigation } from '@react-navigation/native';
+import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 import { Body, Header, Input, InputNumeric, Picker } from '@src/components';
@@ -41,6 +41,7 @@ const ChangeCard: React.FC = () => {
   const {
     control,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -64,6 +65,7 @@ const ChangeCard: React.FC = () => {
 
   const { reset, goBack } =
     useNavigation<NativeStackNavigationProp<IRoutes, 'ChangeCard'>>();
+  const { params } = useRoute<RouteProp<IRoutes, 'Card'>>();
 
   const nameRef = useRef<TextInput>(null);
   const levelRef = useRef<TextInput>(null);
@@ -77,6 +79,20 @@ const ChangeCard: React.FC = () => {
   const onSubmit = useCallback(
     async (data: ICardForm) => {
       if (user) {
+        if (params) {
+          const updatedCard = await serviceCards.update(params.id, data, 'en');
+
+          reset({
+            routes: [
+              { name: 'Dashboard' },
+              { name: 'Card', params: updatedCard },
+            ],
+            index: 1,
+          });
+
+          return;
+        }
+
         const newCard = await serviceCards.post(user.uid, data, 'en');
 
         reset({
@@ -85,7 +101,7 @@ const ChangeCard: React.FC = () => {
         });
       }
     },
-    [reset, user],
+    [params, reset, user],
   );
 
   useEffect(() => {
@@ -121,6 +137,26 @@ const ChangeCard: React.FC = () => {
       })
       .catch((err) => console.log(err));
   }, []);
+
+  useEffect(() => {
+    if (params) {
+      setValue('name', params.name);
+      setValue('level', params.level);
+      setValue('class', params.class.index);
+      setValue('race', params.race.index);
+      setValue('hp', params.hp);
+      setValue('for', params.attributes.for);
+      setValue('dex', params.attributes.dex);
+      setValue('con', params.attributes.con);
+      setValue('int', params.attributes.int);
+      setValue('wis', params.attributes.wis);
+      setValue('cha', params.attributes.cha);
+      setValue('proficiencies', params.proficiencies);
+      setValue('items', params.items);
+      setValue('notes', params.notes);
+      setValue('level', params.level);
+    }
+  }, [params, setValue]);
 
   return (
     <Body>

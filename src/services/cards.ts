@@ -89,6 +89,50 @@ const serviceCards: IServiceCards = {
   delete: async (cardId) => {
     await firestore().collection('cards').doc(cardId).delete();
   },
+
+  update: async (cardId, card, language) => {
+    const raceSelected = await serviceRaces.find(card.race);
+    const classSelected = await serviceClasses.find(card.class);
+
+    const attributes = {
+      for: card.for,
+      dex: card.dex,
+      con: card.con,
+      int: card.int,
+      wis: card.wis,
+      cha: card.cha,
+    };
+
+    await firestore().collection('cards').doc(cardId).update({
+      attributes,
+      race: raceSelected,
+      class: classSelected,
+      name: card.name,
+      hp: card.hp,
+      level: card.level,
+      items: card.items,
+      notes: card.notes,
+      proficiencies: card.proficiencies,
+    });
+
+    const raceFormatted = formatRace(raceSelected, language);
+    const classFormatted = formatClass(classSelected, language);
+
+    const cardFormatted: ICard = {
+      id: cardId,
+      race: raceFormatted,
+      class: classFormatted,
+      attributes,
+      name: card.name,
+      hp: card.hp,
+      level: card.level,
+      items: card.items,
+      notes: card.notes,
+      proficiencies: card.proficiencies,
+    };
+
+    return cardFormatted;
+  },
 };
 
 export { serviceCards };

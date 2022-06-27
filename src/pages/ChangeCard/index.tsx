@@ -62,7 +62,7 @@ const ChangeCard: React.FC = () => {
     resolver: yupResolver(schema),
   });
 
-  const { navigate } =
+  const { reset } =
     useNavigation<NativeStackNavigationProp<IRoutes, 'ChangeCard'>>();
 
   const nameRef = useRef<TextInput>(null);
@@ -79,10 +79,13 @@ const ChangeCard: React.FC = () => {
       if (user) {
         const newCard = await serviceCards.post(user.uid, data, 'en');
 
-        navigate('Card', newCard);
+        reset({
+          routes: [{ name: 'Dashboard' }, { name: 'Card', params: newCard }],
+          index: 1,
+        });
       }
     },
-    [navigate, user],
+    [reset, user],
   );
 
   useEffect(() => {

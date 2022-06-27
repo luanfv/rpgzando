@@ -85,6 +85,10 @@ const serviceCards: IServiceCards = {
 
     return newCardFormatted;
   },
+
+  delete: async (cardId) => {
+    await firestore().collection('cards').doc(cardId).delete();
+  },
 };
 
 export { serviceCards };

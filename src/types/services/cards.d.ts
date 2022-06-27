@@ -25,6 +25,8 @@ interface IServiceCards {
     card: ICardForm,
     language: ILanguage,
   ) => Promise<ICard>;
+
+  delete: (cardId: string) => Promise<void>;
 }
 
 export { IServiceCard, IServiceCards };

@@ -10,6 +10,7 @@ import { IRoutes } from '@src/types/routes';
 import { Body, Header, Information } from '@src/components';
 import { useSkill } from '@src/hooks';
 import { Attributes } from './styles';
+import { serviceCards } from '@src/services';
 
 const Card: React.FC = () => {
   const { params } = useRoute<RouteProp<IRoutes, 'Card'>>();
@@ -23,9 +24,14 @@ const Card: React.FC = () => {
   const options = useMemo(() => {
     return [
       { label: 'Edit', onPress: () => {} },
-      { label: 'Remove', onPress: () => {} },
+      {
+        label: 'Remove',
+        onPress: () => {
+          serviceCards.delete(card.id).then(() => goBack());
+        },
+      },
     ];
-  }, []);
+  }, [card.id, goBack]);
 
   return (
     <Body>

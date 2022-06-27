@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { useNavigation } from '@react-navigation/native';
+import { useIsFocused, useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 import { serviceCards } from '@src/services';
@@ -13,6 +13,7 @@ import { RefreshControl } from 'react-native';
 
 const Dashboard: React.FC = () => {
   const { user, onSignOut } = useAuth();
+  const isFocused = useIsFocused();
   const { navigate } =
     useNavigation<NativeStackNavigationProp<IRoutes, 'Dashboard'>>();
 
@@ -51,12 +52,12 @@ const Dashboard: React.FC = () => {
   }, [user]);
 
   useEffect(() => {
-    if (user) {
+    if (user && isFocused) {
       serviceCards.get('en', user.uid).then((response) => {
         setCards(response);
       });
     }
-  }, [user]);
+  }, [isFocused, user]);
 
   return (
     <>

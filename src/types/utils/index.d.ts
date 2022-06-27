@@ -1,1 +1,1 @@
-export type { IFormatClass, IFormatRace } from './serviceFormat';
+export type { IFormatClass, IFormatRace, IFormatCard } from './serviceFormat';

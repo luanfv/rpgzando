@@ -1,5 +1,5 @@
-import { IClass, IRace } from '@src/types';
-import { IFormatClass, IFormatRace } from '@src/types/utils';
+import { ICard, IClass, IRace } from '@src/types';
+import { IFormatCard, IFormatClass, IFormatRace } from '@src/types/utils';
 
 const formatRace: IFormatRace = (selectedRace, language) => {
   const raceName =
@@ -33,4 +33,35 @@ const formatClass: IFormatClass = (selectedClass, language) => {
   return classFormatted;
 };
 
-export { formatRace, formatClass };
+const formatCard: IFormatCard = (cardId, selectedCard, language) => {
+  const raceFormatted = formatRace(selectedCard.race, language);
+  const classFormatted = formatClass(selectedCard.class, language);
+  const attributes = {
+    for: selectedCard.for,
+    dex: selectedCard.dex,
+    con: selectedCard.con,
+    int: selectedCard.int,
+    wis: selectedCard.wis,
+    cha: selectedCard.cha,
+  };
+
+  const cardFormatted: ICard = {
+    id: cardId,
+
+    race: raceFormatted,
+    class: classFormatted,
+
+    attributes,
+
+    name: selectedCard.name,
+    hp: selectedCard.hp,
+    level: selectedCard.level,
+    items: selectedCard.items,
+    notes: selectedCard.notes,
+    proficiencies: selectedCard.proficiencies,
+  };
+
+  return cardFormatted;
+};
+
+export { formatRace, formatClass, formatCard };

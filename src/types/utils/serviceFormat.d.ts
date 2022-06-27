@@ -1,4 +1,4 @@
-import { ILanguage, IRace, IClass } from '@src/types';
+import { ILanguage, IRace, IClass, ICard } from '@src/types';
 import { IServiceRace, IServiceClass } from '@src/types/services';
 
 type IFormatRace = (selectedRace: IServiceRace, language: ILanguage) => IRace;
@@ -8,4 +8,10 @@ type IFormatClass = (
   language: ILanguage,
 ) => IClass;
 
-export { IFormatClass, IFormatRace };
+type IFormatCard = (
+  cardId: string,
+  selectedCard: ICardForm,
+  language: ILanguage,
+) => ICard;
+
+export { IFormatClass, IFormatRace, IFormatCard };

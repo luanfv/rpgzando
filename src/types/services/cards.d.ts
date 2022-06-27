@@ -22,7 +22,7 @@ interface IServiceCards {
 
   post: (
     userUid: string,
-    card: ICardForm,
+    cardForm: ICardForm,
     language: ILanguage,
   ) => Promise<ICard>;
 
@@ -30,7 +30,7 @@ interface IServiceCards {
 
   update: (
     cardId: string,
-    card: ICardForm,
+    cardForm: ICardForm,
     language: ILanguage,
   ) => Promise<ICard>;
 }

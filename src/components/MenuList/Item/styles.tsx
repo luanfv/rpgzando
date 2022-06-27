@@ -7,7 +7,7 @@ interface ICard {
 
 const Container = styled.TouchableOpacity<ICard>`
   width: 300px;
-  height: 150px;
+  height: 130px;
   padding: ${({ theme }) => theme.spacing}px;
   margin: ${({ theme }) => theme.spacing}px;
   background-color: ${({ theme, isMain }) =>

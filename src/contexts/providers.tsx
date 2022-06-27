@@ -1,9 +1,11 @@
 import React from 'react';
 
-import { AuthProvider } from '@src/contexts/user';
+import { AuthProvider, LanguageProvider } from '@src/contexts';
 
 const AppProviders: React.FC = ({ children }) => (
-  <AuthProvider>{children}</AuthProvider>
+  <LanguageProvider>
+    <AuthProvider>{children}</AuthProvider>
+  </LanguageProvider>
 );
 
 export { AppProviders };

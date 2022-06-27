@@ -1,6 +1,6 @@
 import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
 
-import { IAttributes, ILanguage, ICardForm } from '@src/types';
+import { IAttributes, ILanguageType, ICardForm } from '@src/types';
 import { IServiceClass, IServiceRace } from '@src/types/services';
 
 interface IServiceCard {
@@ -18,12 +18,12 @@ interface IServiceCard {
 }
 
 interface IServiceCards {
-  get: (language: ILanguage, userUid?: string) => Promise<ICard>;
+  get: (language: ILanguageType, userUid?: string) => Promise<ICard>;
 
   post: (
     userUid: string,
     cardForm: ICardForm,
-    language: ILanguage,
+    language: ILanguageType,
   ) => Promise<ICard>;
 
   delete: (cardId: string) => Promise<void>;
@@ -31,7 +31,7 @@ interface IServiceCards {
   update: (
     cardId: string,
     cardForm: ICardForm,
-    language: ILanguage,
+    language: ILanguageType,
   ) => Promise<ICard>;
 }
 

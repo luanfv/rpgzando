@@ -12,7 +12,7 @@ const MenuList: React.FC<IMenuList> = ({ items }) => {
           <MenuItem
             key={index}
             isMain={item.isMain}
-            type={item.type}
+            settings={item.settings}
             onPress={item.onPress}
           />
         );

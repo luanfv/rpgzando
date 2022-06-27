@@ -1,7 +1,7 @@
 import React from 'react';
 import { GoogleSigninButton } from '@react-native-google-signin/google-signin';
 
-import { useAuth } from '@src/hooks';
+import { useAuth, useLanguage } from '@src/hooks';
 import { Body } from '@src/components';
 import {
   Container,
@@ -14,15 +14,16 @@ import {
 
 const Auth: React.FC = () => {
   const { onGoogleSignIn } = useAuth();
+  const { language } = useLanguage();
 
   return (
     <Body>
       <Container>
         <Header>
           <Logo source={require('@src/assets/images/logo.png')} />
-          <Title>Welcome</Title>
+          <Title>{language.pages.Auth.title}</Title>
 
-          <Description>Have your rpg chips in one place</Description>
+          <Description>{language.pages.Auth.description}</Description>
         </Header>
 
         <GoogleAuth

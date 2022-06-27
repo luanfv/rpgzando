@@ -12,7 +12,7 @@ import { serviceCards, serviceClasses, serviceRaces } from '@src/services';
 import { IPickerItem } from '@src/types/components';
 import { ICardForm } from '@src/types';
 import { IRoutes } from '@src/types/routes';
-import { useAuth } from '@src/hooks';
+import { useAuth, useLanguage } from '@src/hooks';
 
 const schema = Yup.object().shape({
   name: Yup.string().required('You need to have a name!'),
@@ -75,12 +75,17 @@ const FormCard: React.FC = () => {
 
   const theme = useTheme();
   const { user } = useAuth();
+  const { language } = useLanguage();
 
   const onSubmit = useCallback(
     async (data: ICardForm) => {
       if (user) {
         if (params) {
-          const updatedCard = await serviceCards.update(params.id, data, 'en');
+          const updatedCard = await serviceCards.update(
+            params.id,
+            data,
+            language.type,
+          );
 
           reset({
             routes: [
@@ -93,7 +98,7 @@ const FormCard: React.FC = () => {
           return;
         }
 
-        const newCard = await serviceCards.post(user.uid, data, 'en');
+        const newCard = await serviceCards.post(user.uid, data, language.type);
 
         reset({
           routes: [{ name: 'Dashboard' }, { name: 'Card', params: newCard }],
@@ -101,12 +106,12 @@ const FormCard: React.FC = () => {
         });
       }
     },
-    [params, reset, user],
+    [language, params, reset, user],
   );
 
   useEffect(() => {
     serviceClasses
-      .get('en')
+      .get(language.type)
       .then((response) => {
         const newClasses = response.map((item) => {
           return {
@@ -120,11 +125,11 @@ const FormCard: React.FC = () => {
         setClasses(newClasses);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [language]);
 
   useEffect(() => {
     serviceRaces
-      .get('en')
+      .get(language.type)
       .then((response) => {
         const newRaces = response.map((item) => ({
           label: item.name,
@@ -136,7 +141,7 @@ const FormCard: React.FC = () => {
         setRaces(newRaces);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [language]);
 
   useEffect(() => {
     if (params) {
@@ -166,8 +171,8 @@ const FormCard: React.FC = () => {
         control={control}
         render={({ field: { onChange, onBlur, value } }) => (
           <Input
-            title="Name"
-            placeholder="My character's name is..."
+            title={language.pages.FormCard.inputs.name.label}
+            placeholder={language.pages.FormCard.inputs.name.placeholder}
             reference={nameRef}
             onBlur={onBlur}
             onChangeText={onChange}
@@ -184,7 +189,7 @@ const FormCard: React.FC = () => {
         control={control}
         render={({ field: { onChange, onBlur, value } }) => (
           <InputNumeric
-            title="Level"
+            title={language.pages.FormCard.inputs.level.label}
             value={value}
             onChange={onChange}
             onBlur={onBlur}
@@ -199,7 +204,7 @@ const FormCard: React.FC = () => {
         control={control}
         render={({ field: { onChange, onBlur, value } }) => (
           <Picker
-            title="Race"
+            title={language.pages.FormCard.inputs.race.label}
             items={races}
             selectedValue={value}
             onValueChange={onChange}
@@ -213,7 +218,7 @@ const FormCard: React.FC = () => {
         control={control}
         render={({ field: { onChange, onBlur, value } }) => (
           <Picker
-            title="Classe"
+            title={language.pages.FormCard.inputs.class.label}
             items={classes}
             selectedValue={value}
             onValueChange={onChange}
@@ -227,7 +232,7 @@ const FormCard: React.FC = () => {
         control={control}
         render={({ field: { onChange, onBlur, value } }) => (
           <InputNumeric
-            title="HP"
+            title={language.pages.FormCard.inputs.hp.label}
             value={value}
             onChange={onChange}
             onBlur={onBlur}
@@ -242,7 +247,7 @@ const FormCard: React.FC = () => {
         control={control}
         render={({ field: { onChange, onBlur, value } }) => (
           <InputNumeric
-            title="Force"
+            title={language.pages.FormCard.inputs.for.label}
             value={value}
             onChange={onChange}
             onBlur={onBlur}
@@ -258,7 +263,7 @@ const FormCard: React.FC = () => {
         control={control}
         render={({ field: { onChange, onBlur, value } }) => (
           <InputNumeric
-            title="Dexterity"
+            title={language.pages.FormCard.inputs.dex.label}
             value={value}
             onChange={onChange}
             onBlur={onBlur}
@@ -274,7 +279,7 @@ const FormCard: React.FC = () => {
         control={control}
         render={({ field: { onChange, onBlur, value } }) => (
           <InputNumeric
-            title="Constitution"
+            title={language.pages.FormCard.inputs.con.label}
             value={value}
             onChange={onChange}
             onBlur={onBlur}
@@ -290,7 +295,7 @@ const FormCard: React.FC = () => {
         control={control}
         render={({ field: { onChange, onBlur, value } }) => (
           <InputNumeric
-            title="Intelligence"
+            title={language.pages.FormCard.inputs.int.label}
             value={value}
             onChange={onChange}
             onBlur={onBlur}
@@ -306,7 +311,7 @@ const FormCard: React.FC = () => {
         control={control}
         render={({ field: { onChange, onBlur, value } }) => (
           <InputNumeric
-            title="Wisdom"
+            title={language.pages.FormCard.inputs.wis.label}
             value={value}
             onChange={onChange}
             onBlur={onBlur}
@@ -322,7 +327,7 @@ const FormCard: React.FC = () => {
         control={control}
         render={({ field: { onChange, onBlur, value } }) => (
           <InputNumeric
-            title="Charisma"
+            title={language.pages.FormCard.inputs.cha.label}
             value={value}
             onChange={onChange}
             onBlur={onBlur}
@@ -338,8 +343,10 @@ const FormCard: React.FC = () => {
         control={control}
         render={({ field: { onChange, onBlur, value } }) => (
           <Input
-            title="Proficiencies"
-            placeholder="My proficiencies are..."
+            title={language.pages.FormCard.inputs.proficiencies.label}
+            placeholder={
+              language.pages.FormCard.inputs.proficiencies.placeholder
+            }
             reference={nameRef}
             onBlur={onBlur}
             onChangeText={onChange}
@@ -358,8 +365,8 @@ const FormCard: React.FC = () => {
         control={control}
         render={({ field: { onChange, onBlur, value } }) => (
           <Input
-            title="Items"
-            placeholder="My items are..."
+            title={language.pages.FormCard.inputs.items.label}
+            placeholder={language.pages.FormCard.inputs.items.placeholder}
             reference={nameRef}
             onBlur={onBlur}
             onChangeText={onChange}
@@ -378,8 +385,8 @@ const FormCard: React.FC = () => {
         control={control}
         render={({ field: { onChange, onBlur, value } }) => (
           <Input
-            title="Notes"
-            placeholder="My notes are..."
+            title={language.pages.FormCard.inputs.notes.label}
+            placeholder={language.pages.FormCard.inputs.notes.placeholder}
             reference={nameRef}
             onBlur={onBlur}
             onChangeText={onChange}
@@ -395,7 +402,7 @@ const FormCard: React.FC = () => {
       />
 
       <Button
-        title="Confirm"
+        title={language.pages.FormCard.button}
         onPress={handleSubmit(onSubmit)}
         color={theme.colors.secondary}
       />

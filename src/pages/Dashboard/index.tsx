@@ -3,7 +3,7 @@ import { useIsFocused, useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 import { serviceCards } from '@src/services';
-import { useAuth } from '@src/hooks';
+import { useAuth, useLanguage } from '@src/hooks';
 import { ICard } from '@src/types';
 import { HeaderDashboard, ModalConfirm } from '@src/components';
 import { IMenuItem } from '@src/types/components';
@@ -22,20 +22,36 @@ const Dashboard: React.FC = () => {
   const [titleModal, setTitleModal] = useState('');
   const [descriptionModal, setDescriptionModal] = useState('');
 
+  const { language } = useLanguage();
+
   const menuItems = useMemo<IMenuItem[]>(
     () => [
       {
-        type: 'create',
+        settings: {
+          icon: 'person-add',
+          title: language.pages.Dashboard.cards.create.title,
+          message: language.pages.Dashboard.cards.create.description,
+        },
         isMain: true,
         onPress: () => navigate('FormCard'),
       },
       {
-        type: 'view',
+        settings: {
+          icon: 'ios-receipt',
+          title: language.pages.Dashboard.cards.view.title,
+          message: language.pages.Dashboard.cards.view.description,
+        },
         isMain: false,
         onPress: () => {},
       },
     ],
-    [navigate],
+    [
+      language.pages.Dashboard.cards.create.description,
+      language.pages.Dashboard.cards.create.title,
+      language.pages.Dashboard.cards.view.description,
+      language.pages.Dashboard.cards.view.title,
+      navigate,
+    ],
   );
 
   const isModalOpen = useMemo(
@@ -48,7 +64,7 @@ const Dashboard: React.FC = () => {
       setIsRefreshing(true);
 
       serviceCards
-        .get('en', user.uid)
+        .get(language.type, user.uid)
         .then((response) => {
           setCards(response);
         })
@@ -56,12 +72,15 @@ const Dashboard: React.FC = () => {
           setIsRefreshing(false);
         });
     }
-  }, [user]);
+  }, [language.type, user]);
 
   const handleOpenSignOutModal = useCallback(() => {
-    setTitleModal('Sign Out');
-    setDescriptionModal('Are you sure you want to log out of your account?');
-  }, []);
+    setTitleModal(language.pages.Dashboard.modal.title);
+    setDescriptionModal(language.pages.Dashboard.modal.description);
+  }, [
+    language.pages.Dashboard.modal.description,
+    language.pages.Dashboard.modal.title,
+  ]);
 
   const handleCloseSignOutModal = useCallback(() => {
     setTitleModal('');
@@ -70,16 +89,16 @@ const Dashboard: React.FC = () => {
 
   useEffect(() => {
     if (user && isFocused) {
-      serviceCards.get('en', user.uid).then((response) => {
+      serviceCards.get(language.type, user.uid).then((response) => {
         setCards(response);
       });
     }
-  }, [isFocused, user]);
+  }, [isFocused, language.type, user]);
 
   return (
     <>
       <HeaderDashboard
-        text1="Welcome,"
+        text1={language.pages.Dashboard.welcome}
         text2={user && user.displayName ? user.displayName : ''}
         menuItems={menuItems}
         onSignOut={handleOpenSignOutModal}

@@ -1,6 +1,12 @@
+interface IMenuItemSettings {
+  icon: string;
+  title: string;
+  message: string;
+}
+
 interface IMenuItem {
   isMain?: boolean;
-  type: 'create' | 'view';
+  settings: IMenuItemSettings;
   onPress: () => void;
 }
 

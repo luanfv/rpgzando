@@ -5,7 +5,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { serviceCards } from '@src/services';
 import { useAuth } from '@src/hooks';
 import { ICard } from '@src/types';
-import { HeaderDashboard } from '@src/components';
+import { HeaderDashboard, ModalConfirm } from '@src/components';
 import { IMenuItem } from '@src/types/components';
 import { Container, Content, Description, Image, List, Title } from './styles';
 import { IRoutes } from '@src/types/routes';
@@ -19,6 +19,8 @@ const Dashboard: React.FC = () => {
 
   const [cards, setCards] = useState<ICard[]>([]);
   const [isRefreshing, setIsRefreshing] = useState(false);
+  const [titleModal, setTitleModal] = useState('');
+  const [descriptionModal, setDescriptionModal] = useState('');
 
   const menuItems = useMemo<IMenuItem[]>(
     () => [
@@ -36,6 +38,11 @@ const Dashboard: React.FC = () => {
     [navigate],
   );
 
+  const isModalOpen = useMemo(
+    () => !!titleModal && !!descriptionModal,
+    [descriptionModal, titleModal],
+  );
+
   const handleRefresh = useCallback(() => {
     if (user) {
       setIsRefreshing(true);
@@ -51,10 +58,19 @@ const Dashboard: React.FC = () => {
     }
   }, [user]);
 
+  const handleOpenSignOutModal = useCallback(() => {
+    setTitleModal('Sign Out');
+    setDescriptionModal('Are you sure you want to log out of your account?');
+  }, []);
+
+  const handleCloseSignOutModal = useCallback(() => {
+    setTitleModal('');
+    setDescriptionModal('');
+  }, []);
+
   useEffect(() => {
     if (user && isFocused) {
       serviceCards.get('en', user.uid).then((response) => {
-        console.log(response);
         setCards(response);
       });
     }
@@ -66,7 +82,7 @@ const Dashboard: React.FC = () => {
         text1="Welcome,"
         text2={user && user.displayName ? user.displayName : ''}
         menuItems={menuItems}
-        onSignOut={onSignOut}
+        onSignOut={handleOpenSignOutModal}
       />
 
       <List
@@ -87,6 +103,15 @@ const Dashboard: React.FC = () => {
         refreshControl={
           <RefreshControl refreshing={isRefreshing} onRefresh={handleRefresh} />
         }
+      />
+
+      <ModalConfirm
+        isVisible={isModalOpen}
+        title={titleModal}
+        description={descriptionModal}
+        onClose={handleCloseSignOutModal}
+        onConfirm={onSignOut}
+        isAttention
       />
     </>
   );

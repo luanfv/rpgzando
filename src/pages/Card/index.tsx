@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import {
   NavigationProp,
   RouteProp,
@@ -7,7 +7,7 @@ import {
 } from '@react-navigation/native';
 
 import { IRoutes } from '@src/types/routes';
-import { Body, Header, Information } from '@src/components';
+import { Body, Header, Information, ModalConfirm } from '@src/components';
 import { useSkill } from '@src/hooks';
 import { Attributes } from './styles';
 import { serviceCards } from '@src/services';
@@ -17,6 +17,33 @@ const Card: React.FC = () => {
   const { goBack, navigate } = useNavigation<NavigationProp<IRoutes, 'Card'>>();
   const { calcModifier, calcProficiency } = useSkill();
 
+  const [titleModal, setTitleModal] = useState('');
+  const [descriptionModal, setDescriptionModal] = useState('');
+
+  const handleOpenRemoveModal = useCallback(() => {
+    setTitleModal('Remove');
+    setDescriptionModal(
+      'Are you sure you want to remove your card? Cannot undo this action.',
+    );
+  }, []);
+
+  const handleCloseRemoveModal = useCallback(() => {
+    setTitleModal('');
+    setDescriptionModal('');
+  }, []);
+
+  const handleRemoveCard = useCallback(
+    (cardId) => {
+      serviceCards.delete(cardId).then(() => goBack());
+    },
+    [goBack],
+  );
+
+  const isModalOpen = useMemo(
+    () => !!titleModal && !!descriptionModal,
+    [descriptionModal, titleModal],
+  );
+
   const card = useMemo(() => {
     return params;
   }, [params]);
@@ -25,18 +52,14 @@ const Card: React.FC = () => {
     return [
       {
         label: 'Edit',
-        onPress: () => {
-          navigate('FormCard', card);
-        },
+        onPress: () => navigate('FormCard', card),
       },
       {
         label: 'Remove',
-        onPress: () => {
-          serviceCards.delete(card.id).then(() => goBack());
-        },
+        onPress: handleOpenRemoveModal,
       },
     ];
-  }, [card, goBack, navigate]);
+  }, [card, handleOpenRemoveModal, navigate]);
 
   return (
     <Body>
@@ -112,6 +135,15 @@ const Card: React.FC = () => {
       <Information title="Items" value={card.items} />
 
       {!!card.notes && <Information title="Notes" value={card.notes} />}
+
+      <ModalConfirm
+        isVisible={isModalOpen}
+        title={titleModal}
+        description={descriptionModal}
+        onClose={handleCloseRemoveModal}
+        onConfirm={() => handleRemoveCard(card.id)}
+        isAttention
+      />
     </Body>
   );
 };

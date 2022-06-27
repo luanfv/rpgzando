@@ -3,7 +3,7 @@ import firestore from '@react-native-firebase/firestore';
 import { ICard } from '@src/types';
 import { IServiceCard, IServiceCards } from '@src/types/services';
 import { serviceClasses, serviceRaces } from '@src/services';
-import { formatCard } from '@src/utils/serviceFormat';
+import { formatCard, formatClass, formatRace } from '@src/utils/serviceFormat';
 
 const serviceCards: IServiceCards = {
   get: async (language = 'en', userUid) => {
@@ -16,10 +16,25 @@ const serviceCards: IServiceCards = {
       : await firestore().collection('cards').get();
 
     const cards: ICard[] = response.docs.map((doc) => {
-      const card = doc.data() as IServiceCard;
-      const cardFormatted = formatCard(doc.id, card, language);
+      const data = doc.data() as IServiceCard;
 
-      return cardFormatted;
+      const myClass = formatClass(data.class, language);
+      const myRace = formatRace(data.race, language);
+
+      return {
+        id: doc.id,
+
+        class: myClass,
+        race: myRace,
+
+        attributes: data.attributes,
+        hp: data.hp,
+        items: data.items,
+        level: data.level,
+        name: data.name,
+        notes: data.notes,
+        proficiencies: data.proficiencies,
+      };
     });
 
     return cards;
@@ -63,21 +78,47 @@ const serviceCards: IServiceCards = {
   update: async (cardId, cardForm, language) => {
     const raceSelected = await serviceRaces.find(cardForm.race);
     const classSelected = await serviceClasses.find(cardForm.class);
-
-    const cardFormatted = formatCard(cardId, cardForm, language);
+    const attributes = {
+      for: cardForm.for,
+      dex: cardForm.dex,
+      con: cardForm.con,
+      int: cardForm.int,
+      wis: cardForm.wis,
+      cha: cardForm.cha,
+    };
 
     await firestore().collection('cards').doc(cardId).update({
       race: raceSelected,
       class: classSelected,
 
-      attributes: cardFormatted.attributes,
-      name: cardFormatted.name,
-      hp: cardFormatted.hp,
-      level: cardFormatted.level,
-      items: cardFormatted.items,
-      notes: cardFormatted.notes,
-      proficiencies: cardFormatted.proficiencies,
+      attributes,
+
+      name: cardForm.name,
+      hp: cardForm.hp,
+      level: cardForm.level,
+      items: cardForm.items,
+      notes: cardForm.notes,
+      proficiencies: cardForm.proficiencies,
     });
+
+    const raceFormatted = formatRace(raceSelected, language);
+    const classFormatted = formatClass(classSelected, language);
+
+    const cardFormatted: ICard = {
+      id: cardId,
+
+      race: raceFormatted,
+      class: classFormatted,
+
+      attributes,
+
+      name: cardForm.name,
+      hp: cardForm.hp,
+      level: cardForm.level,
+      items: cardForm.items,
+      notes: cardForm.notes,
+      proficiencies: cardForm.proficiencies,
+    };
 
     return cardFormatted;
   },

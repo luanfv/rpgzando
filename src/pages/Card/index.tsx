@@ -5,12 +5,9 @@ import {
   useNavigation,
   useRoute,
 } from '@react-navigation/native';
-import { Button } from 'react-native';
-import { useTheme } from 'styled-components';
 
 import { IRoutes } from '@src/types/routes';
-import { ICard } from '@src/types';
-import { Body, Information } from '@src/components';
+import { Body, Header, Information } from '@src/components';
 import { useSkill } from '@src/hooks';
 import { Attributes } from './styles';
 
@@ -18,14 +15,22 @@ const Card: React.FC = () => {
   const { params } = useRoute<RouteProp<IRoutes, 'Card'>>();
   const { goBack } = useNavigation<NavigationProp<IRoutes, 'Card'>>();
   const { calcModifier, calcProficiency } = useSkill();
-  const theme = useTheme();
 
   const card = useMemo(() => {
-    return params as ICard;
+    return params;
   }, [params]);
+
+  const options = useMemo(() => {
+    return [
+      { label: 'Edit', onPress: () => {} },
+      { label: 'Remove', onPress: () => {} },
+    ];
+  }, []);
 
   return (
     <Body>
+      <Header onBack={goBack} options={options} />
+
       <Information title="Name" value={card.name} />
 
       <Information title="Level" value={String(card.level)} />
@@ -96,8 +101,6 @@ const Card: React.FC = () => {
       <Information title="Items" value={card.items} />
 
       {!!card.notes && <Information title="Notes" value={card.notes} />}
-
-      <Button title="Go back" color={theme.colors.secondary} onPress={goBack} />
     </Body>
   );
 };

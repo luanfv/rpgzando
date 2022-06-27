@@ -7,7 +7,7 @@ import { useTheme } from 'styled-components';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
-import { Body, Input, InputNumeric, Picker } from '@src/components';
+import { Body, Header, Input, InputNumeric, Picker } from '@src/components';
 import { serviceCards, serviceClasses, serviceRaces } from '@src/services';
 import { IPickerItem } from '@src/types/components';
 import { ICardForm } from '@src/types';
@@ -62,7 +62,7 @@ const ChangeCard: React.FC = () => {
     resolver: yupResolver(schema),
   });
 
-  const { reset } =
+  const { reset, goBack } =
     useNavigation<NativeStackNavigationProp<IRoutes, 'ChangeCard'>>();
 
   const nameRef = useRef<TextInput>(null);
@@ -124,6 +124,8 @@ const ChangeCard: React.FC = () => {
 
   return (
     <Body>
+      <Header onBack={goBack} />
+
       <Controller
         control={control}
         render={({ field: { onChange, onBlur, value } }) => (

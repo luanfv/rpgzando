@@ -7,3 +7,4 @@ export { Body } from './Body';
 export { Information } from './Information';
 export { HeaderDashboard } from './HeaderDashboard';
 export { MenuList } from './MenuList';
+export { Header } from './Header';

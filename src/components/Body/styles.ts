@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components/native';
+import { RFValue } from 'react-native-responsive-fontsize';
 
 const Scroll = styled.ScrollView`
   ${({ theme }) => css`
@@ -10,7 +11,7 @@ const Container = styled.View`
   flex: 1;
 
   ${({ theme }) => css`
-    margin: ${theme.spacing}px;
+    margin: ${RFValue(theme.spacing)}px;
   `}
 `;
 

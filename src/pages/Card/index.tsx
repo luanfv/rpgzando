@@ -9,7 +9,7 @@ import {
 import { IRoutes } from '@src/types/routes';
 import { Body, Header, Information, ModalConfirm } from '@src/components';
 import { useLanguage, useSkill } from '@src/hooks';
-import { Attributes } from './styles';
+import { Attributes, Image } from './styles';
 import { serviceCards } from '@src/services';
 
 const Card: React.FC = () => {
@@ -70,6 +70,8 @@ const Card: React.FC = () => {
   return (
     <Body>
       <Header onBack={goBack} options={options} />
+
+      <Image source={{ uri: card.race.image }} />
 
       <Information title={language.pages.Card.name} value={card.name} />
 

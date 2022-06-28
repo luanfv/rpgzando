@@ -1,11 +1,12 @@
 import styled, { css } from 'styled-components/native';
+import { RFValue } from 'react-native-responsive-fontsize';
 
 interface IContainer {
   w?: number;
 }
 
 const Container = styled.View<IContainer>`
-  margin-bottom: 16px;
+  margin-bottom: ${RFValue(16)}px;
   ${({ w }) =>
     w &&
     css`
@@ -15,7 +16,7 @@ const Container = styled.View<IContainer>`
 
 const Title = styled.Text`
   ${({ theme }) => css`
-    font-size: ${theme.fonts.medium}px;
+    font-size: ${RFValue(theme.fonts.medium)}px;
     color: ${theme.colors.textLight};
   `}
 `;
@@ -24,7 +25,7 @@ const Value = styled.Text`
   font-weight: bold;
 
   ${({ theme }) => css`
-    font-size: ${theme.fonts.large}px;
+    font-size: ${RFValue(theme.fonts.large)}px;
     color: ${theme.colors.text};
   `}
 `;

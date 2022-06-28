@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components/native';
 import { GoogleSigninButton } from '@react-native-google-signin/google-signin';
+import { RFValue } from 'react-native-responsive-fontsize';
 
 const Container = styled.View`
   flex: 1;
@@ -12,22 +13,22 @@ const Header = styled.View`
 `;
 
 const Logo = styled.Image`
-  width: 260px;
-  height: 260px;
+  width: ${RFValue(260)}px;
+  height: ${RFValue(260)}px;
 `;
 
 const Title = styled.Text`
   font-weight: bold;
 
   ${({ theme }) => css`
-    font-size: ${theme.fonts.large}px;
+    font-size: ${RFValue(theme.fonts.large)}px;
     color: ${theme.colors.text};
   `}
 `;
 
 const Description = styled.Text`
   ${({ theme }) => css`
-    font-size: ${theme.fonts.medium}px;
+    font-size: ${RFValue(theme.fonts.medium)}px;
     color: ${theme.colors.text};
   `}
 `;

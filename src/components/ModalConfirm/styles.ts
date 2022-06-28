@@ -1,10 +1,11 @@
 import styled, { css } from 'styled-components/native';
+import { RFValue } from 'react-native-responsive-fontsize';
 
 const Container = styled.View`
   background-color: ${({ theme }) => theme.colors.primary};
   width: 100%;
-  padding: 20px;
-  border-radius: 2px;
+  padding: ${RFValue(20)}px;
+  border-radius: ${RFValue(2)}px;
 `;
 
 const Title = styled.Text`
@@ -13,7 +14,7 @@ const Title = styled.Text`
 
   ${({ theme }) => css`
     color: ${theme.colors.text};
-    font-size: ${theme.fonts.large}px;
+    font-size: ${RFValue(theme.fonts.large)}px;
   `}
 `;
 
@@ -22,7 +23,7 @@ const Description = styled.Text`
 
   ${({ theme }) => css`
     color: ${theme.colors.text};
-    font-size: ${theme.fonts.medium}px;
+    font-size: ${RFValue(theme.fonts.medium)}px;
   `}
 `;
 

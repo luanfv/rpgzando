@@ -1,9 +1,10 @@
 import styled, { css } from 'styled-components/native';
 import ModalLib from 'react-native-modal';
+import { RFValue } from 'react-native-responsive-fontsize';
 
 const Container = styled.View`
   width: 100%;
-  height: 50px;
+  height: ${RFValue(50)}px;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
@@ -15,9 +16,9 @@ const Modal = styled(ModalLib)`
 `;
 
 const Option = styled.View`
-  padding: 4px 8px;
-  border-radius: 1px;
-  min-width: 180px;
+  padding: ${RFValue(4)}px ${RFValue(8)}px;
+  border-radius: ${RFValue(1)}px;
+  min-width: ${RFValue(180)}px;
 
   ${({ theme }) => css`
     background-color: ${theme.colors.text};
@@ -25,14 +26,14 @@ const Option = styled.View`
 `;
 
 const OptionButton = styled.TouchableOpacity`
-  padding: 6px 0;
-  margin: 2px 0;
+  padding: ${RFValue(6)}px 0;
+  margin: ${RFValue(2)}px 0;
 `;
 
 const OptionText = styled.Text`
   ${({ theme }) => css`
     color: ${theme.colors.primary};
-    font-size: ${theme.fonts.medium}px;
+    font-size: ${RFValue(theme.fonts.medium)}px;
   `}
 `;
 

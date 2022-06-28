@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components/native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { RFValue } from 'react-native-responsive-fontsize';
 
 interface IWelcomeText {
   bold?: boolean;
@@ -17,13 +18,13 @@ const Header = styled.View`
 `;
 
 const Welcome = styled.View`
-  height: 80px;
-  padding: ${({ theme }) => theme.spacing}px;
+  height: ${RFValue(80)}px;
+  padding: ${({ theme }) => RFValue(theme.spacing)}px;
 `;
 
 const WelcomeText = styled.Text<IWelcomeText>`
   color: ${({ theme }) => theme.colors.text};
-  font-size: ${({ theme }) => theme.fonts.large}px;
+  font-size: ${({ theme }) => RFValue(theme.fonts.large)}px;
   ${({ bold }) =>
     bold &&
     css`
@@ -32,8 +33,8 @@ const WelcomeText = styled.Text<IWelcomeText>`
 `;
 
 const Icon = styled(Ionicons)`
-  font-size: ${({ theme }) => theme.fonts.large * 2}px;
-  padding: ${({ theme }) => theme.spacing}px;
+  font-size: ${({ theme }) => RFValue(theme.fonts.large * 2)}px;
+  padding: ${({ theme }) => RFValue(theme.spacing)}px;
   color: ${({ theme }) => theme.colors.attention};
   font-weight: bold;
 `;

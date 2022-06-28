@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import { RFValue } from 'react-native-responsive-fontsize';
 
 const Attributes = styled.View`
   width: 100%;
@@ -6,7 +7,13 @@ const Attributes = styled.View`
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: ${RFValue(20)}px;
 `;
 
-export { Attributes };
+const Image = styled.Image`
+  width: ${RFValue(80)}px;
+  height: ${RFValue(80)}px;
+  margin: ${RFValue(20)}px auto;
+`;
+
+export { Attributes, Image };

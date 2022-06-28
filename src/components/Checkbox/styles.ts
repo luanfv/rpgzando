@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components/native';
+import { RFValue } from 'react-native-responsive-fontsize';
 
 interface ICheckbox {
   selected?: boolean;
@@ -8,8 +9,8 @@ const Container = styled.TouchableOpacity<ICheckbox>`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  margin: 5px 0;
-  padding: 0 5px;
+  margin: ${RFValue(5)}px 0;
+  padding: 0 ${RFValue(5)}px;
   border-radius: 2px;
 
   ${({ selected }) =>
@@ -21,7 +22,7 @@ const Container = styled.TouchableOpacity<ICheckbox>`
 
 const Text = styled.Text<ICheckbox>`
   color: ${({ theme }) => theme.colors.text};
-  font-size: ${({ theme }) => theme.fonts.medium}px;
+  font-size: ${({ theme }) => RFValue(theme.fonts.medium)}px;
 
   ${({ selected }) =>
     selected &&

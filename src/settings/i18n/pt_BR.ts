@@ -1,79 +1,80 @@
 import { ILanguage } from '@src/types';
 
 const pt_BR: ILanguage = {
-  type: 'en',
+  type: 'pt',
 
   pages: {
     Auth: {
-      title: 'Welcome',
-      description: 'Have your RPG cards in one place',
+      title: 'Bem-vindo(a)',
+      description: 'Tenha suas fichas de RPG em apenas um lugar',
     },
 
     Dashboard: {
-      welcome: 'Welcome,',
+      welcome: 'Bem-vindo(a),',
 
       cards: {
         create: {
-          title: 'Add',
-          description: 'Add a new character card to your roster.',
+          title: 'Adicionar',
+          description: 'Adicione uma nova ficha de personagem à sua lista.',
         },
 
         view: {
-          title: 'Search',
-          description: 'Search and view cards from other platform users.',
+          title: 'Pesquisar',
+          description:
+            'Pesquise e visualize fichas de outros usuários da plataforma.',
         },
       },
 
       modal: {
-        title: 'Sign out',
-        description: 'Are you sure you want to log out of your account?',
+        title: 'Sair da conta',
+        description: 'Tem certeza que deseja sair da sua conta?',
       },
     },
 
     Card: {
-      name: 'Name',
-      level: 'Leve',
-      proficiency: 'Proficiency',
-      race: 'Race',
-      class: 'Class',
+      name: 'Nome',
+      level: 'Nível',
+      proficiency: 'Proficiência',
+      race: 'Raça',
+      class: 'Classe',
       hp: 'HP',
-      for: 'Force',
-      dex: 'Dexterity',
-      con: 'Constitution',
-      wis: 'Wisdom',
-      int: 'Intelligence',
-      cha: 'Charisma',
-      items: 'Items',
-      notes: 'Notes',
-      proficiencies: 'Proficiencies',
+      for: 'Força',
+      dex: 'Destreza',
+      con: 'Constituição',
+      wis: 'Sabedoria',
+      int: 'Inteligência',
+      cha: 'Carisma',
+      items: 'Itens',
+      notes: 'Anotações',
+      proficiencies: 'Proficiências',
 
       modal: {
-        edit: 'Edit',
-        remove: 'Remove',
+        edit: 'Editar',
+        remove: 'Remover',
 
-        title: 'Remove',
+        title: 'Remover',
         description:
-          'Are you sure you want to remove your card? Cannot undo this action.',
+          'Tem certeza que você deseja remover esta ficha? Essa ação não podera ser desfeita.',
       },
     },
 
     FormCard: {
       inputs: {
         name: {
-          label: 'Name',
-          placeholder: "My character's name is...",
+          label: 'Nome',
+          placeholder: 'Nome do meu personagem é...',
         },
 
         level: {
-          label: 'Level',
+          label: 'Nível',
         },
 
         race: {
-          label: 'Race',
+          label: 'Raça',
         },
 
         class: {
-          label: 'Class',
+          label: 'Classe',
         },
 
         hp: {
@@ -81,46 +82,46 @@ const pt_BR: ILanguage = {
         },
 
         for: {
-          label: 'Force',
+          label: 'Força',
         },
 
         dex: {
-          label: 'Dexterity',
+          label: 'Destreza',
         },
 
         con: {
-          label: 'Constitution',
+          label: 'Constituição',
         },
 
         int: {
-          label: 'Intelligence',
+          label: 'Inteligência',
         },
 
         wis: {
-          label: 'Wisdom',
+          label: 'Sabedoria',
         },
 
         cha: {
-          label: 'Charisma',
+          label: 'Carisma',
         },
 
         proficiencies: {
-          label: 'Proficiencies',
-          placeholder: 'My proficiencies are...',
+          label: 'Proficiências',
+          placeholder: 'Minhas proficiências são...',
         },
 
         items: {
-          label: 'Items',
-          placeholder: 'My items are...',
+          label: 'Itens',
+          placeholder: 'Meus itens são...',
         },
 
         notes: {
-          label: 'Notes',
-          placeholder: 'My notes are...',
+          label: 'Anotações',
+          placeholder: 'Minhas anotações são...',
         },
       },
 
-      button: 'Confirm',
+      button: 'Confirmar',
     },
   },
 };

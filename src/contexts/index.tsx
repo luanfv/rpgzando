@@ -1,2 +1,2 @@
-export { AuthContext, AuthProvider } from './user';
+export { AuthContext, AuthProvider } from './auth';
 export { LanguageContext, LanguageProvider } from './language';

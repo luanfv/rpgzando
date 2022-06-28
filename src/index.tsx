@@ -1,6 +1,7 @@
 import 'react-native-gesture-handler';
 
 import React from 'react';
+import { StatusBar } from 'react-native';
 import { ThemeProvider } from 'styled-components';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 
@@ -16,6 +17,11 @@ const App: React.FC = () => {
   return (
     <ThemeProvider theme={theme}>
       <AppProviders>
+        <StatusBar
+          backgroundColor={theme.colors.primary}
+          barStyle="light-content"
+        />
+
         <Routes />
       </AppProviders>
     </ThemeProvider>

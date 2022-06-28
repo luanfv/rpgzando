@@ -17,6 +17,11 @@ interface IServiceCard {
   createdAt: FirebaseFirestoreTypes.FieldValue;
 }
 
+interface IGetOthersFilter {
+  race?: string;
+  class?: string;
+}
+
 interface IServiceCards {
   get: (language: ILanguageType, userUid?: string) => Promise<ICard>;
 
@@ -33,6 +38,12 @@ interface IServiceCards {
     cardForm: ICardForm,
     language: ILanguageType,
   ) => Promise<ICard>;
+
+  getOthers: (
+    language: ILanguageType,
+    userUid: string,
+    filter?: IGetOthersFilter,
+  ) => Promise<ICard[]>;
 }
 
 export { IServiceCard, IServiceCards };

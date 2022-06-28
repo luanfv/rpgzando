@@ -122,6 +122,48 @@ const serviceCards: IServiceCards = {
 
     return cardFormatted;
   },
+
+  getOthers: async (language = 'en', userUid, filter) => {
+    const cards: ICard[] = [];
+    const response = await firestore()
+      .collection('cards')
+      .where('userUid', '!=', userUid)
+      .get();
+
+    response.docs.forEach((doc) => {
+      const data = doc.data() as IServiceCard;
+
+      if (filter) {
+        if (!!filter.class && filter.class !== data.class.index) {
+          return;
+        }
+
+        if (!!filter.race && filter.race !== data.race.index) {
+          return;
+        }
+      }
+
+      const myClass = formatClass(data.class, language);
+      const myRace = formatRace(data.race, language);
+
+      cards.push({
+        id: doc.id,
+
+        class: myClass,
+        race: myRace,
+
+        attributes: data.attributes,
+        hp: data.hp,
+        items: data.items,
+        level: data.level,
+        name: data.name,
+        notes: data.notes,
+        proficiencies: data.proficiencies,
+      });
+    });
+
+    return cards;
+  },
 };
 
 export { serviceCards };

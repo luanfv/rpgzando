@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { gestureHandlerRootHOC } from 'react-native-gesture-handler';
 
-import { FormCard, Card, Auth, Dashboard } from '@src/pages';
+import { FormCard, Card, Auth, Dashboard, SearchCard } from '@src/pages';
 import { useAuth } from '@src/hooks';
 import { Text, View } from 'react-native';
 
@@ -38,6 +38,11 @@ const Routes: React.FC = () => {
         />
 
         <Stack.Screen name="Card" component={gestureHandlerRootHOC(Card)} />
+
+        <Stack.Screen
+          name="SearchCard"
+          component={gestureHandlerRootHOC(SearchCard)}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

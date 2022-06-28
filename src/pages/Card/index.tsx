@@ -68,99 +68,104 @@ const Card: React.FC = () => {
   ]);
 
   return (
-    <Body>
+    <>
       <Header onBack={goBack} options={options} />
 
-      <Image source={{ uri: card.race.image }} />
+      <Body>
+        <Image source={{ uri: card.race.image }} />
 
-      <Information title={language.pages.Card.name} value={card.name} />
+        <Information title={language.pages.Card.name} value={card.name} />
 
-      <Information
-        title={language.pages.Card.level}
-        value={String(card.level)}
-      />
-
-      <Information
-        title={language.pages.Card.proficiency}
-        value={String(calcProficiency(card.level))}
-      />
-
-      <Information title={language.pages.Card.race} value={card.race.name} />
-
-      <Information title={language.pages.Card.class} value={card.class.name} />
-
-      <Information title={language.pages.Card.hp} value={String(card.hp)} />
-
-      <Attributes>
         <Information
-          title={language.pages.Card.for}
-          value={`${card.attributes.for} (${calcModifier(
-            card.attributes.for,
-          )})`}
-          width={48}
+          title={language.pages.Card.level}
+          value={String(card.level)}
         />
 
         <Information
-          title={language.pages.Card.wis}
-          value={`${card.attributes.wis} ${
-            card && `(${calcModifier(card.attributes.wis)})`
-          }`}
-          width={48}
+          title={language.pages.Card.proficiency}
+          value={String(calcProficiency(card.level))}
         />
+
+        <Information title={language.pages.Card.race} value={card.race.name} />
 
         <Information
-          title={language.pages.Card.dex}
-          value={`${card.attributes.dex} (${calcModifier(
-            card.attributes.dex,
-          )})`}
-          width={48}
+          title={language.pages.Card.class}
+          value={card.class.name}
         />
+
+        <Information title={language.pages.Card.hp} value={String(card.hp)} />
+
+        <Attributes>
+          <Information
+            title={language.pages.Card.for}
+            value={`${card.attributes.for} (${calcModifier(
+              card.attributes.for,
+            )})`}
+            width={48}
+          />
+
+          <Information
+            title={language.pages.Card.wis}
+            value={`${card.attributes.wis} ${
+              card && `(${calcModifier(card.attributes.wis)})`
+            }`}
+            width={48}
+          />
+
+          <Information
+            title={language.pages.Card.dex}
+            value={`${card.attributes.dex} (${calcModifier(
+              card.attributes.dex,
+            )})`}
+            width={48}
+          />
+
+          <Information
+            title={language.pages.Card.int}
+            value={`${card.attributes.int} (${calcModifier(
+              card.attributes.int,
+            )})`}
+            width={48}
+          />
+
+          <Information
+            title={language.pages.Card.con}
+            value={`${card.attributes.con} (${calcModifier(
+              card.attributes.con,
+            )})`}
+            width={48}
+          />
+
+          <Information
+            title={language.pages.Card.cha}
+            value={`${card.attributes.cha} (${calcModifier(
+              card.attributes.cha,
+            )})`}
+            width={48}
+          />
+        </Attributes>
 
         <Information
-          title={language.pages.Card.int}
-          value={`${card.attributes.int} (${calcModifier(
-            card.attributes.int,
-          )})`}
-          width={48}
+          title={language.pages.Card.proficiencies}
+          value={card.proficiencies}
         />
 
-        <Information
-          title={language.pages.Card.con}
-          value={`${card.attributes.con} (${calcModifier(
-            card.attributes.con,
-          )})`}
-          width={48}
+        <Information title={language.pages.Card.items} value={card.items} />
+
+        {!!card.notes && (
+          <Information title={language.pages.Card.notes} value={card.notes} />
+        )}
+
+        <ModalConfirm
+          isVisible={isModalOpen}
+          title={titleModal}
+          description={descriptionModal}
+          onClose={handleCloseRemoveModal}
+          onConfirm={() => handleRemoveCard(card.id)}
+          isAttention
         />
-
-        <Information
-          title={language.pages.Card.cha}
-          value={`${card.attributes.cha} (${calcModifier(
-            card.attributes.cha,
-          )})`}
-          width={48}
-        />
-      </Attributes>
-
-      <Information
-        title={language.pages.Card.proficiencies}
-        value={card.proficiencies}
-      />
-
-      <Information title={language.pages.Card.items} value={card.items} />
-
-      {!!card.notes && (
-        <Information title={language.pages.Card.notes} value={card.notes} />
-      )}
-
-      <ModalConfirm
-        isVisible={isModalOpen}
-        title={titleModal}
-        description={descriptionModal}
-        onClose={handleCloseRemoveModal}
-        onConfirm={() => handleRemoveCard(card.id)}
-        isAttention
-      />
-    </Body>
+      </Body>
+    </>
   );
 };
 

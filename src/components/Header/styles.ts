@@ -8,6 +8,10 @@ const Container = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  background-color: ${({ theme }) => theme.colors.primary};
+  border-bottom-width: 1px;
+  border-color: rgba(255, 255, 255, 0.1);
+  padding: 0 ${({ theme }) => RFValue(theme.spacing)}px;
 `;
 
 const Modal = styled(ModalLib)`

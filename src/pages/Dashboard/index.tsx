@@ -42,7 +42,7 @@ const Dashboard: React.FC = () => {
           message: language.pages.Dashboard.cards.view.description,
         },
         isMain: false,
-        onPress: () => {},
+        onPress: () => navigate('SearchCard'),
       },
     ],
     [

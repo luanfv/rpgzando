@@ -164,249 +164,253 @@ const FormCard: React.FC = () => {
   }, [params, setValue]);
 
   return (
-    <Body>
+    <>
       <Header onBack={goBack} />
 
-      <Controller
-        control={control}
-        render={({ field: { onChange, onBlur, value } }) => (
-          <Input
-            title={language.pages.FormCard.inputs.name.label}
-            placeholder={language.pages.FormCard.inputs.name.placeholder}
-            reference={nameRef}
-            onBlur={onBlur}
-            onChangeText={onChange}
-            value={value}
-            maxLength={40}
-            errorMessage={errors.name && errors.name.message}
-            onSubmitEditing={() => levelRef.current?.focus()}
-          />
-        )}
-        name="name"
-      />
+      <Body>
+        <Controller
+          control={control}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <Input
+              title={language.pages.FormCard.inputs.name.label}
+              placeholder={language.pages.FormCard.inputs.name.placeholder}
+              reference={nameRef}
+              onBlur={onBlur}
+              onChangeText={onChange}
+              value={value}
+              maxLength={40}
+              errorMessage={errors.name && errors.name.message}
+              onSubmitEditing={() => levelRef.current?.focus()}
+            />
+          )}
+          name="name"
+        />
 
-      <Controller
-        control={control}
-        render={({ field: { onChange, onBlur, value } }) => (
-          <InputNumeric
-            title={language.pages.FormCard.inputs.level.label}
-            value={value}
-            onChange={onChange}
-            onBlur={onBlur}
-            min={1}
-            max={99}
-          />
-        )}
-        name="level"
-      />
+        <Controller
+          control={control}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <InputNumeric
+              title={language.pages.FormCard.inputs.level.label}
+              value={value}
+              onChange={onChange}
+              onBlur={onBlur}
+              min={1}
+              max={99}
+            />
+          )}
+          name="level"
+        />
 
-      <Controller
-        control={control}
-        render={({ field: { onChange, onBlur, value } }) => (
-          <Picker
-            title={language.pages.FormCard.inputs.race.label}
-            items={races}
-            selectedValue={value}
-            onValueChange={onChange}
-            onBlur={onBlur}
-          />
-        )}
-        name="race"
-      />
+        <Controller
+          control={control}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <Picker
+              title={language.pages.FormCard.inputs.race.label}
+              items={races}
+              selectedValue={value}
+              onValueChange={onChange}
+              onBlur={onBlur}
+            />
+          )}
+          name="race"
+        />
 
-      <Controller
-        control={control}
-        render={({ field: { onChange, onBlur, value } }) => (
-          <Picker
-            title={language.pages.FormCard.inputs.class.label}
-            items={classes}
-            selectedValue={value}
-            onValueChange={onChange}
-            onBlur={onBlur}
-          />
-        )}
-        name="class"
-      />
+        <Controller
+          control={control}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <Picker
+              title={language.pages.FormCard.inputs.class.label}
+              items={classes}
+              selectedValue={value}
+              onValueChange={onChange}
+              onBlur={onBlur}
+            />
+          )}
+          name="class"
+        />
 
-      <Controller
-        control={control}
-        render={({ field: { onChange, onBlur, value } }) => (
-          <InputNumeric
-            title={language.pages.FormCard.inputs.hp.label}
-            value={value}
-            onChange={onChange}
-            onBlur={onBlur}
-            min={1}
-            max={999}
-          />
-        )}
-        name="hp"
-      />
+        <Controller
+          control={control}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <InputNumeric
+              title={language.pages.FormCard.inputs.hp.label}
+              value={value}
+              onChange={onChange}
+              onBlur={onBlur}
+              min={1}
+              max={999}
+            />
+          )}
+          name="hp"
+        />
 
-      <Controller
-        control={control}
-        render={({ field: { onChange, onBlur, value } }) => (
-          <InputNumeric
-            title={language.pages.FormCard.inputs.for.label}
-            value={value}
-            onChange={onChange}
-            onBlur={onBlur}
-            min={1}
-            max={20}
-            random
-          />
-        )}
-        name="for"
-      />
+        <Controller
+          control={control}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <InputNumeric
+              title={language.pages.FormCard.inputs.for.label}
+              value={value}
+              onChange={onChange}
+              onBlur={onBlur}
+              min={1}
+              max={20}
+              random
+            />
+          )}
+          name="for"
+        />
 
-      <Controller
-        control={control}
-        render={({ field: { onChange, onBlur, value } }) => (
-          <InputNumeric
-            title={language.pages.FormCard.inputs.dex.label}
-            value={value}
-            onChange={onChange}
-            onBlur={onBlur}
-            min={1}
-            max={20}
-            random
-          />
-        )}
-        name="dex"
-      />
+        <Controller
+          control={control}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <InputNumeric
+              title={language.pages.FormCard.inputs.dex.label}
+              value={value}
+              onChange={onChange}
+              onBlur={onBlur}
+              min={1}
+              max={20}
+              random
+            />
+          )}
+          name="dex"
+        />
 
-      <Controller
-        control={control}
-        render={({ field: { onChange, onBlur, value } }) => (
-          <InputNumeric
-            title={language.pages.FormCard.inputs.con.label}
-            value={value}
-            onChange={onChange}
-            onBlur={onBlur}
-            min={1}
-            max={20}
-            random
-          />
-        )}
-        name="con"
-      />
+        <Controller
+          control={control}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <InputNumeric
+              title={language.pages.FormCard.inputs.con.label}
+              value={value}
+              onChange={onChange}
+              onBlur={onBlur}
+              min={1}
+              max={20}
+              random
+            />
+          )}
+          name="con"
+        />
 
-      <Controller
-        control={control}
-        render={({ field: { onChange, onBlur, value } }) => (
-          <InputNumeric
-            title={language.pages.FormCard.inputs.int.label}
-            value={value}
-            onChange={onChange}
-            onBlur={onBlur}
-            min={1}
-            max={20}
-            random
-          />
-        )}
-        name="int"
-      />
+        <Controller
+          control={control}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <InputNumeric
+              title={language.pages.FormCard.inputs.int.label}
+              value={value}
+              onChange={onChange}
+              onBlur={onBlur}
+              min={1}
+              max={20}
+              random
+            />
+          )}
+          name="int"
+        />
 
-      <Controller
-        control={control}
-        render={({ field: { onChange, onBlur, value } }) => (
-          <InputNumeric
-            title={language.pages.FormCard.inputs.wis.label}
-            value={value}
-            onChange={onChange}
-            onBlur={onBlur}
-            min={1}
-            max={20}
-            random
-          />
-        )}
-        name="wis"
-      />
+        <Controller
+          control={control}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <InputNumeric
+              title={language.pages.FormCard.inputs.wis.label}
+              value={value}
+              onChange={onChange}
+              onBlur={onBlur}
+              min={1}
+              max={20}
+              random
+            />
+          )}
+          name="wis"
+        />
 
-      <Controller
-        control={control}
-        render={({ field: { onChange, onBlur, value } }) => (
-          <InputNumeric
-            title={language.pages.FormCard.inputs.cha.label}
-            value={value}
-            onChange={onChange}
-            onBlur={onBlur}
-            min={1}
-            max={20}
-            random
-          />
-        )}
-        name="cha"
-      />
+        <Controller
+          control={control}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <InputNumeric
+              title={language.pages.FormCard.inputs.cha.label}
+              value={value}
+              onChange={onChange}
+              onBlur={onBlur}
+              min={1}
+              max={20}
+              random
+            />
+          )}
+          name="cha"
+        />
 
-      <Controller
-        control={control}
-        render={({ field: { onChange, onBlur, value } }) => (
-          <Input
-            title={language.pages.FormCard.inputs.proficiencies.label}
-            placeholder={
-              language.pages.FormCard.inputs.proficiencies.placeholder
-            }
-            reference={nameRef}
-            onBlur={onBlur}
-            onChangeText={onChange}
-            value={value}
-            errorMessage={errors.proficiencies && errors.proficiencies.message}
-            onSubmitEditing={() => levelRef.current?.focus()}
-            multiline
-            numberOfLines={6}
-            textAlignVertical="top"
-          />
-        )}
-        name="proficiencies"
-      />
+        <Controller
+          control={control}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <Input
+              title={language.pages.FormCard.inputs.proficiencies.label}
+              placeholder={
+                language.pages.FormCard.inputs.proficiencies.placeholder
+              }
+              reference={nameRef}
+              onBlur={onBlur}
+              onChangeText={onChange}
+              value={value}
+              errorMessage={
+                errors.proficiencies && errors.proficiencies.message
+              }
+              onSubmitEditing={() => levelRef.current?.focus()}
+              multiline
+              numberOfLines={6}
+              textAlignVertical="top"
+            />
+          )}
+          name="proficiencies"
+        />
 
-      <Controller
-        control={control}
-        render={({ field: { onChange, onBlur, value } }) => (
-          <Input
-            title={language.pages.FormCard.inputs.items.label}
-            placeholder={language.pages.FormCard.inputs.items.placeholder}
-            reference={nameRef}
-            onBlur={onBlur}
-            onChangeText={onChange}
-            value={value}
-            errorMessage={errors.items && errors.items.message}
-            onSubmitEditing={() => levelRef.current?.focus()}
-            multiline
-            numberOfLines={6}
-            textAlignVertical="top"
-          />
-        )}
-        name="items"
-      />
+        <Controller
+          control={control}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <Input
+              title={language.pages.FormCard.inputs.items.label}
+              placeholder={language.pages.FormCard.inputs.items.placeholder}
+              reference={nameRef}
+              onBlur={onBlur}
+              onChangeText={onChange}
+              value={value}
+              errorMessage={errors.items && errors.items.message}
+              onSubmitEditing={() => levelRef.current?.focus()}
+              multiline
+              numberOfLines={6}
+              textAlignVertical="top"
+            />
+          )}
+          name="items"
+        />
 
-      <Controller
-        control={control}
-        render={({ field: { onChange, onBlur, value } }) => (
-          <Input
-            title={language.pages.FormCard.inputs.notes.label}
-            placeholder={language.pages.FormCard.inputs.notes.placeholder}
-            reference={nameRef}
-            onBlur={onBlur}
-            onChangeText={onChange}
-            value={value}
-            errorMessage={errors.notes && errors.notes.message}
-            onSubmitEditing={() => levelRef.current?.focus()}
-            multiline
-            numberOfLines={6}
-            textAlignVertical="top"
-          />
-        )}
-        name="notes"
-      />
+        <Controller
+          control={control}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <Input
+              title={language.pages.FormCard.inputs.notes.label}
+              placeholder={language.pages.FormCard.inputs.notes.placeholder}
+              reference={nameRef}
+              onBlur={onBlur}
+              onChangeText={onChange}
+              value={value}
+              errorMessage={errors.notes && errors.notes.message}
+              onSubmitEditing={() => levelRef.current?.focus()}
+              multiline
+              numberOfLines={6}
+              textAlignVertical="top"
+            />
+          )}
+          name="notes"
+        />
 
-      <Button
-        title={language.pages.FormCard.button}
-        onPress={handleSubmit(onSubmit)}
-        color={theme.colors.secondary}
-      />
-    </Body>
+        <Button
+          title={language.pages.FormCard.button}
+          onPress={handleSubmit(onSubmit)}
+          color={theme.colors.secondary}
+        />
+      </Body>
+    </>
   );
 };
 

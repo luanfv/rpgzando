@@ -96,12 +96,13 @@ const SearchCard: React.FC = () => {
         .getOthers(user.uid, language.type, {
           races: selectedRaces,
           classes: selectedClasses,
+          email: searchEmail,
         })
         .then((response) => {
           setCards(response);
         });
     }
-  }, [language.type, selectedClasses, selectedRaces, user]);
+  }, [language.type, searchEmail, selectedClasses, selectedRaces, user]);
 
   const handleClean = useCallback(() => {
     setSearchEmail('');

@@ -128,14 +128,21 @@ const serviceCards: IServiceCards = {
       const data = doc.data() as IServiceCard;
 
       if (filter) {
+        if (!!filter.email && filter.email !== data.email) {
+          return;
+        }
+
         if (
-          !!filter.classes &&
+          filter.classes.length > 0 &&
           filter.classes.indexOf(data.class.index) === -1
         ) {
           return;
         }
 
-        if (!!filter.races && filter.races.indexOf(data.race.index) === -1) {
+        if (
+          filter.races.length > 0 &&
+          filter.races.indexOf(data.race.index) === -1
+        ) {
           return;
         }
       }

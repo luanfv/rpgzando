@@ -29,8 +29,8 @@ interface IServiceCardUpdate extends ICardForm {
 }
 
 interface IGetOthersFilter {
-  races?: string[];
-  classes?: string[];
+  races: string[];
+  classes: string[];
   email?: string;
 }
 

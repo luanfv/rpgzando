@@ -25,7 +25,7 @@ interface IServiceCardPost extends ICardForm {
 
 interface IServiceCardUpdate extends ICardForm {
   id: string;
-  email: string;
+  userUid: string;
 }
 
 interface IGetOthersFilter {
@@ -39,7 +39,7 @@ interface IServiceCards {
 
   post: (cardForm: IServiceCardPost, language: ILanguageType) => Promise<ICard>;
 
-  delete: (cardId: string) => Promise<void>;
+  delete: (userUid: string, cardId: string) => Promise<void>;
 
   update: (
     cardForm: IServiceCardUpdate,

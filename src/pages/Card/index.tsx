@@ -8,7 +8,7 @@ import {
 
 import { IRoutes } from '@src/types/routes';
 import { Body, Header, Information, ModalConfirm } from '@src/components';
-import { useLanguage, useSkill } from '@src/hooks';
+import { useAuth, useLanguage, useSkill } from '@src/hooks';
 import { Attributes, Image } from './styles';
 import { serviceCards } from '@src/services';
 
@@ -21,6 +21,7 @@ const Card: React.FC = () => {
   const [descriptionModal, setDescriptionModal] = useState('');
 
   const { language } = useLanguage();
+  const { user } = useAuth();
 
   const handleOpenRemoveModal = useCallback(() => {
     setTitleModal(language.pages.Card.modal.title);
@@ -34,9 +35,14 @@ const Card: React.FC = () => {
 
   const handleRemoveCard = useCallback(
     (cardId) => {
-      serviceCards.delete(cardId).then(() => goBack());
+      if (user) {
+        serviceCards
+          .delete(user.uid, cardId)
+          .then(() => goBack())
+          .catch(() => handleCloseRemoveModal());
+      }
     },
-    [goBack],
+    [goBack, handleCloseRemoveModal, user],
   );
 
   const isModalOpen = useMemo(
@@ -45,27 +51,29 @@ const Card: React.FC = () => {
   );
 
   const card = useMemo(() => {
-    console.log(params);
     return params;
   }, [params]);
 
   const options = useMemo(() => {
-    return [
-      {
-        label: language.pages.Card.modal.edit,
-        onPress: () => navigate('FormCard', card),
-      },
-      {
-        label: language.pages.Card.modal.remove,
-        onPress: handleOpenRemoveModal,
-      },
-    ];
+    if (user && card.email === user.email) {
+      return [
+        {
+          label: language.pages.Card.modal.edit,
+          onPress: () => navigate('FormCard', card),
+        },
+        {
+          label: language.pages.Card.modal.remove,
+          onPress: handleOpenRemoveModal,
+        },
+      ];
+    }
   }, [
     card,
     handleOpenRemoveModal,
     language.pages.Card.modal.edit,
     language.pages.Card.modal.remove,
     navigate,
+    user,
   ]);
 
   return (

@@ -80,9 +80,9 @@ const FormCard: React.FC = () => {
   const onSubmit = useCallback(
     async (data: ICardForm) => {
       if (user) {
-        if (params) {
+        if (params && params.email === user.email) {
           const updatedCard = await serviceCards.update(
-            { ...data, id: params.id, email: params.email },
+            { ...data, id: params.id, userUid: user.uid },
             language.type,
           );
 

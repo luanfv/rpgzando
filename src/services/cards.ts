@@ -3,39 +3,20 @@ import firestore from '@react-native-firebase/firestore';
 import { ICard } from '@src/types';
 import { IServiceCard, IServiceCards } from '@src/types/services';
 import { serviceClasses, serviceRaces } from '@src/services';
-import { formatClass, formatRace } from '@src/utils/serviceFormat';
+import { formatCard } from '@src/utils/serviceFormat';
 
 const serviceCards: IServiceCards = {
   get: async (userUid, language = 'en') => {
-    const response = userUid
-      ? await firestore()
-          .collection('cards')
-          .where('userUid', '==', userUid)
-          .orderBy('createdAt', 'desc')
-          .get()
-      : await firestore().collection('cards').get();
+    const response = await firestore()
+      .collection('cards')
+      .where('userUid', '==', userUid)
+      .orderBy('createdAt', 'desc')
+      .get();
 
     const cards: ICard[] = response.docs.map((doc) => {
       const data = doc.data() as IServiceCard;
 
-      const myClass = formatClass(data.class, language);
-      const myRace = formatRace(data.race, language);
-
-      return {
-        id: doc.id,
-
-        class: myClass,
-        race: myRace,
-
-        email: data.email,
-        attributes: data.attributes,
-        hp: data.hp,
-        items: data.items,
-        level: data.level,
-        name: data.name,
-        notes: data.notes,
-        proficiencies: data.proficiencies,
-      };
+      return formatCard({ ...data, id: doc.id }, language);
     });
 
     return cards;
@@ -45,8 +26,19 @@ const serviceCards: IServiceCards = {
     const raceSelected = await serviceRaces.find(cardForm.race);
     const classSelected = await serviceClasses.find(cardForm.class);
 
+    const createdAt = firestore.FieldValue.serverTimestamp();
+    const attributes = {
+      for: cardForm.for,
+      dex: cardForm.dex,
+      con: cardForm.con,
+      int: cardForm.int,
+      wis: cardForm.wis,
+      cha: cardForm.cha,
+    };
+
     const newCard: IServiceCard = {
-      createdAt: firestore.FieldValue.serverTimestamp(),
+      createdAt,
+      attributes,
 
       race: raceSelected,
       class: classSelected,
@@ -59,53 +51,38 @@ const serviceCards: IServiceCards = {
       notes: cardForm.notes,
       proficiencies: cardForm.proficiencies,
       email: cardForm.email,
-
-      attributes: {
-        for: cardForm.for,
-        dex: cardForm.dex,
-        con: cardForm.con,
-        int: cardForm.int,
-        wis: cardForm.wis,
-        cha: cardForm.cha,
-      },
     };
 
     const data = await firestore().collection('cards').add(newCard);
 
-    const myClass = formatClass(classSelected, language);
-    const myRace = formatRace(raceSelected, language);
+    const response = await firestore().collection('cards').doc(data.id).get();
+    const card = response.data() as IServiceCard;
 
-    return {
-      id: data.id,
-
-      class: myClass,
-      race: myRace,
-
-      userUid: cardForm.userUid,
-      name: cardForm.name,
-      hp: cardForm.hp,
-      level: cardForm.level,
-      items: cardForm.items,
-      notes: cardForm.notes,
-      proficiencies: cardForm.proficiencies,
-      email: cardForm.email,
-
-      attributes: {
-        for: cardForm.for,
-        dex: cardForm.dex,
-        con: cardForm.con,
-        int: cardForm.int,
-        wis: cardForm.wis,
-        cha: cardForm.cha,
-      },
-    };
+    return formatCard({ ...card, id: data.id }, language);
   },
 
-  delete: async (cardId) => {
+  delete: async (userUid, cardId) => {
+    const response = await firestore().collection('cards').doc(cardId).get();
+    const card = response.data() as IServiceCard;
+
+    if (userUid !== card.userUid) {
+      throw Error();
+    }
+
     await firestore().collection('cards').doc(cardId).delete();
   },
 
   update: async (cardForm, language) => {
+    const response = await firestore()
+      .collection('cards')
+      .doc(cardForm.id)
+      .get();
+    const card = response.data() as IServiceCard;
+
+    if (cardForm.userUid !== card.userUid) {
+      throw Error();
+    }
+
     const raceSelected = await serviceRaces.find(cardForm.race);
     const classSelected = await serviceClasses.find(cardForm.class);
     const attributes = {
@@ -131,26 +108,13 @@ const serviceCards: IServiceCards = {
       proficiencies: cardForm.proficiencies,
     });
 
-    const raceFormatted = formatRace(raceSelected, language);
-    const classFormatted = formatClass(classSelected, language);
+    const updatedResponse = await firestore()
+      .collection('cards')
+      .doc(cardForm.id)
+      .get();
+    const updatedCard = updatedResponse.data() as IServiceCard;
 
-    const cardFormatted: ICard = {
-      race: raceFormatted,
-      class: classFormatted,
-
-      attributes,
-
-      id: cardForm.id,
-      email: cardForm.email,
-      name: cardForm.name,
-      hp: cardForm.hp,
-      level: cardForm.level,
-      items: cardForm.items,
-      notes: cardForm.notes,
-      proficiencies: cardForm.proficiencies,
-    };
-
-    return cardFormatted;
+    return formatCard({ ...updatedCard, id: updatedResponse.id }, language);
   },
 
   getOthers: async (userUid, language = 'en', filter) => {
@@ -176,24 +140,7 @@ const serviceCards: IServiceCards = {
         }
       }
 
-      const myClass = formatClass(data.class, language);
-      const myRace = formatRace(data.race, language);
-
-      cards.push({
-        id: doc.id,
-
-        class: myClass,
-        race: myRace,
-
-        email: data.email,
-        attributes: data.attributes,
-        hp: data.hp,
-        items: data.items,
-        level: data.level,
-        name: data.name,
-        notes: data.notes,
-        proficiencies: data.proficiencies,
-      });
+      cards.push(formatCard({ ...data, id: doc.id }, language));
     });
 
     return cards;

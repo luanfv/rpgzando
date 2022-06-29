@@ -1,13 +1,14 @@
 import React, { createContext, useState, useEffect, useCallback } from 'react';
-import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth';
+import auth from '@react-native-firebase/auth';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 
 import { IAuthContext, IAuthStatus } from '@src/types/contexts';
+import { IUser } from '@src/types';
 
 const AuthContext = createContext({} as IAuthContext);
 
 const AuthProvider: React.FC = ({ children }) => {
-  const [user, setUser] = useState<FirebaseAuthTypes.User | null>(null);
+  const [user, setUser] = useState<IUser | null>(null);
   const [status, setStatus] = useState<IAuthStatus>('loading');
 
   const onSignOut = useCallback(() => {
@@ -29,7 +30,11 @@ const AuthProvider: React.FC = ({ children }) => {
       try {
         const account = await auth().signInWithCredential(googleCredential);
 
-        setUser(account.user);
+        setUser({
+          displayName: String(account.user.displayName),
+          email: String(account.user.email),
+          uid: account.user.uid,
+        });
         setStatus('authorized');
       } catch {
         onSignOut();
@@ -41,7 +46,11 @@ const AuthProvider: React.FC = ({ children }) => {
     const currentUser = auth().currentUser;
 
     if (currentUser) {
-      setUser(currentUser);
+      setUser({
+        displayName: String(currentUser.displayName),
+        email: String(currentUser.email),
+        uid: currentUser.uid,
+      });
       setStatus('authorized');
     } else {
       setStatus('unauthorized');

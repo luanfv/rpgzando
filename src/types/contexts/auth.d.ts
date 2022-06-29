@@ -1,9 +1,9 @@
-import { FirebaseAuthTypes } from '@react-native-firebase/auth';
+import { IUser } from '@src/types';
 
 type IAuthStatus = 'loading' | 'authorized' | 'unauthorized';
 
 interface IAuthContext {
-  user: FirebaseAuthTypes.User | null;
+  user: IUser | null;
   status: IAuthStatus;
   onGoogleSignIn: () => Promise<void>;
   onSignOut: () => void;

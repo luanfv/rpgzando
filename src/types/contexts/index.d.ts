@@ -1,2 +1,2 @@
-export type { IAuthContext, IAuthStatus } from './user';
+export type { IAuthContext, IAuthStatus } from './auth';
 export type { ILanguageContext } from './language';

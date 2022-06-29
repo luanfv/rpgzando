@@ -1,18 +1,13 @@
-interface ISkillList {
+interface ICheckboxListItem {
   index: string;
-  choose: number;
-
-  data: {
-    index: string;
-    name: string;
-  }[];
+  name: string;
 }
 
 interface ICheckboxList {
   title: string;
-  skills: ISkillList;
+  item: ICheckboxListItem[];
   isCheckedCheckbox: (index: string) => boolean;
   handleToggleCheckbox: (index: string) => void;
 }
 
-export { ICheckboxList, ISkillList };
+export { ICheckboxList, ICheckboxListItem };

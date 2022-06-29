@@ -6,7 +6,7 @@ import { Container, Title } from './style';
 
 const CheckboxList: React.FC<ICheckboxList> = ({
   title,
-  skills,
+  item,
   isCheckedCheckbox,
   handleToggleCheckbox,
 }) => {
@@ -14,12 +14,12 @@ const CheckboxList: React.FC<ICheckboxList> = ({
     <Container>
       <Title>{title}</Title>
 
-      {skills.data.map((item) => (
+      {item.map((data) => (
         <Checkbox
-          key={item.index}
-          checked={isCheckedCheckbox(item.index)}
-          description={item.name}
-          onChange={() => handleToggleCheckbox(item.index)}
+          key={data.index}
+          checked={isCheckedCheckbox(data.index)}
+          description={data.name}
+          onChange={() => handleToggleCheckbox(data.index)}
         />
       ))}
     </Container>

@@ -64,7 +64,7 @@ const Dashboard: React.FC = () => {
       setIsRefreshing(true);
 
       serviceCards
-        .get(language.type, user.uid)
+        .get(user.uid, language.type)
         .then((response) => {
           setCards(response);
         })
@@ -89,7 +89,7 @@ const Dashboard: React.FC = () => {
 
   useEffect(() => {
     if (user && isFocused) {
-      serviceCards.get(language.type, user.uid).then((response) => {
+      serviceCards.get(user.uid, language.type).then((response) => {
         setCards(response);
       });
     }

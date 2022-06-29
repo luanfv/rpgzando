@@ -3,10 +3,10 @@ import firestore from '@react-native-firebase/firestore';
 import { ICard } from '@src/types';
 import { IServiceCard, IServiceCards } from '@src/types/services';
 import { serviceClasses, serviceRaces } from '@src/services';
-import { formatCard, formatClass, formatRace } from '@src/utils/serviceFormat';
+import { formatClass, formatRace } from '@src/utils/serviceFormat';
 
 const serviceCards: IServiceCards = {
-  get: async (language = 'en', userUid) => {
+  get: async (userUid, language = 'en') => {
     const response = userUid
       ? await firestore()
           .collection('cards')
@@ -27,6 +27,7 @@ const serviceCards: IServiceCards = {
         class: myClass,
         race: myRace,
 
+        email: data.email,
         attributes: data.attributes,
         hp: data.hp,
         items: data.items,
@@ -40,15 +41,25 @@ const serviceCards: IServiceCards = {
     return cards;
   },
 
-  post: async (userUid, cardForm, language = 'en') => {
+  post: async (cardForm, language = 'en') => {
     const raceSelected = await serviceRaces.find(cardForm.race);
     const classSelected = await serviceClasses.find(cardForm.class);
 
     const newCard: IServiceCard = {
-      userUid,
       createdAt: firestore.FieldValue.serverTimestamp(),
+
       race: raceSelected,
       class: classSelected,
+
+      userUid: cardForm.userUid,
+      name: cardForm.name,
+      hp: cardForm.hp,
+      level: cardForm.level,
+      items: cardForm.items,
+      notes: cardForm.notes,
+      proficiencies: cardForm.proficiencies,
+      email: cardForm.email,
+
       attributes: {
         for: cardForm.for,
         dex: cardForm.dex,
@@ -57,25 +68,44 @@ const serviceCards: IServiceCards = {
         wis: cardForm.wis,
         cha: cardForm.cha,
       },
+    };
+
+    const data = await firestore().collection('cards').add(newCard);
+
+    const myClass = formatClass(classSelected, language);
+    const myRace = formatRace(raceSelected, language);
+
+    return {
+      id: data.id,
+
+      class: myClass,
+      race: myRace,
+
+      userUid: cardForm.userUid,
       name: cardForm.name,
       hp: cardForm.hp,
       level: cardForm.level,
       items: cardForm.items,
       notes: cardForm.notes,
       proficiencies: cardForm.proficiencies,
+      email: cardForm.email,
+
+      attributes: {
+        for: cardForm.for,
+        dex: cardForm.dex,
+        con: cardForm.con,
+        int: cardForm.int,
+        wis: cardForm.wis,
+        cha: cardForm.cha,
+      },
     };
-
-    const data = await firestore().collection('cards').add(newCard);
-    const newCardFormatted = formatCard(data.id, cardForm, language);
-
-    return newCardFormatted;
   },
 
   delete: async (cardId) => {
     await firestore().collection('cards').doc(cardId).delete();
   },
 
-  update: async (cardId, cardForm, language) => {
+  update: async (cardForm, language) => {
     const raceSelected = await serviceRaces.find(cardForm.race);
     const classSelected = await serviceClasses.find(cardForm.class);
     const attributes = {
@@ -87,7 +117,7 @@ const serviceCards: IServiceCards = {
       cha: cardForm.cha,
     };
 
-    await firestore().collection('cards').doc(cardId).update({
+    await firestore().collection('cards').doc(cardForm.id).update({
       race: raceSelected,
       class: classSelected,
 
@@ -105,13 +135,13 @@ const serviceCards: IServiceCards = {
     const classFormatted = formatClass(classSelected, language);
 
     const cardFormatted: ICard = {
-      id: cardId,
-
       race: raceFormatted,
       class: classFormatted,
 
       attributes,
 
+      id: cardForm.id,
+      email: cardForm.email,
       name: cardForm.name,
       hp: cardForm.hp,
       level: cardForm.level,
@@ -123,7 +153,7 @@ const serviceCards: IServiceCards = {
     return cardFormatted;
   },
 
-  getOthers: async (language = 'en', userUid, filter) => {
+  getOthers: async (userUid, language = 'en', filter) => {
     const cards: ICard[] = [];
     const response = await firestore()
       .collection('cards')
@@ -155,6 +185,7 @@ const serviceCards: IServiceCards = {
         class: myClass,
         race: myRace,
 
+        email: data.email,
         attributes: data.attributes,
         hp: data.hp,
         items: data.items,

@@ -45,6 +45,7 @@ const Card: React.FC = () => {
   );
 
   const card = useMemo(() => {
+    console.log(params);
     return params;
   }, [params]);
 

@@ -23,6 +23,7 @@ interface ICardForm extends IAttributes {
 
 interface ICard {
   id: string;
+  email: string;
 
   attributes: IAttributes;
   name: string;

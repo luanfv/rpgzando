@@ -34,7 +34,7 @@ const SearchCard: React.FC = () => {
       setIsRefreshing(true);
 
       serviceCards
-        .getOthers(language.type, user.uid)
+        .getOthers(user.uid, language.type)
         .then((response) => {
           setCards(response);
         })
@@ -93,7 +93,7 @@ const SearchCard: React.FC = () => {
 
     if (user) {
       serviceCards
-        .getOthers(language.type, user.uid, {
+        .getOthers(user.uid, language.type, {
           races: selectedRaces,
           classes: selectedClasses,
         })
@@ -111,7 +111,7 @@ const SearchCard: React.FC = () => {
     setIsOpenModalSearch(false);
 
     if (user) {
-      serviceCards.getOthers(language.type, user.uid).then((response) => {
+      serviceCards.getOthers(user.uid, language.type).then((response) => {
         setCards(response);
       });
     }
@@ -129,7 +129,7 @@ const SearchCard: React.FC = () => {
   useEffect(() => {
     if (user) {
       serviceCards
-        .getOthers(language.type, user.uid)
+        .getOthers(user.uid, language.type)
         .then((response) => setCards(response));
     }
   }, [language.type, user]);

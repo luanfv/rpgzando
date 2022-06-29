@@ -82,8 +82,7 @@ const FormCard: React.FC = () => {
       if (user) {
         if (params) {
           const updatedCard = await serviceCards.update(
-            params.id,
-            data,
+            { ...data, id: params.id, email: params.email },
             language.type,
           );
 
@@ -98,7 +97,10 @@ const FormCard: React.FC = () => {
           return;
         }
 
-        const newCard = await serviceCards.post(user.uid, data, language.type);
+        const newCard = await serviceCards.post(
+          { ...data, email: String(user.email), userUid: user.uid },
+          language.type,
+        );
 
         reset({
           routes: [{ name: 'Dashboard' }, { name: 'Card', params: newCard }],

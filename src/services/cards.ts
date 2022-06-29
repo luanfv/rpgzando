@@ -134,11 +134,14 @@ const serviceCards: IServiceCards = {
       const data = doc.data() as IServiceCard;
 
       if (filter) {
-        if (!!filter.class && filter.class !== data.class.index) {
+        if (
+          !!filter.classes &&
+          filter.classes.indexOf(data.class.index) === -1
+        ) {
           return;
         }
 
-        if (!!filter.race && filter.race !== data.race.index) {
+        if (!!filter.races && filter.races.indexOf(data.race.index) === -1) {
           return;
         }
       }

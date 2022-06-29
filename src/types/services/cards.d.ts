@@ -18,8 +18,8 @@ interface IServiceCard {
 }
 
 interface IGetOthersFilter {
-  race?: string;
-  class?: string;
+  races?: string[];
+  classes?: string[];
 }
 
 interface IServiceCards {

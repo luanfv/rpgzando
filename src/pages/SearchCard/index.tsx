@@ -88,13 +88,20 @@ const SearchCard: React.FC = () => {
     [selectedClasses],
   );
 
-  const handleSearch = useCallback(() => {
-    console.log(searchEmail);
-    console.log(selectedClasses);
-    console.log(selectedRaces);
-
+  const handleSearch = useCallback(async () => {
     setIsOpenModalSearch(false);
-  }, [searchEmail, selectedClasses, selectedRaces]);
+
+    if (user) {
+      serviceCards
+        .getOthers(language.type, user.uid, {
+          races: selectedRaces,
+          classes: selectedClasses,
+        })
+        .then((response) => {
+          setCards(response);
+        });
+    }
+  }, [language.type, selectedClasses, selectedRaces, user]);
 
   const handleClean = useCallback(() => {
     setSearchEmail('');
@@ -102,7 +109,13 @@ const SearchCard: React.FC = () => {
     setSelectedRaces([]);
 
     setIsOpenModalSearch(false);
-  }, []);
+
+    if (user) {
+      serviceCards.getOthers(language.type, user.uid).then((response) => {
+        setCards(response);
+      });
+    }
+  }, [language.type, user]);
 
   const options = useMemo(() => {
     return [

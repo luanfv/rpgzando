@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { TouchableOpacity } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useTheme } from 'styled-components';
@@ -10,6 +10,11 @@ const Header: React.FC<IHeader> = ({ onBack, options }) => {
   const theme = useTheme();
 
   const [isShowModal, setIsShowModal] = useState(false);
+
+  const handlePress = useCallback((action: () => void) => {
+    action();
+    setIsShowModal(false);
+  }, []);
 
   return (
     <Container>
@@ -40,7 +45,10 @@ const Header: React.FC<IHeader> = ({ onBack, options }) => {
           >
             <Option>
               {options.map((option) => (
-                <OptionButton key={option.label} onPress={option.onPress}>
+                <OptionButton
+                  key={option.label}
+                  onPress={() => handlePress(option.onPress)}
+                >
                   <OptionText>{option.label}</OptionText>
                 </OptionButton>
               ))}

@@ -1,9 +1,48 @@
 import firestore from '@react-native-firebase/firestore';
 
 import { ICard } from '@src/types';
-import { IServiceCard, IServiceCards } from '@src/types/services';
+import {
+  IQueryGetOthers,
+  IServiceCard,
+  IServiceCards,
+} from '@src/types/services';
 import { serviceClasses, serviceRaces } from '@src/services';
 import { formatCard } from '@src/utils/serviceFormat';
+
+const queryGetOthers: IQueryGetOthers = async (userUid, filter) => {
+  if (filter) {
+    const hasEmail = !!filter.email;
+    const hasClasses = filter.classes.length > 0;
+
+    if (hasEmail) {
+      if (hasClasses) {
+        return await firestore()
+          .collection('cards')
+          .where('email', '==', filter.email)
+          .where('class.index', 'in', filter.classes)
+          .get();
+      }
+
+      return await firestore()
+        .collection('cards')
+        .where('email', '==', filter.email)
+        .get();
+    }
+
+    if (hasClasses) {
+      return await firestore()
+        .collection('cards')
+        .where('userUid', '!=', userUid)
+        .where('class.index', 'in', filter.classes)
+        .get();
+    }
+  }
+
+  return await firestore()
+    .collection('cards')
+    .where('userUid', '!=', userUid)
+    .get();
+};
 
 const serviceCards: IServiceCards = {
   get: async (userUid, language = 'en') => {
@@ -119,26 +158,12 @@ const serviceCards: IServiceCards = {
 
   getOthers: async (userUid, language = 'en', filter) => {
     const cards: ICard[] = [];
-    const response = await firestore()
-      .collection('cards')
-      .where('userUid', '!=', userUid)
-      .get();
+    const response = await queryGetOthers(userUid, filter);
 
     response.docs.forEach((doc) => {
       const data = doc.data() as IServiceCard;
 
       if (filter) {
-        if (!!filter.email && filter.email !== data.email) {
-          return;
-        }
-
-        if (
-          filter.classes.length > 0 &&
-          filter.classes.indexOf(data.class.index) === -1
-        ) {
-          return;
-        }
-
         if (
           filter.races.length > 0 &&
           filter.races.indexOf(data.race.index) === -1

@@ -34,6 +34,13 @@ interface IGetOthersFilter {
   email?: string;
 }
 
+type IQueryGetOthers = (
+  userUid: string,
+  filter: IGetOthersFilter | undefined,
+) => Promise<
+  FirebaseFirestoreTypes.QuerySnapshot<FirebaseFirestoreTypes.DocumentData>
+>;
+
 interface IServiceCards {
   get: (userUid: string, language: ILanguageType) => Promise<ICard[]>;
 
@@ -53,4 +60,4 @@ interface IServiceCards {
   ) => Promise<ICard[]>;
 }
 
-export { IServiceCard, IServiceCards };
+export { IServiceCard, IServiceCards, IQueryGetOthers };

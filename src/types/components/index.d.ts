@@ -5,3 +5,4 @@ export type { ICheckboxList, ICheckboxListItem } from './CheckboxList';
 export type { IHeaderDashboard } from './HeaderDashboard';
 export type { IMenuList, IMenuItem } from './MenuList';
 export type { IHeader, IHeaderItem } from './Header';
+export type { IModalSearch } from './ModalSearch';

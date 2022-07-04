@@ -2,15 +2,8 @@ import React from 'react';
 import { Button, TouchableOpacity } from 'react-native';
 import { useTheme } from 'styled-components';
 
+import { IModalSearch } from '@src/types/components';
 import { Bar, Body, Container, Footer, Header, Modal, Text } from './styles';
-
-interface IModalSearch {
-  isVisible: boolean;
-
-  onClose: () => void;
-  onClean: () => void;
-  onSearch: () => void;
-}
 
 const ModalSearch: React.FC<IModalSearch> = ({
   isVisible,

@@ -9,7 +9,7 @@ import {
 import { serviceClasses, serviceRaces } from '@src/services';
 import { formatCard } from '@src/utils/serviceFormat';
 
-const queryGetOthers: IQueryGetOthers = async (userUid, filter) => {
+const queryGetOthers: IQueryGetOthers = async (filter) => {
   if (filter) {
     const hasEmail = !!filter.email;
     const hasClass = !!filter.class;
@@ -195,8 +195,8 @@ const serviceCards: IServiceCards = {
     return formatCard({ ...updatedCard, id: updatedResponse.id }, language);
   },
 
-  getOthers: async (userUid, language = 'en', filter) => {
-    const response = await queryGetOthers(userUid, filter);
+  getOthers: async (language = 'en', filter) => {
+    const response = await queryGetOthers(filter);
 
     const cards: ICard[] = response.docs.map((doc) => {
       const data = doc.data() as IServiceCard;

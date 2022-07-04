@@ -51,7 +51,7 @@ const SearchCard: React.FC = () => {
       setIsRefreshing(true);
 
       serviceCards
-        .getOthers(user.uid, language.type)
+        .getOthers(language.type)
         .then((response) => {
           setCards(response);
         })
@@ -67,7 +67,7 @@ const SearchCard: React.FC = () => {
 
       if (user) {
         serviceCards
-          .getOthers(user.uid, language.type, data)
+          .getOthers(language.type, data)
           .then((response) => setCards(response));
       }
     },
@@ -77,15 +77,13 @@ const SearchCard: React.FC = () => {
   const handleClean = useCallback(() => {
     setIsOpenModalSearch(false);
 
-    if (user) {
-      serviceCards.getOthers(user.uid, language.type).then((response) => {
-        setCards(response);
-        setValue('email', '');
-        setValue('class', '');
-        setValue('race', '');
-      });
-    }
-  }, [language.type, setValue, user]);
+    serviceCards.getOthers(language.type).then((response) => {
+      setCards(response);
+      setValue('email', '');
+      setValue('class', '');
+      setValue('race', '');
+    });
+  }, [language.type, setValue]);
 
   const options = useMemo(() => {
     return [
@@ -99,7 +97,7 @@ const SearchCard: React.FC = () => {
   useEffect(() => {
     if (user) {
       serviceCards
-        .getOthers(user.uid, language.type)
+        .getOthers(language.type)
         .then((response) => setCards(response));
     }
   }, [language.type, user]);

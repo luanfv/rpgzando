@@ -3,6 +3,17 @@ import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
 import { IAttributes, ILanguageType, ICardForm, ICard } from '@src/types';
 import { IServiceClass, IServiceRace } from '@src/types/services';
 
+type IServiceGetOthersLastResponse =
+  | FirebaseFirestoreTypes.DocumentData
+  | undefined;
+
+type IQueryGetOthers = (
+  filter?: IGetOthersFilter,
+  lastDoc?: IServiceGetOthersLastResponse,
+) => Promise<
+  FirebaseFirestoreTypes.QuerySnapshot<FirebaseFirestoreTypes.DocumentData>
+>;
+
 interface IServiceCard {
   userUid: string;
   attributes: IAttributes;
@@ -28,17 +39,16 @@ interface IServiceCardUpdate extends ICardForm {
   userUid: string;
 }
 
+interface IServiceCardGetOthersResponse {
+  cards: ICard[];
+  lastDoc: IServiceGetOthersLastResponse;
+}
+
 interface IGetOthersFilter {
   race?: string;
   class?: string;
   email?: string;
 }
-
-type IQueryGetOthers = (
-  filter: IGetOthersFilter | undefined,
-) => Promise<
-  FirebaseFirestoreTypes.QuerySnapshot<FirebaseFirestoreTypes.DocumentData>
->;
 
 interface IServiceCards {
   get: (userUid: string, language: ILanguageType) => Promise<ICard[]>;
@@ -55,7 +65,14 @@ interface IServiceCards {
   getOthers: (
     language: ILanguageType,
     filter?: IGetOthersFilter,
-  ) => Promise<ICard[]>;
+    lastDoc?: IServiceGetOthersLastResponse,
+  ) => Promise<IServiceCardGetOthersResponse>;
 }
 
-export { IServiceCard, IServiceCards, IQueryGetOthers, IGetOthersFilter };
+export {
+  IServiceCard,
+  IServiceCards,
+  IQueryGetOthers,
+  IGetOthersFilter,
+  IServiceGetOthersLastResponse,
+};

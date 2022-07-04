@@ -5,4 +5,5 @@ export type {
   IServiceCards,
   IQueryGetOthers,
   IGetOthersFilter,
+  IServiceGetOthersLastResponse,
 } from './cards';

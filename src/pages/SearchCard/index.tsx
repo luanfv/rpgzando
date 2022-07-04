@@ -5,11 +5,14 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Controller, useForm } from 'react-hook-form';
 
 import { serviceCards, serviceClasses, serviceRaces } from '@src/services';
-import { useAuth, useLanguage } from '@src/hooks';
+import { useLanguage } from '@src/hooks';
 import { ICard } from '@src/types';
 import { IRoutes } from '@src/types/routes';
 import { IPickerItem } from '@src/types/components';
-import { IGetOthersFilter } from '@src/types/services';
+import {
+  IGetOthersFilter,
+  IServiceGetOthersLastResponse,
+} from '@src/types/services';
 import { Header, Input, ModalSearch, Picker } from '@src/components';
 import {
   Container,
@@ -30,14 +33,13 @@ const SearchCard: React.FC = () => {
     },
   });
 
-  const { user } = useAuth();
   const { language } = useLanguage();
   const { goBack, navigate } =
     useNavigation<NativeStackNavigationProp<IRoutes, 'SearchCard'>>();
 
-  const [cards, setCards] = useState<ICard[]>([]);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [isOpenModalSearch, setIsOpenModalSearch] = useState(false);
+  const [hasStopRequest, setHasStopRequest] = useState(false);
 
   const [races, setRaces] = useState<IPickerItem[]>([
     { label: 'No filter', value: '' },
@@ -46,44 +48,75 @@ const SearchCard: React.FC = () => {
     { label: 'No filter', value: '' },
   ]);
 
-  const handleRefresh = useCallback(() => {
-    if (user) {
-      setIsRefreshing(true);
-
-      serviceCards
-        .getOthers(language.type)
-        .then((response) => {
-          setCards(response);
-        })
-        .finally(() => {
-          setIsRefreshing(false);
-        });
-    }
-  }, [language.type, user]);
+  const [filter, setFilter] = useState<IGetOthersFilter | undefined>(undefined);
+  const [cards, setCards] = useState<ICard[]>([]);
+  const [lastDoc, setLastDoc] = useState<IServiceGetOthersLastResponse>();
 
   const onSearch = useCallback(
     async (data: IGetOthersFilter) => {
       setIsOpenModalSearch(false);
+      setHasStopRequest(false);
+      setFilter(data);
 
-      if (user) {
-        serviceCards
-          .getOthers(language.type, data)
-          .then((response) => setCards(response));
-      }
+      serviceCards.getOthers(language.type, data).then((response) => {
+        setLastDoc(response.lastDoc);
+        setCards(response.cards);
+      });
     },
-    [language.type, user],
+    [language.type],
   );
+
+  const handleRefresh = useCallback(() => {
+    setIsRefreshing(true);
+    setHasStopRequest(false);
+
+    serviceCards
+      .getOthers(language.type)
+      .then((response) => {
+        setLastDoc(response.lastDoc);
+        setCards(response.cards);
+        setFilter(undefined);
+
+        setValue('email', '');
+        setValue('class', '');
+        setValue('race', '');
+      })
+      .finally(() => {
+        setIsRefreshing(false);
+      });
+  }, [language.type, setValue]);
 
   const handleClean = useCallback(() => {
     setIsOpenModalSearch(false);
+    setHasStopRequest(false);
 
     serviceCards.getOthers(language.type).then((response) => {
-      setCards(response);
+      setLastDoc(response.lastDoc);
+      setCards(response.cards);
+      setFilter(undefined);
+
       setValue('email', '');
       setValue('class', '');
       setValue('race', '');
     });
   }, [language.type, setValue]);
+
+  const handlePagination = useCallback(() => {
+    if (hasStopRequest) {
+      return;
+    }
+
+    serviceCards
+      .getOthers(language.type, filter, lastDoc)
+      .then((response) => {
+        setLastDoc(response.lastDoc);
+        setCards((oldState) => [...oldState, ...response.cards]);
+      })
+      .catch((err) => {
+        console.log('ERRO', err);
+        setHasStopRequest(true);
+      });
+  }, [filter, hasStopRequest, language.type, lastDoc]);
 
   const options = useMemo(() => {
     return [
@@ -95,12 +128,11 @@ const SearchCard: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    if (user) {
-      serviceCards
-        .getOthers(language.type)
-        .then((response) => setCards(response));
-    }
-  }, [language.type, user]);
+    serviceCards.getOthers(language.type).then((response) => {
+      setLastDoc(response.lastDoc);
+      setCards(response.cards);
+    });
+  }, [language.type]);
 
   useEffect(() => {
     serviceClasses.get(language.type).then((response) => {
@@ -148,6 +180,7 @@ const SearchCard: React.FC = () => {
         refreshControl={
           <RefreshControl refreshing={isRefreshing} onRefresh={handleRefresh} />
         }
+        onEndReached={handlePagination}
       />
 
       <ModalSearch

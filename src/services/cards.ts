@@ -9,7 +9,7 @@ import {
 import { serviceClasses, serviceRaces } from '@src/services';
 import { formatCard } from '@src/utils/serviceFormat';
 
-const queryGetOthers: IQueryGetOthers = async (filter) => {
+const queryGetOthers: IQueryGetOthers = async (filter, lastDoc) => {
   if (filter) {
     const hasEmail = !!filter.email;
     const hasClass = !!filter.class;
@@ -18,69 +18,145 @@ const queryGetOthers: IQueryGetOthers = async (filter) => {
     if (hasEmail) {
       if (hasClass) {
         if (hasRace) {
-          return await firestore()
-            .collection('cards')
-            .where('email', '==', filter.email)
-            .where('class.index', '==', filter.class)
-            .where('race.index', '==', filter.race)
-            .orderBy('createdAt', 'desc')
-            .get();
+          return lastDoc
+            ? await firestore()
+                .collection('cards')
+                .where('email', '==', filter.email)
+                .where('class.index', '==', filter.class)
+                .where('race.index', '==', filter.race)
+                .orderBy('createdAt', 'desc')
+                .startAfter(lastDoc)
+                .limit(20)
+                .get()
+            : await firestore()
+                .collection('cards')
+                .where('email', '==', filter.email)
+                .where('class.index', '==', filter.class)
+                .where('race.index', '==', filter.race)
+                .orderBy('createdAt', 'desc')
+                .limit(20)
+                .get();
         }
 
-        return await firestore()
-          .collection('cards')
-          .where('email', '==', filter.email)
-          .where('class.index', '==', filter.class)
-          .orderBy('createdAt', 'desc')
-          .get();
+        return lastDoc
+          ? await firestore()
+              .collection('cards')
+              .where('email', '==', filter.email)
+              .where('class.index', '==', filter.class)
+              .orderBy('createdAt', 'desc')
+              .startAfter(lastDoc)
+              .limit(20)
+              .get()
+          : await firestore()
+              .collection('cards')
+              .where('email', '==', filter.email)
+              .where('class.index', '==', filter.class)
+              .orderBy('createdAt', 'desc')
+              .limit(20)
+              .get();
       }
 
       if (hasRace) {
-        return await firestore()
-          .collection('cards')
-          .where('email', '==', filter.email)
-          .where('race.index', '==', filter.race)
-          .orderBy('createdAt', 'desc')
-          .get();
+        return lastDoc
+          ? firestore()
+              .collection('cards')
+              .where('email', '==', filter.email)
+              .where('race.index', '==', filter.race)
+              .orderBy('createdAt', 'desc')
+              .startAfter(lastDoc)
+              .limit(20)
+              .get()
+          : await firestore()
+              .collection('cards')
+              .where('email', '==', filter.email)
+              .where('race.index', '==', filter.race)
+              .orderBy('createdAt', 'desc')
+              .limit(20)
+              .get();
       }
 
-      return await firestore()
-        .collection('cards')
-        .where('email', '==', filter.email)
-        .orderBy('createdAt', 'desc')
-        .get();
+      return lastDoc
+        ? await firestore()
+            .collection('cards')
+            .where('email', '==', filter.email)
+            .orderBy('createdAt', 'desc')
+            .startAfter(lastDoc)
+            .limit(20)
+            .get()
+        : await firestore()
+            .collection('cards')
+            .where('email', '==', filter.email)
+            .orderBy('createdAt', 'desc')
+            .limit(20)
+            .get();
     }
 
     if (hasClass) {
       if (hasRace) {
-        return await firestore()
-          .collection('cards')
-          .where('class.index', '==', filter.class)
-          .where('race.index', '==', filter.race)
-          .orderBy('createdAt', 'desc')
-          .get();
+        return lastDoc
+          ? await firestore()
+              .collection('cards')
+              .where('class.index', '==', filter.class)
+              .where('race.index', '==', filter.race)
+              .orderBy('createdAt', 'desc')
+              .startAfter(lastDoc)
+              .limit(20)
+              .get()
+          : await firestore()
+              .collection('cards')
+              .where('class.index', '==', filter.class)
+              .where('race.index', '==', filter.race)
+              .orderBy('createdAt', 'desc')
+              .limit(20)
+              .get();
       }
 
-      return await firestore()
-        .collection('cards')
-        .where('class.index', '==', filter.class)
-        .orderBy('createdAt', 'desc')
-        .get();
+      return lastDoc
+        ? await firestore()
+            .collection('cards')
+            .where('class.index', '==', filter.class)
+            .orderBy('createdAt', 'desc')
+            .startAfter(lastDoc)
+            .limit(20)
+            .get()
+        : await firestore()
+            .collection('cards')
+            .where('class.index', '==', filter.class)
+            .orderBy('createdAt', 'desc')
+            .limit(20)
+            .get();
     }
 
     if (hasRace) {
-      return await firestore()
-        .collection('cards')
-        .where('race.index', '==', filter.race)
-        .orderBy('createdAt', 'desc')
-        .get();
+      return lastDoc
+        ? await firestore()
+            .collection('cards')
+            .where('race.index', '==', filter.race)
+            .orderBy('createdAt', 'desc')
+            .startAfter(lastDoc)
+            .limit(20)
+            .get()
+        : await firestore()
+            .collection('cards')
+            .where('race.index', '==', filter.race)
+            .orderBy('createdAt', 'desc')
+            .limit(20)
+            .get();
     }
   }
 
-  return await firestore()
-    .collection('cards')
-    .orderBy('createdAt', 'desc')
-    .get();
+  return lastDoc
+    ? await firestore()
+        .collection('cards')
+        .orderBy('createdAt', 'desc')
+        .startAfter(lastDoc)
+        .limit(20)
+        .get()
+    : await firestore()
+        .collection('cards')
+        .orderBy('createdAt', 'desc')
+        .limit(20)
+        .get();
 };
 
 const serviceCards: IServiceCards = {
@@ -195,8 +271,12 @@ const serviceCards: IServiceCards = {
     return formatCard({ ...updatedCard, id: updatedResponse.id }, language);
   },
 
-  getOthers: async (language = 'en', filter) => {
-    const response = await queryGetOthers(filter);
+  getOthers: async (language = 'en', filter, lastDoc) => {
+    const response = await queryGetOthers(filter, lastDoc);
+
+    if (lastDoc && lastDoc.id === response.docs[response.docs.length - 1].id) {
+      throw Error('Has no more items to list.');
+    }
 
     const cards: ICard[] = response.docs.map((doc) => {
       const data = doc.data() as IServiceCard;
@@ -204,7 +284,10 @@ const serviceCards: IServiceCards = {
       return formatCard({ ...data, id: doc.id }, language);
     });
 
-    return cards;
+    return {
+      cards,
+      lastDoc: response.docs[response.docs.length - 1],
+    };
   },
 };
 

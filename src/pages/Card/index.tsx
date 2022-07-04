@@ -67,9 +67,17 @@ const Card: React.FC = () => {
         },
       ];
     }
+
+    return [
+      {
+        label: language.pages.Card.modal.copy,
+        onPress: () => navigate('FormCard', card),
+      },
+    ];
   }, [
     card,
     handleOpenRemoveModal,
+    language.pages.Card.modal.copy,
     language.pages.Card.modal.edit,
     language.pages.Card.modal.remove,
     navigate,

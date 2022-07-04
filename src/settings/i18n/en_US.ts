@@ -50,6 +50,7 @@ const en_US: ILanguage = {
       modal: {
         edit: 'Edit',
         remove: 'Remove',
+        copy: 'Copy',
 
         title: 'Remove',
         description:
@@ -121,6 +122,35 @@ const en_US: ILanguage = {
       },
 
       button: 'Confirm',
+    },
+
+    SearchCard: {
+      options: {
+        search: 'Search',
+      },
+
+      buttons: {
+        search: 'Search',
+        back: 'Back',
+        clean: 'Clean',
+      },
+
+      inputs: {
+        email: {
+          label: 'E-mail',
+          placeholder: 'Search for e-mail...',
+        },
+
+        race: {
+          label: 'Race',
+          void: 'No filter',
+        },
+
+        class: {
+          label: 'Class',
+          void: 'No filter',
+        },
+      },
     },
   },
 };

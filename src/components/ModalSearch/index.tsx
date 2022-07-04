@@ -7,6 +7,9 @@ import { Bar, Body, Container, Footer, Header, Modal, Text } from './styles';
 
 const ModalSearch: React.FC<IModalSearch> = ({
   isVisible,
+  back,
+  clean,
+  search,
   children,
 
   onClean,
@@ -16,17 +19,21 @@ const ModalSearch: React.FC<IModalSearch> = ({
   const theme = useTheme();
 
   return (
-    <Modal isVisible={isVisible}>
+    <Modal
+      isVisible={isVisible}
+      onBackdropPress={onClose}
+      onBackButtonPress={onClose}
+    >
       <Container>
         <Header>
           <TouchableOpacity onPress={onClose} activeOpacity={0.8}>
-            <Text color="text">Back</Text>
+            <Text color="text">{back}</Text>
           </TouchableOpacity>
 
           <Bar />
 
           <TouchableOpacity onPress={onClean} activeOpacity={0.8}>
-            <Text color="attention">Clean</Text>
+            <Text color="attention">{clean}</Text>
           </TouchableOpacity>
         </Header>
 
@@ -34,7 +41,7 @@ const ModalSearch: React.FC<IModalSearch> = ({
 
         <Footer>
           <Button
-            title="Search"
+            title={search}
             onPress={onSearch}
             color={theme.colors.secondary}
           />

@@ -100,6 +100,7 @@ interface ILanguage {
       modal: {
         edit: string;
         remove: string;
+        copy: string;
 
         title: string;
         description: string;
@@ -134,6 +135,35 @@ interface ILanguage {
       items: string;
 
       notes: string;
+    };
+
+    SearchCard: {
+      options: {
+        search: string;
+      };
+
+      buttons: {
+        search: string;
+        back: string;
+        clean: string;
+      };
+
+      inputs: {
+        email: {
+          label: string;
+          placeholder: string;
+        };
+
+        race: {
+          label: string;
+          void: string;
+        };
+
+        class: {
+          label: string;
+          void: string;
+        };
+      };
     };
   };
 }

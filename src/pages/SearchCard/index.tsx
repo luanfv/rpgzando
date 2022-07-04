@@ -42,10 +42,10 @@ const SearchCard: React.FC = () => {
   const [hasStopRequest, setHasStopRequest] = useState(false);
 
   const [races, setRaces] = useState<IPickerItem[]>([
-    { label: 'No filter', value: '' },
+    { label: language.pages.SearchCard.inputs.race.void, value: '' },
   ]);
   const [classes, setClasses] = useState<IPickerItem[]>([
-    { label: 'No filter', value: '' },
+    { label: language.pages.SearchCard.inputs.class.void, value: '' },
   ]);
 
   const [filter, setFilter] = useState<IGetOthersFilter | undefined>(undefined);
@@ -121,11 +121,11 @@ const SearchCard: React.FC = () => {
   const options = useMemo(() => {
     return [
       {
-        label: 'Search',
+        label: language.pages.SearchCard.options.search,
         onPress: () => setIsOpenModalSearch(true),
       },
     ];
-  }, []);
+  }, [language.pages.SearchCard.options.search]);
 
   useEffect(() => {
     serviceCards.getOthers(language.type).then((response) => {
@@ -142,9 +142,12 @@ const SearchCard: React.FC = () => {
         image: item.image,
       }));
 
-      setClasses([{ label: 'No filter', value: '' }, ...classList]);
+      setClasses([
+        { label: language.pages.SearchCard.inputs.class.void, value: '' },
+        ...classList,
+      ]);
     });
-  }, [language.type]);
+  }, [language.pages.SearchCard.inputs.class.void, language.type]);
 
   useEffect(() => {
     serviceRaces.get(language.type).then((response) => {
@@ -154,9 +157,12 @@ const SearchCard: React.FC = () => {
         image: item.image,
       }));
 
-      setRaces([{ label: 'No filter', value: '' }, ...raceList]);
+      setRaces([
+        { label: language.pages.SearchCard.inputs.race.void, value: '' },
+        ...raceList,
+      ]);
     });
-  }, [language.type]);
+  }, [language.pages.SearchCard.inputs.race.void, language.type]);
 
   return (
     <>
@@ -185,6 +191,9 @@ const SearchCard: React.FC = () => {
 
       <ModalSearch
         isVisible={isOpenModalSearch}
+        back={language.pages.SearchCard.buttons.back}
+        clean={language.pages.SearchCard.buttons.clean}
+        search={language.pages.SearchCard.buttons.search}
         onClose={() => setIsOpenModalSearch(false)}
         onSearch={handleSubmit(onSearch)}
         onClean={handleClean}
@@ -194,8 +203,8 @@ const SearchCard: React.FC = () => {
             control={control}
             render={({ field: { onChange, onBlur, value } }) => (
               <Input
-                title="E-mail"
-                placeholder="Search for e-mail..."
+                title={language.pages.SearchCard.inputs.email.label}
+                placeholder={language.pages.SearchCard.inputs.email.placeholder}
                 value={value}
                 onChangeText={onChange}
                 onBlur={onBlur}
@@ -208,7 +217,7 @@ const SearchCard: React.FC = () => {
             control={control}
             render={({ field: { onChange, onBlur, value } }) => (
               <Picker
-                title="Race"
+                title={language.pages.SearchCard.inputs.race.label}
                 items={races}
                 selectedValue={value}
                 onValueChange={onChange}
@@ -222,7 +231,7 @@ const SearchCard: React.FC = () => {
             control={control}
             render={({ field: { onChange, onBlur, value } }) => (
               <Picker
-                title="Class"
+                title={language.pages.SearchCard.inputs.class.label}
                 items={classes}
                 selectedValue={value}
                 onValueChange={onChange}

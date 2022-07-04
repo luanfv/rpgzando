@@ -51,6 +51,7 @@ const pt_BR: ILanguage = {
       modal: {
         edit: 'Editar',
         remove: 'Remover',
+        copy: 'Copiar',
 
         title: 'Remover',
         description:
@@ -122,6 +123,35 @@ const pt_BR: ILanguage = {
       },
 
       button: 'Confirmar',
+    },
+
+    SearchCard: {
+      options: {
+        search: 'Pesquisar',
+      },
+
+      buttons: {
+        search: 'Pesquisar',
+        back: 'Voltar',
+        clean: 'Limpar',
+      },
+
+      inputs: {
+        email: {
+          label: 'E-mail',
+          placeholder: 'Pesquise pelo e-mail...',
+        },
+
+        race: {
+          label: 'Raça',
+          void: 'Sem filtro',
+        },
+
+        class: {
+          label: 'Classe',
+          void: 'Sem filtro',
+        },
+      },
     },
   },
 };

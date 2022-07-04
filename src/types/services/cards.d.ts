@@ -29,8 +29,8 @@ interface IServiceCardUpdate extends ICardForm {
 }
 
 interface IGetOthersFilter {
-  races: string[];
-  classes: string[];
+  race?: string;
+  class?: string;
   email?: string;
 }
 
@@ -60,4 +60,4 @@ interface IServiceCards {
   ) => Promise<ICard[]>;
 }
 
-export { IServiceCard, IServiceCards, IQueryGetOthers };
+export { IServiceCard, IServiceCards, IQueryGetOthers, IGetOthersFilter };

@@ -12,14 +12,32 @@ import { formatCard } from '@src/utils/serviceFormat';
 const queryGetOthers: IQueryGetOthers = async (userUid, filter) => {
   if (filter) {
     const hasEmail = !!filter.email;
-    const hasClasses = filter.classes.length > 0;
+    const hasClass = !!filter.class;
+    const hasRace = !!filter.race;
 
     if (hasEmail) {
-      if (hasClasses) {
+      if (hasClass) {
+        if (hasRace) {
+          return await firestore()
+            .collection('cards')
+            .where('email', '==', filter.email)
+            .where('class.index', '==', filter.class)
+            .where('race.index', '==', filter.race)
+            .get();
+        }
+
         return await firestore()
           .collection('cards')
           .where('email', '==', filter.email)
-          .where('class.index', 'in', filter.classes)
+          .where('class.index', '==', filter.class)
+          .get();
+      }
+
+      if (hasRace) {
+        return await firestore()
+          .collection('cards')
+          .where('email', '==', filter.email)
+          .where('race.index', '==', filter.race)
           .get();
       }
 
@@ -29,11 +47,25 @@ const queryGetOthers: IQueryGetOthers = async (userUid, filter) => {
         .get();
     }
 
-    if (hasClasses) {
+    if (hasClass) {
+      if (hasRace) {
+        return await firestore()
+          .collection('cards')
+          .where('class.index', '==', filter.class)
+          .where('race.index', '==', filter.race)
+          .get();
+      }
+
       return await firestore()
         .collection('cards')
-        .where('userUid', '!=', userUid)
-        .where('class.index', 'in', filter.classes)
+        .where('class.index', '==', filter.class)
+        .get();
+    }
+
+    if (hasRace) {
+      return await firestore()
+        .collection('cards')
+        .where('race.index', '==', filter.race)
         .get();
     }
   }
@@ -157,22 +189,12 @@ const serviceCards: IServiceCards = {
   },
 
   getOthers: async (userUid, language = 'en', filter) => {
-    const cards: ICard[] = [];
     const response = await queryGetOthers(userUid, filter);
 
-    response.docs.forEach((doc) => {
+    const cards: ICard[] = response.docs.map((doc) => {
       const data = doc.data() as IServiceCard;
 
-      if (filter) {
-        if (
-          filter.races.length > 0 &&
-          filter.races.indexOf(data.race.index) === -1
-        ) {
-          return;
-        }
-      }
-
-      cards.push(formatCard({ ...data, id: doc.id }, language));
+      return formatCard({ ...data, id: doc.id }, language);
     });
 
     return cards;

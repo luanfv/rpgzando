@@ -1,17 +1,27 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { RefreshControl } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { RefreshControl } from 'react-native';
+import { Controller, useForm } from 'react-hook-form';
 
 import { serviceCards, serviceClasses, serviceRaces } from '@src/services';
 import { useAuth, useLanguage } from '@src/hooks';
 import { ICard } from '@src/types';
-import { Header, ModalSearch } from '@src/components';
+import { Header, Input, ModalSearch, Picker } from '@src/components';
 import { Container, Content, Description, Image, List, Title } from './styles';
 import { IRoutes } from '@src/types/routes';
-import { ICheckboxListItem } from '@src/types/components';
+import { IPickerItem } from '@src/types/components';
+import { IGetOthersFilter } from '@src/types/services';
 
 const SearchCard: React.FC = () => {
+  const { control, handleSubmit } = useForm({
+    defaultValues: {
+      email: '',
+      class: '',
+      race: '',
+    },
+  });
+
   const { user } = useAuth();
   const { language } = useLanguage();
   const { goBack, navigate } =
@@ -21,13 +31,8 @@ const SearchCard: React.FC = () => {
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [isOpenModalSearch, setIsOpenModalSearch] = useState(false);
 
-  const [searchEmail, setSearchEmail] = useState('');
-
-  const [races, setRaces] = useState<ICheckboxListItem[]>([]);
-  const [selectedRaces, setSelectedRaces] = useState<string[]>([]);
-
-  const [classes, setClasses] = useState<ICheckboxListItem[]>([]);
-  const [selectedClasses, setSelectedClasses] = useState<string[]>([]);
+  const [races, setRaces] = useState<IPickerItem[]>([]);
+  const [classes, setClasses] = useState<IPickerItem[]>([]);
 
   const handleRefresh = useCallback(() => {
     if (user) {
@@ -44,71 +49,24 @@ const SearchCard: React.FC = () => {
     }
   }, [language.type, user]);
 
-  const handleRacesToggleCheckbox = useCallback(
-    (index: string) => {
-      if (races) {
-        setSelectedRaces((oldState) => {
-          const exists = oldState.find((value) => value === index);
+  const onSearch = useCallback(
+    async (data: IGetOthersFilter) => {
+      setIsOpenModalSearch(false);
 
-          if (exists) {
-            return oldState.filter((value) => value !== index);
-          }
+      if (user) {
+        serviceCards
+          .getOthers(user.uid, language.type, data)
+          .then((response) => {
+            console.log(response);
 
-          return [...oldState, index];
-        });
+            setCards(response);
+          });
       }
     },
-    [races],
+    [language.type, user],
   );
-
-  const isRacesCheckedCheckbox = useCallback(
-    (index: string) => !!selectedRaces.find((value) => value === index),
-    [selectedRaces],
-  );
-
-  const handleClassesToggleCheckbox = useCallback(
-    (index: string) => {
-      if (classes) {
-        setSelectedClasses((oldState) => {
-          const exists = oldState.find((value) => value === index);
-
-          if (exists) {
-            return oldState.filter((value) => value !== index);
-          }
-
-          return [...oldState, index];
-        });
-      }
-    },
-    [classes],
-  );
-
-  const isClassCheckedCheckbox = useCallback(
-    (index: string) => !!selectedClasses.find((value) => value === index),
-    [selectedClasses],
-  );
-
-  const handleSearch = useCallback(async () => {
-    setIsOpenModalSearch(false);
-
-    if (user) {
-      serviceCards
-        .getOthers(user.uid, language.type, {
-          races: selectedRaces,
-          classes: selectedClasses,
-          email: searchEmail,
-        })
-        .then((response) => {
-          setCards(response);
-        });
-    }
-  }, [language.type, searchEmail, selectedClasses, selectedRaces, user]);
 
   const handleClean = useCallback(() => {
-    setSearchEmail('');
-    setSelectedClasses([]);
-    setSelectedRaces([]);
-
     setIsOpenModalSearch(false);
 
     if (user) {
@@ -137,13 +95,25 @@ const SearchCard: React.FC = () => {
 
   useEffect(() => {
     serviceClasses.get(language.type).then((response) => {
-      setClasses(response);
+      const classList: IPickerItem[] = response.map((item) => ({
+        label: item.name,
+        value: item.index,
+        image: item.image,
+      }));
+
+      setClasses(classList);
     });
   }, [language.type]);
 
   useEffect(() => {
     serviceRaces.get(language.type).then((response) => {
-      setRaces(response);
+      const raceList: IPickerItem[] = response.map((item) => ({
+        label: item.name,
+        value: item.index,
+        image: item.image,
+      }));
+
+      setRaces(raceList);
     });
   }, [language.type]);
 
@@ -174,21 +144,53 @@ const SearchCard: React.FC = () => {
       <ModalSearch
         isVisible={isOpenModalSearch}
         onClose={() => setIsOpenModalSearch(false)}
-        email={searchEmail}
-        setEmail={setSearchEmail}
-        classes={{
-          data: classes,
-          isChecked: isClassCheckedCheckbox,
-          onToggleCheck: handleClassesToggleCheckbox,
-        }}
-        races={{
-          data: races,
-          isChecked: isRacesCheckedCheckbox,
-          onToggleCheck: handleRacesToggleCheckbox,
-        }}
-        onSearch={handleSearch}
+        onSearch={handleSubmit(onSearch)}
         onClean={handleClean}
-      />
+      >
+        <>
+          <Controller
+            control={control}
+            render={({ field: { onChange, onBlur, value } }) => (
+              <Input
+                title="E-mail"
+                placeholder="Search for e-mail..."
+                value={value}
+                onChangeText={onChange}
+                onBlur={onBlur}
+              />
+            )}
+            name="email"
+          />
+
+          <Controller
+            control={control}
+            render={({ field: { onChange, onBlur, value } }) => (
+              <Picker
+                title="Race"
+                items={races}
+                selectedValue={value}
+                onValueChange={onChange}
+                onBlur={onBlur}
+              />
+            )}
+            name="race"
+          />
+
+          <Controller
+            control={control}
+            render={({ field: { onChange, onBlur, value } }) => (
+              <Picker
+                title="Class"
+                items={classes}
+                selectedValue={value}
+                onValueChange={onChange}
+                onBlur={onBlur}
+              />
+            )}
+            name="class"
+          />
+        </>
+      </ModalSearch>
     </>
   );
 };

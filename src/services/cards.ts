@@ -23,6 +23,7 @@ const queryGetOthers: IQueryGetOthers = async (userUid, filter) => {
             .where('email', '==', filter.email)
             .where('class.index', '==', filter.class)
             .where('race.index', '==', filter.race)
+            .orderBy('createdAt', 'desc')
             .get();
         }
 
@@ -30,6 +31,7 @@ const queryGetOthers: IQueryGetOthers = async (userUid, filter) => {
           .collection('cards')
           .where('email', '==', filter.email)
           .where('class.index', '==', filter.class)
+          .orderBy('createdAt', 'desc')
           .get();
       }
 
@@ -38,12 +40,14 @@ const queryGetOthers: IQueryGetOthers = async (userUid, filter) => {
           .collection('cards')
           .where('email', '==', filter.email)
           .where('race.index', '==', filter.race)
+          .orderBy('createdAt', 'desc')
           .get();
       }
 
       return await firestore()
         .collection('cards')
         .where('email', '==', filter.email)
+        .orderBy('createdAt', 'desc')
         .get();
     }
 
@@ -53,12 +57,14 @@ const queryGetOthers: IQueryGetOthers = async (userUid, filter) => {
           .collection('cards')
           .where('class.index', '==', filter.class)
           .where('race.index', '==', filter.race)
+          .orderBy('createdAt', 'desc')
           .get();
       }
 
       return await firestore()
         .collection('cards')
         .where('class.index', '==', filter.class)
+        .orderBy('createdAt', 'desc')
         .get();
     }
 
@@ -66,13 +72,14 @@ const queryGetOthers: IQueryGetOthers = async (userUid, filter) => {
       return await firestore()
         .collection('cards')
         .where('race.index', '==', filter.race)
+        .orderBy('createdAt', 'desc')
         .get();
     }
   }
 
   return await firestore()
     .collection('cards')
-    .where('userUid', '!=', userUid)
+    .orderBy('createdAt', 'desc')
     .get();
 };
 

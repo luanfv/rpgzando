@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components/native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import { RFValue } from 'react-native-responsive-fontsize';
 
 const Container = styled.View`
@@ -32,6 +33,14 @@ const Picture = styled.Image`
   `}
 `;
 
+const PictureVoid = styled(Ionicons)`
+  ${({ theme }) => css`
+    width: ${RFValue(theme.spacing * 3)}px;
+    height: ${RFValue(theme.spacing * 3)}px;
+    margin: ${RFValue(theme.spacing)}px auto;
+  `}
+`;
+
 const Description = styled.Text`
   ${({ theme }) => css`
     font-size: ${RFValue(theme.fonts.small)}px;
@@ -42,4 +51,4 @@ const Description = styled.Text`
   margin-top: ${RFValue(4)}px;
 `;
 
-export { Container, Title, Select, Picture, Description };
+export { Container, Title, Select, Picture, PictureVoid, Description };

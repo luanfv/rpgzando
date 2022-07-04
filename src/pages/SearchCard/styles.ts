@@ -46,4 +46,10 @@ const Description = styled.Text`
   `}
 `;
 
-export { Container, Content, Description, Image, List, Title };
+const MarginBottom = styled.View`
+  ${({ theme }) => css`
+    margin-bottom: ${RFValue(theme.spacing)}px;
+  `}
+`;
+
+export { Container, Content, Description, Image, List, Title, MarginBottom };

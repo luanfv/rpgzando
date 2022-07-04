@@ -3,7 +3,14 @@ import { useTheme } from 'styled-components/native';
 import { Picker as PickerRN } from '@react-native-picker/picker';
 
 import { IPicker } from '@src/types/components';
-import { Container, Description, Picture, Select, Title } from './styles';
+import {
+  Container,
+  Description,
+  Picture,
+  PictureVoid,
+  Select,
+  Title,
+} from './styles';
 
 const Picker: React.FC<IPicker> = ({
   items,
@@ -22,11 +29,17 @@ const Picker: React.FC<IPicker> = ({
     <Container>
       <Title>{title}</Title>
 
-      {selectedItem && !!selectedItem.image && (
+      {selectedItem && !!selectedItem.image ? (
         <Picture
           source={{
             uri: selectedItem.image,
           }}
+        />
+      ) : (
+        <PictureVoid
+          name="close"
+          size={theme.spacing * 3}
+          color={theme.colors.attention}
         />
       )}
 

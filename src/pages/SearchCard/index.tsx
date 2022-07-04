@@ -7,14 +7,22 @@ import { Controller, useForm } from 'react-hook-form';
 import { serviceCards, serviceClasses, serviceRaces } from '@src/services';
 import { useAuth, useLanguage } from '@src/hooks';
 import { ICard } from '@src/types';
-import { Header, Input, ModalSearch, Picker } from '@src/components';
-import { Container, Content, Description, Image, List, Title } from './styles';
 import { IRoutes } from '@src/types/routes';
 import { IPickerItem } from '@src/types/components';
 import { IGetOthersFilter } from '@src/types/services';
+import { Header, Input, ModalSearch, Picker } from '@src/components';
+import {
+  Container,
+  Content,
+  Description,
+  Image,
+  List,
+  Title,
+  MarginBottom,
+} from './styles';
 
 const SearchCard: React.FC = () => {
-  const { control, handleSubmit } = useForm({
+  const { control, handleSubmit, setValue } = useForm({
     defaultValues: {
       email: '',
       class: '',
@@ -31,8 +39,12 @@ const SearchCard: React.FC = () => {
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [isOpenModalSearch, setIsOpenModalSearch] = useState(false);
 
-  const [races, setRaces] = useState<IPickerItem[]>([]);
-  const [classes, setClasses] = useState<IPickerItem[]>([]);
+  const [races, setRaces] = useState<IPickerItem[]>([
+    { label: 'No filter', value: '' },
+  ]);
+  const [classes, setClasses] = useState<IPickerItem[]>([
+    { label: 'No filter', value: '' },
+  ]);
 
   const handleRefresh = useCallback(() => {
     if (user) {
@@ -56,11 +68,7 @@ const SearchCard: React.FC = () => {
       if (user) {
         serviceCards
           .getOthers(user.uid, language.type, data)
-          .then((response) => {
-            console.log(response);
-
-            setCards(response);
-          });
+          .then((response) => setCards(response));
       }
     },
     [language.type, user],
@@ -72,9 +80,12 @@ const SearchCard: React.FC = () => {
     if (user) {
       serviceCards.getOthers(user.uid, language.type).then((response) => {
         setCards(response);
+        setValue('email', '');
+        setValue('class', '');
+        setValue('race', '');
       });
     }
-  }, [language.type, user]);
+  }, [language.type, setValue, user]);
 
   const options = useMemo(() => {
     return [
@@ -101,7 +112,7 @@ const SearchCard: React.FC = () => {
         image: item.image,
       }));
 
-      setClasses(classList);
+      setClasses([{ label: 'No filter', value: '' }, ...classList]);
     });
   }, [language.type]);
 
@@ -113,7 +124,7 @@ const SearchCard: React.FC = () => {
         image: item.image,
       }));
 
-      setRaces(raceList);
+      setRaces([{ label: 'No filter', value: '' }, ...raceList]);
     });
   }, [language.type]);
 
@@ -147,7 +158,7 @@ const SearchCard: React.FC = () => {
         onSearch={handleSubmit(onSearch)}
         onClean={handleClean}
       >
-        <>
+        <MarginBottom>
           <Controller
             control={control}
             render={({ field: { onChange, onBlur, value } }) => (
@@ -189,7 +200,7 @@ const SearchCard: React.FC = () => {
             )}
             name="class"
           />
-        </>
+        </MarginBottom>
       </ModalSearch>
     </>
   );

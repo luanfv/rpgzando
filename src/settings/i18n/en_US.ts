@@ -68,6 +68,8 @@ const en_US: ILanguage = {
       class: 'Class',
       hp: 'HP',
       notes: 'Notes',
+      attributes: 'Attributes',
+      skills: 'Skills',
 
       modal: {
         edit: 'Edit',

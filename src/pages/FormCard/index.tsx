@@ -13,7 +13,7 @@ import { IPickerItem } from '@src/types/components';
 import { ICardForm } from '@src/types';
 import { IRoutes } from '@src/types/routes';
 import { useAuth, useLanguage } from '@src/hooks';
-import { Column, ColumnItem, Title } from './styles';
+import { Column, ColumnItem, MarginBottom, Title } from './styles';
 
 const schema = Yup.object().shape({
   name: Yup.string().required('You need to have a name!'),
@@ -331,6 +331,26 @@ const FormCard: React.FC = () => {
             />
           )}
           name="hp"
+        />
+
+        <Controller
+          control={control}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <Input
+              title={language.pages.FormCard.inputs.notes.label}
+              placeholder={language.pages.FormCard.inputs.notes.placeholder}
+              reference={nameRef}
+              onBlur={onBlur}
+              onChangeText={onChange}
+              value={value}
+              errorMessage={errors.notes && errors.notes.message}
+              onSubmitEditing={() => levelRef.current?.focus()}
+              multiline
+              numberOfLines={6}
+              textAlignVertical="top"
+            />
+          )}
+          name="notes"
         />
 
         <Title>{language.pages.FormCard.attributes}</Title>
@@ -787,25 +807,7 @@ const FormCard: React.FC = () => {
           </ColumnItem>
         </Column>
 
-        <Controller
-          control={control}
-          render={({ field: { onChange, onBlur, value } }) => (
-            <Input
-              title={language.pages.FormCard.inputs.notes.label}
-              placeholder={language.pages.FormCard.inputs.notes.placeholder}
-              reference={nameRef}
-              onBlur={onBlur}
-              onChangeText={onChange}
-              value={value}
-              errorMessage={errors.notes && errors.notes.message}
-              onSubmitEditing={() => levelRef.current?.focus()}
-              multiline
-              numberOfLines={6}
-              textAlignVertical="top"
-            />
-          )}
-          name="notes"
-        />
+        <MarginBottom />
 
         <Button
           title={language.pages.FormCard.button}

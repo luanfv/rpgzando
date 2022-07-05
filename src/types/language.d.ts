@@ -110,6 +110,8 @@ interface ILanguage {
       class: string;
       hp: string;
       notes: string;
+      attributes: string;
+      skills: string;
     };
 
     SearchCard: {

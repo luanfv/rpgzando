@@ -22,4 +22,8 @@ const Title = styled.Text`
   `}
 `;
 
-export { Column, ColumnItem, Title };
+const MarginBottom = styled.View`
+  margin-bottom: ${({ theme }) => RFValue(theme.spacing * 2)}px;
+`;
+
+export { Column, ColumnItem, Title, MarginBottom };

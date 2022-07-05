@@ -1,4 +1,4 @@
-import styled from 'styled-components/native';
+import styled, { css } from 'styled-components/native';
 import { RFValue } from 'react-native-responsive-fontsize';
 
 const Columns = styled.View`
@@ -16,4 +16,15 @@ const Image = styled.Image`
   margin: ${RFValue(20)}px auto;
 `;
 
-export { Columns, Image };
+const Title = styled.Text`
+  font-weight: bold;
+  text-transform: uppercase;
+
+  ${({ theme }) => css`
+    font-size: ${RFValue(theme.fonts.large)}px;
+    color: ${theme.colors.text};
+    margin-top: ${RFValue(theme.spacing * 2)}px;
+  `}
+`;
+
+export { Columns, Image, Title };

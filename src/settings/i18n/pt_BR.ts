@@ -69,6 +69,8 @@ const pt_BR: ILanguage = {
       class: 'Classe',
       hp: 'HP',
       notes: 'Anotações',
+      attributes: 'Atributos',
+      skills: 'Habilidades',
 
       modal: {
         edit: 'Editar',

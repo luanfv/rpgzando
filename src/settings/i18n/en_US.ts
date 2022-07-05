@@ -3,6 +3,36 @@ import { ILanguage } from '@src/types';
 const en_US: ILanguage = {
   type: 'en',
 
+  attributes: {
+    for: 'Force',
+    dex: 'Dexterity',
+    con: 'Constitution',
+    int: 'Intelligence',
+    wis: 'Wisdom',
+    cha: 'Charisma',
+  },
+
+  skills: {
+    acrobatics: 'Acrobatics',
+    animalHandling: 'Animal Handling',
+    arcana: 'Arcana',
+    athletics: 'Athletics',
+    deception: 'Deception',
+    history: 'History',
+    insight: 'Insight',
+    intimidation: 'Intimidation',
+    investigation: 'Investigation',
+    medicine: 'Medicine',
+    nature: 'Nature',
+    perception: 'Perception',
+    performance: 'Performance',
+    persuasion: 'Persuasion',
+    religion: 'Religion',
+    sleight: 'Prestidigtação',
+    stealth: 'Stealth',
+    survival: 'Survival',
+  },
+
   pages: {
     Auth: {
       title: 'Welcome',
@@ -37,15 +67,7 @@ const en_US: ILanguage = {
       race: 'Race',
       class: 'Class',
       hp: 'HP',
-      for: 'Force',
-      dex: 'Dexterity',
-      con: 'Constitution',
-      wis: 'Wisdom',
-      int: 'Intelligence',
-      cha: 'Charisma',
-      items: 'Items',
       notes: 'Notes',
-      proficiencies: 'Proficiencies',
 
       modal: {
         edit: 'Edit',
@@ -80,40 +102,6 @@ const en_US: ILanguage = {
 
         hp: {
           label: 'HP',
-        },
-
-        for: {
-          label: 'Force',
-        },
-
-        dex: {
-          label: 'Dexterity',
-        },
-
-        con: {
-          label: 'Constitution',
-        },
-
-        int: {
-          label: 'Intelligence',
-        },
-
-        wis: {
-          label: 'Wisdom',
-        },
-
-        cha: {
-          label: 'Charisma',
-        },
-
-        proficiencies: {
-          label: 'Proficiencies',
-          placeholder: 'My proficiencies are...',
-        },
-
-        items: {
-          label: 'Items',
-          placeholder: 'My items are...',
         },
 
         notes: {

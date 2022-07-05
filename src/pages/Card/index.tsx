@@ -114,7 +114,7 @@ const Card: React.FC = () => {
 
         <Columns>
           <Information
-            title={language.pages.Card.for}
+            title={language.attributes.for}
             value={`${card.attributes.for} (${calcModifier(
               card.attributes.for,
             )})`}
@@ -122,7 +122,7 @@ const Card: React.FC = () => {
           />
 
           <Information
-            title={language.pages.Card.wis}
+            title={language.attributes.wis}
             value={`${card.attributes.wis} ${
               card && `(${calcModifier(card.attributes.wis)})`
             }`}
@@ -130,7 +130,7 @@ const Card: React.FC = () => {
           />
 
           <Information
-            title={language.pages.Card.dex}
+            title={language.attributes.dex}
             value={`${card.attributes.dex} (${calcModifier(
               card.attributes.dex,
             )})`}
@@ -138,7 +138,7 @@ const Card: React.FC = () => {
           />
 
           <Information
-            title={language.pages.Card.int}
+            title={language.attributes.int}
             value={`${card.attributes.int} (${calcModifier(
               card.attributes.int,
             )})`}
@@ -146,7 +146,7 @@ const Card: React.FC = () => {
           />
 
           <Information
-            title={language.pages.Card.con}
+            title={language.attributes.con}
             value={`${card.attributes.con} (${calcModifier(
               card.attributes.con,
             )})`}
@@ -154,7 +154,7 @@ const Card: React.FC = () => {
           />
 
           <Information
-            title={language.pages.Card.cha}
+            title={language.attributes.cha}
             value={`${card.attributes.cha} (${calcModifier(
               card.attributes.cha,
             )})`}
@@ -164,109 +164,109 @@ const Card: React.FC = () => {
 
         <Columns>
           <Information
-            title="Acrobatics"
+            title={language.skills.acrobatics}
             value={String(card.skills.acrobatics)}
             width={48}
           />
 
           <Information
-            title="Animal Handling"
+            title={language.skills.animalHandling}
             value={String(card.skills.animalHandling)}
             width={48}
           />
 
           <Information
-            title="Arcana"
+            title={language.skills.arcana}
             value={String(card.skills.arcana)}
             width={48}
           />
 
           <Information
-            title="Athletics"
+            title={language.skills.athletics}
             value={String(card.skills.athletics)}
             width={48}
           />
 
           <Information
-            title="Deception"
+            title={language.skills.deception}
             value={String(card.skills.deception)}
             width={48}
           />
 
           <Information
-            title="History"
+            title={language.skills.history}
             value={String(card.skills.history)}
             width={48}
           />
 
           <Information
-            title="Insight"
+            title={language.skills.insight}
             value={String(card.skills.insight)}
             width={48}
           />
 
           <Information
-            title="Intimidation"
+            title={language.skills.intimidation}
             value={String(card.skills.intimidation)}
             width={48}
           />
 
           <Information
-            title="Investigation"
+            title={language.skills.investigation}
             value={String(card.skills.investigation)}
             width={48}
           />
 
           <Information
-            title="Medicine"
+            title={language.skills.medicine}
             value={String(card.skills.medicine)}
             width={48}
           />
 
           <Information
-            title="Nature"
+            title={language.skills.nature}
             value={String(card.skills.nature)}
             width={48}
           />
 
           <Information
-            title="Perception"
+            title={language.skills.perception}
             value={String(card.skills.perception)}
             width={48}
           />
 
           <Information
-            title="Performance"
+            title={language.skills.performance}
             value={String(card.skills.performance)}
             width={48}
           />
 
           <Information
-            title="Persuasion"
+            title={language.skills.persuasion}
             value={String(card.skills.persuasion)}
             width={48}
           />
 
           <Information
-            title="Religion"
+            title={language.skills.religion}
             value={String(card.skills.religion)}
             width={48}
           />
 
           <Information
-            title="Sleight"
+            title={language.skills.sleight}
             value={String(card.skills.sleight)}
             width={48}
           />
 
           <Information
-            title="Stealth"
+            title={language.skills.stealth}
             value={String(card.skills.stealth)}
             width={48}
           />
 
           <Information
-            title="Survival"
+            title={language.skills.survival}
             value={String(card.skills.survival)}
             width={48}
           />

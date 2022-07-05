@@ -3,6 +3,36 @@ import { ILanguage } from '@src/types';
 const pt_BR: ILanguage = {
   type: 'pt',
 
+  attributes: {
+    for: 'Força',
+    dex: 'Destreza',
+    con: 'Constituição',
+    int: 'Inteligência',
+    wis: 'Sabedoria',
+    cha: 'Carisma',
+  },
+
+  skills: {
+    acrobatics: 'Acrobacias',
+    animalHandling: 'Adestrar Animais',
+    arcana: 'Arcanismo',
+    athletics: 'Atletismo',
+    deception: 'Enganação',
+    history: 'História',
+    insight: 'Intuição',
+    intimidation: 'Intimidação',
+    investigation: 'Investigação',
+    medicine: 'Medicina',
+    nature: 'Natureza',
+    perception: 'Percepção',
+    performance: 'Atuação',
+    persuasion: 'Persuasão',
+    religion: 'Religião',
+    sleight: 'Prestidigtação',
+    stealth: 'Furtividade',
+    survival: 'Sobrevivência',
+  },
+
   pages: {
     Auth: {
       title: 'Bem-vindo(a)',
@@ -38,15 +68,7 @@ const pt_BR: ILanguage = {
       race: 'Raça',
       class: 'Classe',
       hp: 'HP',
-      for: 'Força',
-      dex: 'Destreza',
-      con: 'Constituição',
-      wis: 'Sabedoria',
-      int: 'Inteligência',
-      cha: 'Carisma',
-      items: 'Itens',
       notes: 'Anotações',
-      proficiencies: 'Proficiências',
 
       modal: {
         edit: 'Editar',
@@ -81,40 +103,6 @@ const pt_BR: ILanguage = {
 
         hp: {
           label: 'HP',
-        },
-
-        for: {
-          label: 'Força',
-        },
-
-        dex: {
-          label: 'Destreza',
-        },
-
-        con: {
-          label: 'Constituição',
-        },
-
-        int: {
-          label: 'Inteligência',
-        },
-
-        wis: {
-          label: 'Sabedoria',
-        },
-
-        cha: {
-          label: 'Carisma',
-        },
-
-        proficiencies: {
-          label: 'Proficiências',
-          placeholder: 'Minhas proficiências são...',
-        },
-
-        items: {
-          label: 'Itens',
-          placeholder: 'Meus itens são...',
         },
 
         notes: {

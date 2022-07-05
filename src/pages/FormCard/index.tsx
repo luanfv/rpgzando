@@ -341,7 +341,7 @@ const FormCard: React.FC = () => {
               control={control}
               render={({ field: { onChange, onBlur, value } }) => (
                 <InputNumeric
-                  title={language.pages.FormCard.inputs.for.label}
+                  title={language.attributes.for}
                   value={value}
                   onChange={(attribute) =>
                     handleChangeAttribute('for', () => onChange(attribute))
@@ -361,7 +361,7 @@ const FormCard: React.FC = () => {
               control={control}
               render={({ field: { onChange, onBlur, value } }) => (
                 <InputNumeric
-                  title={language.pages.FormCard.inputs.int.label}
+                  title={language.attributes.int}
                   value={value}
                   onChange={(attribute) =>
                     handleChangeAttribute('int', () => onChange(attribute))
@@ -383,7 +383,7 @@ const FormCard: React.FC = () => {
               control={control}
               render={({ field: { onChange, onBlur, value } }) => (
                 <InputNumeric
-                  title={language.pages.FormCard.inputs.dex.label}
+                  title={language.attributes.dex}
                   value={value}
                   onChange={(attribute) =>
                     handleChangeAttribute('dex', () => onChange(attribute))
@@ -403,7 +403,7 @@ const FormCard: React.FC = () => {
               control={control}
               render={({ field: { onChange, onBlur, value } }) => (
                 <InputNumeric
-                  title={language.pages.FormCard.inputs.wis.label}
+                  title={language.attributes.wis}
                   value={value}
                   onChange={(attribute) =>
                     handleChangeAttribute('wis', () => onChange(attribute))
@@ -425,7 +425,7 @@ const FormCard: React.FC = () => {
               control={control}
               render={({ field: { onChange, onBlur, value } }) => (
                 <InputNumeric
-                  title={language.pages.FormCard.inputs.con.label}
+                  title={language.attributes.con}
                   value={value}
                   onChange={(attribute) =>
                     handleChangeAttribute('con', () => onChange(attribute))
@@ -445,7 +445,7 @@ const FormCard: React.FC = () => {
               control={control}
               render={({ field: { onChange, onBlur, value } }) => (
                 <InputNumeric
-                  title={language.pages.FormCard.inputs.cha.label}
+                  title={language.attributes.cha}
                   value={value}
                   onChange={(attribute) =>
                     handleChangeAttribute('cha', () => onChange(attribute))
@@ -469,7 +469,7 @@ const FormCard: React.FC = () => {
               control={control}
               render={({ field: { onChange, onBlur, value } }) => (
                 <InputNumeric
-                  title="Acrobatics"
+                  title={language.skills.acrobatics}
                   value={value}
                   onChange={onChange}
                   onBlur={onBlur}
@@ -486,7 +486,7 @@ const FormCard: React.FC = () => {
               control={control}
               render={({ field: { onChange, onBlur, value } }) => (
                 <InputNumeric
-                  title="Animal Handling"
+                  title={language.skills.animalHandling}
                   value={value}
                   onChange={onChange}
                   onBlur={onBlur}
@@ -505,7 +505,7 @@ const FormCard: React.FC = () => {
               control={control}
               render={({ field: { onChange, onBlur, value } }) => (
                 <InputNumeric
-                  title="Arcana"
+                  title={language.skills.arcana}
                   value={value}
                   onChange={onChange}
                   onBlur={onBlur}
@@ -522,7 +522,7 @@ const FormCard: React.FC = () => {
               control={control}
               render={({ field: { onChange, onBlur, value } }) => (
                 <InputNumeric
-                  title="Athletics"
+                  title={language.skills.athletics}
                   value={value}
                   onChange={onChange}
                   onBlur={onBlur}
@@ -541,7 +541,7 @@ const FormCard: React.FC = () => {
               control={control}
               render={({ field: { onChange, onBlur, value } }) => (
                 <InputNumeric
-                  title="Deception"
+                  title={language.skills.deception}
                   value={value}
                   onChange={onChange}
                   onBlur={onBlur}
@@ -558,7 +558,7 @@ const FormCard: React.FC = () => {
               control={control}
               render={({ field: { onChange, onBlur, value } }) => (
                 <InputNumeric
-                  title="History"
+                  title={language.skills.history}
                   value={value}
                   onChange={onChange}
                   onBlur={onBlur}
@@ -577,7 +577,7 @@ const FormCard: React.FC = () => {
               control={control}
               render={({ field: { onChange, onBlur, value } }) => (
                 <InputNumeric
-                  title="Insight"
+                  title={language.skills.insight}
                   value={value}
                   onChange={onChange}
                   onBlur={onBlur}
@@ -594,7 +594,7 @@ const FormCard: React.FC = () => {
               control={control}
               render={({ field: { onChange, onBlur, value } }) => (
                 <InputNumeric
-                  title="Intimidation"
+                  title={language.skills.intimidation}
                   value={value}
                   onChange={onChange}
                   onBlur={onBlur}
@@ -613,7 +613,7 @@ const FormCard: React.FC = () => {
               control={control}
               render={({ field: { onChange, onBlur, value } }) => (
                 <InputNumeric
-                  title="Investigation"
+                  title={language.skills.investigation}
                   value={value}
                   onChange={onChange}
                   onBlur={onBlur}
@@ -630,7 +630,7 @@ const FormCard: React.FC = () => {
               control={control}
               render={({ field: { onChange, onBlur, value } }) => (
                 <InputNumeric
-                  title="Medicine"
+                  title={language.skills.medicine}
                   value={value}
                   onChange={onChange}
                   onBlur={onBlur}
@@ -649,7 +649,7 @@ const FormCard: React.FC = () => {
               control={control}
               render={({ field: { onChange, onBlur, value } }) => (
                 <InputNumeric
-                  title="Nature"
+                  title={language.skills.nature}
                   value={value}
                   onChange={onChange}
                   onBlur={onBlur}
@@ -666,7 +666,7 @@ const FormCard: React.FC = () => {
               control={control}
               render={({ field: { onChange, onBlur, value } }) => (
                 <InputNumeric
-                  title="Perception"
+                  title={language.skills.perception}
                   value={value}
                   onChange={onChange}
                   onBlur={onBlur}
@@ -685,7 +685,7 @@ const FormCard: React.FC = () => {
               control={control}
               render={({ field: { onChange, onBlur, value } }) => (
                 <InputNumeric
-                  title="Performance"
+                  title={language.skills.performance}
                   value={value}
                   onChange={onChange}
                   onBlur={onBlur}
@@ -702,7 +702,7 @@ const FormCard: React.FC = () => {
               control={control}
               render={({ field: { onChange, onBlur, value } }) => (
                 <InputNumeric
-                  title="Persuasion"
+                  title={language.skills.persuasion}
                   value={value}
                   onChange={onChange}
                   onBlur={onBlur}
@@ -721,7 +721,7 @@ const FormCard: React.FC = () => {
               control={control}
               render={({ field: { onChange, onBlur, value } }) => (
                 <InputNumeric
-                  title="Religion"
+                  title={language.skills.religion}
                   value={value}
                   onChange={onChange}
                   onBlur={onBlur}
@@ -738,7 +738,7 @@ const FormCard: React.FC = () => {
               control={control}
               render={({ field: { onChange, onBlur, value } }) => (
                 <InputNumeric
-                  title="Sleight of Hand"
+                  title={language.skills.sleight}
                   value={value}
                   onChange={onChange}
                   onBlur={onBlur}
@@ -757,7 +757,7 @@ const FormCard: React.FC = () => {
               control={control}
               render={({ field: { onChange, onBlur, value } }) => (
                 <InputNumeric
-                  title="Stealth"
+                  title={language.skills.stealth}
                   value={value}
                   onChange={onChange}
                   onBlur={onBlur}
@@ -774,7 +774,7 @@ const FormCard: React.FC = () => {
               control={control}
               render={({ field: { onChange, onBlur, value } }) => (
                 <InputNumeric
-                  title="Survival"
+                  title={language.skills.survival}
                   value={value}
                   onChange={onChange}
                   onBlur={onBlur}

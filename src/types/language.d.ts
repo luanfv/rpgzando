@@ -3,6 +3,36 @@ type ILanguageType = 'en' | 'pt';
 interface ILanguage {
   type: ILanguageType;
 
+  skills: {
+    acrobatics: string;
+    animalHandling: string;
+    arcana: string;
+    athletics: string;
+    deception: string;
+    history: string;
+    insight: string;
+    intimidation: string;
+    investigation: string;
+    medicine: string;
+    nature: string;
+    perception: string;
+    performance: string;
+    persuasion: string;
+    religion: string;
+    sleight: string;
+    stealth: string;
+    survival: string;
+  };
+
+  attributes: {
+    for: string;
+    dex: string;
+    con: string;
+    int: string;
+    wis: string;
+    cha: string;
+  };
+
   pages: {
     Auth: {
       title: string;
@@ -54,40 +84,6 @@ interface ILanguage {
           label: string;
         };
 
-        for: {
-          label: string;
-        };
-
-        dex: {
-          label: string;
-        };
-
-        con: {
-          label: string;
-        };
-
-        int: {
-          label: string;
-        };
-
-        wis: {
-          label: string;
-        };
-
-        cha: {
-          label: string;
-        };
-
-        proficiencies: {
-          label: string;
-          placeholder: string;
-        };
-
-        items: {
-          label: string;
-          placeholder: string;
-        };
-
         notes: {
           label: string;
           placeholder: string;
@@ -108,33 +104,11 @@ interface ILanguage {
       };
 
       name: string;
-
       level: string;
-
       proficiency: string;
-
       race: string;
-
       class: string;
-
       hp: string;
-
-      for: string;
-
-      dex: string;
-
-      con: string;
-
-      int: string;
-
-      wis: string;
-
-      cha: string;
-
-      proficiencies: string;
-
-      items: string;
-
       notes: string;
     };
 

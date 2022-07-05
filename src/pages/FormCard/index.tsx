@@ -20,8 +20,6 @@ const schema = Yup.object().shape({
   class: Yup.string().required(),
   race: Yup.string().required(),
 
-  proficiencies: Yup.string().required('You need to have proficiencies!'),
-  items: Yup.string().required('You need to have items!'),
   notes: Yup.string(),
 });
 
@@ -63,8 +61,6 @@ const FormCard: React.FC = () => {
       sleight: 0,
       stealth: 0,
       survival: 0,
-      proficiencies: '',
-      items: '',
       notes: '',
     },
     resolver: yupResolver(schema),
@@ -232,8 +228,6 @@ const FormCard: React.FC = () => {
       setValue('int', params.attributes.int);
       setValue('wis', params.attributes.wis);
       setValue('cha', params.attributes.cha);
-      setValue('proficiencies', params.proficiencies);
-      setValue('items', params.items);
       setValue('notes', params.notes);
       setValue('level', params.level);
 
@@ -792,50 +786,6 @@ const FormCard: React.FC = () => {
             />
           </ColumnItem>
         </Column>
-
-        <Controller
-          control={control}
-          render={({ field: { onChange, onBlur, value } }) => (
-            <Input
-              title={language.pages.FormCard.inputs.proficiencies.label}
-              placeholder={
-                language.pages.FormCard.inputs.proficiencies.placeholder
-              }
-              reference={nameRef}
-              onBlur={onBlur}
-              onChangeText={onChange}
-              value={value}
-              errorMessage={
-                errors.proficiencies && errors.proficiencies.message
-              }
-              onSubmitEditing={() => levelRef.current?.focus()}
-              multiline
-              numberOfLines={6}
-              textAlignVertical="top"
-            />
-          )}
-          name="proficiencies"
-        />
-
-        <Controller
-          control={control}
-          render={({ field: { onChange, onBlur, value } }) => (
-            <Input
-              title={language.pages.FormCard.inputs.items.label}
-              placeholder={language.pages.FormCard.inputs.items.placeholder}
-              reference={nameRef}
-              onBlur={onBlur}
-              onChangeText={onChange}
-              value={value}
-              errorMessage={errors.items && errors.items.message}
-              onSubmitEditing={() => levelRef.current?.focus()}
-              multiline
-              numberOfLines={6}
-              textAlignVertical="top"
-            />
-          )}
-          name="items"
-        />
 
         <Controller
           control={control}

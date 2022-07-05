@@ -273,15 +273,9 @@ const Card: React.FC = () => {
         </Columns>
 
         <Information
-          title={language.pages.Card.proficiencies}
-          value={card.proficiencies}
+          title={language.pages.Card.notes}
+          value={card.notes ? card.notes : 'Void'}
         />
-
-        <Information title={language.pages.Card.items} value={card.items} />
-
-        {!!card.notes && (
-          <Information title={language.pages.Card.notes} value={card.notes} />
-        )}
 
         <ModalConfirm
           isVisible={isModalOpen}

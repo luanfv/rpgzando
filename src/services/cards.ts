@@ -218,9 +218,7 @@ const serviceCards: IServiceCards = {
       name: cardForm.name,
       hp: cardForm.hp,
       level: cardForm.level,
-      items: cardForm.items,
       notes: cardForm.notes,
-      proficiencies: cardForm.proficiencies,
       email: cardForm.email,
     };
 
@@ -274,9 +272,7 @@ const serviceCards: IServiceCards = {
       name: cardForm.name,
       hp: cardForm.hp,
       level: cardForm.level,
-      items: cardForm.items,
       notes: cardForm.notes,
-      proficiencies: cardForm.proficiencies,
     });
 
     const updatedResponse = await firestore()

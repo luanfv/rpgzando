@@ -38,9 +38,6 @@ interface ICardForm extends IAttributes, ISkills {
   class: string;
   race: string;
   hp: number;
-
-  proficiencies: string;
-  items: string;
   notes: string;
 }
 
@@ -53,9 +50,7 @@ interface ICardService {
   name: string;
   hp: number;
   level: number;
-  items: string;
   notes: string;
-  proficiencies: string;
   createdAt: FirebaseFirestoreTypes.FieldValue;
   email: string;
 }

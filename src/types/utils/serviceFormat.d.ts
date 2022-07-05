@@ -1,17 +1,23 @@
-import { ILanguageType, IRace, IClass, ICard, ICardService } from '@src/types';
-import { IServiceRace, IServiceClass } from '@src/types/services';
+import {
+  ILanguageType,
+  IRace,
+  IClass,
+  ICard,
+  ICardService,
+  IClassService,
+} from '@src/types';
 
 interface IFormatCardSelected extends ICardService {
   id: string;
 }
 
 type IFormatRace = (
-  selectedRace: IServiceRace,
+  selectedRace: IRaceService,
   language: ILanguageType,
 ) => IRace;
 
 type IFormatClass = (
-  selectedClass: IServiceClass,
+  selectedClass: IClassService,
   language: ILanguageType,
 ) => IClass;
 

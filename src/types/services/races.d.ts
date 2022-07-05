@@ -1,19 +1,9 @@
-import { ILanguageType, IRace } from '@src/types/';
-
-interface IServiceRace {
-  index: string;
-  race: string;
-  image: string;
-  nameEN: string;
-  namePT: string;
-  descriptionEN: string;
-  descriptionPT: string;
-}
+import { ILanguageType, IRace, IRaceService } from '@src/types/';
 
 interface IServiceRaces {
   get: (language: ILanguageType) => Promise<IRace[]>;
 
-  find: (index: string) => Promise<IServiceRace>;
+  find: (index: string) => Promise<IRaceService>;
 }
 
-export { IServiceRace, IServiceRaces };
+export { IServiceRaces };

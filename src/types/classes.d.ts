@@ -1,8 +1,13 @@
-interface IClass {
+interface IClassService {
   index: string;
-  name: string;
+  nameEN: string;
+  namePT: string;
   image: string;
   hp: number;
 }
 
-export { IClass };
+interface IClass extends Omit<IClassService, 'nameEN' | 'namePT'> {
+  name: string;
+}
+
+export { IClassService, IClass };

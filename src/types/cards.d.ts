@@ -1,7 +1,6 @@
 import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
 
-import { IRace, IClass } from '@src/types';
-import { IServiceRace, IServiceClass } from '@src/types/services';
+import { IRaceService, IRace, IClassService, IClass } from '@src/types';
 
 interface IAttributes {
   for: number;
@@ -49,8 +48,8 @@ interface ICardService {
   userUid: string;
   attributes: IAttributes;
   skills: ISkills;
-  race: IServiceRace;
-  class: IServiceClass;
+  race: IRaceService;
+  class: IClassService;
   name: string;
   hp: number;
   level: number;

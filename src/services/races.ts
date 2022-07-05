@@ -1,7 +1,7 @@
 import firestore from '@react-native-firebase/firestore';
 
-import { IRace } from '@src/types';
-import { IServiceRace, IServiceRaces } from '@src/types/services';
+import { IRace, IRaceService } from '@src/types';
+import { IServiceRaces } from '@src/types/services';
 import { formatRace } from '@src/utils';
 
 const serviceRaces: IServiceRaces = {
@@ -12,7 +12,7 @@ const serviceRaces: IServiceRaces = {
       .get();
 
     const races: IRace[] = response.docs.map((doc) => {
-      const data = doc.data() as IServiceRace;
+      const data = doc.data() as IRaceService;
       const myRace = formatRace(data, language);
 
       return myRace;
@@ -28,7 +28,7 @@ const serviceRaces: IServiceRaces = {
       .limit(1)
       .get();
 
-    const raceSelected = response.docs[0].data() as IServiceRace;
+    const raceSelected = response.docs[0].data() as IRaceService;
 
     return raceSelected;
   },

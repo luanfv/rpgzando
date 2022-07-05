@@ -1,17 +1,9 @@
-import { ILanguageType, IClass } from '@src/types';
-
-interface IServiceClass {
-  index: string;
-  nameEN: string;
-  namePT: string;
-  image: string;
-  hp: number;
-}
+import { ILanguageType, IClassService, IClass } from '@src/types';
 
 interface IServiceClasses {
   get: (language: ILanguageType) => Promise<IClass[]>;
 
-  find: (index: string) => Promise<IServiceClass>;
+  find: (index: string) => Promise<IClassService>;
 }
 
-export { IServiceClass, IServiceClasses };
+export { IServiceClasses };

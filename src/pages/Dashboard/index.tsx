@@ -5,7 +5,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { serviceCards } from '@src/services';
 import { useAuth, useLanguage } from '@src/hooks';
 import { ICard } from '@src/types';
-import { HeaderDashboard, ModalConfirm } from '@src/components';
+import { HeaderDashboard, Loading, ModalConfirm } from '@src/components';
 import { IMenuItem } from '@src/types/components';
 import { Container, Content, Description, Image, List, Title } from './styles';
 import { IRoutes } from '@src/types/routes';
@@ -17,8 +17,9 @@ const Dashboard: React.FC = () => {
   const { navigate } =
     useNavigation<NativeStackNavigationProp<IRoutes, 'Dashboard'>>();
 
-  const [cards, setCards] = useState<ICard[]>([]);
   const [isRefreshing, setIsRefreshing] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [cards, setCards] = useState<ICard[]>([]);
   const [titleModal, setTitleModal] = useState('');
   const [descriptionModal, setDescriptionModal] = useState('');
 
@@ -89,9 +90,14 @@ const Dashboard: React.FC = () => {
 
   useEffect(() => {
     if (user && isFocused) {
-      serviceCards.get(user.uid, language.type).then((response) => {
-        setCards(response);
-      });
+      setIsLoading(true);
+
+      serviceCards
+        .get(user.uid, language.type)
+        .then((response) => {
+          setCards(response);
+        })
+        .finally(() => setIsLoading(false));
     }
   }, [isFocused, language.type, user]);
 
@@ -119,6 +125,9 @@ const Dashboard: React.FC = () => {
             </Content>
           </Container>
         )}
+        ListFooterComponent={() =>
+          isLoading ? <Loading margin={10} /> : <></>
+        }
         refreshControl={
           <RefreshControl refreshing={isRefreshing} onRefresh={handleRefresh} />
         }

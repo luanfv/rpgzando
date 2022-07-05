@@ -13,7 +13,7 @@ import {
   IGetOthersFilter,
   IServiceGetOthersLastResponse,
 } from '@src/types/services';
-import { Header, Input, ModalSearch, Picker } from '@src/components';
+import { Header, Input, Loading, ModalSearch, Picker } from '@src/components';
 import {
   Container,
   Content,
@@ -39,6 +39,7 @@ const SearchCard: React.FC = () => {
 
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [isOpenModalSearch, setIsOpenModalSearch] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [hasStopRequest, setHasStopRequest] = useState(false);
 
   const [races, setRaces] = useState<IPickerItem[]>([
@@ -106,6 +107,8 @@ const SearchCard: React.FC = () => {
       return;
     }
 
+    setIsLoading(true);
+
     serviceCards
       .getOthers(language.type, filter, lastDoc)
       .then((response) => {
@@ -115,7 +118,8 @@ const SearchCard: React.FC = () => {
       .catch((err) => {
         console.log('ERRO', err);
         setHasStopRequest(true);
-      });
+      })
+      .finally(() => setIsLoading(false));
   }, [filter, hasStopRequest, language.type, lastDoc]);
 
   const options = useMemo(() => {
@@ -128,10 +132,15 @@ const SearchCard: React.FC = () => {
   }, [language.pages.SearchCard.options.search]);
 
   useEffect(() => {
-    serviceCards.getOthers(language.type).then((response) => {
-      setLastDoc(response.lastDoc);
-      setCards(response.cards);
-    });
+    setIsLoading(true);
+
+    serviceCards
+      .getOthers(language.type)
+      .then((response) => {
+        setLastDoc(response.lastDoc);
+        setCards(response.cards);
+      })
+      .finally(() => setIsLoading(false));
   }, [language.type]);
 
   useEffect(() => {
@@ -183,6 +192,9 @@ const SearchCard: React.FC = () => {
             </Content>
           </Container>
         )}
+        ListFooterComponent={() =>
+          isLoading ? <Loading margin={10} /> : <></>
+        }
         refreshControl={
           <RefreshControl refreshing={isRefreshing} onRefresh={handleRefresh} />
         }

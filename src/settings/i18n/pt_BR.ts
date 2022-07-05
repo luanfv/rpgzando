@@ -60,6 +60,7 @@ const pt_BR: ILanguage = {
     },
 
     FormCard: {
+      attributes: 'Atributos',
       inputs: {
         name: {
           label: 'Nome',

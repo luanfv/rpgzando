@@ -13,6 +13,7 @@ import { IPickerItem } from '@src/types/components';
 import { ICardForm } from '@src/types';
 import { IRoutes } from '@src/types/routes';
 import { useAuth, useLanguage } from '@src/hooks';
+import { Column, ColumnItem, Title } from './styles';
 
 const schema = Yup.object().shape({
   name: Yup.string().required('You need to have a name!'),
@@ -246,101 +247,121 @@ const FormCard: React.FC = () => {
           name="hp"
         />
 
-        <Controller
-          control={control}
-          render={({ field: { onChange, onBlur, value } }) => (
-            <InputNumeric
-              title={language.pages.FormCard.inputs.for.label}
-              value={value}
-              onChange={onChange}
-              onBlur={onBlur}
-              min={1}
-              max={20}
-              random
-            />
-          )}
-          name="for"
-        />
+        <Title>{language.pages.FormCard.attributes}</Title>
 
-        <Controller
-          control={control}
-          render={({ field: { onChange, onBlur, value } }) => (
-            <InputNumeric
-              title={language.pages.FormCard.inputs.dex.label}
-              value={value}
-              onChange={onChange}
-              onBlur={onBlur}
-              min={1}
-              max={20}
-              random
+        <Column>
+          <ColumnItem>
+            <Controller
+              control={control}
+              render={({ field: { onChange, onBlur, value } }) => (
+                <InputNumeric
+                  title={language.pages.FormCard.inputs.for.label}
+                  value={value}
+                  onChange={onChange}
+                  onBlur={onBlur}
+                  min={1}
+                  max={20}
+                  random
+                />
+              )}
+              name="for"
             />
-          )}
-          name="dex"
-        />
+          </ColumnItem>
 
-        <Controller
-          control={control}
-          render={({ field: { onChange, onBlur, value } }) => (
-            <InputNumeric
-              title={language.pages.FormCard.inputs.con.label}
-              value={value}
-              onChange={onChange}
-              onBlur={onBlur}
-              min={1}
-              max={20}
-              random
+          <ColumnItem>
+            <Controller
+              control={control}
+              render={({ field: { onChange, onBlur, value } }) => (
+                <InputNumeric
+                  title={language.pages.FormCard.inputs.int.label}
+                  value={value}
+                  onChange={onChange}
+                  onBlur={onBlur}
+                  min={1}
+                  max={20}
+                  random
+                />
+              )}
+              name="int"
             />
-          )}
-          name="con"
-        />
+          </ColumnItem>
+        </Column>
 
-        <Controller
-          control={control}
-          render={({ field: { onChange, onBlur, value } }) => (
-            <InputNumeric
-              title={language.pages.FormCard.inputs.int.label}
-              value={value}
-              onChange={onChange}
-              onBlur={onBlur}
-              min={1}
-              max={20}
-              random
+        <Column>
+          <ColumnItem>
+            <Controller
+              control={control}
+              render={({ field: { onChange, onBlur, value } }) => (
+                <InputNumeric
+                  title={language.pages.FormCard.inputs.dex.label}
+                  value={value}
+                  onChange={onChange}
+                  onBlur={onBlur}
+                  min={1}
+                  max={20}
+                  random
+                />
+              )}
+              name="dex"
             />
-          )}
-          name="int"
-        />
+          </ColumnItem>
 
-        <Controller
-          control={control}
-          render={({ field: { onChange, onBlur, value } }) => (
-            <InputNumeric
-              title={language.pages.FormCard.inputs.wis.label}
-              value={value}
-              onChange={onChange}
-              onBlur={onBlur}
-              min={1}
-              max={20}
-              random
+          <ColumnItem>
+            <Controller
+              control={control}
+              render={({ field: { onChange, onBlur, value } }) => (
+                <InputNumeric
+                  title={language.pages.FormCard.inputs.wis.label}
+                  value={value}
+                  onChange={onChange}
+                  onBlur={onBlur}
+                  min={1}
+                  max={20}
+                  random
+                />
+              )}
+              name="wis"
             />
-          )}
-          name="wis"
-        />
+          </ColumnItem>
+        </Column>
 
-        <Controller
-          control={control}
-          render={({ field: { onChange, onBlur, value } }) => (
-            <InputNumeric
-              title={language.pages.FormCard.inputs.cha.label}
-              value={value}
-              onChange={onChange}
-              onBlur={onBlur}
-              min={1}
-              max={20}
-              random
+        <Column>
+          <ColumnItem>
+            <Controller
+              control={control}
+              render={({ field: { onChange, onBlur, value } }) => (
+                <InputNumeric
+                  title={language.pages.FormCard.inputs.con.label}
+                  value={value}
+                  onChange={onChange}
+                  onBlur={onBlur}
+                  min={1}
+                  max={20}
+                  random
+                />
+              )}
+              name="con"
             />
-          )}
-          name="cha"
-        />
+          </ColumnItem>
+
+          <ColumnItem>
+            <Controller
+              control={control}
+              render={({ field: { onChange, onBlur, value } }) => (
+                <InputNumeric
+                  title={language.pages.FormCard.inputs.cha.label}
+                  value={value}
+                  onChange={onChange}
+                  onBlur={onBlur}
+                  min={1}
+                  max={20}
+                  random
+                />
+              )}
+              name="cha"
+            />
+          </ColumnItem>
+        </Column>
 
         <Controller
           control={control}

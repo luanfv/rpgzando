@@ -31,6 +31,7 @@ interface ILanguage {
     };
 
     FormCard: {
+      attributes: string;
       inputs: {
         name: {
           label: string;

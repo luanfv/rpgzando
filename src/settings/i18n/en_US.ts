@@ -59,6 +59,7 @@ const en_US: ILanguage = {
     },
 
     FormCard: {
+      attributes: 'Attributes',
       inputs: {
         name: {
           label: 'Name',

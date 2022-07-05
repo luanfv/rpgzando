@@ -1,11 +1,7 @@
 import firestore from '@react-native-firebase/firestore';
 
-import { ICard } from '@src/types';
-import {
-  IQueryGetOthers,
-  IServiceCard,
-  IServiceCards,
-} from '@src/types/services';
+import { ICard, ICardService, IAttributes, ISkills } from '@src/types';
+import { IQueryGetOthers, IServiceCards } from '@src/types/services';
 import { serviceClasses, serviceRaces } from '@src/services';
 import { formatCard } from '@src/utils/serviceFormat';
 
@@ -168,7 +164,7 @@ const serviceCards: IServiceCards = {
       .get();
 
     const cards: ICard[] = response.docs.map((doc) => {
-      const data = doc.data() as IServiceCard;
+      const data = doc.data() as ICardService;
 
       return formatCard({ ...data, id: doc.id }, language);
     });
@@ -181,7 +177,7 @@ const serviceCards: IServiceCards = {
     const classSelected = await serviceClasses.find(cardForm.class);
 
     const createdAt = firestore.FieldValue.serverTimestamp();
-    const attributes = {
+    const attributes: IAttributes = {
       for: cardForm.for,
       dex: cardForm.dex,
       con: cardForm.con,
@@ -189,10 +185,31 @@ const serviceCards: IServiceCards = {
       wis: cardForm.wis,
       cha: cardForm.cha,
     };
+    const skills: ISkills = {
+      acrobatics: cardForm.acrobatics,
+      animalHandling: cardForm.animalHandling,
+      arcana: cardForm.arcana,
+      athletics: cardForm.athletics,
+      deception: cardForm.deception,
+      history: cardForm.history,
+      insight: cardForm.insight,
+      intimidation: cardForm.intimidation,
+      investigation: cardForm.investigation,
+      medicine: cardForm.medicine,
+      nature: cardForm.nature,
+      perception: cardForm.perception,
+      performance: cardForm.performance,
+      persuasion: cardForm.persuasion,
+      religion: cardForm.religion,
+      sleight: cardForm.sleight,
+      stealth: cardForm.stealth,
+      survival: cardForm.survival,
+    };
 
-    const newCard: IServiceCard = {
+    const newCard: ICardService = {
       createdAt,
       attributes,
+      skills,
 
       race: raceSelected,
       class: classSelected,
@@ -210,14 +227,14 @@ const serviceCards: IServiceCards = {
     const data = await firestore().collection('cards').add(newCard);
 
     const response = await firestore().collection('cards').doc(data.id).get();
-    const card = response.data() as IServiceCard;
+    const card = response.data() as ICardService;
 
     return formatCard({ ...card, id: data.id }, language);
   },
 
   delete: async (userUid, cardId) => {
     const response = await firestore().collection('cards').doc(cardId).get();
-    const card = response.data() as IServiceCard;
+    const card = response.data() as ICardService;
 
     if (userUid !== card.userUid) {
       throw Error();
@@ -231,7 +248,7 @@ const serviceCards: IServiceCards = {
       .collection('cards')
       .doc(cardForm.id)
       .get();
-    const card = response.data() as IServiceCard;
+    const card = response.data() as ICardService;
 
     if (cardForm.userUid !== card.userUid) {
       throw Error();
@@ -266,7 +283,7 @@ const serviceCards: IServiceCards = {
       .collection('cards')
       .doc(cardForm.id)
       .get();
-    const updatedCard = updatedResponse.data() as IServiceCard;
+    const updatedCard = updatedResponse.data() as ICardService;
 
     return formatCard({ ...updatedCard, id: updatedResponse.id }, language);
   },
@@ -279,7 +296,7 @@ const serviceCards: IServiceCards = {
     }
 
     const cards: ICard[] = response.docs.map((doc) => {
-      const data = doc.data() as IServiceCard;
+      const data = doc.data() as ICardService;
 
       return formatCard({ ...data, id: doc.id }, language);
     });

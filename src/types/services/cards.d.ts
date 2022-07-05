@@ -1,7 +1,6 @@
 import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
 
-import { IAttributes, ILanguageType, ICardForm, ICard } from '@src/types';
-import { IServiceClass, IServiceRace } from '@src/types/services';
+import { ILanguageType, ICardForm, ICard } from '@src/types';
 
 type IServiceGetOthersLastResponse =
   | FirebaseFirestoreTypes.DocumentData
@@ -13,21 +12,6 @@ type IQueryGetOthers = (
 ) => Promise<
   FirebaseFirestoreTypes.QuerySnapshot<FirebaseFirestoreTypes.DocumentData>
 >;
-
-interface IServiceCard {
-  userUid: string;
-  attributes: IAttributes;
-  race: IServiceRace;
-  class: IServiceClass;
-  name: string;
-  hp: number;
-  level: number;
-  items: string;
-  notes: string;
-  proficiencies: string;
-  createdAt: FirebaseFirestoreTypes.FieldValue;
-  email: string;
-}
 
 interface IServiceCardPost extends ICardForm {
   userUid: string;
@@ -70,7 +54,6 @@ interface IServiceCards {
 }
 
 export {
-  IServiceCard,
   IServiceCards,
   IQueryGetOthers,
   IGetOthersFilter,

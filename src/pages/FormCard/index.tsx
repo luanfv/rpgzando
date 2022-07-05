@@ -17,21 +17,8 @@ import { Column, ColumnItem, Title } from './styles';
 
 const schema = Yup.object().shape({
   name: Yup.string().required('You need to have a name!'),
-
-  level: Yup.number().required(),
-
   class: Yup.string().required(),
-
   race: Yup.string().required(),
-
-  hp: Yup.number().required(),
-
-  for: Yup.number().required(),
-  dex: Yup.number().required(),
-  con: Yup.number().required(),
-  int: Yup.number().required(),
-  wis: Yup.number().required(),
-  cha: Yup.number().required(),
 
   proficiencies: Yup.string().required('You need to have proficiencies!'),
   items: Yup.string().required('You need to have items!'),
@@ -43,6 +30,7 @@ const FormCard: React.FC = () => {
     control,
     handleSubmit,
     setValue,
+    getValues,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -57,6 +45,24 @@ const FormCard: React.FC = () => {
       int: 1,
       wis: 1,
       cha: 1,
+      acrobatics: 0,
+      animalHandling: 0,
+      arcana: 0,
+      athletics: 0,
+      deception: 0,
+      history: 0,
+      insight: 0,
+      intimidation: 0,
+      investigation: 0,
+      medicine: 0,
+      nature: 0,
+      perception: 0,
+      performance: 0,
+      persuasion: 0,
+      religion: 0,
+      sleight: 0,
+      stealth: 0,
+      survival: 0,
       proficiencies: '',
       items: '',
       notes: '',
@@ -112,6 +118,73 @@ const FormCard: React.FC = () => {
     [language, params, reset, user],
   );
 
+  const handleChangeAttribute = useCallback(
+    (
+      attribute: 'for' | 'dex' | 'con' | 'int' | 'wis' | 'cha',
+      action: () => void,
+    ) => {
+      action();
+
+      switch (attribute) {
+        case 'for':
+          const modifierFor = getValues('for');
+          const valueFor = (modifierFor - 10) / 2;
+
+          setValue('athletics', valueFor);
+
+          break;
+
+        case 'dex':
+          const modifierDex = getValues('dex');
+          const valueDex = (modifierDex - 10) / 2;
+
+          setValue('acrobatics', valueDex);
+          setValue('stealth', valueDex);
+          setValue('sleight', valueDex);
+
+          break;
+
+        case 'int':
+          const modifierInt = getValues('int');
+          const valueInt = (modifierInt - 10) / 2;
+
+          setValue('arcana', valueInt);
+          setValue('history', valueInt);
+          setValue('nature', valueInt);
+          setValue('religion', valueInt);
+
+          break;
+
+        case 'wis':
+          const modifierWis = getValues('wis');
+          const valueWis = (modifierWis - 10) / 2;
+
+          setValue('animalHandling', valueWis);
+          setValue('perception', valueWis);
+          setValue('medicine', valueWis);
+          setValue('survival', valueWis);
+          setValue('insight', valueWis);
+
+          break;
+
+        case 'cha':
+          const modifierCha = getValues('cha');
+          const valueCha = (modifierCha - 10) / 2;
+
+          setValue('deception', valueCha);
+          setValue('intimidation', valueCha);
+          setValue('performance', valueCha);
+          setValue('persuasion', valueCha);
+
+          break;
+
+        default:
+          break;
+      }
+    },
+    [getValues, setValue],
+  );
+
   useEffect(() => {
     serviceClasses
       .get(language.type)
@@ -163,6 +236,25 @@ const FormCard: React.FC = () => {
       setValue('items', params.items);
       setValue('notes', params.notes);
       setValue('level', params.level);
+
+      setValue('acrobatics', params.skills.acrobatics);
+      setValue('animalHandling', params.skills.animalHandling);
+      setValue('arcana', params.skills.arcana);
+      setValue('athletics', params.skills.athletics);
+      setValue('deception', params.skills.deception);
+      setValue('history', params.skills.history);
+      setValue('insight', params.skills.insight);
+      setValue('intimidation', params.skills.intimidation);
+      setValue('investigation', params.skills.investigation);
+      setValue('medicine', params.skills.medicine);
+      setValue('nature', params.skills.nature);
+      setValue('perception', params.skills.perception);
+      setValue('performance', params.skills.performance);
+      setValue('persuasion', params.skills.persuasion);
+      setValue('religion', params.skills.religion);
+      setValue('sleight', params.skills.sleight);
+      setValue('stealth', params.skills.stealth);
+      setValue('survival', params.skills.survival);
     }
   }, [params, setValue]);
 
@@ -257,7 +349,9 @@ const FormCard: React.FC = () => {
                 <InputNumeric
                   title={language.pages.FormCard.inputs.for.label}
                   value={value}
-                  onChange={onChange}
+                  onChange={(attribute) =>
+                    handleChangeAttribute('for', () => onChange(attribute))
+                  }
                   onBlur={onBlur}
                   min={1}
                   max={20}
@@ -275,7 +369,9 @@ const FormCard: React.FC = () => {
                 <InputNumeric
                   title={language.pages.FormCard.inputs.int.label}
                   value={value}
-                  onChange={onChange}
+                  onChange={(attribute) =>
+                    handleChangeAttribute('int', () => onChange(attribute))
+                  }
                   onBlur={onBlur}
                   min={1}
                   max={20}
@@ -295,7 +391,9 @@ const FormCard: React.FC = () => {
                 <InputNumeric
                   title={language.pages.FormCard.inputs.dex.label}
                   value={value}
-                  onChange={onChange}
+                  onChange={(attribute) =>
+                    handleChangeAttribute('dex', () => onChange(attribute))
+                  }
                   onBlur={onBlur}
                   min={1}
                   max={20}
@@ -313,7 +411,9 @@ const FormCard: React.FC = () => {
                 <InputNumeric
                   title={language.pages.FormCard.inputs.wis.label}
                   value={value}
-                  onChange={onChange}
+                  onChange={(attribute) =>
+                    handleChangeAttribute('wis', () => onChange(attribute))
+                  }
                   onBlur={onBlur}
                   min={1}
                   max={20}
@@ -333,7 +433,9 @@ const FormCard: React.FC = () => {
                 <InputNumeric
                   title={language.pages.FormCard.inputs.con.label}
                   value={value}
-                  onChange={onChange}
+                  onChange={(attribute) =>
+                    handleChangeAttribute('con', () => onChange(attribute))
+                  }
                   onBlur={onBlur}
                   min={1}
                   max={20}
@@ -351,7 +453,9 @@ const FormCard: React.FC = () => {
                 <InputNumeric
                   title={language.pages.FormCard.inputs.cha.label}
                   value={value}
-                  onChange={onChange}
+                  onChange={(attribute) =>
+                    handleChangeAttribute('cha', () => onChange(attribute))
+                  }
                   onBlur={onBlur}
                   min={1}
                   max={20}
@@ -359,6 +463,332 @@ const FormCard: React.FC = () => {
                 />
               )}
               name="cha"
+            />
+          </ColumnItem>
+        </Column>
+
+        <Title>Skills:</Title>
+
+        <Column>
+          <ColumnItem>
+            <Controller
+              control={control}
+              render={({ field: { onChange, onBlur, value } }) => (
+                <InputNumeric
+                  title="Acrobatics"
+                  value={value}
+                  onChange={onChange}
+                  onBlur={onBlur}
+                  min={-20}
+                  max={20}
+                />
+              )}
+              name="acrobatics"
+            />
+          </ColumnItem>
+
+          <ColumnItem>
+            <Controller
+              control={control}
+              render={({ field: { onChange, onBlur, value } }) => (
+                <InputNumeric
+                  title="Animal Handling"
+                  value={value}
+                  onChange={onChange}
+                  onBlur={onBlur}
+                  min={-20}
+                  max={20}
+                />
+              )}
+              name="animalHandling"
+            />
+          </ColumnItem>
+        </Column>
+
+        <Column>
+          <ColumnItem>
+            <Controller
+              control={control}
+              render={({ field: { onChange, onBlur, value } }) => (
+                <InputNumeric
+                  title="Arcana"
+                  value={value}
+                  onChange={onChange}
+                  onBlur={onBlur}
+                  min={-20}
+                  max={20}
+                />
+              )}
+              name="arcana"
+            />
+          </ColumnItem>
+
+          <ColumnItem>
+            <Controller
+              control={control}
+              render={({ field: { onChange, onBlur, value } }) => (
+                <InputNumeric
+                  title="Athletics"
+                  value={value}
+                  onChange={onChange}
+                  onBlur={onBlur}
+                  min={-20}
+                  max={20}
+                />
+              )}
+              name="athletics"
+            />
+          </ColumnItem>
+        </Column>
+
+        <Column>
+          <ColumnItem>
+            <Controller
+              control={control}
+              render={({ field: { onChange, onBlur, value } }) => (
+                <InputNumeric
+                  title="Deception"
+                  value={value}
+                  onChange={onChange}
+                  onBlur={onBlur}
+                  min={-20}
+                  max={20}
+                />
+              )}
+              name="deception"
+            />
+          </ColumnItem>
+
+          <ColumnItem>
+            <Controller
+              control={control}
+              render={({ field: { onChange, onBlur, value } }) => (
+                <InputNumeric
+                  title="History"
+                  value={value}
+                  onChange={onChange}
+                  onBlur={onBlur}
+                  min={-20}
+                  max={20}
+                />
+              )}
+              name="history"
+            />
+          </ColumnItem>
+        </Column>
+
+        <Column>
+          <ColumnItem>
+            <Controller
+              control={control}
+              render={({ field: { onChange, onBlur, value } }) => (
+                <InputNumeric
+                  title="Insight"
+                  value={value}
+                  onChange={onChange}
+                  onBlur={onBlur}
+                  min={-20}
+                  max={20}
+                />
+              )}
+              name="insight"
+            />
+          </ColumnItem>
+
+          <ColumnItem>
+            <Controller
+              control={control}
+              render={({ field: { onChange, onBlur, value } }) => (
+                <InputNumeric
+                  title="Intimidation"
+                  value={value}
+                  onChange={onChange}
+                  onBlur={onBlur}
+                  min={-20}
+                  max={20}
+                />
+              )}
+              name="intimidation"
+            />
+          </ColumnItem>
+        </Column>
+
+        <Column>
+          <ColumnItem>
+            <Controller
+              control={control}
+              render={({ field: { onChange, onBlur, value } }) => (
+                <InputNumeric
+                  title="Investigation"
+                  value={value}
+                  onChange={onChange}
+                  onBlur={onBlur}
+                  min={-20}
+                  max={20}
+                />
+              )}
+              name="investigation"
+            />
+          </ColumnItem>
+
+          <ColumnItem>
+            <Controller
+              control={control}
+              render={({ field: { onChange, onBlur, value } }) => (
+                <InputNumeric
+                  title="Medicine"
+                  value={value}
+                  onChange={onChange}
+                  onBlur={onBlur}
+                  min={-20}
+                  max={20}
+                />
+              )}
+              name="medicine"
+            />
+          </ColumnItem>
+        </Column>
+
+        <Column>
+          <ColumnItem>
+            <Controller
+              control={control}
+              render={({ field: { onChange, onBlur, value } }) => (
+                <InputNumeric
+                  title="Nature"
+                  value={value}
+                  onChange={onChange}
+                  onBlur={onBlur}
+                  min={-20}
+                  max={20}
+                />
+              )}
+              name="nature"
+            />
+          </ColumnItem>
+
+          <ColumnItem>
+            <Controller
+              control={control}
+              render={({ field: { onChange, onBlur, value } }) => (
+                <InputNumeric
+                  title="Perception"
+                  value={value}
+                  onChange={onChange}
+                  onBlur={onBlur}
+                  min={-20}
+                  max={20}
+                />
+              )}
+              name="perception"
+            />
+          </ColumnItem>
+        </Column>
+
+        <Column>
+          <ColumnItem>
+            <Controller
+              control={control}
+              render={({ field: { onChange, onBlur, value } }) => (
+                <InputNumeric
+                  title="Performance"
+                  value={value}
+                  onChange={onChange}
+                  onBlur={onBlur}
+                  min={-20}
+                  max={20}
+                />
+              )}
+              name="performance"
+            />
+          </ColumnItem>
+
+          <ColumnItem>
+            <Controller
+              control={control}
+              render={({ field: { onChange, onBlur, value } }) => (
+                <InputNumeric
+                  title="Persuasion"
+                  value={value}
+                  onChange={onChange}
+                  onBlur={onBlur}
+                  min={-20}
+                  max={20}
+                />
+              )}
+              name="persuasion"
+            />
+          </ColumnItem>
+        </Column>
+
+        <Column>
+          <ColumnItem>
+            <Controller
+              control={control}
+              render={({ field: { onChange, onBlur, value } }) => (
+                <InputNumeric
+                  title="Religion"
+                  value={value}
+                  onChange={onChange}
+                  onBlur={onBlur}
+                  min={-20}
+                  max={20}
+                />
+              )}
+              name="religion"
+            />
+          </ColumnItem>
+
+          <ColumnItem>
+            <Controller
+              control={control}
+              render={({ field: { onChange, onBlur, value } }) => (
+                <InputNumeric
+                  title="Sleight of Hand"
+                  value={value}
+                  onChange={onChange}
+                  onBlur={onBlur}
+                  min={-20}
+                  max={20}
+                />
+              )}
+              name="sleight"
+            />
+          </ColumnItem>
+        </Column>
+
+        <Column>
+          <ColumnItem>
+            <Controller
+              control={control}
+              render={({ field: { onChange, onBlur, value } }) => (
+                <InputNumeric
+                  title="Stealth"
+                  value={value}
+                  onChange={onChange}
+                  onBlur={onBlur}
+                  min={-20}
+                  max={20}
+                />
+              )}
+              name="stealth"
+            />
+          </ColumnItem>
+
+          <ColumnItem>
+            <Controller
+              control={control}
+              render={({ field: { onChange, onBlur, value } }) => (
+                <InputNumeric
+                  title="Survival"
+                  value={value}
+                  onChange={onChange}
+                  onBlur={onBlur}
+                  min={-20}
+                  max={20}
+                />
+              )}
+              name="survival"
             />
           </ColumnItem>
         </Column>

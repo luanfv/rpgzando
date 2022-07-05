@@ -1,7 +1,7 @@
-import { ILanguageType, IRace, IClass, ICard } from '@src/types';
-import { IServiceRace, IServiceClass, IServiceCard } from '@src/types/services';
+import { ILanguageType, IRace, IClass, ICard, ICardService } from '@src/types';
+import { IServiceRace, IServiceClass } from '@src/types/services';
 
-interface IFormatCardSelected extends IServiceCard {
+interface IFormatCardSelected extends ICardService {
   id: string;
 }
 

@@ -50,6 +50,8 @@ const formatCard: IFormatCard = (card, language) => {
     proficiencies: card.proficiencies,
     email: card.email,
     attributes: card.attributes,
+    skills: card.skills,
+    createdAt: card.createdAt,
   };
 };
 

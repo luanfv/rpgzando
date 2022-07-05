@@ -1,4 +1,7 @@
+import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
+
 import { IRace, IClass } from '@src/types';
+import { IServiceRace, IServiceClass } from '@src/types/services';
 
 interface IAttributes {
   for: number;
@@ -9,7 +12,28 @@ interface IAttributes {
   cha: number;
 }
 
-interface ICardForm extends IAttributes {
+interface ISkills {
+  acrobatics: number;
+  animalHandling: number;
+  arcana: number;
+  athletics: number;
+  deception: number;
+  history: number;
+  insight: number;
+  intimidation: number;
+  investigation: number;
+  medicine: number;
+  nature: number;
+  perception: number;
+  performance: number;
+  persuasion: number;
+  religion: number;
+  sleight: number;
+  stealth: number;
+  survival: number;
+}
+
+interface ICardForm extends IAttributes, ISkills {
   name: string;
   level: number;
   class: string;
@@ -21,21 +45,26 @@ interface ICardForm extends IAttributes {
   notes: string;
 }
 
-interface ICard {
-  id: string;
-  email: string;
-
+interface ICardService {
+  userUid: string;
   attributes: IAttributes;
+  skills: ISkills;
+  race: IServiceRace;
+  class: IServiceClass;
   name: string;
-  level: number;
   hp: number;
-
-  class: IClass;
-  race: IRace;
-
-  proficiencies: string;
+  level: number;
   items: string;
   notes: string;
+  proficiencies: string;
+  createdAt: FirebaseFirestoreTypes.FieldValue;
+  email: string;
 }
 
-export { ICardForm, IAttributes, ICard };
+interface ICard extends Omit<ICardService, 'userUid'> {
+  id: string;
+  race: IRace;
+  class: IClass;
+}
+
+export { IAttributes, ISkills, ICardForm, ICardService, ICard };

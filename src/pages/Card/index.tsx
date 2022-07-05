@@ -9,7 +9,7 @@ import {
 import { IRoutes } from '@src/types/routes';
 import { Body, Header, Information, ModalConfirm } from '@src/components';
 import { useAuth, useLanguage, useSkill } from '@src/hooks';
-import { Attributes, Image } from './styles';
+import { Columns, Image } from './styles';
 import { serviceCards } from '@src/services';
 
 const Card: React.FC = () => {
@@ -112,7 +112,7 @@ const Card: React.FC = () => {
 
         <Information title={language.pages.Card.hp} value={String(card.hp)} />
 
-        <Attributes>
+        <Columns>
           <Information
             title={language.pages.Card.for}
             value={`${card.attributes.for} (${calcModifier(
@@ -160,7 +160,117 @@ const Card: React.FC = () => {
             )})`}
             width={48}
           />
-        </Attributes>
+        </Columns>
+
+        <Columns>
+          <Information
+            title="Acrobatics"
+            value={String(card.skills.acrobatics)}
+            width={48}
+          />
+
+          <Information
+            title="Animal Handling"
+            value={String(card.skills.animalHandling)}
+            width={48}
+          />
+
+          <Information
+            title="Arcana"
+            value={String(card.skills.arcana)}
+            width={48}
+          />
+
+          <Information
+            title="Athletics"
+            value={String(card.skills.athletics)}
+            width={48}
+          />
+
+          <Information
+            title="Deception"
+            value={String(card.skills.deception)}
+            width={48}
+          />
+
+          <Information
+            title="History"
+            value={String(card.skills.history)}
+            width={48}
+          />
+
+          <Information
+            title="Insight"
+            value={String(card.skills.insight)}
+            width={48}
+          />
+
+          <Information
+            title="Intimidation"
+            value={String(card.skills.intimidation)}
+            width={48}
+          />
+
+          <Information
+            title="Investigation"
+            value={String(card.skills.investigation)}
+            width={48}
+          />
+
+          <Information
+            title="Medicine"
+            value={String(card.skills.medicine)}
+            width={48}
+          />
+
+          <Information
+            title="Nature"
+            value={String(card.skills.nature)}
+            width={48}
+          />
+
+          <Information
+            title="Perception"
+            value={String(card.skills.perception)}
+            width={48}
+          />
+
+          <Information
+            title="Performance"
+            value={String(card.skills.performance)}
+            width={48}
+          />
+
+          <Information
+            title="Persuasion"
+            value={String(card.skills.persuasion)}
+            width={48}
+          />
+
+          <Information
+            title="Religion"
+            value={String(card.skills.religion)}
+            width={48}
+          />
+
+          <Information
+            title="Sleight"
+            value={String(card.skills.sleight)}
+            width={48}
+          />
+
+          <Information
+            title="Stealth"
+            value={String(card.skills.stealth)}
+            width={48}
+          />
+
+          <Information
+            title="Survival"
+            value={String(card.skills.survival)}
+            width={48}
+          />
+        </Columns>
 
         <Information
           title={language.pages.Card.proficiencies}

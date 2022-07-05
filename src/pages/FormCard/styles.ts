@@ -18,7 +18,7 @@ const Title = styled.Text`
   ${({ theme }) => css`
     font-size: ${RFValue(theme.fonts.large)}px;
     color: ${theme.colors.text};
-    margin-top: ${RFValue(theme.spacing)}px;
+    margin-top: ${RFValue(theme.spacing * 2)}px;
   `}
 `;
 

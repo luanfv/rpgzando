@@ -3,10 +3,10 @@ import { IFormatCard, IFormatClass, IFormatRace } from '@src/types/utils';
 
 const formatRace: IFormatRace = (selectedRace, language) => {
   const raceName =
-    language === 'en' ? selectedRace.nameEN : selectedRace.namePT;
+    language === 'pt' ? selectedRace.namePT : selectedRace.nameEN;
 
   const raceDescription =
-    language === 'en' ? selectedRace.descriptionEN : selectedRace.descriptionPT;
+    language === 'pt' ? selectedRace.descriptionPT : selectedRace.descriptionEN;
 
   const raceFormatted: IRace = {
     image: selectedRace.image,
@@ -21,7 +21,7 @@ const formatRace: IFormatRace = (selectedRace, language) => {
 
 const formatClass: IFormatClass = (selectedClass, language) => {
   const className =
-    language === 'en' ? selectedClass.nameEN : selectedClass.namePT;
+    language === 'pt' ? selectedClass.namePT : selectedClass.nameEN;
 
   const classFormatted: IClass = {
     image: selectedClass.image,

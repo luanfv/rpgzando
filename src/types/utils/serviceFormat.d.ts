@@ -26,4 +26,4 @@ type IFormatCard = (
   language: ILanguageType,
 ) => ICard;
 
-export { IFormatClass, IFormatRace, IFormatCard };
+export { IFormatClass, IFormatRace, IFormatCard, IFormatCardSelected };

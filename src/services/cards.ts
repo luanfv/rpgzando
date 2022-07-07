@@ -173,6 +173,16 @@ const serviceCards: IServiceCards = {
   },
 
   post: async (cardForm, language = 'en') => {
+    const myCards = await firestore()
+      .collection('cards')
+      .where('userUid', '==', cardForm.userUid)
+      .orderBy('createdAt', 'desc')
+      .get();
+
+    if (myCards.docs.length > 5) {
+      throw Error('Only 5 cards are allowed');
+    }
+
     const raceSelected = await serviceRaces.find(cardForm.race);
     const classSelected = await serviceClasses.find(cardForm.class);
 

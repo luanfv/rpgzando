@@ -85,34 +85,43 @@ const FormCard: React.FC = () => {
     async (data: ICardForm) => {
       if (user) {
         if (params && params.email === user.email) {
-          const updatedCard = await serviceCards.update(
-            { ...data, id: params.id, userUid: user.uid },
-            language.type,
-          );
-
-          reset({
-            routes: [
-              { name: 'Dashboard' },
-              { name: 'Card', params: updatedCard },
-            ],
-            index: 1,
-          });
+          serviceCards
+            .update(
+              { ...data, id: params.id, userUid: user.uid },
+              language.type,
+            )
+            .then((updatedCard) => {
+              reset({
+                routes: [
+                  { name: 'Dashboard' },
+                  { name: 'Card', params: updatedCard },
+                ],
+                index: 1,
+              });
+            })
+            .catch(() => onToast('NO_CONNECTION'));
 
           return;
         }
 
-        const newCard = await serviceCards.post(
-          { ...data, email: String(user.email), userUid: user.uid },
-          language.type,
-        );
-
-        reset({
-          routes: [{ name: 'Dashboard' }, { name: 'Card', params: newCard }],
-          index: 1,
-        });
+        serviceCards
+          .post(
+            { ...data, email: String(user.email), userUid: user.uid },
+            language.type,
+          )
+          .then((newCard) => {
+            reset({
+              routes: [
+                { name: 'Dashboard' },
+                { name: 'Card', params: newCard },
+              ],
+              index: 1,
+            });
+          })
+          .catch(() => onToast('CARD_LIMIT'));
       }
     },
-    [language, params, reset, user],
+    [language.type, onToast, params, reset, user],
   );
 
   const handleChangeAttribute = useCallback(

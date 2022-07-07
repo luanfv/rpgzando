@@ -27,6 +27,15 @@ const ToastProvider: React.FC = ({ children }) => {
 
         break;
 
+      case 'CARD_LIMIT':
+        Toast.show({
+          type: 'error',
+          text1: 'FAILURE ❌',
+          text2: "You've reached your 5-card limit!",
+        });
+
+        break;
+
       default:
         break;
     }

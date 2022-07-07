@@ -2,44 +2,56 @@ import React, { createContext, useCallback } from 'react';
 import Toast from 'react-native-toast-message';
 
 import { IToastContext, IToastType } from '@src/types/contexts';
+import { useLanguage } from '@src/hooks';
 
 const ToastContext = createContext({} as IToastContext);
 
 const ToastProvider: React.FC = ({ children }) => {
-  const onToast = useCallback((type: IToastType) => {
-    switch (type) {
-      case 'NO_CONNECTION':
-        Toast.show({
-          type: 'error',
-          text1: 'NO CONNECTION 🙈 🙉 🙊',
-          text2:
-            'You or service is offline, check your connection and try again!',
-        });
+  const { language } = useLanguage();
 
-        break;
+  const onToast = useCallback(
+    (type: IToastType) => {
+      switch (type) {
+        case 'NO_CONNECTION':
+          Toast.show({
+            type: 'error',
+            text1: language.toasts.noConnection.text1,
+            text2: language.toasts.noConnection.text2,
+          });
 
-      case 'SUCCESSFUL':
-        Toast.show({
-          type: 'success',
-          text1: 'SUCCESSFUL 🔝',
-          text2: 'Your action was executed successfully!',
-        });
+          break;
 
-        break;
+        case 'SUCCESSFUL':
+          Toast.show({
+            type: 'success',
+            text1: language.toasts.successful.text1,
+            text2: language.toasts.successful.text2,
+          });
 
-      case 'CARD_LIMIT':
-        Toast.show({
-          type: 'error',
-          text1: 'FAILURE ❌',
-          text2: "You've reached your 5-card limit!",
-        });
+          break;
 
-        break;
+        case 'CARD_LIMIT':
+          Toast.show({
+            type: 'error',
+            text1: language.toasts.cardLimit.text1,
+            text2: language.toasts.cardLimit.text2,
+          });
 
-      default:
-        break;
-    }
-  }, []);
+          break;
+
+        default:
+          break;
+      }
+    },
+    [
+      language.toasts.cardLimit.text1,
+      language.toasts.cardLimit.text2,
+      language.toasts.noConnection.text1,
+      language.toasts.noConnection.text2,
+      language.toasts.successful.text1,
+      language.toasts.successful.text2,
+    ],
+  );
 
   return (
     <ToastContext.Provider value={{ onToast }}>

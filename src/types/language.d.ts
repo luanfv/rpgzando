@@ -3,6 +3,23 @@ type ILanguageType = 'en' | 'pt';
 interface ILanguage {
   type: ILanguageType;
 
+  toasts: {
+    noConnection: {
+      text1: string;
+      text2: string;
+    };
+
+    successful: {
+      text1: string;
+      text2: string;
+    };
+
+    cardLimit: {
+      text1: string;
+      text2: string;
+    };
+  };
+
   skills: {
     acrobatics: string;
     animalHandling: string;

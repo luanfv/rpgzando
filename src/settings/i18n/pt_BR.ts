@@ -3,6 +3,24 @@ import { ILanguage } from '@src/types';
 const pt_BR: ILanguage = {
   type: 'pt',
 
+  toasts: {
+    noConnection: {
+      text1: 'SEM CONEXÃO 🙈 🙉 🙊',
+      text2:
+        'Você ou o servidor estão offline, verifique sua conexão e tente novamente!',
+    },
+
+    successful: {
+      text1: 'SUCESSO 🔝',
+      text2: 'Suas ação foi realizada com sucesso!',
+    },
+
+    cardLimit: {
+      text1: 'FALHA ❌',
+      text2: 'Você atingiu seu limite de 5 cartões!',
+    },
+  },
+
   attributes: {
     for: 'Força',
     dex: 'Destreza',

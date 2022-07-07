@@ -3,6 +3,23 @@ import { ILanguage } from '@src/types';
 const en_US: ILanguage = {
   type: 'en',
 
+  toasts: {
+    noConnection: {
+      text1: 'NO CONNECTION 🙈 🙉 🙊',
+      text2: 'You or service is offline, check your connection and try again!',
+    },
+
+    successful: {
+      text1: 'SUCCESSFUL 🔝',
+      text2: 'Your action was executed successfully!',
+    },
+
+    cardLimit: {
+      text1: 'FAILURE ❌',
+      text2: "You've reached your 5-card limit!",
+    },
+  },
+
   attributes: {
     for: 'Force',
     dex: 'Dexterity',

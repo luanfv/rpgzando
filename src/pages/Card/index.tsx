@@ -8,7 +8,7 @@ import {
 
 import { IRoutes } from '@src/types/routes';
 import { Body, Header, Information, ModalConfirm } from '@src/components';
-import { useAuth, useLanguage, useSkill } from '@src/hooks';
+import { useAuth, useLanguage, useSkill, useToast } from '@src/hooks';
 import { Columns, Image, Title } from './styles';
 import { serviceCards } from '@src/services';
 
@@ -16,6 +16,7 @@ const Card: React.FC = () => {
   const { params } = useRoute<RouteProp<IRoutes, 'Card'>>();
   const { goBack, navigate } = useNavigation<NavigationProp<IRoutes, 'Card'>>();
   const { calcModifier, calcProficiency } = useSkill();
+  const { onToast } = useToast();
 
   const [titleModal, setTitleModal] = useState('');
   const [descriptionModal, setDescriptionModal] = useState('');
@@ -38,11 +39,14 @@ const Card: React.FC = () => {
       if (user) {
         serviceCards
           .delete(user.uid, cardId)
-          .then(() => goBack())
+          .then(() => {
+            onToast('SUCCESSFUL');
+            goBack();
+          })
           .catch(() => handleCloseRemoveModal());
       }
     },
-    [goBack, handleCloseRemoveModal, user],
+    [goBack, handleCloseRemoveModal, onToast, user],
   );
 
   const isModalOpen = useMemo(

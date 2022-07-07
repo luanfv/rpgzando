@@ -3,7 +3,7 @@ import { useIsFocused, useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 import { serviceCards } from '@src/services';
-import { useAuth, useLanguage } from '@src/hooks';
+import { useAuth, useLanguage, useToast } from '@src/hooks';
 import { ICard } from '@src/types';
 import { HeaderDashboard, Loading, ModalConfirm } from '@src/components';
 import { IMenuItem } from '@src/types/components';
@@ -12,7 +12,9 @@ import { IRoutes } from '@src/types/routes';
 import { RefreshControl } from 'react-native';
 
 const Dashboard: React.FC = () => {
+  const { language } = useLanguage();
   const { user, onSignOut } = useAuth();
+  const { onToast } = useToast();
   const isFocused = useIsFocused();
   const { navigate } =
     useNavigation<NativeStackNavigationProp<IRoutes, 'Dashboard'>>();
@@ -22,8 +24,6 @@ const Dashboard: React.FC = () => {
   const [cards, setCards] = useState<ICard[]>([]);
   const [titleModal, setTitleModal] = useState('');
   const [descriptionModal, setDescriptionModal] = useState('');
-
-  const { language } = useLanguage();
 
   const menuItems = useMemo<IMenuItem[]>(
     () => [
@@ -69,11 +69,10 @@ const Dashboard: React.FC = () => {
         .then((response) => {
           setCards(response);
         })
-        .finally(() => {
-          setIsRefreshing(false);
-        });
+        .catch(() => onToast('NO_CONNECTION'))
+        .finally(() => setIsRefreshing(false));
     }
-  }, [language.type, user]);
+  }, [language.type, onToast, user]);
 
   const handleOpenSignOutModal = useCallback(() => {
     setTitleModal(language.pages.Dashboard.modal.title);
@@ -97,9 +96,10 @@ const Dashboard: React.FC = () => {
         .then((response) => {
           setCards(response);
         })
+        .catch(() => onToast('NO_CONNECTION'))
         .finally(() => setIsLoading(false));
     }
-  }, [isFocused, language.type, user]);
+  }, [isFocused, language.type, onToast, user]);
 
   return (
     <>

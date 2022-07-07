@@ -12,7 +12,7 @@ import { serviceCards, serviceClasses, serviceRaces } from '@src/services';
 import { IPickerItem } from '@src/types/components';
 import { ICardForm } from '@src/types';
 import { IRoutes } from '@src/types/routes';
-import { useAuth, useLanguage } from '@src/hooks';
+import { useAuth, useLanguage, useToast } from '@src/hooks';
 import { Column, ColumnItem, MarginBottom, Title } from './styles';
 
 const schema = Yup.object().shape({
@@ -79,6 +79,7 @@ const FormCard: React.FC = () => {
   const theme = useTheme();
   const { user } = useAuth();
   const { language } = useLanguage();
+  const { onToast } = useToast();
 
   const onSubmit = useCallback(
     async (data: ICardForm) => {
@@ -190,14 +191,14 @@ const FormCard: React.FC = () => {
             label: item.name,
             value: item.index,
             image: item.image,
-            description: `HP: 1d${item.hp} * your level`,
+            description: `HP: (your level)d${item.hp}`,
           };
         });
 
         setClasses(newClasses);
       })
-      .catch((err) => console.log(err));
-  }, [language]);
+      .catch(() => onToast('NO_CONNECTION'));
+  }, [language, onToast]);
 
   useEffect(() => {
     serviceRaces
@@ -212,8 +213,8 @@ const FormCard: React.FC = () => {
 
         setRaces(newRaces);
       })
-      .catch((err) => console.log(err));
-  }, [language]);
+      .catch(() => onToast('NO_CONNECTION'));
+  }, [language, onToast]);
 
   useEffect(() => {
     if (params) {

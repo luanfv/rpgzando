@@ -5,7 +5,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Controller, useForm } from 'react-hook-form';
 
 import { serviceCards, serviceClasses, serviceRaces } from '@src/services';
-import { useLanguage } from '@src/hooks';
+import { useLanguage, useToast } from '@src/hooks';
 import { ICard } from '@src/types';
 import { IRoutes } from '@src/types/routes';
 import { IPickerItem } from '@src/types/components';
@@ -33,6 +33,7 @@ const SearchCard: React.FC = () => {
     },
   });
 
+  const { onToast } = useToast();
   const { language } = useLanguage();
   const { goBack, navigate } =
     useNavigation<NativeStackNavigationProp<IRoutes, 'SearchCard'>>();
@@ -59,12 +60,15 @@ const SearchCard: React.FC = () => {
       setHasStopRequest(false);
       setFilter(data);
 
-      serviceCards.getOthers(language.type, data).then((response) => {
-        setLastDoc(response.lastDoc);
-        setCards(response.cards);
-      });
+      serviceCards
+        .getOthers(language.type, data)
+        .then((response) => {
+          setLastDoc(response.lastDoc);
+          setCards(response.cards);
+        })
+        .catch(() => onToast('NO_CONNECTION'));
     },
-    [language.type],
+    [language.type, onToast],
   );
 
   const handleRefresh = useCallback(() => {
@@ -82,25 +86,29 @@ const SearchCard: React.FC = () => {
         setValue('class', '');
         setValue('race', '');
       })
+      .catch(() => onToast('NO_CONNECTION'))
       .finally(() => {
         setIsRefreshing(false);
       });
-  }, [language.type, setValue]);
+  }, [language.type, onToast, setValue]);
 
   const handleClean = useCallback(() => {
     setIsOpenModalSearch(false);
     setHasStopRequest(false);
 
-    serviceCards.getOthers(language.type).then((response) => {
-      setLastDoc(response.lastDoc);
-      setCards(response.cards);
-      setFilter(undefined);
+    serviceCards
+      .getOthers(language.type)
+      .then((response) => {
+        setLastDoc(response.lastDoc);
+        setCards(response.cards);
+        setFilter(undefined);
 
-      setValue('email', '');
-      setValue('class', '');
-      setValue('race', '');
-    });
-  }, [language.type, setValue]);
+        setValue('email', '');
+        setValue('class', '');
+        setValue('race', '');
+      })
+      .catch(() => onToast('NO_CONNECTION'));
+  }, [language.type, onToast, setValue]);
 
   const handlePagination = useCallback(() => {
     if (hasStopRequest) {
@@ -144,34 +152,40 @@ const SearchCard: React.FC = () => {
   }, [language.type]);
 
   useEffect(() => {
-    serviceClasses.get(language.type).then((response) => {
-      const classList: IPickerItem[] = response.map((item) => ({
-        label: item.name,
-        value: item.index,
-        image: item.image,
-      }));
+    serviceClasses
+      .get(language.type)
+      .then((response) => {
+        const classList: IPickerItem[] = response.map((item) => ({
+          label: item.name,
+          value: item.index,
+          image: item.image,
+        }));
 
-      setClasses([
-        { label: language.pages.SearchCard.inputs.class.void, value: '' },
-        ...classList,
-      ]);
-    });
-  }, [language.pages.SearchCard.inputs.class.void, language.type]);
+        setClasses([
+          { label: language.pages.SearchCard.inputs.class.void, value: '' },
+          ...classList,
+        ]);
+      })
+      .catch(() => onToast('NO_CONNECTION'));
+  }, [language.pages.SearchCard.inputs.class.void, language.type, onToast]);
 
   useEffect(() => {
-    serviceRaces.get(language.type).then((response) => {
-      const raceList: IPickerItem[] = response.map((item) => ({
-        label: item.name,
-        value: item.index,
-        image: item.image,
-      }));
+    serviceRaces
+      .get(language.type)
+      .then((response) => {
+        const raceList: IPickerItem[] = response.map((item) => ({
+          label: item.name,
+          value: item.index,
+          image: item.image,
+        }));
 
-      setRaces([
-        { label: language.pages.SearchCard.inputs.race.void, value: '' },
-        ...raceList,
-      ]);
-    });
-  }, [language.pages.SearchCard.inputs.race.void, language.type]);
+        setRaces([
+          { label: language.pages.SearchCard.inputs.race.void, value: '' },
+          ...raceList,
+        ]);
+      })
+      .catch(() => onToast('NO_CONNECTION'));
+  }, [language.pages.SearchCard.inputs.race.void, language.type, onToast]);
 
   return (
     <>

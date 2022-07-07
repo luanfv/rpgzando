@@ -1,10 +1,12 @@
 import React from 'react';
 
-import { AuthProvider, LanguageProvider } from '@src/contexts';
+import { AuthProvider, LanguageProvider, ToastProvider } from '@src/contexts';
 
 const AppProviders: React.FC = ({ children }) => (
   <LanguageProvider>
-    <AuthProvider>{children}</AuthProvider>
+    <ToastProvider>
+      <AuthProvider>{children}</AuthProvider>
+    </ToastProvider>
   </LanguageProvider>
 );
 

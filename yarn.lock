@@ -1423,29 +1423,29 @@
   resolved "https://registry.yarnpkg.com/@react-native-community/eslint-plugin/-/eslint-plugin-1.2.0.tgz#7d6d789ae8edf73dc9bed1246cd48277edea8066"
   integrity sha512-o6aam+0Ug1xGK3ABYmBm0B1YuEKfM/5kaoZO0eHbZwSpw9UzDX4G5y4Nx/K20FHqUmJHkZmLvOUFYwN4N+HqKA==
 
-"@react-native-firebase/app@^15.0.0":
-  version "15.0.0"
-  resolved "https://registry.yarnpkg.com/@react-native-firebase/app/-/app-15.0.0.tgz#1d47cbc57641a27dbc7abbd0590a2ee6edcc70b7"
-  integrity sha512-H4u50FaveRmKuzmKsbFUaq+9jFJrIcn2/auw441h24A0fcxAhKzlYQ6DK9IvoqCX/PKX1DZYrDo6UC/d4YjCGw==
+"@react-native-firebase/app@^15.1.1":
+  version "15.1.1"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/app/-/app-15.1.1.tgz#76100645b3228eed3c0d76521531fdc0e2b20f04"
+  integrity sha512-yLC+BZtXjHLzdwLyt5/ryrUcJhYK+F1mb3GAPUOB5yujM8Ndd0O2HXNoVvLPkhEjEdyvyxfRrvqcT21BKmuw3A==
   dependencies:
     "@expo/config-plugins" "^4.1.5"
     opencollective-postinstall "^2.0.1"
     superstruct "^0.6.2"
 
-"@react-native-firebase/auth@^15.0.0":
-  version "15.0.0"
-  resolved "https://registry.yarnpkg.com/@react-native-firebase/auth/-/auth-15.0.0.tgz#4e6339e143e4ac1d5b1f8614b83d0fff70c58446"
-  integrity sha512-eT0NBmwGjR+v881ipBrCbFEMgznqwzlRC9rX+ZqoJfpv/ZqmZ4R8SRqIy/XtEztQFcTzG5RGKFQDCMweDLOtvQ==
+"@react-native-firebase/auth@^15.1.1":
+  version "15.1.1"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/auth/-/auth-15.1.1.tgz#91d771765d41db006663ea1d26e161cfdfd8c400"
+  integrity sha512-b58A4TbogTS56jmXyJ0b752Yuwa3ipH3otrgktyM+qdbyF7vHYnB4Db2byp82//9CP7+xwa8pcXRJptXe2Ujlw==
 
-"@react-native-firebase/firestore@^14.11.0":
-  version "14.11.1"
-  resolved "https://registry.yarnpkg.com/@react-native-firebase/firestore/-/firestore-14.11.1.tgz#66fc92470c02f5b003e5a9b27118b839d1410bb0"
-  integrity sha512-1/Ap0EDlAueUDHrH7WxU5ZfEF+qcT1NfUJU4qkFBvcg9pdnMS7cch4nzifRHr6jqyfUYiHgFrRe2wYfqQ0gK+w==
+"@react-native-firebase/firestore@^15.1.1":
+  version "15.1.1"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/firestore/-/firestore-15.1.1.tgz#74da577652b83e49ad5e950e6d60aa268af87185"
+  integrity sha512-XU7Zl/IJmL7hUq0syy3jR5AnvExF8j2Crnu7mcaR9aMfbiiEoAUCNtFNVfiA8ff2Owpmwz49qndxNBKEjyftqg==
 
-"@react-native-google-signin/google-signin@^7.2.2":
-  version "7.2.2"
-  resolved "https://registry.yarnpkg.com/@react-native-google-signin/google-signin/-/google-signin-7.2.2.tgz#29e416d5c8484b52de3dc97f982f04b0083f27fe"
-  integrity sha512-FqSJAEYz+SNeIOyokFX3e7nbBgK0js/Hye0YNY+cV0Qf1NxKw1vRt2MQB3kfuVWFCb+OSovgQCl6W8dhYvsblw==
+"@react-native-google-signin/google-signin@^8.0.0":
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/@react-native-google-signin/google-signin/-/google-signin-8.0.0.tgz#f8202c121b4df185eb165dc58b35544c643af25f"
+  integrity sha512-GV0EGXUfiqk9Kav74zOq4ww0rAhMUlwmIGEf94X2ptnxfKu9TufeTig1zuDQGasgFlziWju/Ya2WeC+7TYSbxw==
 
 "@react-native-picker/picker@^2.4.1":
   version "2.4.2"

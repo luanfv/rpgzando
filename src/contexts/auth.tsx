@@ -36,11 +36,11 @@ const AuthProvider: React.FC = ({ children }) => {
           uid: account.user.uid,
         });
         setStatus('authorized');
-      } catch {
-        onSignOut();
+      } catch (err) {
+        console.log(err);
       }
     }
-  }, [onSignOut]);
+  }, []);
 
   useEffect(() => {
     const currentUser = auth().currentUser;

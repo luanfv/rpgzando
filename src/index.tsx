@@ -11,6 +11,7 @@ import { Routes } from '@src/routes';
 
 GoogleSignin.configure({
   webClientId: process.env.AUTH_GOOGLE,
+  forceCodeForRefreshToken: true,
 });
 
 const App: React.FC = () => {

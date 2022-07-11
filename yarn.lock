@@ -1423,24 +1423,24 @@
   resolved "https://registry.yarnpkg.com/@react-native-community/eslint-plugin/-/eslint-plugin-1.2.0.tgz#7d6d789ae8edf73dc9bed1246cd48277edea8066"
   integrity sha512-o6aam+0Ug1xGK3ABYmBm0B1YuEKfM/5kaoZO0eHbZwSpw9UzDX4G5y4Nx/K20FHqUmJHkZmLvOUFYwN4N+HqKA==
 
-"@react-native-firebase/app@^15.1.1":
-  version "15.1.1"
-  resolved "https://registry.yarnpkg.com/@react-native-firebase/app/-/app-15.1.1.tgz#76100645b3228eed3c0d76521531fdc0e2b20f04"
-  integrity sha512-yLC+BZtXjHLzdwLyt5/ryrUcJhYK+F1mb3GAPUOB5yujM8Ndd0O2HXNoVvLPkhEjEdyvyxfRrvqcT21BKmuw3A==
+"@react-native-firebase/app@^14.11.1":
+  version "14.11.1"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/app/-/app-14.11.1.tgz#5d3587bda0a8877863e59384a4d38f7ebc321835"
+  integrity sha512-fkvOK8c7e8MxIbfb2076kO3GtGUc3ZXNEkPyfamRKBnPgANpmnjQaTVIraXpeuIIOfjj5uDK4uw32znWiDusGA==
   dependencies:
     "@expo/config-plugins" "^4.1.5"
     opencollective-postinstall "^2.0.1"
     superstruct "^0.6.2"
 
-"@react-native-firebase/auth@^15.1.1":
-  version "15.1.1"
-  resolved "https://registry.yarnpkg.com/@react-native-firebase/auth/-/auth-15.1.1.tgz#91d771765d41db006663ea1d26e161cfdfd8c400"
-  integrity sha512-b58A4TbogTS56jmXyJ0b752Yuwa3ipH3otrgktyM+qdbyF7vHYnB4Db2byp82//9CP7+xwa8pcXRJptXe2Ujlw==
+"@react-native-firebase/auth@^14.11.1":
+  version "14.11.1"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/auth/-/auth-14.11.1.tgz#fc39a6ef58d4300b09a114bf256b688293d0d91d"
+  integrity sha512-IzgFakon2jkuC4FEP8q9wruz8Yu0yem/Yk0v8IwndV2h/5lYmmij/f5Pyk74U3tadGOr9UrBsGkrWZMceiAjHQ==
 
-"@react-native-firebase/firestore@^15.1.1":
-  version "15.1.1"
-  resolved "https://registry.yarnpkg.com/@react-native-firebase/firestore/-/firestore-15.1.1.tgz#74da577652b83e49ad5e950e6d60aa268af87185"
-  integrity sha512-XU7Zl/IJmL7hUq0syy3jR5AnvExF8j2Crnu7mcaR9aMfbiiEoAUCNtFNVfiA8ff2Owpmwz49qndxNBKEjyftqg==
+"@react-native-firebase/firestore@^14.11.1":
+  version "14.11.1"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/firestore/-/firestore-14.11.1.tgz#66fc92470c02f5b003e5a9b27118b839d1410bb0"
+  integrity sha512-1/Ap0EDlAueUDHrH7WxU5ZfEF+qcT1NfUJU4qkFBvcg9pdnMS7cch4nzifRHr6jqyfUYiHgFrRe2wYfqQ0gK+w==
 
 "@react-native-google-signin/google-signin@^8.0.0":
   version "8.0.0"

@@ -1,8 +1,8 @@
 import React, { useCallback } from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import Sound from 'react-native-sound';
+import { useTheme } from 'styled-components';
 
-import styles from '../../styles.json';
+import { IInputNumeric } from '@src/types/components';
 
 import {
   Input,
@@ -10,33 +10,23 @@ import {
   TitleContainer,
   TitleRandom,
   TitleText,
-} from './style';
+} from './styles';
 
-interface IInputNumericProps {
-  title: string;
-  value: number;
-  min: number;
-  max: number;
-  random?: boolean;
-  onChange: (value: number) => void;
-}
-
-const InputNumeric: React.FC<IInputNumericProps> = ({
+const InputNumeric: React.FC<IInputNumeric> = ({
   title,
   value,
-  onChange,
   min,
   max,
   random,
+  onChange,
+  onBlur,
 }) => {
+  const theme = useTheme();
+
   const handleRandom = useCallback(() => {
-    Sound.setCategory('Playback');
+    const valueRandom = Math.floor(Math.random() * (max - (min - 1))) + min;
 
-    const dices = new Sound('dice.WAV', Sound.MAIN_BUNDLE, () => {
-      dices.play();
-    });
-
-    onChange(Math.floor(Math.random() * (max - (min - 1))) + min);
+    onChange(valueRandom);
   }, [max, min, onChange]);
 
   return (
@@ -46,7 +36,11 @@ const InputNumeric: React.FC<IInputNumericProps> = ({
 
         {random && (
           <TitleRandom onPress={handleRandom}>
-            <Icon name="dice" size={24} color="#fff" />
+            <Icon
+              name="dice"
+              size={theme.fonts.large}
+              color={theme.colors.text}
+            />
           </TitleRandom>
         )}
       </TitleContainer>
@@ -54,17 +48,18 @@ const InputNumeric: React.FC<IInputNumericProps> = ({
       <Input
         value={value}
         onChange={onChange}
+        onBlur={onBlur}
         min={min}
         max={max}
         textColor="#fff"
-        fontSize={18}
-        colorLeft={styles.primary}
-        colorRight={styles.primary}
-        colorPress={styles.secondary}
+        fontSize={theme.fonts.large}
+        colorLeft={theme.colors.primary}
+        colorRight={theme.colors.primary}
+        colorPress={theme.colors.secondary}
         rounded
       />
     </Container>
   );
 };
 
-export default InputNumeric;
+export { InputNumeric };

@@ -1,27 +1,25 @@
-
 <p align="center">
   <a href="https://github.com/Luanfv/app-rpgzando">
-    <img src="./src/assets/images/app/logo.png" alt="Logo - RPGZando" width="80" height="80">
+    <img alt="Logo - RPGZando" src="./src/assets/images/logo.png" width="80" height="80" style="border-radius: 4px;">
   </a>
 
   <h3 align="center">RPGZando</h3>
 
   <p align="center">
-    Gerador de fichas de RPG, desenvolvido com React-Native + TypeScript
+    Gerenciador de fichas de RPG, desenvolvido com React-Native + TypeScript + Firebase
   </p>
   
   <div align="center">
-    <a href="https://www.linkedin.com/in/luanfv/">
-      <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" />
+    <a alt="Linkedin: Luan França Vieira" href="https://www.linkedin.com/in/luanfv/">
+      <img alt="Linkedin: Luan França Vieira" src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" />
     </a>
-    <a href="https://github.com/Luanfv">
-      <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" />
+    <a alt="GitHub: Luan França Vieira" href="https://github.com/Luanfv">
+      <img alt="GitHub: Luan França Vieira" src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" />
     </a>
-    <img src="https://img.shields.io/badge/Yarn-2C8EBB?style=for-the-badge&logo=yarn&logoColor=white"   />
-    <img src="https://img.shields.io/badge/React_Native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB"  />
-    <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white"   />
-    <img src="https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white"   />
-    <img src="https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white"   />
+    <img alt="React Native" src="https://img.shields.io/badge/React_Native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" />
+    <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" />
+    <img alt="Firebase" src="https://img.shields.io/badge/Firebase-039BE5?style=for-the-badge&logo=Firebase&logoColor=white" />
+    <img alt="Yarn" src="https://img.shields.io/badge/Yarn-2C8EBB?style=for-the-badge&logo=yarn&logoColor=white" />
   </div>
   
   <br />
@@ -33,74 +31,69 @@
   </div>
 </p>
 
-<p align="center">
-  <img src="./src/assets/images/app/preview.gif" />
-</p>
 
-<br />
-<br />
+# SOBRE O PROJETO
 
-<!-- ABOUT THE PROJECT -->
-## SOBRE O PROJETO
-
-<p align="center">
-<table  style="border: none">
-  <tr>
-    <td>
-      <img src="./src/assets/images/app/1.png" />
-    </td>
-    <td>
-      <img src="./src/assets/images/app/2.png" />
-    </td>
-    <td>
-      <img src="./src/assets/images/app/3.png" />
-    </td>
-    <td>
-      <img src="./src/assets/images/app/4.png" />
-    </td>
-  </tr>
-</table>
-</p>
-
-O RPGZando é um aplicativo de criação de fichas de RPG baseado no
-D&D. Através dele você podera criar e manter suas fichas sem a
-necessidade de papel e caneta, facilitando toda a logística que você
-precisa ter ao seu redor, sendo assim, mantendo o maior foco no que
-realmente importa, a campanha.
+O RPGZando é um aplicativo para criação de fichas de RPG baseado no D&D. Através dele você poderá criar e manter suas fichas sem a necessidade de papel e caneta, facilitando o gerenciamento e mantendo o foco no que realmente importa, a campanha. Caso tenha interesse em baixar o aplicativo pela Google Play, [Clique aqui](https://play.google.com/store/apps/details?id=com.rpgzando).
 
 
-O aplicativo nasceu de uma dificuldade que os jogadores iniciantes
-de RPG possuem no momento de criar suas primeiras fichas e/ou
-mante-las.
+# EXTENSÕES DO VSCODE
 
-Para baixar o aplicativo, <a href="https://play.google.com/store/apps/details?id=com.rpgzando">clique aqui</a>.
+Para o desenvolvimento desse projeto é altamente recomendado que utilize o VSCode e as extensões abaixo:
 
-<!-- Getting Started -->
-## INICIANDO O PROJETO
+- [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+- [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+- [EditorConfig for VS Code](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig)
+- [vscode-styled-components](https://marketplace.visualstudio.com/items?itemName=jpoissonnier.vscode-styled-components)
+- [GitLens (opcional)](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens)
+- [Color Highlight (opcional)](https://marketplace.visualstudio.com/items?itemName=naumovs.color-highlight)
 
-Para instalar o projeto em sua maquina siga os passos abaixo.
 
-### PRÉ-REQUISITOS
+# INICIANDO O PROJETO
 
-Tenha instalado em sua máquina as seguintes ferramentas:
-[Git](https://git-scm.com), [Node.js](https://nodejs.org/en/), [Android Studio](https://developer.android.com/studio),
-Opcionalmente pode-se instalar o [Yarn](https://yarnpkg.com/) como gerenciador de pacotes.
+Para executar o projeto em sua maquina siga os passos abaixo. 
+Obs: Os passos de `Pré-requisitos` e `Configuração do firebase` só precisam ser executados na primeira vez que for rodar o projeto.
 
-### INSTALAÇÃO
+## PRÉ-REQUISITOS
 
-1. Clone o repositório
-   ```sh
-   git clone https://github.com/Luanfv/app-rpgzando.git
-   ```
-2. Entre na pasta
-   ```sh
-   cd app-rpgzando
-   ```
-3. Instale as dependências
-   ```sh
-   yarn
-   ```
-   ou
-   ```sh
-   npm i
-   ```
+Tenha instalado e configurado em sua máquina as seguintes ferramentas: 
+
+- [Node.js](https://nodejs.org/en/);
+- [Yarn](https://yarnpkg.com/);
+- [Android Studio](https://developer.android.com/studio) para utilizar o emulador do Android;
+- [XCode](https://developer.apple.com/xcode/) para utilizar o emulador do iOS;
+  
+Obs: Caso não tenha experiência com a configuração de ambiente do React Native, [siga esta documentação](https://react-native.rocketseat.dev/).
+
+## CONFIGURAÇÂO DO FIREBASE
+
+É necessário fazer a configuração para conseguir conectar o projeto com o firebase.
+Obs: Você pode fazer apenas a configuração da plataforma que irá utilizar.
+
+### ANDROID
+
+1. Entre na pasta `android/app` e crie um arquivo chamado `google-services.json` a partir do `google-services.example.json`.
+
+2. Configure o json com as informações do seu projeto no firebase. 
+Caso não tenha um projeto criado, crie a partir do [firebase](https://firebase.google.com/) e 
+adicione o `google-services.json` no `android/app` 
+conforme informa no [react-native-firebase](https://rnfirebase.io/#generating-android-credentials/).
+
+Obs: Só é necessário fazer a configuração que está em `Generating Android credentials`, o [react-native-firebase](https://rnfirebase.io/).
+
+# PADRÃO DE COMMIT
+
+1. Selecione suas alterações
+2. Realize o commit:
+
+```bash
+  # Inicia o commit
+  $ yarn commit
+```
+
+3. Subir para o repositório:
+
+```bash
+  # Sobe para o repositório
+  $ git push
+```

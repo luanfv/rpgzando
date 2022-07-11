@@ -1,29 +1,51 @@
 import React from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { gestureHandlerRootHOC } from 'react-native-gesture-handler';
 
-import Cards from '../pages/Cards';
-import ShowCard from '../pages/Cards/Show';
-import CreateCard from '../pages/Cards/Create';
-import Attributes from '../pages/Cards/Create/Attributes';
-import About from '../pages/About';
-import Settings from '../pages/Settings';
+import { FormCard, Card, Auth, Dashboard, SearchCard } from '@src/pages';
+import { useAuth } from '@src/hooks';
+import { Text, View } from 'react-native';
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 
 const Routes: React.FC = () => {
+  const { status } = useAuth();
+
+  if (status === 'loading') {
+    return (
+      <View>
+        <Text>Loading...</Text>
+      </View>
+    );
+  }
+
+  if (status === 'unauthorized') {
+    return <Auth />;
+  }
+
   return (
-    <Stack.Navigator
-      screenOptions={{ headerShown: false }}
-      initialRouteName="collectors"
-    >
-      <Stack.Screen name="cards" component={Cards} />
-      <Stack.Screen name="showCard" component={ShowCard} />
-      <Stack.Screen name="createCard" component={CreateCard} />
-      <Stack.Screen name="createAttributes" component={Attributes} />
-      <Stack.Screen name="about" component={About} />
-      <Stack.Screen name="settings" component={Settings} />
-    </Stack.Navigator>
+    <NavigationContainer>
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen
+          name="Dashboard"
+          component={gestureHandlerRootHOC(Dashboard)}
+        />
+
+        <Stack.Screen
+          name="FormCard"
+          component={gestureHandlerRootHOC(FormCard)}
+        />
+
+        <Stack.Screen name="Card" component={gestureHandlerRootHOC(Card)} />
+
+        <Stack.Screen
+          name="SearchCard"
+          component={gestureHandlerRootHOC(SearchCard)}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
 
-export default Routes;
+export { Routes };

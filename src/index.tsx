@@ -2,25 +2,30 @@ import 'react-native-gesture-handler';
 
 import React from 'react';
 import { StatusBar } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
+import { ThemeProvider } from 'styled-components';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
 
-import AppProvider from './hooks';
-import Routes from './routes';
-import styles from './styles.json';
+import { theme } from '@src/settings/styles/theme';
+import { AppProviders } from '@src/contexts/providers';
+import { Routes } from '@src/routes';
 
-import ModalWarnning from './components/Modal/Warnning';
+GoogleSignin.configure({
+  webClientId: process.env.AUTH_GOOGLE,
+  forceCodeForRefreshToken: true,
+});
 
 const App: React.FC = () => {
   return (
-    <AppProvider>
-      <StatusBar backgroundColor={styles.primary} />
+    <ThemeProvider theme={theme}>
+      <AppProviders>
+        <StatusBar
+          backgroundColor={theme.colors.primary}
+          barStyle="light-content"
+        />
 
-      <NavigationContainer>
         <Routes />
-      </NavigationContainer>
-
-      <ModalWarnning />
-    </AppProvider>
+      </AppProviders>
+    </ThemeProvider>
   );
 };
 

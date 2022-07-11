@@ -1,126 +1,63 @@
-import React, { useState, useCallback } from 'react';
-import { View } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
-import Modal from 'react-native-modal';
-import { useNavigation } from '@react-navigation/core';
+import React, { useCallback, useState } from 'react';
+import { TouchableOpacity } from 'react-native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import { useTheme } from 'styled-components';
 
-import { useCards } from '../../hooks/CardsContext';
+import { IHeader } from '@src/types/components';
+import { Container, Modal, Option, OptionButton, OptionText } from './styles';
 
-import ModalConfirmation from '../../components/Modal/Confirmation';
+const Header: React.FC<IHeader> = ({ onBack, options }) => {
+  const theme = useTheme();
 
-import {
-  Container,
-  TitleContainer,
-  BackButton,
-  SubTitle,
-  Title,
-  Options,
-  Tooltip,
-  TooltipButton,
-  TooltipButtonText,
-} from './style';
+  const [isShowModal, setIsShowModal] = useState(false);
 
-interface IHeaderProps {
-  title: string;
-  goBack?: boolean;
-  idCard?: string;
-}
-
-const Header: React.FC<IHeaderProps> = ({ title, goBack = false, idCard }) => {
-  const navigation = useNavigation();
-
-  const { removeCard } = useCards();
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isConfirmationRemove, setIsConfirmationRemove] = useState(false);
-
-  const goToHome = useCallback(() => {
-    navigation.reset({
-      routes: [{ name: 'cards' }],
-      index: 0,
-    });
-  }, [navigation]);
-
-  const navigate = useCallback(
-    (screen: string) => {
-      setIsModalOpen(false);
-      navigation.navigate(screen);
-    },
-    [navigation],
-  );
-
-  const remove = useCallback(
-    (id: string) => {
-      const response = removeCard(id);
-
-      if (response) {
-        goToHome();
-      }
-    },
-    [goToHome, removeCard],
-  );
+  const handlePress = useCallback((action: () => void) => {
+    action();
+    setIsShowModal(false);
+  }, []);
 
   return (
     <Container>
-      <TitleContainer>
-        {goBack ? (
-          <>
-            <BackButton onPress={goToHome}>
-              <Icon name="arrow-left" color="#fff" size={20} />
-            </BackButton>
+      <TouchableOpacity onPress={onBack}>
+        <Ionicons
+          name="chevron-back-outline"
+          size={20}
+          color={theme.colors.text}
+        />
+      </TouchableOpacity>
 
-            <Title>{title}</Title>
-          </>
-        ) : (
-          <View>
-            <SubTitle>Seja bem-vindo(a),</SubTitle>
-            <Title>{title}</Title>
-          </View>
-        )}
-      </TitleContainer>
+      {options && (
+        <>
+          <TouchableOpacity onPress={() => setIsShowModal(true)}>
+            <Ionicons
+              name="ellipsis-vertical"
+              size={20}
+              color={theme.colors.text}
+            />
+          </TouchableOpacity>
 
-      {idCard ? (
-        <Options
-          onPress={() => {
-            setIsModalOpen(false);
-            setIsConfirmationRemove(true);
-          }}
-        >
-          <Icon name="trash" color="#fff" size={20} />
-        </Options>
-      ) : (
-        <Options onPress={() => setIsModalOpen(true)}>
-          <Icon name="bars" color="#fff" size={26} />
-        </Options>
+          <Modal
+            isVisible={isShowModal}
+            animationIn="bounceInRight"
+            animationOut="bounceOutRight"
+            onBackdropPress={() => setIsShowModal(false)}
+            onBackButtonPress={() => setIsShowModal(false)}
+          >
+            <Option>
+              {options.map((option) => (
+                <OptionButton
+                  key={option.label}
+                  onPress={() => handlePress(option.onPress)}
+                >
+                  <OptionText>{option.label}</OptionText>
+                </OptionButton>
+              ))}
+            </Option>
+          </Modal>
+        </>
       )}
-
-      <Modal
-        isVisible={isModalOpen}
-        backdropOpacity={0.1}
-        animationInTiming={1}
-        animationOutTiming={1}
-        onBackdropPress={() => setIsModalOpen(false)}
-        onBackButtonPress={() => setIsModalOpen(false)}
-      >
-        <Tooltip>
-          <TooltipButton onPress={() => navigate('settings')}>
-            <TooltipButtonText>Configurações</TooltipButtonText>
-          </TooltipButton>
-
-          <TooltipButton onPress={() => navigate('about')}>
-            <TooltipButtonText>Sobre</TooltipButtonText>
-          </TooltipButton>
-        </Tooltip>
-      </Modal>
-
-      <ModalConfirmation
-        isOpen={isConfirmationRemove}
-        message="Tem certeza que deseja remover essa ficha?"
-        confirmed={() => idCard && remove(idCard)}
-        close={() => setIsConfirmationRemove(false)}
-      />
     </Container>
   );
 };
 
-export default Header;
+export { Header };

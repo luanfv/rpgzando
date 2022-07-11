@@ -1,9 +1,9 @@
 <p align="center">
   <a href="https://github.com/Luanfv/app-rpgzando">
-    <img alt="Logo - RPGZando" src="./src/assets/images/logo.png" width="80" height="80" style="border-radius: 4px;">
+    <img alt="Logo - RPGZando" src="./src/assets/images/logo.png" width="100" height="100" style="border-radius: 4px;">
   </a>
 
-  <h3 align="center">RPGZando</h3>
+  <h1 align="center">RPGZando</h1>
 
   <p align="center">
     Gerenciador de fichas de RPG, desenvolvido com React-Native + TypeScript + Firebase
@@ -32,12 +32,12 @@
 </p>
 
 
-# SOBRE O PROJETO
+## SOBRE O PROJETO
 
 O RPGZando é um aplicativo para criação de fichas de RPG baseado no D&D. Através dele você poderá criar e manter suas fichas sem a necessidade de papel e caneta, facilitando o gerenciamento e mantendo o foco no que realmente importa, a campanha. Caso tenha interesse em baixar o aplicativo pela Google Play, [Clique aqui](https://play.google.com/store/apps/details?id=com.rpgzando).
 
 
-# EXTENSÕES DO VSCODE
+## EXTENSÕES DO VSCODE
 
 Para o desenvolvimento desse projeto é altamente recomendado que utilize o VSCode e as extensões abaixo:
 
@@ -49,12 +49,12 @@ Para o desenvolvimento desse projeto é altamente recomendado que utilize o VSCo
 - [Color Highlight (opcional)](https://marketplace.visualstudio.com/items?itemName=naumovs.color-highlight)
 
 
-# INICIANDO O PROJETO
+## INICIANDO O PROJETO
 
 Para executar o projeto em sua maquina siga os passos abaixo. 
 Obs: Os passos de `Pré-requisitos` e `Configuração do firebase` só precisam ser executados na primeira vez que for rodar o projeto.
 
-## PRÉ-REQUISITOS
+### PRÉ-REQUISITOS
 
 Tenha instalado e configurado em sua máquina as seguintes ferramentas: 
 
@@ -65,12 +65,12 @@ Tenha instalado e configurado em sua máquina as seguintes ferramentas:
   
 Obs: Caso não tenha experiência com a configuração de ambiente do React Native, [siga esta documentação](https://react-native.rocketseat.dev/).
 
-## CONFIGURAÇÂO DO FIREBASE
+### CONFIGURAÇÂO DO FIREBASE
 
 É necessário fazer a configuração para conseguir conectar o projeto com o firebase.
 Obs: Você pode fazer apenas a configuração da plataforma que irá utilizar.
 
-### ANDROID
+#### ANDROID
 
 1. Entre na pasta `android/app` e crie um arquivo chamado `google-services.json` a partir do `google-services.example.json`.
 
@@ -81,7 +81,7 @@ conforme informa no [react-native-firebase](https://rnfirebase.io/#generating-an
 
 Obs: Só é necessário fazer a configuração que está em `Generating Android credentials`, o [react-native-firebase](https://rnfirebase.io/).
 
-# PADRÃO DE COMMIT
+## PADRÃO DE COMMIT
 
 1. Selecione suas alterações
 2. Realize o commit:

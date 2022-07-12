@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components/native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { RFValue } from 'react-native-responsive-fontsize';
+import { Platform } from 'react-native';
 
 const Container = styled.View`
   margin: ${({ theme }) => RFValue(theme.spacing)}px 0;
@@ -21,8 +22,11 @@ const Select = styled.View`
     border-color: ${theme.colors.textLight};
   `}
 
-  border-width: ${RFValue(1)}px;
-  border-radius: ${RFValue(4)}px;
+  ${Platform.OS !== 'ios' &&
+  css`
+    border-width: ${RFValue(1)}px;
+    border-radius: ${RFValue(4)}px;
+  `}
 `;
 
 const Picture = styled.Image`

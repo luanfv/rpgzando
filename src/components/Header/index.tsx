@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import { TouchableOpacity } from 'react-native';
+import { Platform, TouchableOpacity } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useTheme } from 'styled-components';
 
@@ -12,8 +12,15 @@ const Header: React.FC<IHeader> = ({ onBack, options }) => {
   const [isShowModal, setIsShowModal] = useState(false);
 
   const handlePress = useCallback((action: () => void) => {
-    action();
     setIsShowModal(false);
+
+    if (Platform.OS === 'ios') {
+      setTimeout(() => {
+        action();
+      }, 1000);
+    } else {
+      action();
+    }
   }, []);
 
   return (

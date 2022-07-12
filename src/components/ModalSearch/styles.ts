@@ -1,3 +1,4 @@
+import { Platform } from 'react-native';
 import styled, { css } from 'styled-components/native';
 import ModalLib from 'react-native-modal';
 import { RFValue } from 'react-native-responsive-fontsize';
@@ -12,7 +13,7 @@ const Modal = styled(ModalLib)`
 `;
 
 const Container = styled.View`
-  height: 95%;
+  height: ${Platform.OS === 'ios' ? 90 : 95}%;
 
   ${({ theme }) => css`
     background-color: ${theme.colors.primary};

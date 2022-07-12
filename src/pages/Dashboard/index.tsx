@@ -5,7 +5,12 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { serviceCards } from '@src/services';
 import { useAuth, useLanguage, useToast } from '@src/hooks';
 import { ICard } from '@src/types';
-import { HeaderDashboard, Loading, ModalConfirm } from '@src/components';
+import {
+  BottomSpace,
+  HeaderDashboard,
+  Loading,
+  ModalConfirm,
+} from '@src/components';
 import { IMenuItem } from '@src/types/components';
 import { Container, Content, Description, Image, List, Title } from './styles';
 import { IRoutes } from '@src/types/routes';
@@ -125,9 +130,13 @@ const Dashboard: React.FC = () => {
             </Content>
           </Container>
         )}
-        ListFooterComponent={() =>
-          isLoading ? <Loading margin={10} /> : <></>
-        }
+        ListFooterComponent={() => (
+          <>
+            {isLoading && <Loading margin={10} />}
+
+            <BottomSpace />
+          </>
+        )}
         refreshControl={
           <RefreshControl refreshing={isRefreshing} onRefresh={handleRefresh} />
         }

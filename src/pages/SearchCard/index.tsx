@@ -13,7 +13,14 @@ import {
   IGetOthersFilter,
   IServiceGetOthersLastResponse,
 } from '@src/types/services';
-import { Header, Input, Loading, ModalSearch, Picker } from '@src/components';
+import {
+  BottomSpace,
+  Header,
+  Input,
+  Loading,
+  ModalSearch,
+  Picker,
+} from '@src/components';
 import {
   Container,
   Content,
@@ -206,9 +213,13 @@ const SearchCard: React.FC = () => {
             </Content>
           </Container>
         )}
-        ListFooterComponent={() =>
-          isLoading ? <Loading margin={10} /> : <></>
-        }
+        ListFooterComponent={() => (
+          <>
+            {isLoading && <Loading margin={10} />}
+
+            <BottomSpace />
+          </>
+        )}
         refreshControl={
           <RefreshControl refreshing={isRefreshing} onRefresh={handleRefresh} />
         }

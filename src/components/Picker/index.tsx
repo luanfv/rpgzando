@@ -11,6 +11,7 @@ import {
   Select,
   Title,
 } from './styles';
+import { Platform } from 'react-native';
 
 const Picker: React.FC<IPicker> = ({
   items,
@@ -23,6 +24,11 @@ const Picker: React.FC<IPicker> = ({
   const selectedItem = useMemo(
     () => items.find((item) => item.value === selectedValue),
     [items, selectedValue],
+  );
+
+  const colorItem = useMemo(
+    () => (Platform.OS === 'ios' ? theme.colors.text : theme.colors.primary),
+    [theme.colors.primary, theme.colors.text],
   );
 
   return (
@@ -55,7 +61,7 @@ const Picker: React.FC<IPicker> = ({
               key={index}
               label={label}
               value={value}
-              color={theme.colors.primary}
+              color={colorItem}
               style={{ fontSize: theme.fonts.medium }}
             />
           ))}

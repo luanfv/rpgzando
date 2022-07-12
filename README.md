@@ -72,14 +72,27 @@ Obs: Você pode fazer apenas a configuração da plataforma que irá utilizar.
 
 #### ANDROID
 
-1. Entre na pasta `android/app` e crie um arquivo chamado `google-services.json` a partir do `google-services.example.json`.
+1. Entre na pasta `/android/app` e crie um arquivo chamado `google-services.json` a partir do `google-services.example.json`.
 
 2. Configure o json com as informações do seu projeto no firebase. 
 Caso não tenha um projeto criado, crie a partir do [firebase](https://firebase.google.com/) e 
-adicione o `google-services.json` no `android/app` 
-conforme informa no [react-native-firebase](https://rnfirebase.io/#generating-android-credentials/).
+adicione o `google-services.json` no `/android/app` 
+conforme informa no [react-native-firebase](https://rnfirebase.io/#2-android-setup).
 
 Obs: Só é necessário fazer a configuração que está em `Generating Android credentials`, o [react-native-firebase](https://rnfirebase.io/).
+
+#### IOS
+
+1. Adicione o seu arquivo `GoogleService-Info.plist` em `/ios`.
+
+2. Entre no arquivo `/ios/rpgzando/Info.plist` e adicione o `REVERSED_CLIENT_ID` onde estiver escrito `ios/GoogleService-Info.plist=REVERSED_CLIENT_ID`.
+
+3. Configure o json com as informações do seu projeto no firebase. 
+Caso não tenha um projeto criado, crie a partir do [firebase](https://firebase.google.com/) e 
+adicione o `GoogleService-Info.plist` no `/ios` 
+conforme informa no [react-native-firebase](https://rnfirebase.io/#3-ios-setup).
+
+Obs: Só é necessário fazer a configuração que está em `Generating iOS credentials`, o [react-native-firebase](https://rnfirebase.io/).
 
 ## PADRÃO DE COMMIT
 

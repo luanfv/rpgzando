@@ -134,7 +134,7 @@ const FormCard: React.FC = () => {
       switch (attribute) {
         case 'for':
           const modifierFor = getValues('for');
-          const valueFor = (modifierFor - 10) / 2;
+          const valueFor = Math.round((modifierFor - 10) / 2);
 
           setValue('athletics', valueFor);
 
@@ -142,7 +142,7 @@ const FormCard: React.FC = () => {
 
         case 'dex':
           const modifierDex = getValues('dex');
-          const valueDex = (modifierDex - 10) / 2;
+          const valueDex = Math.round((modifierDex - 10) / 2);
 
           setValue('acrobatics', valueDex);
           setValue('stealth', valueDex);
@@ -152,7 +152,7 @@ const FormCard: React.FC = () => {
 
         case 'int':
           const modifierInt = getValues('int');
-          const valueInt = (modifierInt - 10) / 2;
+          const valueInt = Math.round((modifierInt - 10) / 2);
 
           setValue('arcana', valueInt);
           setValue('history', valueInt);
@@ -163,7 +163,7 @@ const FormCard: React.FC = () => {
 
         case 'wis':
           const modifierWis = getValues('wis');
-          const valueWis = (modifierWis - 10) / 2;
+          const valueWis = Math.round((modifierWis - 10) / 2);
 
           setValue('animalHandling', valueWis);
           setValue('perception', valueWis);
@@ -175,7 +175,7 @@ const FormCard: React.FC = () => {
 
         case 'cha':
           const modifierCha = getValues('cha');
-          const valueCha = (modifierCha - 10) / 2;
+          const valueCha = Math.round((modifierCha - 10) / 2);
 
           setValue('deception', valueCha);
           setValue('intimidation', valueCha);

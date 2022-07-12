@@ -264,7 +264,7 @@ const serviceCards: IServiceCards = {
 
     const raceSelected = await serviceRaces.find(cardForm.race);
     const classSelected = await serviceClasses.find(cardForm.class);
-    const attributes = {
+    const attributes: IAttributes = {
       for: cardForm.for,
       dex: cardForm.dex,
       con: cardForm.con,
@@ -272,12 +272,33 @@ const serviceCards: IServiceCards = {
       wis: cardForm.wis,
       cha: cardForm.cha,
     };
+    const skills: ISkills = {
+      acrobatics: cardForm.acrobatics,
+      animalHandling: cardForm.animalHandling,
+      arcana: cardForm.arcana,
+      athletics: cardForm.athletics,
+      deception: cardForm.deception,
+      history: cardForm.history,
+      insight: cardForm.insight,
+      intimidation: cardForm.intimidation,
+      investigation: cardForm.investigation,
+      medicine: cardForm.medicine,
+      nature: cardForm.nature,
+      perception: cardForm.perception,
+      performance: cardForm.performance,
+      persuasion: cardForm.persuasion,
+      religion: cardForm.religion,
+      sleight: cardForm.sleight,
+      stealth: cardForm.stealth,
+      survival: cardForm.survival,
+    };
 
     await firestore().collection('cards').doc(cardForm.id).update({
       race: raceSelected,
       class: classSelected,
 
       attributes,
+      skills,
 
       name: cardForm.name,
       hp: cardForm.hp,

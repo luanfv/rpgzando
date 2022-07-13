@@ -11,5 +11,7 @@ export { Header } from './Header';
 export { ModalConfirm } from './ModalConfirm';
 export { ModalSearch } from './ModalSearch';
 export { Loading } from './Loading';
+export { Card } from './Card';
+export { Column2X } from './Column2X';
 
-export { BottomSpace } from './styles';
+export { BottomSpace, MarginBottom, CharacterPhoto, List } from './styles';

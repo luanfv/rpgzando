@@ -7,13 +7,20 @@ import { useTheme } from 'styled-components';
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
-import { Body, Header, Input, InputNumeric, Picker } from '@src/components';
+import {
+  Body,
+  Column2X,
+  Header,
+  Input,
+  InputNumeric,
+  MarginBottom,
+  Picker,
+} from '@src/components';
 import { serviceCards, serviceClasses, serviceRaces } from '@src/services';
 import { IPickerItem } from '@src/types/components';
 import { ICardForm } from '@src/types';
 import { IRoutes } from '@src/types/routes';
 import { useAuth, useLanguage, useToast } from '@src/hooks';
-import { Column, ColumnItem, MarginBottom, Title } from './styles';
 
 const schema = Yup.object().shape({
   name: Yup.string().required('You need to have a name!'),
@@ -363,10 +370,9 @@ const FormCard: React.FC = () => {
           name="notes"
         />
 
-        <Title>{language.pages.FormCard.attributes}</Title>
-
-        <Column>
-          <ColumnItem>
+        <Column2X
+          title={`${language.pages.FormCard.attributes}:`}
+          items={[
             <Controller
               control={control}
               render={({ field: { onChange, onBlur, value } }) => (
@@ -383,10 +389,7 @@ const FormCard: React.FC = () => {
                 />
               )}
               name="for"
-            />
-          </ColumnItem>
-
-          <ColumnItem>
+            />,
             <Controller
               control={control}
               render={({ field: { onChange, onBlur, value } }) => (
@@ -403,12 +406,7 @@ const FormCard: React.FC = () => {
                 />
               )}
               name="int"
-            />
-          </ColumnItem>
-        </Column>
-
-        <Column>
-          <ColumnItem>
+            />,
             <Controller
               control={control}
               render={({ field: { onChange, onBlur, value } }) => (
@@ -425,10 +423,7 @@ const FormCard: React.FC = () => {
                 />
               )}
               name="dex"
-            />
-          </ColumnItem>
-
-          <ColumnItem>
+            />,
             <Controller
               control={control}
               render={({ field: { onChange, onBlur, value } }) => (
@@ -445,56 +440,13 @@ const FormCard: React.FC = () => {
                 />
               )}
               name="wis"
-            />
-          </ColumnItem>
-        </Column>
+            />,
+          ]}
+        />
 
-        <Column>
-          <ColumnItem>
-            <Controller
-              control={control}
-              render={({ field: { onChange, onBlur, value } }) => (
-                <InputNumeric
-                  title={language.attributes.con}
-                  value={value}
-                  onChange={(attribute) =>
-                    handleChangeAttribute('con', () => onChange(attribute))
-                  }
-                  onBlur={onBlur}
-                  min={1}
-                  max={20}
-                  random
-                />
-              )}
-              name="con"
-            />
-          </ColumnItem>
-
-          <ColumnItem>
-            <Controller
-              control={control}
-              render={({ field: { onChange, onBlur, value } }) => (
-                <InputNumeric
-                  title={language.attributes.cha}
-                  value={value}
-                  onChange={(attribute) =>
-                    handleChangeAttribute('cha', () => onChange(attribute))
-                  }
-                  onBlur={onBlur}
-                  min={1}
-                  max={20}
-                  random
-                />
-              )}
-              name="cha"
-            />
-          </ColumnItem>
-        </Column>
-
-        <Title>Skills:</Title>
-
-        <Column>
-          <ColumnItem>
+        <Column2X
+          title={'Skills:'}
+          items={[
             <Controller
               control={control}
               render={({ field: { onChange, onBlur, value } }) => (
@@ -508,10 +460,7 @@ const FormCard: React.FC = () => {
                 />
               )}
               name="acrobatics"
-            />
-          </ColumnItem>
-
-          <ColumnItem>
+            />,
             <Controller
               control={control}
               render={({ field: { onChange, onBlur, value } }) => (
@@ -525,12 +474,7 @@ const FormCard: React.FC = () => {
                 />
               )}
               name="animalHandling"
-            />
-          </ColumnItem>
-        </Column>
-
-        <Column>
-          <ColumnItem>
+            />,
             <Controller
               control={control}
               render={({ field: { onChange, onBlur, value } }) => (
@@ -544,10 +488,7 @@ const FormCard: React.FC = () => {
                 />
               )}
               name="arcana"
-            />
-          </ColumnItem>
-
-          <ColumnItem>
+            />,
             <Controller
               control={control}
               render={({ field: { onChange, onBlur, value } }) => (
@@ -561,12 +502,7 @@ const FormCard: React.FC = () => {
                 />
               )}
               name="athletics"
-            />
-          </ColumnItem>
-        </Column>
-
-        <Column>
-          <ColumnItem>
+            />,
             <Controller
               control={control}
               render={({ field: { onChange, onBlur, value } }) => (
@@ -580,10 +516,7 @@ const FormCard: React.FC = () => {
                 />
               )}
               name="deception"
-            />
-          </ColumnItem>
-
-          <ColumnItem>
+            />,
             <Controller
               control={control}
               render={({ field: { onChange, onBlur, value } }) => (
@@ -597,12 +530,7 @@ const FormCard: React.FC = () => {
                 />
               )}
               name="history"
-            />
-          </ColumnItem>
-        </Column>
-
-        <Column>
-          <ColumnItem>
+            />,
             <Controller
               control={control}
               render={({ field: { onChange, onBlur, value } }) => (
@@ -616,10 +544,7 @@ const FormCard: React.FC = () => {
                 />
               )}
               name="insight"
-            />
-          </ColumnItem>
-
-          <ColumnItem>
+            />,
             <Controller
               control={control}
               render={({ field: { onChange, onBlur, value } }) => (
@@ -633,12 +558,7 @@ const FormCard: React.FC = () => {
                 />
               )}
               name="intimidation"
-            />
-          </ColumnItem>
-        </Column>
-
-        <Column>
-          <ColumnItem>
+            />,
             <Controller
               control={control}
               render={({ field: { onChange, onBlur, value } }) => (
@@ -652,10 +572,7 @@ const FormCard: React.FC = () => {
                 />
               )}
               name="investigation"
-            />
-          </ColumnItem>
-
-          <ColumnItem>
+            />,
             <Controller
               control={control}
               render={({ field: { onChange, onBlur, value } }) => (
@@ -669,12 +586,7 @@ const FormCard: React.FC = () => {
                 />
               )}
               name="medicine"
-            />
-          </ColumnItem>
-        </Column>
-
-        <Column>
-          <ColumnItem>
+            />,
             <Controller
               control={control}
               render={({ field: { onChange, onBlur, value } }) => (
@@ -688,10 +600,7 @@ const FormCard: React.FC = () => {
                 />
               )}
               name="nature"
-            />
-          </ColumnItem>
-
-          <ColumnItem>
+            />,
             <Controller
               control={control}
               render={({ field: { onChange, onBlur, value } }) => (
@@ -705,12 +614,7 @@ const FormCard: React.FC = () => {
                 />
               )}
               name="perception"
-            />
-          </ColumnItem>
-        </Column>
-
-        <Column>
-          <ColumnItem>
+            />,
             <Controller
               control={control}
               render={({ field: { onChange, onBlur, value } }) => (
@@ -724,10 +628,7 @@ const FormCard: React.FC = () => {
                 />
               )}
               name="performance"
-            />
-          </ColumnItem>
-
-          <ColumnItem>
+            />,
             <Controller
               control={control}
               render={({ field: { onChange, onBlur, value } }) => (
@@ -741,12 +642,7 @@ const FormCard: React.FC = () => {
                 />
               )}
               name="persuasion"
-            />
-          </ColumnItem>
-        </Column>
-
-        <Column>
-          <ColumnItem>
+            />,
             <Controller
               control={control}
               render={({ field: { onChange, onBlur, value } }) => (
@@ -760,10 +656,7 @@ const FormCard: React.FC = () => {
                 />
               )}
               name="religion"
-            />
-          </ColumnItem>
-
-          <ColumnItem>
+            />,
             <Controller
               control={control}
               render={({ field: { onChange, onBlur, value } }) => (
@@ -777,12 +670,7 @@ const FormCard: React.FC = () => {
                 />
               )}
               name="sleight"
-            />
-          </ColumnItem>
-        </Column>
-
-        <Column>
-          <ColumnItem>
+            />,
             <Controller
               control={control}
               render={({ field: { onChange, onBlur, value } }) => (
@@ -796,10 +684,7 @@ const FormCard: React.FC = () => {
                 />
               )}
               name="stealth"
-            />
-          </ColumnItem>
-
-          <ColumnItem>
+            />,
             <Controller
               control={control}
               render={({ field: { onChange, onBlur, value } }) => (
@@ -813,9 +698,9 @@ const FormCard: React.FC = () => {
                 />
               )}
               name="survival"
-            />
-          </ColumnItem>
-        </Column>
+            />,
+          ]}
+        />
 
         <MarginBottom />
 

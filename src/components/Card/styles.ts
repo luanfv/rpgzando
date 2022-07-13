@@ -1,15 +1,5 @@
-import { FlatList } from 'react-native';
-import { RFValue } from 'react-native-responsive-fontsize';
 import styled, { css } from 'styled-components/native';
-
-const List = styled.FlatList`
-  flex: 1;
-
-  ${({ theme }) => css`
-    background-color: ${theme.colors.primary};
-    padding: 0 ${RFValue(theme.spacing)}px ${RFValue(theme.spacing)}px;
-  `}
-` as unknown as typeof FlatList;
+import { RFValue } from 'react-native-responsive-fontsize';
 
 const Container = styled.TouchableOpacity`
   flex-direction: row;
@@ -46,4 +36,4 @@ const Description = styled.Text`
   `}
 `;
 
-export { List, Container, Image, Content, Title, Description };
+export { Container, Image, Content, Title, Description };

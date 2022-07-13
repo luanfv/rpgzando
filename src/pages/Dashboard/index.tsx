@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { RefreshControl } from 'react-native';
 import { useIsFocused, useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
@@ -7,14 +8,14 @@ import { useAuth, useLanguage, useToast } from '@src/hooks';
 import { ICard } from '@src/types';
 import {
   BottomSpace,
+  Card,
   HeaderDashboard,
+  List,
   Loading,
   ModalConfirm,
 } from '@src/components';
 import { IMenuItem } from '@src/types/components';
-import { Container, Content, Description, Image, List, Title } from './styles';
 import { IRoutes } from '@src/types/routes';
-import { RefreshControl } from 'react-native';
 
 const Dashboard: React.FC = () => {
   const { language } = useLanguage();
@@ -120,15 +121,7 @@ const Dashboard: React.FC = () => {
         data={cards}
         keyExtractor={(_, index) => String(index)}
         renderItem={({ item }) => (
-          <Container activeOpacity={0.8} onPress={() => navigate('Card', item)}>
-            <Image source={{ uri: item.race.image }} />
-
-            <Content>
-              <Title>{item.name}</Title>
-
-              <Description>{item.class.name}</Description>
-            </Content>
-          </Container>
+          <Card item={item} onPress={() => navigate('Card', item)} />
         )}
         ListFooterComponent={() => (
           <>

@@ -1,17 +1,8 @@
 import styled, { css } from 'styled-components/native';
 import { RFValue } from 'react-native-responsive-fontsize';
 
-interface IContainer {
-  w?: number;
-}
-
-const Container = styled.View<IContainer>`
+const Container = styled.View`
   margin-bottom: ${RFValue(16)}px;
-  ${({ w }) =>
-    w &&
-    css`
-      width: ${w}%;
-    `};
 `;
 
 const Title = styled.Text`

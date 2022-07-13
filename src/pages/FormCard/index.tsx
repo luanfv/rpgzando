@@ -404,10 +404,10 @@ const FormCard: React.FC = () => {
               control={control}
               render={({ field: { onChange, onBlur, value } }) => (
                 <InputNumeric
-                  title={language.attributes.int}
+                  title={language.attributes.wis}
                   value={value}
                   onChange={(attribute) =>
-                    handleChangeAttribute('int', () => onChange(attribute))
+                    handleChangeAttribute('wis', () => onChange(attribute))
                   }
                   onBlur={onBlur}
                   min={1}
@@ -415,7 +415,7 @@ const FormCard: React.FC = () => {
                   random
                 />
               )}
-              name="int"
+              name="wis"
             />,
             <Controller
               control={control}
@@ -438,10 +438,10 @@ const FormCard: React.FC = () => {
               control={control}
               render={({ field: { onChange, onBlur, value } }) => (
                 <InputNumeric
-                  title={language.attributes.wis}
+                  title={language.attributes.int}
                   value={value}
                   onChange={(attribute) =>
-                    handleChangeAttribute('wis', () => onChange(attribute))
+                    handleChangeAttribute('int', () => onChange(attribute))
                   }
                   onBlur={onBlur}
                   min={1}
@@ -449,7 +449,7 @@ const FormCard: React.FC = () => {
                   random
                 />
               )}
-              name="wis"
+              name="int"
             />,
             <Controller
               control={control}

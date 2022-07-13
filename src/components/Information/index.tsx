@@ -1,11 +1,7 @@
 import React from 'react';
 
+import { IInformation } from '@src/types/components';
 import { Container, Title, Value } from './styles';
-
-interface IInformation {
-  title: string;
-  value: string;
-}
 
 const Information: React.FC<IInformation> = ({ title, value }) => {
   return (

@@ -1,11 +1,7 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 
+import { IColumn2X } from '@src/types/components';
 import { Container, Item, Title } from './styles';
-
-interface IColumn2X {
-  title: string;
-  items: ReactNode[];
-}
 
 const Column2X: React.FC<IColumn2X> = ({ title, items }) => {
   return (

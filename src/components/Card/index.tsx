@@ -1,14 +1,9 @@
-import { ICard } from '@src/types';
 import React from 'react';
 
+import { ICard } from '@src/types/components';
 import { Container, Content, Description, Image, Title } from './styles';
 
-interface ICardComponent {
-  item: ICard;
-  onPress: () => void;
-}
-
-const Card: React.FC<ICardComponent> = ({ item, onPress }) => {
+const Card: React.FC<ICard> = ({ item, onPress }) => {
   return (
     <Container activeOpacity={0.8} onPress={onPress}>
       <Image source={{ uri: item.race.image }} />

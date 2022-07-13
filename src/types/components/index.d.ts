@@ -7,3 +7,8 @@ export type { IMenuList, IMenuItem } from './MenuList';
 export type { IHeader, IHeaderItem } from './Header';
 export type { IModalSearch } from './ModalSearch';
 export type { ILoading } from './Loading';
+export type { ICardComponent as ICard } from './Card';
+export type { ICheckbox } from './Checkbox';
+export type { IColumn2X } from './Column2X';
+export type { IInformation } from './Information';
+export type { IModalConfirm } from './ModalConfirm';

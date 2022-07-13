@@ -51,6 +51,13 @@ const pt_BR: ILanguage = {
     survival: 'Sobrevivência',
   },
 
+  modal: {
+    title: 'Sair da conta',
+    description: 'Tem certeza que deseja sair da sua conta?',
+    confirm: 'Confirmar',
+    cancel: 'Cancelar',
+  },
+
   pages: {
     Auth: {
       title: 'Bem-vindo(a)',
@@ -71,11 +78,6 @@ const pt_BR: ILanguage = {
           description:
             'Pesquise e visualize fichas de outros usuários da plataforma.',
         },
-      },
-
-      modal: {
-        title: 'Sair da conta',
-        description: 'Tem certeza que deseja sair da sua conta?',
       },
     },
 
@@ -103,10 +105,13 @@ const pt_BR: ILanguage = {
 
     FormCard: {
       attributes: 'Atributos',
+      skills: 'Habilidades',
+
       inputs: {
         name: {
           label: 'Nome',
           placeholder: 'Nome do meu personagem é...',
+          error: 'Você precisa informar um nome!',
         },
 
         level: {

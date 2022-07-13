@@ -1,4 +1,10 @@
-import React, { useRef, useCallback, useEffect, useState } from 'react';
+import React, {
+  useRef,
+  useCallback,
+  useEffect,
+  useState,
+  useMemo,
+} from 'react';
 import { Button, TextInput } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -22,15 +28,34 @@ import { ICardForm } from '@src/types';
 import { IRoutes } from '@src/types/routes';
 import { useAuth, useLanguage, useToast } from '@src/hooks';
 
-const schema = Yup.object().shape({
-  name: Yup.string().required('You need to have a name!'),
-  class: Yup.string().required(),
-  race: Yup.string().required(),
-
-  notes: Yup.string(),
-});
-
 const FormCard: React.FC = () => {
+  const { reset, goBack } =
+    useNavigation<NativeStackNavigationProp<IRoutes, 'FormCard'>>();
+  const { params } = useRoute<RouteProp<IRoutes, 'Card'>>();
+
+  const nameRef = useRef<TextInput>(null);
+  const levelRef = useRef<TextInput>(null);
+
+  const [races, setRaces] = useState<IPickerItem[]>([]);
+  const [classes, setClasses] = useState<IPickerItem[]>([]);
+
+  const theme = useTheme();
+  const { user } = useAuth();
+  const { language } = useLanguage();
+  const { onToast } = useToast();
+
+  const schema = useMemo(
+    () =>
+      Yup.object().shape({
+        name: Yup.string().required(language.pages.FormCard.inputs.name.error),
+        class: Yup.string().required(),
+        race: Yup.string().required(),
+
+        notes: Yup.string(),
+      }),
+    [language.pages.FormCard.inputs.name.error],
+  );
+
   const {
     control,
     handleSubmit,
@@ -72,21 +97,6 @@ const FormCard: React.FC = () => {
     },
     resolver: yupResolver(schema),
   });
-
-  const { reset, goBack } =
-    useNavigation<NativeStackNavigationProp<IRoutes, 'FormCard'>>();
-  const { params } = useRoute<RouteProp<IRoutes, 'Card'>>();
-
-  const nameRef = useRef<TextInput>(null);
-  const levelRef = useRef<TextInput>(null);
-
-  const [races, setRaces] = useState<IPickerItem[]>([]);
-  const [classes, setClasses] = useState<IPickerItem[]>([]);
-
-  const theme = useTheme();
-  const { user } = useAuth();
-  const { language } = useLanguage();
-  const { onToast } = useToast();
 
   const onSubmit = useCallback(
     async (data: ICardForm) => {
@@ -207,7 +217,7 @@ const FormCard: React.FC = () => {
             label: item.name,
             value: item.index,
             image: item.image,
-            description: `HP: (your level)d${item.hp}`,
+            description: `HP: (level)d${item.hp}`,
           };
         });
 
@@ -445,7 +455,7 @@ const FormCard: React.FC = () => {
         />
 
         <Column2X
-          title={'Skills:'}
+          title={`${language.pages.FormCard.skills}:`}
           items={[
             <Controller
               control={control}

@@ -17,6 +17,8 @@ const ModalConfirm: React.FC<IModalConfirm> = ({
   description,
   isVisible,
   isAttention,
+  confirm,
+  cancel,
 
   onClose,
   onConfirm,
@@ -39,7 +41,7 @@ const ModalConfirm: React.FC<IModalConfirm> = ({
         <Buttons>
           <ButtonContainer>
             <Button
-              title="Confirm"
+              title={confirm}
               color={
                 isAttention ? theme.colors.attention : theme.colors.secondary
               }
@@ -49,7 +51,7 @@ const ModalConfirm: React.FC<IModalConfirm> = ({
 
           <ButtonContainer>
             <Button
-              title="Cancel"
+              title={cancel}
               color={
                 isAttention ? theme.colors.secondary : theme.colors.attention
               }

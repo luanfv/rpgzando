@@ -50,6 +50,13 @@ const en_US: ILanguage = {
     survival: 'Survival',
   },
 
+  modal: {
+    title: 'Sign out',
+    description: 'Are you sure you want to log out of your account?',
+    confirm: 'Confirm',
+    cancel: 'Cancel',
+  },
+
   pages: {
     Auth: {
       title: 'Welcome',
@@ -69,11 +76,6 @@ const en_US: ILanguage = {
           title: 'Search',
           description: 'Search and view cards from other platform users.',
         },
-      },
-
-      modal: {
-        title: 'Sign out',
-        description: 'Are you sure you want to log out of your account?',
       },
     },
 
@@ -101,10 +103,12 @@ const en_US: ILanguage = {
 
     FormCard: {
       attributes: 'Attributes',
+      skills: 'Skills',
       inputs: {
         name: {
           label: 'Name',
           placeholder: "My character's name is...",
+          error: 'You need to have a name!',
         },
 
         level: {

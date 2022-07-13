@@ -252,6 +252,8 @@ const Card: React.FC = () => {
         isVisible={isModalOpen}
         title={titleModal}
         description={descriptionModal}
+        confirm={language.modal.confirm}
+        cancel={language.modal.cancel}
         onClose={handleCloseRemoveModal}
         onConfirm={() => handleRemoveCard(card.id)}
         isAttention

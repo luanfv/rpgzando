@@ -81,12 +81,9 @@ const Dashboard: React.FC = () => {
   }, [language.type, onToast, user]);
 
   const handleOpenSignOutModal = useCallback(() => {
-    setTitleModal(language.pages.Dashboard.modal.title);
-    setDescriptionModal(language.pages.Dashboard.modal.description);
-  }, [
-    language.pages.Dashboard.modal.description,
-    language.pages.Dashboard.modal.title,
-  ]);
+    setTitleModal(language.modal.title);
+    setDescriptionModal(language.modal.description);
+  }, [language.modal.description, language.modal.title]);
 
   const handleCloseSignOutModal = useCallback(() => {
     setTitleModal('');
@@ -139,6 +136,8 @@ const Dashboard: React.FC = () => {
         isVisible={isModalOpen}
         title={titleModal}
         description={descriptionModal}
+        confirm={language.modal.confirm}
+        cancel={language.modal.cancel}
         onClose={handleCloseSignOutModal}
         onConfirm={onSignOut}
         isAttention

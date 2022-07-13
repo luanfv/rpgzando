@@ -50,6 +50,13 @@ interface ILanguage {
     cha: string;
   };
 
+  modal: {
+    title: string;
+    description: string;
+    confirm: string;
+    cancel: string;
+  };
+
   pages: {
     Auth: {
       title: string;
@@ -70,19 +77,16 @@ interface ILanguage {
           description: string;
         };
       };
-
-      modal: {
-        title: string;
-        description: string;
-      };
     };
 
     FormCard: {
       attributes: string;
+      skills: string;
       inputs: {
         name: {
           label: string;
           placeholder: string;
+          error: string;
         };
 
         level: {

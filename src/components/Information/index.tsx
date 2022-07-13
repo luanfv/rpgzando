@@ -1,16 +1,11 @@
 import React from 'react';
 
+import { IInformation } from '@src/types/components';
 import { Container, Title, Value } from './styles';
 
-interface IInformation {
-  title: string;
-  value: string;
-  width?: number;
-}
-
-const Information: React.FC<IInformation> = ({ title, value, width }) => {
+const Information: React.FC<IInformation> = ({ title, value }) => {
   return (
-    <Container w={width}>
+    <Container>
       <Title>{title}</Title>
       <Value>{value}</Value>
     </Container>

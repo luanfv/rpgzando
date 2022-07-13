@@ -3,6 +3,7 @@ import { Button } from 'react-native';
 import Modal from 'react-native-modal';
 import { useTheme } from 'styled-components';
 
+import { IModalConfirm } from '@src/types/components';
 import {
   ButtonContainer,
   Buttons,
@@ -11,21 +12,13 @@ import {
   Title,
 } from './styles';
 
-interface IModalConfirm {
-  title: string;
-  description: string;
-  isVisible: boolean;
-  isAttention?: boolean;
-
-  onClose: () => void;
-  onConfirm: () => void;
-}
-
 const ModalConfirm: React.FC<IModalConfirm> = ({
   title,
   description,
   isVisible,
   isAttention,
+  confirm,
+  cancel,
 
   onClose,
   onConfirm,
@@ -48,7 +41,7 @@ const ModalConfirm: React.FC<IModalConfirm> = ({
         <Buttons>
           <ButtonContainer>
             <Button
-              title="Confirm"
+              title={confirm}
               color={
                 isAttention ? theme.colors.attention : theme.colors.secondary
               }
@@ -58,7 +51,7 @@ const ModalConfirm: React.FC<IModalConfirm> = ({
 
           <ButtonContainer>
             <Button
-              title="Cancel"
+              title={cancel}
               color={
                 isAttention ? theme.colors.secondary : theme.colors.attention
               }

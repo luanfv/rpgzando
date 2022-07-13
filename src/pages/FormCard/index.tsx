@@ -451,6 +451,40 @@ const FormCard: React.FC = () => {
               )}
               name="wis"
             />,
+            <Controller
+              control={control}
+              render={({ field: { onChange, onBlur, value } }) => (
+                <InputNumeric
+                  title={language.attributes.con}
+                  value={value}
+                  onChange={(attribute) =>
+                    handleChangeAttribute('con', () => onChange(attribute))
+                  }
+                  onBlur={onBlur}
+                  min={1}
+                  max={20}
+                  random
+                />
+              )}
+              name="con"
+            />,
+            <Controller
+              control={control}
+              render={({ field: { onChange, onBlur, value } }) => (
+                <InputNumeric
+                  title={language.attributes.cha}
+                  value={value}
+                  onChange={(attribute) =>
+                    handleChangeAttribute('cha', () => onChange(attribute))
+                  }
+                  onBlur={onBlur}
+                  min={1}
+                  max={20}
+                  random
+                />
+              )}
+              name="cha"
+            />,
           ]}
         />
 

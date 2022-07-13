@@ -3,6 +3,7 @@ import { Button, TouchableOpacity } from 'react-native';
 import { useTheme } from 'styled-components';
 
 import { IModalSearch } from '@src/types/components';
+import { MarginBottom } from '@src/components';
 import { Bar, Body, Container, Footer, Header, Modal, Text } from './styles';
 
 const ModalSearch: React.FC<IModalSearch> = ({
@@ -37,7 +38,11 @@ const ModalSearch: React.FC<IModalSearch> = ({
           </TouchableOpacity>
         </Header>
 
-        <Body>{children}</Body>
+        <Body>
+          {children}
+
+          <MarginBottom />
+        </Body>
 
         <Footer>
           <Button

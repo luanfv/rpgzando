@@ -15,21 +15,14 @@ import {
 } from '@src/types/services';
 import {
   BottomSpace,
+  Card,
   Header,
   Input,
+  List,
   Loading,
   ModalSearch,
   Picker,
 } from '@src/components';
-import {
-  Container,
-  Content,
-  Description,
-  Image,
-  List,
-  Title,
-  MarginBottom,
-} from './styles';
 
 const SearchCard: React.FC = () => {
   const { control, handleSubmit, setValue } = useForm({
@@ -203,15 +196,7 @@ const SearchCard: React.FC = () => {
         data={cards}
         keyExtractor={(_, index) => String(index)}
         renderItem={({ item }) => (
-          <Container activeOpacity={0.8} onPress={() => navigate('Card', item)}>
-            <Image source={{ uri: item.race.image }} />
-
-            <Content>
-              <Title>{item.name}</Title>
-
-              <Description>{item.class.name}</Description>
-            </Content>
-          </Container>
+          <Card item={item} onPress={() => navigate('Card', item)} />
         )}
         ListFooterComponent={() => (
           <>
@@ -235,49 +220,47 @@ const SearchCard: React.FC = () => {
         onSearch={handleSubmit(onSearch)}
         onClean={handleClean}
       >
-        <MarginBottom>
-          <Controller
-            control={control}
-            render={({ field: { onChange, onBlur, value } }) => (
-              <Input
-                title={language.pages.SearchCard.inputs.email.label}
-                placeholder={language.pages.SearchCard.inputs.email.placeholder}
-                value={value}
-                onChangeText={onChange}
-                onBlur={onBlur}
-              />
-            )}
-            name="email"
-          />
+        <Controller
+          control={control}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <Input
+              title={language.pages.SearchCard.inputs.email.label}
+              placeholder={language.pages.SearchCard.inputs.email.placeholder}
+              value={value}
+              onChangeText={onChange}
+              onBlur={onBlur}
+            />
+          )}
+          name="email"
+        />
 
-          <Controller
-            control={control}
-            render={({ field: { onChange, onBlur, value } }) => (
-              <Picker
-                title={language.pages.SearchCard.inputs.race.label}
-                items={races}
-                selectedValue={value}
-                onValueChange={onChange}
-                onBlur={onBlur}
-              />
-            )}
-            name="race"
-          />
+        <Controller
+          control={control}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <Picker
+              title={language.pages.SearchCard.inputs.race.label}
+              items={races}
+              selectedValue={value}
+              onValueChange={onChange}
+              onBlur={onBlur}
+            />
+          )}
+          name="race"
+        />
 
-          <Controller
-            control={control}
-            render={({ field: { onChange, onBlur, value } }) => (
-              <Picker
-                title={language.pages.SearchCard.inputs.class.label}
-                items={classes}
-                selectedValue={value}
-                onValueChange={onChange}
-                onBlur={onBlur}
-              />
-            )}
-            name="class"
-          />
-        </MarginBottom>
+        <Controller
+          control={control}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <Picker
+              title={language.pages.SearchCard.inputs.class.label}
+              items={classes}
+              selectedValue={value}
+              onValueChange={onChange}
+              onBlur={onBlur}
+            />
+          )}
+          name="class"
+        />
       </ModalSearch>
     </>
   );

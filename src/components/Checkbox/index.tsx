@@ -3,12 +3,7 @@ import CheckBox from '@react-native-community/checkbox';
 import { useTheme } from 'styled-components';
 
 import { Container, Text } from './styles';
-
-interface ICheckbox {
-  checked: boolean;
-  description: string;
-  onChange: () => void;
-}
+import { ICheckbox } from '@src/types/components';
 
 const Checkbox: React.FC<ICheckbox> = ({ checked, description, onChange }) => {
   const theme = useTheme();

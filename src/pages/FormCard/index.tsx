@@ -26,7 +26,8 @@ import { serviceCards, serviceClasses, serviceRaces } from '@src/services';
 import { IPickerItem } from '@src/types/components';
 import { ICardForm } from '@src/types';
 import { IRoutes } from '@src/types/routes';
-import { useAuth, useLanguage, useToast } from '@src/hooks';
+import { useLanguage, useToast } from '@src/hooks';
+import { useContextUser } from '@src/contexts';
 
 const FormCard: React.FC = () => {
   const { reset, goBack } =
@@ -40,7 +41,7 @@ const FormCard: React.FC = () => {
   const [classes, setClasses] = useState<IPickerItem[]>([]);
 
   const theme = useTheme();
-  const { user } = useAuth();
+  const { user } = useContextUser();
   const { language } = useLanguage();
   const { onToast } = useToast(language.toasts);
 

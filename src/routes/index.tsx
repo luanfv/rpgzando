@@ -1,18 +1,18 @@
 import React from 'react';
+import { Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { gestureHandlerRootHOC } from 'react-native-gesture-handler';
 
 import { FormCard, Card, Auth, Dashboard, SearchCard } from '@src/pages';
-import { useAuth } from '@src/hooks';
-import { Text, View } from 'react-native';
+import { useContextUser } from '@src/contexts';
 
 const Stack = createNativeStackNavigator();
 
 const Routes: React.FC = () => {
-  const { status } = useAuth();
+  const { authStatus } = useContextUser();
 
-  if (status === 'loading') {
+  if (authStatus === 'loading') {
     return (
       <View>
         <Text>Loading...</Text>
@@ -20,7 +20,7 @@ const Routes: React.FC = () => {
     );
   }
 
-  if (status === 'unauthorized') {
+  if (authStatus === 'unauthorized') {
     return <Auth />;
   }
 

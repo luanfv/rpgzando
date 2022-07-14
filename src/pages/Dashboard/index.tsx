@@ -4,7 +4,7 @@ import { useIsFocused, useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 import { serviceCards } from '@src/services';
-import { useAuth, useLanguage, useToast } from '@src/hooks';
+import { useLanguage, useToast } from '@src/hooks';
 import { ICard } from '@src/types';
 import {
   BottomSpace,
@@ -16,6 +16,7 @@ import {
 } from '@src/components';
 import { IMenuItem } from '@src/types/components';
 import { IRoutes } from '@src/types/routes';
+import { useContextUser } from '@src/contexts';
 
 const Dashboard: React.FC = () => {
   const isFocused = useIsFocused();
@@ -23,7 +24,7 @@ const Dashboard: React.FC = () => {
     useNavigation<NativeStackNavigationProp<IRoutes, 'Dashboard'>>();
 
   const { language } = useLanguage();
-  const { user, onSignOut } = useAuth();
+  const { user, onSignOut } = useContextUser();
   const { onToast } = useToast(language.toasts);
 
   const [isRefreshing, setIsRefreshing] = useState(false);

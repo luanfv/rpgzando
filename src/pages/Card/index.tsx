@@ -15,15 +15,16 @@ import {
   ModalConfirm,
   CharacterPhoto,
 } from '@src/components';
-import { useAuth, useLanguage, useSkill, useToast } from '@src/hooks';
+import { useLanguage, useSkill, useToast } from '@src/hooks';
 import { serviceCards } from '@src/services';
+import { useContextUser } from '@src/contexts';
 
 const Card: React.FC = () => {
   const { params } = useRoute<RouteProp<IRoutes, 'Card'>>();
   const { goBack, navigate } = useNavigation<NavigationProp<IRoutes, 'Card'>>();
 
   const { language } = useLanguage();
-  const { user } = useAuth();
+  const { user } = useContextUser();
   const { calcModifier, calcProficiency } = useSkill();
   const { onToast } = useToast(language.toasts);
 

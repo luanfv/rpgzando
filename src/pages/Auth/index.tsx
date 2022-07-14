@@ -1,7 +1,8 @@
 import React from 'react';
 import { GoogleSigninButton } from '@react-native-google-signin/google-signin';
 
-import { useAuth, useLanguage } from '@src/hooks';
+import { useLanguage } from '@src/hooks';
+import { useContextUser } from '@src/contexts';
 import { Body } from '@src/components';
 import {
   Container,
@@ -13,7 +14,7 @@ import {
 } from './styles';
 
 const Auth: React.FC = () => {
-  const { onGoogleSignIn } = useAuth();
+  const { onGoogleSignIn } = useContextUser();
   const { language } = useLanguage();
 
   return (

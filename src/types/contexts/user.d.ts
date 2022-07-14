@@ -2,11 +2,11 @@ import { IUser } from '@src/types';
 
 type IAuthStatus = 'loading' | 'authorized' | 'unauthorized';
 
-interface IAuthContext {
+interface IUserContext {
   user: IUser | null;
-  status: IAuthStatus;
-  onGoogleSignIn: () => Promise<void>;
+  authStatus: IAuthStatus;
+  onGoogleSignIn: () => void;
   onSignOut: () => void;
 }
 
-export { IAuthContext, IAuthStatus };
+export { IUserContext, IAuthStatus };

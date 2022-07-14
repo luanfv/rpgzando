@@ -5,6 +5,7 @@ import { StatusBar } from 'react-native';
 import { ThemeProvider } from 'styled-components';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import CodePush from 'react-native-code-push';
+import Toast from 'react-native-toast-message';
 
 import { theme } from '@src/settings/styles/theme';
 import { AppProviders } from '@src/contexts/providers';
@@ -25,6 +26,8 @@ const App: React.FC = () => {
         />
 
         <Routes />
+
+        <Toast />
       </AppProviders>
     </ThemeProvider>
   );

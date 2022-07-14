@@ -1,9 +1,7 @@
 import { useCallback } from 'react';
 import Toast from 'react-native-toast-message';
 
-import { ILanguageToast } from '@src/types';
-
-type IToastType = 'NO_CONNECTION' | 'SUCCESSFUL' | 'CARD_LIMIT';
+import { ILanguageToast, IToastType } from '@src/types';
 
 const useToast = (message: ILanguageToast) => {
   const onToast = useCallback(

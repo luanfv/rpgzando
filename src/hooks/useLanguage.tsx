@@ -1,15 +1,24 @@
-import { useContext } from 'react';
+import { useMemo } from 'react';
+import { NativeModules, Platform } from 'react-native';
 
-import { LanguageContext } from '@src/contexts';
+import { en_US, pt_BR } from '@src/settings/i18n';
 
 const useLanguage = () => {
-  const context = useContext(LanguageContext);
+  const language = useMemo(() => {
+    const deviceLanguage =
+      Platform.OS === 'ios'
+        ? NativeModules.SettingsManager.settings.AppleLocale ||
+          NativeModules.SettingsManager.settings.AppleLanguages[0]
+        : NativeModules.I18nManager.localeIdentifier;
 
-  if (!context) {
-    throw new Error('useLanguage must be used within an LanguageProvider');
-  }
+    if (deviceLanguage === 'pt_BR') {
+      return pt_BR;
+    }
 
-  return context;
+    return en_US;
+  }, []);
+
+  return { language };
 };
 
 export { useLanguage };

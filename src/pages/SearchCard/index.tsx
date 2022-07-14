@@ -33,10 +33,11 @@ const SearchCard: React.FC = () => {
     },
   });
 
-  const { onToast } = useToast();
-  const { language } = useLanguage();
   const { goBack, navigate } =
     useNavigation<NativeStackNavigationProp<IRoutes, 'SearchCard'>>();
+
+  const { language } = useLanguage();
+  const { onToast } = useToast(language.toasts);
 
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [isOpenModalSearch, setIsOpenModalSearch] = useState(false);

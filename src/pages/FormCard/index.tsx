@@ -42,7 +42,7 @@ const FormCard: React.FC = () => {
   const theme = useTheme();
   const { user } = useAuth();
   const { language } = useLanguage();
-  const { onToast } = useToast();
+  const { onToast } = useToast(language.toasts);
 
   const schema = useMemo(
     () =>

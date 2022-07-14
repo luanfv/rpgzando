@@ -1,24 +1,26 @@
 type ILanguageType = 'en' | 'pt';
 
+interface ILanguageToast {
+  noConnection: {
+    text1: string;
+    text2: string;
+  };
+
+  successful: {
+    text1: string;
+    text2: string;
+  };
+
+  cardLimit: {
+    text1: string;
+    text2: string;
+  };
+}
+
 interface ILanguage {
   type: ILanguageType;
 
-  toasts: {
-    noConnection: {
-      text1: string;
-      text2: string;
-    };
-
-    successful: {
-      text1: string;
-      text2: string;
-    };
-
-    cardLimit: {
-      text1: string;
-      text2: string;
-    };
-  };
+  toasts: ILanguageToast;
 
   skills: {
     acrobatics: string;
@@ -166,4 +168,4 @@ interface ILanguage {
   };
 }
 
-export { ILanguage, ILanguageType };
+export { ILanguage, ILanguageType, ILanguageToast };

@@ -18,12 +18,13 @@ import { IMenuItem } from '@src/types/components';
 import { IRoutes } from '@src/types/routes';
 
 const Dashboard: React.FC = () => {
-  const { language } = useLanguage();
-  const { user, onSignOut } = useAuth();
-  const { onToast } = useToast();
   const isFocused = useIsFocused();
   const { navigate } =
     useNavigation<NativeStackNavigationProp<IRoutes, 'Dashboard'>>();
+
+  const { language } = useLanguage();
+  const { user, onSignOut } = useAuth();
+  const { onToast } = useToast(language.toasts);
 
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [isLoading, setIsLoading] = useState(false);

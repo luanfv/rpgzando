@@ -21,14 +21,14 @@ import { serviceCards } from '@src/services';
 const Card: React.FC = () => {
   const { params } = useRoute<RouteProp<IRoutes, 'Card'>>();
   const { goBack, navigate } = useNavigation<NavigationProp<IRoutes, 'Card'>>();
-  const { calcModifier, calcProficiency } = useSkill();
-  const { onToast } = useToast();
-
-  const [titleModal, setTitleModal] = useState('');
-  const [descriptionModal, setDescriptionModal] = useState('');
 
   const { language } = useLanguage();
   const { user } = useAuth();
+  const { calcModifier, calcProficiency } = useSkill();
+  const { onToast } = useToast(language.toasts);
+
+  const [titleModal, setTitleModal] = useState('');
+  const [descriptionModal, setDescriptionModal] = useState('');
 
   const handleOpenRemoveModal = useCallback(() => {
     setTitleModal(language.pages.Card.modal.title);

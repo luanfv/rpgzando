@@ -1,21 +1,19 @@
 import { useCallback } from 'react';
 import Toast from 'react-native-toast-message';
 
-import { useLanguage } from '@src/hooks';
+import { ILanguageToast } from '@src/types';
 
 type IToastType = 'NO_CONNECTION' | 'SUCCESSFUL' | 'CARD_LIMIT';
 
-const useToast = () => {
-  const { language } = useLanguage();
-
+const useToast = (message: ILanguageToast) => {
   const onToast = useCallback(
     (type: IToastType) => {
       switch (type) {
         case 'NO_CONNECTION':
           Toast.show({
             type: 'error',
-            text1: language.toasts.noConnection.text1,
-            text2: language.toasts.noConnection.text2,
+            text1: message.noConnection.text1,
+            text2: message.noConnection.text2,
           });
 
           break;
@@ -23,8 +21,8 @@ const useToast = () => {
         case 'SUCCESSFUL':
           Toast.show({
             type: 'success',
-            text1: language.toasts.successful.text1,
-            text2: language.toasts.successful.text2,
+            text1: message.successful.text1,
+            text2: message.successful.text2,
           });
 
           break;
@@ -32,8 +30,8 @@ const useToast = () => {
         case 'CARD_LIMIT':
           Toast.show({
             type: 'error',
-            text1: language.toasts.cardLimit.text1,
-            text2: language.toasts.cardLimit.text2,
+            text1: message.cardLimit.text1,
+            text2: message.cardLimit.text2,
           });
 
           break;
@@ -42,14 +40,7 @@ const useToast = () => {
           break;
       }
     },
-    [
-      language.toasts.cardLimit.text1,
-      language.toasts.cardLimit.text2,
-      language.toasts.noConnection.text1,
-      language.toasts.noConnection.text2,
-      language.toasts.successful.text1,
-      language.toasts.successful.text2,
-    ],
+    [message],
   );
 
   return { onToast };

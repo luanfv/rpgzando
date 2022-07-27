@@ -46,7 +46,7 @@ const pt_BR: ILanguage = {
     performance: 'Atuação',
     persuasion: 'Persuasão',
     religion: 'Religião',
-    sleight: 'Prestidigtação',
+    sleight: 'Prestidigitação',
     stealth: 'Furtividade',
     survival: 'Sobrevivência',
   },

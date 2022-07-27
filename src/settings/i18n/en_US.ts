@@ -45,7 +45,7 @@ const en_US: ILanguage = {
     performance: 'Performance',
     persuasion: 'Persuasion',
     religion: 'Religion',
-    sleight: 'Prestidigtação',
+    sleight: 'Sleight',
     stealth: 'Stealth',
     survival: 'Survival',
   },
@@ -81,7 +81,7 @@ const en_US: ILanguage = {
 
     Card: {
       name: 'Name',
-      level: 'Leve',
+      level: 'Level',
       proficiency: 'Proficiency',
       race: 'Race',
       class: 'Class',

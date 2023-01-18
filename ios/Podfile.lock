@@ -1,670 +1,20 @@
 PODS:
-  - abseil/algorithm (1.20211102.0):
-    - abseil/algorithm/algorithm (= 1.20211102.0)
-    - abseil/algorithm/container (= 1.20211102.0)
-  - abseil/algorithm/algorithm (1.20211102.0):
-    - abseil/base/config
-  - abseil/algorithm/container (1.20211102.0):
-    - abseil/algorithm/algorithm
-    - abseil/base/core_headers
-    - abseil/meta/type_traits
-  - abseil/base (1.20211102.0):
-    - abseil/base/atomic_hook (= 1.20211102.0)
-    - abseil/base/base (= 1.20211102.0)
-    - abseil/base/base_internal (= 1.20211102.0)
-    - abseil/base/config (= 1.20211102.0)
-    - abseil/base/core_headers (= 1.20211102.0)
-    - abseil/base/dynamic_annotations (= 1.20211102.0)
-    - abseil/base/endian (= 1.20211102.0)
-    - abseil/base/errno_saver (= 1.20211102.0)
-    - abseil/base/fast_type_id (= 1.20211102.0)
-    - abseil/base/log_severity (= 1.20211102.0)
-    - abseil/base/malloc_internal (= 1.20211102.0)
-    - abseil/base/pretty_function (= 1.20211102.0)
-    - abseil/base/raw_logging_internal (= 1.20211102.0)
-    - abseil/base/spinlock_wait (= 1.20211102.0)
-    - abseil/base/strerror (= 1.20211102.0)
-    - abseil/base/throw_delegate (= 1.20211102.0)
-  - abseil/base/atomic_hook (1.20211102.0):
-    - abseil/base/config
-    - abseil/base/core_headers
-  - abseil/base/base (1.20211102.0):
-    - abseil/base/atomic_hook
-    - abseil/base/base_internal
-    - abseil/base/config
-    - abseil/base/core_headers
-    - abseil/base/dynamic_annotations
-    - abseil/base/log_severity
-    - abseil/base/raw_logging_internal
-    - abseil/base/spinlock_wait
-    - abseil/meta/type_traits
-  - abseil/base/base_internal (1.20211102.0):
-    - abseil/base/config
-    - abseil/meta/type_traits
-  - abseil/base/config (1.20211102.0)
-  - abseil/base/core_headers (1.20211102.0):
-    - abseil/base/config
-  - abseil/base/dynamic_annotations (1.20211102.0):
-    - abseil/base/config
-    - abseil/base/core_headers
-  - abseil/base/endian (1.20211102.0):
-    - abseil/base/base
-    - abseil/base/config
-    - abseil/base/core_headers
-  - abseil/base/errno_saver (1.20211102.0):
-    - abseil/base/config
-  - abseil/base/fast_type_id (1.20211102.0):
-    - abseil/base/config
-  - abseil/base/log_severity (1.20211102.0):
-    - abseil/base/config
-    - abseil/base/core_headers
-  - abseil/base/malloc_internal (1.20211102.0):
-    - abseil/base/base
-    - abseil/base/base_internal
-    - abseil/base/config
-    - abseil/base/core_headers
-    - abseil/base/dynamic_annotations
-    - abseil/base/raw_logging_internal
-  - abseil/base/pretty_function (1.20211102.0)
-  - abseil/base/raw_logging_internal (1.20211102.0):
-    - abseil/base/atomic_hook
-    - abseil/base/config
-    - abseil/base/core_headers
-    - abseil/base/log_severity
-  - abseil/base/spinlock_wait (1.20211102.0):
-    - abseil/base/base_internal
-    - abseil/base/core_headers
-    - abseil/base/errno_saver
-  - abseil/base/strerror (1.20211102.0):
-    - abseil/base/config
-    - abseil/base/core_headers
-    - abseil/base/errno_saver
-  - abseil/base/throw_delegate (1.20211102.0):
-    - abseil/base/config
-    - abseil/base/raw_logging_internal
-  - abseil/container/common (1.20211102.0):
-    - abseil/meta/type_traits
-    - abseil/types/optional
-  - abseil/container/compressed_tuple (1.20211102.0):
-    - abseil/utility/utility
-  - abseil/container/container_memory (1.20211102.0):
-    - abseil/base/config
-    - abseil/memory/memory
-    - abseil/meta/type_traits
-    - abseil/utility/utility
-  - abseil/container/fixed_array (1.20211102.0):
-    - abseil/algorithm/algorithm
-    - abseil/base/config
-    - abseil/base/core_headers
-    - abseil/base/dynamic_annotations
-    - abseil/base/throw_delegate
-    - abseil/container/compressed_tuple
-    - abseil/memory/memory
-  - abseil/container/flat_hash_map (1.20211102.0):
-    - abseil/algorithm/container
-    - abseil/container/container_memory
-    - abseil/container/hash_function_defaults
-    - abseil/container/raw_hash_map
-    - abseil/memory/memory
-  - abseil/container/hash_function_defaults (1.20211102.0):
-    - abseil/base/config
-    - abseil/hash/hash
-    - abseil/strings/cord
-    - abseil/strings/strings
-  - abseil/container/hash_policy_traits (1.20211102.0):
-    - abseil/meta/type_traits
-  - abseil/container/hashtable_debug_hooks (1.20211102.0):
-    - abseil/base/config
-  - abseil/container/hashtablez_sampler (1.20211102.0):
-    - abseil/base/base
-    - abseil/base/core_headers
-    - abseil/container/have_sse
-    - abseil/debugging/stacktrace
-    - abseil/memory/memory
-    - abseil/profiling/exponential_biased
-    - abseil/profiling/sample_recorder
-    - abseil/synchronization/synchronization
-    - abseil/utility/utility
-  - abseil/container/have_sse (1.20211102.0)
-  - abseil/container/inlined_vector (1.20211102.0):
-    - abseil/algorithm/algorithm
-    - abseil/base/core_headers
-    - abseil/base/throw_delegate
-    - abseil/container/inlined_vector_internal
-    - abseil/memory/memory
-  - abseil/container/inlined_vector_internal (1.20211102.0):
-    - abseil/base/core_headers
-    - abseil/container/compressed_tuple
-    - abseil/memory/memory
-    - abseil/meta/type_traits
-    - abseil/types/span
-  - abseil/container/layout (1.20211102.0):
-    - abseil/base/config
-    - abseil/base/core_headers
-    - abseil/meta/type_traits
-    - abseil/strings/strings
-    - abseil/types/span
-    - abseil/utility/utility
-  - abseil/container/raw_hash_map (1.20211102.0):
-    - abseil/base/throw_delegate
-    - abseil/container/container_memory
-    - abseil/container/raw_hash_set
-  - abseil/container/raw_hash_set (1.20211102.0):
-    - abseil/base/config
-    - abseil/base/core_headers
-    - abseil/base/endian
-    - abseil/container/common
-    - abseil/container/compressed_tuple
-    - abseil/container/container_memory
-    - abseil/container/hash_policy_traits
-    - abseil/container/hashtable_debug_hooks
-    - abseil/container/hashtablez_sampler
-    - abseil/container/have_sse
-    - abseil/memory/memory
-    - abseil/meta/type_traits
-    - abseil/numeric/bits
-    - abseil/utility/utility
-  - abseil/debugging/debugging_internal (1.20211102.0):
-    - abseil/base/config
-    - abseil/base/core_headers
-    - abseil/base/dynamic_annotations
-    - abseil/base/errno_saver
-    - abseil/base/raw_logging_internal
-  - abseil/debugging/demangle_internal (1.20211102.0):
-    - abseil/base/base
-    - abseil/base/config
-    - abseil/base/core_headers
-  - abseil/debugging/stacktrace (1.20211102.0):
-    - abseil/base/config
-    - abseil/base/core_headers
-    - abseil/debugging/debugging_internal
-  - abseil/debugging/symbolize (1.20211102.0):
-    - abseil/base/base
-    - abseil/base/config
-    - abseil/base/core_headers
-    - abseil/base/dynamic_annotations
-    - abseil/base/malloc_internal
-    - abseil/base/raw_logging_internal
-    - abseil/debugging/debugging_internal
-    - abseil/debugging/demangle_internal
-    - abseil/strings/strings
-  - abseil/functional/bind_front (1.20211102.0):
-    - abseil/base/base_internal
-    - abseil/container/compressed_tuple
-    - abseil/meta/type_traits
-    - abseil/utility/utility
-  - abseil/functional/function_ref (1.20211102.0):
-    - abseil/base/base_internal
-    - abseil/base/core_headers
-    - abseil/meta/type_traits
-  - abseil/hash/city (1.20211102.0):
-    - abseil/base/config
-    - abseil/base/core_headers
-    - abseil/base/endian
-  - abseil/hash/hash (1.20211102.0):
-    - abseil/base/config
-    - abseil/base/core_headers
-    - abseil/base/endian
-    - abseil/container/fixed_array
-    - abseil/hash/city
-    - abseil/hash/low_level_hash
-    - abseil/meta/type_traits
-    - abseil/numeric/int128
-    - abseil/strings/strings
-    - abseil/types/optional
-    - abseil/types/variant
-    - abseil/utility/utility
-  - abseil/hash/low_level_hash (1.20211102.0):
-    - abseil/base/config
-    - abseil/base/endian
-    - abseil/numeric/bits
-    - abseil/numeric/int128
-  - abseil/memory (1.20211102.0):
-    - abseil/memory/memory (= 1.20211102.0)
-  - abseil/memory/memory (1.20211102.0):
-    - abseil/base/core_headers
-    - abseil/meta/type_traits
-  - abseil/meta (1.20211102.0):
-    - abseil/meta/type_traits (= 1.20211102.0)
-  - abseil/meta/type_traits (1.20211102.0):
-    - abseil/base/config
-  - abseil/numeric/bits (1.20211102.0):
-    - abseil/base/config
-    - abseil/base/core_headers
-  - abseil/numeric/int128 (1.20211102.0):
-    - abseil/base/config
-    - abseil/base/core_headers
-    - abseil/numeric/bits
-  - abseil/numeric/representation (1.20211102.0):
-    - abseil/base/config
-  - abseil/profiling/exponential_biased (1.20211102.0):
-    - abseil/base/config
-    - abseil/base/core_headers
-  - abseil/profiling/sample_recorder (1.20211102.0):
-    - abseil/base/config
-    - abseil/base/core_headers
-    - abseil/synchronization/synchronization
-    - abseil/time/time
-  - abseil/random/distributions (1.20211102.0):
-    - abseil/base/base_internal
-    - abseil/base/config
-    - abseil/base/core_headers
-    - abseil/meta/type_traits
-    - abseil/numeric/bits
-    - abseil/random/internal/distribution_caller
-    - abseil/random/internal/fast_uniform_bits
-    - abseil/random/internal/fastmath
-    - abseil/random/internal/generate_real
-    - abseil/random/internal/iostream_state_saver
-    - abseil/random/internal/traits
-    - abseil/random/internal/uniform_helper
-    - abseil/random/internal/wide_multiply
-    - abseil/strings/strings
-  - abseil/random/internal/distribution_caller (1.20211102.0):
-    - abseil/base/config
-    - abseil/base/fast_type_id
-    - abseil/utility/utility
-  - abseil/random/internal/fast_uniform_bits (1.20211102.0):
-    - abseil/base/config
-    - abseil/meta/type_traits
-  - abseil/random/internal/fastmath (1.20211102.0):
-    - abseil/numeric/bits
-  - abseil/random/internal/generate_real (1.20211102.0):
-    - abseil/meta/type_traits
-    - abseil/numeric/bits
-    - abseil/random/internal/fastmath
-    - abseil/random/internal/traits
-  - abseil/random/internal/iostream_state_saver (1.20211102.0):
-    - abseil/meta/type_traits
-    - abseil/numeric/int128
-  - abseil/random/internal/nonsecure_base (1.20211102.0):
-    - abseil/base/core_headers
-    - abseil/meta/type_traits
-    - abseil/random/internal/pool_urbg
-    - abseil/random/internal/salted_seed_seq
-    - abseil/random/internal/seed_material
-    - abseil/types/optional
-    - abseil/types/span
-  - abseil/random/internal/pcg_engine (1.20211102.0):
-    - abseil/base/config
-    - abseil/meta/type_traits
-    - abseil/numeric/bits
-    - abseil/numeric/int128
-    - abseil/random/internal/fastmath
-    - abseil/random/internal/iostream_state_saver
-  - abseil/random/internal/platform (1.20211102.0):
-    - abseil/base/config
-  - abseil/random/internal/pool_urbg (1.20211102.0):
-    - abseil/base/base
-    - abseil/base/config
-    - abseil/base/core_headers
-    - abseil/base/endian
-    - abseil/base/raw_logging_internal
-    - abseil/random/internal/randen
-    - abseil/random/internal/seed_material
-    - abseil/random/internal/traits
-    - abseil/random/seed_gen_exception
-    - abseil/types/span
-  - abseil/random/internal/randen (1.20211102.0):
-    - abseil/base/raw_logging_internal
-    - abseil/random/internal/platform
-    - abseil/random/internal/randen_hwaes
-    - abseil/random/internal/randen_slow
-  - abseil/random/internal/randen_engine (1.20211102.0):
-    - abseil/base/endian
-    - abseil/meta/type_traits
-    - abseil/random/internal/iostream_state_saver
-    - abseil/random/internal/randen
-  - abseil/random/internal/randen_hwaes (1.20211102.0):
-    - abseil/base/config
-    - abseil/random/internal/platform
-    - abseil/random/internal/randen_hwaes_impl
-  - abseil/random/internal/randen_hwaes_impl (1.20211102.0):
-    - abseil/base/config
-    - abseil/base/core_headers
-    - abseil/numeric/int128
-    - abseil/random/internal/platform
-  - abseil/random/internal/randen_slow (1.20211102.0):
-    - abseil/base/config
-    - abseil/base/core_headers
-    - abseil/base/endian
-    - abseil/numeric/int128
-    - abseil/random/internal/platform
-  - abseil/random/internal/salted_seed_seq (1.20211102.0):
-    - abseil/container/inlined_vector
-    - abseil/meta/type_traits
-    - abseil/random/internal/seed_material
-    - abseil/types/optional
-    - abseil/types/span
-  - abseil/random/internal/seed_material (1.20211102.0):
-    - abseil/base/core_headers
-    - abseil/base/dynamic_annotations
-    - abseil/base/raw_logging_internal
-    - abseil/random/internal/fast_uniform_bits
-    - abseil/strings/strings
-    - abseil/types/optional
-    - abseil/types/span
-  - abseil/random/internal/traits (1.20211102.0):
-    - abseil/base/config
-  - abseil/random/internal/uniform_helper (1.20211102.0):
-    - abseil/base/config
-    - abseil/meta/type_traits
-    - abseil/random/internal/traits
-  - abseil/random/internal/wide_multiply (1.20211102.0):
-    - abseil/base/config
-    - abseil/numeric/bits
-    - abseil/numeric/int128
-    - abseil/random/internal/traits
-  - abseil/random/random (1.20211102.0):
-    - abseil/random/distributions
-    - abseil/random/internal/nonsecure_base
-    - abseil/random/internal/pcg_engine
-    - abseil/random/internal/pool_urbg
-    - abseil/random/internal/randen_engine
-    - abseil/random/seed_sequences
-  - abseil/random/seed_gen_exception (1.20211102.0):
-    - abseil/base/config
-  - abseil/random/seed_sequences (1.20211102.0):
-    - abseil/container/inlined_vector
-    - abseil/random/internal/nonsecure_base
-    - abseil/random/internal/pool_urbg
-    - abseil/random/internal/salted_seed_seq
-    - abseil/random/internal/seed_material
-    - abseil/random/seed_gen_exception
-    - abseil/types/span
-  - abseil/status/status (1.20211102.0):
-    - abseil/base/atomic_hook
-    - abseil/base/config
-    - abseil/base/core_headers
-    - abseil/base/raw_logging_internal
-    - abseil/container/inlined_vector
-    - abseil/debugging/stacktrace
-    - abseil/debugging/symbolize
-    - abseil/functional/function_ref
-    - abseil/strings/cord
-    - abseil/strings/str_format
-    - abseil/strings/strings
-    - abseil/types/optional
-  - abseil/status/statusor (1.20211102.0):
-    - abseil/base/base
-    - abseil/base/core_headers
-    - abseil/base/raw_logging_internal
-    - abseil/meta/type_traits
-    - abseil/status/status
-    - abseil/strings/strings
-    - abseil/types/variant
-    - abseil/utility/utility
-  - abseil/strings/cord (1.20211102.0):
-    - abseil/base/base
-    - abseil/base/config
-    - abseil/base/core_headers
-    - abseil/base/endian
-    - abseil/base/raw_logging_internal
-    - abseil/container/fixed_array
-    - abseil/container/inlined_vector
-    - abseil/functional/function_ref
-    - abseil/meta/type_traits
-    - abseil/strings/cord_internal
-    - abseil/strings/cordz_functions
-    - abseil/strings/cordz_info
-    - abseil/strings/cordz_statistics
-    - abseil/strings/cordz_update_scope
-    - abseil/strings/cordz_update_tracker
-    - abseil/strings/internal
-    - abseil/strings/str_format
-    - abseil/strings/strings
-    - abseil/types/optional
-  - abseil/strings/cord_internal (1.20211102.0):
-    - abseil/base/base_internal
-    - abseil/base/config
-    - abseil/base/core_headers
-    - abseil/base/endian
-    - abseil/base/raw_logging_internal
-    - abseil/base/throw_delegate
-    - abseil/container/compressed_tuple
-    - abseil/container/inlined_vector
-    - abseil/container/layout
-    - abseil/functional/function_ref
-    - abseil/meta/type_traits
-    - abseil/strings/strings
-    - abseil/types/span
-  - abseil/strings/cordz_functions (1.20211102.0):
-    - abseil/base/config
-    - abseil/base/core_headers
-    - abseil/base/raw_logging_internal
-    - abseil/profiling/exponential_biased
-  - abseil/strings/cordz_handle (1.20211102.0):
-    - abseil/base/base
-    - abseil/base/config
-    - abseil/base/raw_logging_internal
-    - abseil/synchronization/synchronization
-  - abseil/strings/cordz_info (1.20211102.0):
-    - abseil/base/base
-    - abseil/base/config
-    - abseil/base/core_headers
-    - abseil/base/raw_logging_internal
-    - abseil/container/inlined_vector
-    - abseil/debugging/stacktrace
-    - abseil/strings/cord_internal
-    - abseil/strings/cordz_functions
-    - abseil/strings/cordz_handle
-    - abseil/strings/cordz_statistics
-    - abseil/strings/cordz_update_tracker
-    - abseil/synchronization/synchronization
-    - abseil/types/span
-  - abseil/strings/cordz_statistics (1.20211102.0):
-    - abseil/base/config
-    - abseil/strings/cordz_update_tracker
-  - abseil/strings/cordz_update_scope (1.20211102.0):
-    - abseil/base/config
-    - abseil/base/core_headers
-    - abseil/strings/cord_internal
-    - abseil/strings/cordz_info
-    - abseil/strings/cordz_update_tracker
-  - abseil/strings/cordz_update_tracker (1.20211102.0):
-    - abseil/base/config
-  - abseil/strings/internal (1.20211102.0):
-    - abseil/base/config
-    - abseil/base/core_headers
-    - abseil/base/endian
-    - abseil/base/raw_logging_internal
-    - abseil/meta/type_traits
-  - abseil/strings/str_format (1.20211102.0):
-    - abseil/strings/str_format_internal
-  - abseil/strings/str_format_internal (1.20211102.0):
-    - abseil/base/config
-    - abseil/base/core_headers
-    - abseil/functional/function_ref
-    - abseil/meta/type_traits
-    - abseil/numeric/bits
-    - abseil/numeric/int128
-    - abseil/numeric/representation
-    - abseil/strings/strings
-    - abseil/types/optional
-    - abseil/types/span
-  - abseil/strings/strings (1.20211102.0):
-    - abseil/base/base
-    - abseil/base/config
-    - abseil/base/core_headers
-    - abseil/base/endian
-    - abseil/base/raw_logging_internal
-    - abseil/base/throw_delegate
-    - abseil/memory/memory
-    - abseil/meta/type_traits
-    - abseil/numeric/bits
-    - abseil/numeric/int128
-    - abseil/strings/internal
-  - abseil/synchronization/graphcycles_internal (1.20211102.0):
-    - abseil/base/base
-    - abseil/base/base_internal
-    - abseil/base/config
-    - abseil/base/core_headers
-    - abseil/base/malloc_internal
-    - abseil/base/raw_logging_internal
-  - abseil/synchronization/kernel_timeout_internal (1.20211102.0):
-    - abseil/base/core_headers
-    - abseil/base/raw_logging_internal
-    - abseil/time/time
-  - abseil/synchronization/synchronization (1.20211102.0):
-    - abseil/base/atomic_hook
-    - abseil/base/base
-    - abseil/base/base_internal
-    - abseil/base/config
-    - abseil/base/core_headers
-    - abseil/base/dynamic_annotations
-    - abseil/base/malloc_internal
-    - abseil/base/raw_logging_internal
-    - abseil/debugging/stacktrace
-    - abseil/debugging/symbolize
-    - abseil/synchronization/graphcycles_internal
-    - abseil/synchronization/kernel_timeout_internal
-    - abseil/time/time
-  - abseil/time (1.20211102.0):
-    - abseil/time/internal (= 1.20211102.0)
-    - abseil/time/time (= 1.20211102.0)
-  - abseil/time/internal (1.20211102.0):
-    - abseil/time/internal/cctz (= 1.20211102.0)
-  - abseil/time/internal/cctz (1.20211102.0):
-    - abseil/time/internal/cctz/civil_time (= 1.20211102.0)
-    - abseil/time/internal/cctz/time_zone (= 1.20211102.0)
-  - abseil/time/internal/cctz/civil_time (1.20211102.0):
-    - abseil/base/config
-  - abseil/time/internal/cctz/time_zone (1.20211102.0):
-    - abseil/base/config
-    - abseil/time/internal/cctz/civil_time
-  - abseil/time/time (1.20211102.0):
-    - abseil/base/base
-    - abseil/base/core_headers
-    - abseil/base/raw_logging_internal
-    - abseil/numeric/int128
-    - abseil/strings/strings
-    - abseil/time/internal/cctz/civil_time
-    - abseil/time/internal/cctz/time_zone
-  - abseil/types (1.20211102.0):
-    - abseil/types/any (= 1.20211102.0)
-    - abseil/types/bad_any_cast (= 1.20211102.0)
-    - abseil/types/bad_any_cast_impl (= 1.20211102.0)
-    - abseil/types/bad_optional_access (= 1.20211102.0)
-    - abseil/types/bad_variant_access (= 1.20211102.0)
-    - abseil/types/compare (= 1.20211102.0)
-    - abseil/types/optional (= 1.20211102.0)
-    - abseil/types/span (= 1.20211102.0)
-    - abseil/types/variant (= 1.20211102.0)
-  - abseil/types/any (1.20211102.0):
-    - abseil/base/config
-    - abseil/base/core_headers
-    - abseil/base/fast_type_id
-    - abseil/meta/type_traits
-    - abseil/types/bad_any_cast
-    - abseil/utility/utility
-  - abseil/types/bad_any_cast (1.20211102.0):
-    - abseil/base/config
-    - abseil/types/bad_any_cast_impl
-  - abseil/types/bad_any_cast_impl (1.20211102.0):
-    - abseil/base/config
-    - abseil/base/raw_logging_internal
-  - abseil/types/bad_optional_access (1.20211102.0):
-    - abseil/base/config
-    - abseil/base/raw_logging_internal
-  - abseil/types/bad_variant_access (1.20211102.0):
-    - abseil/base/config
-    - abseil/base/raw_logging_internal
-  - abseil/types/compare (1.20211102.0):
-    - abseil/base/core_headers
-    - abseil/meta/type_traits
-  - abseil/types/optional (1.20211102.0):
-    - abseil/base/base_internal
-    - abseil/base/config
-    - abseil/base/core_headers
-    - abseil/memory/memory
-    - abseil/meta/type_traits
-    - abseil/types/bad_optional_access
-    - abseil/utility/utility
-  - abseil/types/span (1.20211102.0):
-    - abseil/algorithm/algorithm
-    - abseil/base/core_headers
-    - abseil/base/throw_delegate
-    - abseil/meta/type_traits
-  - abseil/types/variant (1.20211102.0):
-    - abseil/base/base_internal
-    - abseil/base/config
-    - abseil/base/core_headers
-    - abseil/meta/type_traits
-    - abseil/types/bad_variant_access
-    - abseil/utility/utility
-  - abseil/utility/utility (1.20211102.0):
-    - abseil/base/base_internal
-    - abseil/base/config
-    - abseil/meta/type_traits
-  - AppAuth (1.5.0):
-    - AppAuth/Core (= 1.5.0)
-    - AppAuth/ExternalUserAgent (= 1.5.0)
-  - AppAuth/Core (1.5.0)
-  - AppAuth/ExternalUserAgent (1.5.0):
-    - AppAuth/Core
-  - Base64 (1.1.2)
   - boost (1.76.0)
-  - BoringSSL-GRPC (0.0.24):
-    - BoringSSL-GRPC/Implementation (= 0.0.24)
-    - BoringSSL-GRPC/Interface (= 0.0.24)
-  - BoringSSL-GRPC/Implementation (0.0.24):
-    - BoringSSL-GRPC/Interface (= 0.0.24)
-  - BoringSSL-GRPC/Interface (0.0.24)
   - CocoaAsyncSocket (7.6.5)
-  - CodePush (7.0.4):
-    - Base64 (~> 1.1)
-    - JWT (~> 3.0.0-beta.12)
-    - React-Core
-    - SSZipArchive (~> 2.2.2)
   - DoubleConversion (1.1.6)
-  - FBLazyVector (0.68.2)
-  - FBReactNativeSpec (0.68.2):
-    - RCT-Folly (= 2021.06.28.00-v2)
-    - RCTRequired (= 0.68.2)
-    - RCTTypeSafety (= 0.68.2)
-    - React-Core (= 0.68.2)
-    - React-jsi (= 0.68.2)
-    - ReactCommon/turbomodule/core (= 0.68.2)
-  - Firebase/Auth (8.15.0):
-    - Firebase/CoreOnly
-    - FirebaseAuth (~> 8.15.0)
-  - Firebase/CoreOnly (8.15.0):
-    - FirebaseCore (= 8.15.0)
-  - Firebase/Firestore (8.15.0):
-    - Firebase/CoreOnly
-    - FirebaseFirestore (~> 8.15.0)
-  - FirebaseAuth (8.15.0):
-    - FirebaseCore (~> 8.0)
-    - GoogleUtilities/AppDelegateSwizzler (~> 7.7)
-    - GoogleUtilities/Environment (~> 7.7)
-    - GTMSessionFetcher/Core (~> 1.5)
-  - FirebaseCore (8.15.0):
-    - FirebaseCoreDiagnostics (~> 8.0)
-    - GoogleUtilities/Environment (~> 7.7)
-    - GoogleUtilities/Logger (~> 7.7)
-  - FirebaseCoreDiagnostics (8.15.0):
-    - GoogleDataTransport (~> 9.1)
-    - GoogleUtilities/Environment (~> 7.7)
-    - GoogleUtilities/Logger (~> 7.7)
-    - nanopb (~> 2.30908.0)
-  - FirebaseFirestore (8.15.0):
-    - abseil/algorithm (~> 1.20211102.0)
-    - abseil/base (~> 1.20211102.0)
-    - abseil/container/flat_hash_map (~> 1.20211102.0)
-    - abseil/memory (~> 1.20211102.0)
-    - abseil/meta (~> 1.20211102.0)
-    - abseil/strings/strings (~> 1.20211102.0)
-    - abseil/time (~> 1.20211102.0)
-    - abseil/types (~> 1.20211102.0)
-    - FirebaseCore (~> 8.0)
-    - "gRPC-C++ (~> 1.44.0)"
-    - leveldb-library (~> 1.22)
-    - nanopb (~> 2.30908.0)
+  - FBLazyVector (0.71.0)
+  - FBReactNativeSpec (0.71.0):
+    - RCT-Folly (= 2021.07.22.00)
+    - RCTRequired (= 0.71.0)
+    - RCTTypeSafety (= 0.71.0)
+    - React-Core (= 0.71.0)
+    - React-jsi (= 0.71.0)
+    - ReactCommon/turbomodule/core (= 0.71.0)
   - Flipper (0.125.0):
     - Flipper-Folly (~> 2.6)
     - Flipper-RSocket (~> 1.4)
   - Flipper-Boost-iOSX (1.76.0.1.11)
-  - Flipper-DoubleConversion (3.2.0)
+  - Flipper-DoubleConversion (3.2.0.1)
   - Flipper-Fmt (7.1.7)
   - Flipper-Folly (2.6.10):
     - Flipper-Boost-iOSX
@@ -673,7 +23,7 @@ PODS:
     - Flipper-Glog
     - libevent (~> 2.1.12)
     - OpenSSL-Universal (= 1.1.1100)
-  - Flipper-Glog (0.5.0.4)
+  - Flipper-Glog (0.5.0.5)
   - Flipper-PeerTalk (0.0.4)
   - Flipper-RSocket (1.4.3):
     - Flipper-Folly (~> 2.6)
@@ -723,422 +73,327 @@ PODS:
     - FlipperKit/FlipperKitNetworkPlugin
   - fmt (6.2.1)
   - glog (0.3.5)
-  - GoogleDataTransport (9.1.4):
-    - GoogleUtilities/Environment (~> 7.7)
-    - nanopb (< 2.30910.0, >= 2.30908.0)
-    - PromisesObjC (< 3.0, >= 1.2)
-  - GoogleSignIn (6.2.2):
-    - AppAuth (~> 1.5)
-    - GTMAppAuth (~> 1.3)
-    - GTMSessionFetcher/Core (~> 1.1)
-  - GoogleUtilities/AppDelegateSwizzler (7.7.0):
-    - GoogleUtilities/Environment
-    - GoogleUtilities/Logger
-    - GoogleUtilities/Network
-  - GoogleUtilities/Environment (7.7.0):
-    - PromisesObjC (< 3.0, >= 1.2)
-  - GoogleUtilities/Logger (7.7.0):
-    - GoogleUtilities/Environment
-  - GoogleUtilities/Network (7.7.0):
-    - GoogleUtilities/Logger
-    - "GoogleUtilities/NSData+zlib"
-    - GoogleUtilities/Reachability
-  - "GoogleUtilities/NSData+zlib (7.7.0)"
-  - GoogleUtilities/Reachability (7.7.0):
-    - GoogleUtilities/Logger
-  - "gRPC-C++ (1.44.0)":
-    - "gRPC-C++/Implementation (= 1.44.0)"
-    - "gRPC-C++/Interface (= 1.44.0)"
-  - "gRPC-C++/Implementation (1.44.0)":
-    - abseil/base/base (= 1.20211102.0)
-    - abseil/base/core_headers (= 1.20211102.0)
-    - abseil/container/flat_hash_map (= 1.20211102.0)
-    - abseil/container/inlined_vector (= 1.20211102.0)
-    - abseil/functional/bind_front (= 1.20211102.0)
-    - abseil/hash/hash (= 1.20211102.0)
-    - abseil/memory/memory (= 1.20211102.0)
-    - abseil/random/random (= 1.20211102.0)
-    - abseil/status/status (= 1.20211102.0)
-    - abseil/status/statusor (= 1.20211102.0)
-    - abseil/strings/cord (= 1.20211102.0)
-    - abseil/strings/str_format (= 1.20211102.0)
-    - abseil/strings/strings (= 1.20211102.0)
-    - abseil/synchronization/synchronization (= 1.20211102.0)
-    - abseil/time/time (= 1.20211102.0)
-    - abseil/types/optional (= 1.20211102.0)
-    - abseil/types/variant (= 1.20211102.0)
-    - abseil/utility/utility (= 1.20211102.0)
-    - "gRPC-C++/Interface (= 1.44.0)"
-    - gRPC-Core (= 1.44.0)
-  - "gRPC-C++/Interface (1.44.0)"
-  - gRPC-Core (1.44.0):
-    - gRPC-Core/Implementation (= 1.44.0)
-    - gRPC-Core/Interface (= 1.44.0)
-  - gRPC-Core/Implementation (1.44.0):
-    - abseil/base/base (= 1.20211102.0)
-    - abseil/base/core_headers (= 1.20211102.0)
-    - abseil/container/flat_hash_map (= 1.20211102.0)
-    - abseil/container/inlined_vector (= 1.20211102.0)
-    - abseil/functional/bind_front (= 1.20211102.0)
-    - abseil/hash/hash (= 1.20211102.0)
-    - abseil/memory/memory (= 1.20211102.0)
-    - abseil/random/random (= 1.20211102.0)
-    - abseil/status/status (= 1.20211102.0)
-    - abseil/status/statusor (= 1.20211102.0)
-    - abseil/strings/cord (= 1.20211102.0)
-    - abseil/strings/str_format (= 1.20211102.0)
-    - abseil/strings/strings (= 1.20211102.0)
-    - abseil/synchronization/synchronization (= 1.20211102.0)
-    - abseil/time/time (= 1.20211102.0)
-    - abseil/types/optional (= 1.20211102.0)
-    - abseil/types/variant (= 1.20211102.0)
-    - abseil/utility/utility (= 1.20211102.0)
-    - BoringSSL-GRPC (= 0.0.24)
-    - gRPC-Core/Interface (= 1.44.0)
-    - Libuv-gRPC (= 0.0.10)
-  - gRPC-Core/Interface (1.44.0)
-  - GTMAppAuth (1.3.0):
-    - AppAuth/Core (~> 1.4)
-    - GTMSessionFetcher/Core (~> 1.5)
-  - GTMSessionFetcher/Core (1.7.2)
-  - JWT (3.0.0-beta.14):
-    - Base64 (~> 1.1.2)
-  - leveldb-library (1.22.1)
+  - hermes-engine (0.71.0):
+    - hermes-engine/Pre-built (= 0.71.0)
+  - hermes-engine/Pre-built (0.71.0)
   - libevent (2.1.12)
-  - Libuv-gRPC (0.0.10):
-    - Libuv-gRPC/Implementation (= 0.0.10)
-    - Libuv-gRPC/Interface (= 0.0.10)
-  - Libuv-gRPC/Implementation (0.0.10):
-    - Libuv-gRPC/Interface (= 0.0.10)
-  - Libuv-gRPC/Interface (0.0.10)
-  - nanopb (2.30908.0):
-    - nanopb/decode (= 2.30908.0)
-    - nanopb/encode (= 2.30908.0)
-  - nanopb/decode (2.30908.0)
-  - nanopb/encode (2.30908.0)
   - OpenSSL-Universal (1.1.1100)
-  - PromisesObjC (2.1.1)
-  - RCT-Folly (2021.06.28.00-v2):
+  - RCT-Folly (2021.07.22.00):
     - boost
     - DoubleConversion
     - fmt (~> 6.2.1)
     - glog
-    - RCT-Folly/Default (= 2021.06.28.00-v2)
-  - RCT-Folly/Default (2021.06.28.00-v2):
+    - RCT-Folly/Default (= 2021.07.22.00)
+  - RCT-Folly/Default (2021.07.22.00):
     - boost
     - DoubleConversion
     - fmt (~> 6.2.1)
     - glog
-  - RCTRequired (0.68.2)
-  - RCTTypeSafety (0.68.2):
-    - FBLazyVector (= 0.68.2)
-    - RCT-Folly (= 2021.06.28.00-v2)
-    - RCTRequired (= 0.68.2)
-    - React-Core (= 0.68.2)
-  - React (0.68.2):
-    - React-Core (= 0.68.2)
-    - React-Core/DevSupport (= 0.68.2)
-    - React-Core/RCTWebSocket (= 0.68.2)
-    - React-RCTActionSheet (= 0.68.2)
-    - React-RCTAnimation (= 0.68.2)
-    - React-RCTBlob (= 0.68.2)
-    - React-RCTImage (= 0.68.2)
-    - React-RCTLinking (= 0.68.2)
-    - React-RCTNetwork (= 0.68.2)
-    - React-RCTSettings (= 0.68.2)
-    - React-RCTText (= 0.68.2)
-    - React-RCTVibration (= 0.68.2)
-  - React-callinvoker (0.68.2)
-  - React-Codegen (0.68.2):
-    - FBReactNativeSpec (= 0.68.2)
-    - RCT-Folly (= 2021.06.28.00-v2)
-    - RCTRequired (= 0.68.2)
-    - RCTTypeSafety (= 0.68.2)
-    - React-Core (= 0.68.2)
-    - React-jsi (= 0.68.2)
-    - React-jsiexecutor (= 0.68.2)
-    - ReactCommon/turbomodule/core (= 0.68.2)
-  - React-Core (0.68.2):
-    - glog
-    - RCT-Folly (= 2021.06.28.00-v2)
-    - React-Core/Default (= 0.68.2)
-    - React-cxxreact (= 0.68.2)
-    - React-jsi (= 0.68.2)
-    - React-jsiexecutor (= 0.68.2)
-    - React-perflogger (= 0.68.2)
-    - Yoga
-  - React-Core/CoreModulesHeaders (0.68.2):
-    - glog
-    - RCT-Folly (= 2021.06.28.00-v2)
-    - React-Core/Default
-    - React-cxxreact (= 0.68.2)
-    - React-jsi (= 0.68.2)
-    - React-jsiexecutor (= 0.68.2)
-    - React-perflogger (= 0.68.2)
-    - Yoga
-  - React-Core/Default (0.68.2):
-    - glog
-    - RCT-Folly (= 2021.06.28.00-v2)
-    - React-cxxreact (= 0.68.2)
-    - React-jsi (= 0.68.2)
-    - React-jsiexecutor (= 0.68.2)
-    - React-perflogger (= 0.68.2)
-    - Yoga
-  - React-Core/DevSupport (0.68.2):
-    - glog
-    - RCT-Folly (= 2021.06.28.00-v2)
-    - React-Core/Default (= 0.68.2)
-    - React-Core/RCTWebSocket (= 0.68.2)
-    - React-cxxreact (= 0.68.2)
-    - React-jsi (= 0.68.2)
-    - React-jsiexecutor (= 0.68.2)
-    - React-jsinspector (= 0.68.2)
-    - React-perflogger (= 0.68.2)
-    - Yoga
-  - React-Core/RCTActionSheetHeaders (0.68.2):
-    - glog
-    - RCT-Folly (= 2021.06.28.00-v2)
-    - React-Core/Default
-    - React-cxxreact (= 0.68.2)
-    - React-jsi (= 0.68.2)
-    - React-jsiexecutor (= 0.68.2)
-    - React-perflogger (= 0.68.2)
-    - Yoga
-  - React-Core/RCTAnimationHeaders (0.68.2):
-    - glog
-    - RCT-Folly (= 2021.06.28.00-v2)
-    - React-Core/Default
-    - React-cxxreact (= 0.68.2)
-    - React-jsi (= 0.68.2)
-    - React-jsiexecutor (= 0.68.2)
-    - React-perflogger (= 0.68.2)
-    - Yoga
-  - React-Core/RCTBlobHeaders (0.68.2):
-    - glog
-    - RCT-Folly (= 2021.06.28.00-v2)
-    - React-Core/Default
-    - React-cxxreact (= 0.68.2)
-    - React-jsi (= 0.68.2)
-    - React-jsiexecutor (= 0.68.2)
-    - React-perflogger (= 0.68.2)
-    - Yoga
-  - React-Core/RCTImageHeaders (0.68.2):
-    - glog
-    - RCT-Folly (= 2021.06.28.00-v2)
-    - React-Core/Default
-    - React-cxxreact (= 0.68.2)
-    - React-jsi (= 0.68.2)
-    - React-jsiexecutor (= 0.68.2)
-    - React-perflogger (= 0.68.2)
-    - Yoga
-  - React-Core/RCTLinkingHeaders (0.68.2):
-    - glog
-    - RCT-Folly (= 2021.06.28.00-v2)
-    - React-Core/Default
-    - React-cxxreact (= 0.68.2)
-    - React-jsi (= 0.68.2)
-    - React-jsiexecutor (= 0.68.2)
-    - React-perflogger (= 0.68.2)
-    - Yoga
-  - React-Core/RCTNetworkHeaders (0.68.2):
-    - glog
-    - RCT-Folly (= 2021.06.28.00-v2)
-    - React-Core/Default
-    - React-cxxreact (= 0.68.2)
-    - React-jsi (= 0.68.2)
-    - React-jsiexecutor (= 0.68.2)
-    - React-perflogger (= 0.68.2)
-    - Yoga
-  - React-Core/RCTSettingsHeaders (0.68.2):
-    - glog
-    - RCT-Folly (= 2021.06.28.00-v2)
-    - React-Core/Default
-    - React-cxxreact (= 0.68.2)
-    - React-jsi (= 0.68.2)
-    - React-jsiexecutor (= 0.68.2)
-    - React-perflogger (= 0.68.2)
-    - Yoga
-  - React-Core/RCTTextHeaders (0.68.2):
-    - glog
-    - RCT-Folly (= 2021.06.28.00-v2)
-    - React-Core/Default
-    - React-cxxreact (= 0.68.2)
-    - React-jsi (= 0.68.2)
-    - React-jsiexecutor (= 0.68.2)
-    - React-perflogger (= 0.68.2)
-    - Yoga
-  - React-Core/RCTVibrationHeaders (0.68.2):
-    - glog
-    - RCT-Folly (= 2021.06.28.00-v2)
-    - React-Core/Default
-    - React-cxxreact (= 0.68.2)
-    - React-jsi (= 0.68.2)
-    - React-jsiexecutor (= 0.68.2)
-    - React-perflogger (= 0.68.2)
-    - Yoga
-  - React-Core/RCTWebSocket (0.68.2):
-    - glog
-    - RCT-Folly (= 2021.06.28.00-v2)
-    - React-Core/Default (= 0.68.2)
-    - React-cxxreact (= 0.68.2)
-    - React-jsi (= 0.68.2)
-    - React-jsiexecutor (= 0.68.2)
-    - React-perflogger (= 0.68.2)
-    - Yoga
-  - React-CoreModules (0.68.2):
-    - RCT-Folly (= 2021.06.28.00-v2)
-    - RCTTypeSafety (= 0.68.2)
-    - React-Codegen (= 0.68.2)
-    - React-Core/CoreModulesHeaders (= 0.68.2)
-    - React-jsi (= 0.68.2)
-    - React-RCTImage (= 0.68.2)
-    - ReactCommon/turbomodule/core (= 0.68.2)
-  - React-cxxreact (0.68.2):
-    - boost (= 1.76.0)
+  - RCT-Folly/Futures (2021.07.22.00):
+    - boost
     - DoubleConversion
+    - fmt (~> 6.2.1)
     - glog
-    - RCT-Folly (= 2021.06.28.00-v2)
-    - React-callinvoker (= 0.68.2)
-    - React-jsi (= 0.68.2)
-    - React-jsinspector (= 0.68.2)
-    - React-logger (= 0.68.2)
-    - React-perflogger (= 0.68.2)
-    - React-runtimeexecutor (= 0.68.2)
-  - React-jsi (0.68.2):
-    - boost (= 1.76.0)
-    - DoubleConversion
-    - glog
-    - RCT-Folly (= 2021.06.28.00-v2)
-    - React-jsi/Default (= 0.68.2)
-  - React-jsi/Default (0.68.2):
-    - boost (= 1.76.0)
-    - DoubleConversion
-    - glog
-    - RCT-Folly (= 2021.06.28.00-v2)
-  - React-jsiexecutor (0.68.2):
-    - DoubleConversion
-    - glog
-    - RCT-Folly (= 2021.06.28.00-v2)
-    - React-cxxreact (= 0.68.2)
-    - React-jsi (= 0.68.2)
-    - React-perflogger (= 0.68.2)
-  - React-jsinspector (0.68.2)
-  - React-logger (0.68.2):
-    - glog
-  - react-native-safe-area-context (4.3.1):
+    - libevent
+  - RCTRequired (0.71.0)
+  - RCTTypeSafety (0.71.0):
+    - FBLazyVector (= 0.71.0)
+    - RCTRequired (= 0.71.0)
+    - React-Core (= 0.71.0)
+  - React (0.71.0):
+    - React-Core (= 0.71.0)
+    - React-Core/DevSupport (= 0.71.0)
+    - React-Core/RCTWebSocket (= 0.71.0)
+    - React-RCTActionSheet (= 0.71.0)
+    - React-RCTAnimation (= 0.71.0)
+    - React-RCTBlob (= 0.71.0)
+    - React-RCTImage (= 0.71.0)
+    - React-RCTLinking (= 0.71.0)
+    - React-RCTNetwork (= 0.71.0)
+    - React-RCTSettings (= 0.71.0)
+    - React-RCTText (= 0.71.0)
+    - React-RCTVibration (= 0.71.0)
+  - React-callinvoker (0.71.0)
+  - React-Codegen (0.71.0):
+    - FBReactNativeSpec
+    - hermes-engine
     - RCT-Folly
     - RCTRequired
     - RCTTypeSafety
-    - React
+    - React-Core
+    - React-jsi
+    - React-jsiexecutor
+    - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
-  - React-perflogger (0.68.2)
-  - React-RCTActionSheet (0.68.2):
-    - React-Core/RCTActionSheetHeaders (= 0.68.2)
-  - React-RCTAnimation (0.68.2):
-    - RCT-Folly (= 2021.06.28.00-v2)
-    - RCTTypeSafety (= 0.68.2)
-    - React-Codegen (= 0.68.2)
-    - React-Core/RCTAnimationHeaders (= 0.68.2)
-    - React-jsi (= 0.68.2)
-    - ReactCommon/turbomodule/core (= 0.68.2)
-  - React-RCTBlob (0.68.2):
-    - RCT-Folly (= 2021.06.28.00-v2)
-    - React-Codegen (= 0.68.2)
-    - React-Core/RCTBlobHeaders (= 0.68.2)
-    - React-Core/RCTWebSocket (= 0.68.2)
-    - React-jsi (= 0.68.2)
-    - React-RCTNetwork (= 0.68.2)
-    - ReactCommon/turbomodule/core (= 0.68.2)
-  - React-RCTImage (0.68.2):
-    - RCT-Folly (= 2021.06.28.00-v2)
-    - RCTTypeSafety (= 0.68.2)
-    - React-Codegen (= 0.68.2)
-    - React-Core/RCTImageHeaders (= 0.68.2)
-    - React-jsi (= 0.68.2)
-    - React-RCTNetwork (= 0.68.2)
-    - ReactCommon/turbomodule/core (= 0.68.2)
-  - React-RCTLinking (0.68.2):
-    - React-Codegen (= 0.68.2)
-    - React-Core/RCTLinkingHeaders (= 0.68.2)
-    - React-jsi (= 0.68.2)
-    - ReactCommon/turbomodule/core (= 0.68.2)
-  - React-RCTNetwork (0.68.2):
-    - RCT-Folly (= 2021.06.28.00-v2)
-    - RCTTypeSafety (= 0.68.2)
-    - React-Codegen (= 0.68.2)
-    - React-Core/RCTNetworkHeaders (= 0.68.2)
-    - React-jsi (= 0.68.2)
-    - ReactCommon/turbomodule/core (= 0.68.2)
-  - React-RCTSettings (0.68.2):
-    - RCT-Folly (= 2021.06.28.00-v2)
-    - RCTTypeSafety (= 0.68.2)
-    - React-Codegen (= 0.68.2)
-    - React-Core/RCTSettingsHeaders (= 0.68.2)
-    - React-jsi (= 0.68.2)
-    - ReactCommon/turbomodule/core (= 0.68.2)
-  - React-RCTText (0.68.2):
-    - React-Core/RCTTextHeaders (= 0.68.2)
-  - React-RCTVibration (0.68.2):
-    - RCT-Folly (= 2021.06.28.00-v2)
-    - React-Codegen (= 0.68.2)
-    - React-Core/RCTVibrationHeaders (= 0.68.2)
-    - React-jsi (= 0.68.2)
-    - ReactCommon/turbomodule/core (= 0.68.2)
-  - React-runtimeexecutor (0.68.2):
-    - React-jsi (= 0.68.2)
-  - ReactCommon/turbomodule/core (0.68.2):
+  - React-Core (0.71.0):
+    - glog
+    - RCT-Folly (= 2021.07.22.00)
+    - React-Core/Default (= 0.71.0)
+    - React-cxxreact (= 0.71.0)
+    - React-jsi (= 0.71.0)
+    - React-jsiexecutor (= 0.71.0)
+    - React-perflogger (= 0.71.0)
+    - Yoga
+  - React-Core/CoreModulesHeaders (0.71.0):
+    - glog
+    - RCT-Folly (= 2021.07.22.00)
+    - React-Core/Default
+    - React-cxxreact (= 0.71.0)
+    - React-jsi (= 0.71.0)
+    - React-jsiexecutor (= 0.71.0)
+    - React-perflogger (= 0.71.0)
+    - Yoga
+  - React-Core/Default (0.71.0):
+    - glog
+    - RCT-Folly (= 2021.07.22.00)
+    - React-cxxreact (= 0.71.0)
+    - React-jsi (= 0.71.0)
+    - React-jsiexecutor (= 0.71.0)
+    - React-perflogger (= 0.71.0)
+    - Yoga
+  - React-Core/DevSupport (0.71.0):
+    - glog
+    - RCT-Folly (= 2021.07.22.00)
+    - React-Core/Default (= 0.71.0)
+    - React-Core/RCTWebSocket (= 0.71.0)
+    - React-cxxreact (= 0.71.0)
+    - React-jsi (= 0.71.0)
+    - React-jsiexecutor (= 0.71.0)
+    - React-jsinspector (= 0.71.0)
+    - React-perflogger (= 0.71.0)
+    - Yoga
+  - React-Core/RCTActionSheetHeaders (0.71.0):
+    - glog
+    - RCT-Folly (= 2021.07.22.00)
+    - React-Core/Default
+    - React-cxxreact (= 0.71.0)
+    - React-jsi (= 0.71.0)
+    - React-jsiexecutor (= 0.71.0)
+    - React-perflogger (= 0.71.0)
+    - Yoga
+  - React-Core/RCTAnimationHeaders (0.71.0):
+    - glog
+    - RCT-Folly (= 2021.07.22.00)
+    - React-Core/Default
+    - React-cxxreact (= 0.71.0)
+    - React-jsi (= 0.71.0)
+    - React-jsiexecutor (= 0.71.0)
+    - React-perflogger (= 0.71.0)
+    - Yoga
+  - React-Core/RCTBlobHeaders (0.71.0):
+    - glog
+    - RCT-Folly (= 2021.07.22.00)
+    - React-Core/Default
+    - React-cxxreact (= 0.71.0)
+    - React-jsi (= 0.71.0)
+    - React-jsiexecutor (= 0.71.0)
+    - React-perflogger (= 0.71.0)
+    - Yoga
+  - React-Core/RCTImageHeaders (0.71.0):
+    - glog
+    - RCT-Folly (= 2021.07.22.00)
+    - React-Core/Default
+    - React-cxxreact (= 0.71.0)
+    - React-jsi (= 0.71.0)
+    - React-jsiexecutor (= 0.71.0)
+    - React-perflogger (= 0.71.0)
+    - Yoga
+  - React-Core/RCTLinkingHeaders (0.71.0):
+    - glog
+    - RCT-Folly (= 2021.07.22.00)
+    - React-Core/Default
+    - React-cxxreact (= 0.71.0)
+    - React-jsi (= 0.71.0)
+    - React-jsiexecutor (= 0.71.0)
+    - React-perflogger (= 0.71.0)
+    - Yoga
+  - React-Core/RCTNetworkHeaders (0.71.0):
+    - glog
+    - RCT-Folly (= 2021.07.22.00)
+    - React-Core/Default
+    - React-cxxreact (= 0.71.0)
+    - React-jsi (= 0.71.0)
+    - React-jsiexecutor (= 0.71.0)
+    - React-perflogger (= 0.71.0)
+    - Yoga
+  - React-Core/RCTSettingsHeaders (0.71.0):
+    - glog
+    - RCT-Folly (= 2021.07.22.00)
+    - React-Core/Default
+    - React-cxxreact (= 0.71.0)
+    - React-jsi (= 0.71.0)
+    - React-jsiexecutor (= 0.71.0)
+    - React-perflogger (= 0.71.0)
+    - Yoga
+  - React-Core/RCTTextHeaders (0.71.0):
+    - glog
+    - RCT-Folly (= 2021.07.22.00)
+    - React-Core/Default
+    - React-cxxreact (= 0.71.0)
+    - React-jsi (= 0.71.0)
+    - React-jsiexecutor (= 0.71.0)
+    - React-perflogger (= 0.71.0)
+    - Yoga
+  - React-Core/RCTVibrationHeaders (0.71.0):
+    - glog
+    - RCT-Folly (= 2021.07.22.00)
+    - React-Core/Default
+    - React-cxxreact (= 0.71.0)
+    - React-jsi (= 0.71.0)
+    - React-jsiexecutor (= 0.71.0)
+    - React-perflogger (= 0.71.0)
+    - Yoga
+  - React-Core/RCTWebSocket (0.71.0):
+    - glog
+    - RCT-Folly (= 2021.07.22.00)
+    - React-Core/Default (= 0.71.0)
+    - React-cxxreact (= 0.71.0)
+    - React-jsi (= 0.71.0)
+    - React-jsiexecutor (= 0.71.0)
+    - React-perflogger (= 0.71.0)
+    - Yoga
+  - React-CoreModules (0.71.0):
+    - RCT-Folly (= 2021.07.22.00)
+    - RCTTypeSafety (= 0.71.0)
+    - React-Codegen (= 0.71.0)
+    - React-Core/CoreModulesHeaders (= 0.71.0)
+    - React-jsi (= 0.71.0)
+    - React-RCTImage (= 0.71.0)
+    - ReactCommon/turbomodule/core (= 0.71.0)
+  - React-cxxreact (0.71.0):
+    - boost (= 1.76.0)
     - DoubleConversion
     - glog
-    - RCT-Folly (= 2021.06.28.00-v2)
-    - React-callinvoker (= 0.68.2)
-    - React-Core (= 0.68.2)
-    - React-cxxreact (= 0.68.2)
-    - React-jsi (= 0.68.2)
-    - React-logger (= 0.68.2)
-    - React-perflogger (= 0.68.2)
-  - RNCCheckbox (0.5.12):
+    - RCT-Folly (= 2021.07.22.00)
+    - React-callinvoker (= 0.71.0)
+    - React-jsi (= 0.71.0)
+    - React-jsinspector (= 0.71.0)
+    - React-logger (= 0.71.0)
+    - React-perflogger (= 0.71.0)
+    - React-runtimeexecutor (= 0.71.0)
+  - React-hermes (0.71.0):
+    - DoubleConversion
+    - glog
+    - hermes-engine
+    - RCT-Folly (= 2021.07.22.00)
+    - RCT-Folly/Futures (= 2021.07.22.00)
+    - React-cxxreact (= 0.71.0)
+    - React-jsiexecutor (= 0.71.0)
+    - React-jsinspector (= 0.71.0)
+    - React-perflogger (= 0.71.0)
+  - React-jsi (0.71.0):
+    - boost (= 1.76.0)
+    - DoubleConversion
+    - glog
+    - hermes-engine
+    - RCT-Folly (= 2021.07.22.00)
+  - React-jsiexecutor (0.71.0):
+    - DoubleConversion
+    - glog
+    - RCT-Folly (= 2021.07.22.00)
+    - React-cxxreact (= 0.71.0)
+    - React-jsi (= 0.71.0)
+    - React-perflogger (= 0.71.0)
+  - React-jsinspector (0.71.0)
+  - React-logger (0.71.0):
+    - glog
+  - React-perflogger (0.71.0)
+  - React-RCTActionSheet (0.71.0):
+    - React-Core/RCTActionSheetHeaders (= 0.71.0)
+  - React-RCTAnimation (0.71.0):
+    - RCT-Folly (= 2021.07.22.00)
+    - RCTTypeSafety (= 0.71.0)
+    - React-Codegen (= 0.71.0)
+    - React-Core/RCTAnimationHeaders (= 0.71.0)
+    - React-jsi (= 0.71.0)
+    - ReactCommon/turbomodule/core (= 0.71.0)
+  - React-RCTAppDelegate (0.71.0):
+    - RCT-Folly
+    - RCTRequired
+    - RCTTypeSafety
     - React-Core
-  - RNCPicker (2.4.2):
-    - React-Core
-  - RNFBApp (14.11.1):
-    - Firebase/CoreOnly (= 8.15.0)
-    - React-Core
-  - RNFBAuth (14.11.1):
-    - Firebase/Auth (= 8.15.0)
-    - React-Core
-    - RNFBApp
-  - RNFBFirestore (14.11.1):
-    - Firebase/Firestore (= 8.15.0)
-    - React-Core
-    - RNFBApp
-  - RNGestureHandler (2.4.2):
-    - React-Core
-  - RNGoogleSignin (8.0.0):
-    - GoogleSignIn (~> 6.2.2)
-    - React-Core
-  - RNScreens (3.13.1):
-    - React-Core
-    - React-RCTImage
-  - RNVectorIcons (9.1.0):
-    - React-Core
+    - ReactCommon/turbomodule/core
+  - React-RCTBlob (0.71.0):
+    - RCT-Folly (= 2021.07.22.00)
+    - React-Codegen (= 0.71.0)
+    - React-Core/RCTBlobHeaders (= 0.71.0)
+    - React-Core/RCTWebSocket (= 0.71.0)
+    - React-jsi (= 0.71.0)
+    - React-RCTNetwork (= 0.71.0)
+    - ReactCommon/turbomodule/core (= 0.71.0)
+  - React-RCTImage (0.71.0):
+    - RCT-Folly (= 2021.07.22.00)
+    - RCTTypeSafety (= 0.71.0)
+    - React-Codegen (= 0.71.0)
+    - React-Core/RCTImageHeaders (= 0.71.0)
+    - React-jsi (= 0.71.0)
+    - React-RCTNetwork (= 0.71.0)
+    - ReactCommon/turbomodule/core (= 0.71.0)
+  - React-RCTLinking (0.71.0):
+    - React-Codegen (= 0.71.0)
+    - React-Core/RCTLinkingHeaders (= 0.71.0)
+    - React-jsi (= 0.71.0)
+    - ReactCommon/turbomodule/core (= 0.71.0)
+  - React-RCTNetwork (0.71.0):
+    - RCT-Folly (= 2021.07.22.00)
+    - RCTTypeSafety (= 0.71.0)
+    - React-Codegen (= 0.71.0)
+    - React-Core/RCTNetworkHeaders (= 0.71.0)
+    - React-jsi (= 0.71.0)
+    - ReactCommon/turbomodule/core (= 0.71.0)
+  - React-RCTSettings (0.71.0):
+    - RCT-Folly (= 2021.07.22.00)
+    - RCTTypeSafety (= 0.71.0)
+    - React-Codegen (= 0.71.0)
+    - React-Core/RCTSettingsHeaders (= 0.71.0)
+    - React-jsi (= 0.71.0)
+    - ReactCommon/turbomodule/core (= 0.71.0)
+  - React-RCTText (0.71.0):
+    - React-Core/RCTTextHeaders (= 0.71.0)
+  - React-RCTVibration (0.71.0):
+    - RCT-Folly (= 2021.07.22.00)
+    - React-Codegen (= 0.71.0)
+    - React-Core/RCTVibrationHeaders (= 0.71.0)
+    - React-jsi (= 0.71.0)
+    - ReactCommon/turbomodule/core (= 0.71.0)
+  - React-runtimeexecutor (0.71.0):
+    - React-jsi (= 0.71.0)
+  - ReactCommon/turbomodule/bridging (0.71.0):
+    - DoubleConversion
+    - glog
+    - RCT-Folly (= 2021.07.22.00)
+    - React-callinvoker (= 0.71.0)
+    - React-Core (= 0.71.0)
+    - React-cxxreact (= 0.71.0)
+    - React-jsi (= 0.71.0)
+    - React-logger (= 0.71.0)
+    - React-perflogger (= 0.71.0)
+  - ReactCommon/turbomodule/core (0.71.0):
+    - DoubleConversion
+    - glog
+    - RCT-Folly (= 2021.07.22.00)
+    - React-callinvoker (= 0.71.0)
+    - React-Core (= 0.71.0)
+    - React-cxxreact (= 0.71.0)
+    - React-jsi (= 0.71.0)
+    - React-logger (= 0.71.0)
+    - React-perflogger (= 0.71.0)
   - SocketRocket (0.6.0)
-  - SSZipArchive (2.2.3)
   - Yoga (1.14.0)
   - YogaKit (1.18.1):
     - Yoga (~> 1.14)
 
 DEPENDENCIES:
   - boost (from `../node_modules/react-native/third-party-podspecs/boost.podspec`)
-  - CodePush (from `../node_modules/react-native-code-push`)
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
   - FBLazyVector (from `../node_modules/react-native/Libraries/FBLazyVector`)
   - FBReactNativeSpec (from `../node_modules/react-native/React/FBReactNativeSpec`)
   - Flipper (= 0.125.0)
   - Flipper-Boost-iOSX (= 1.76.0.1.11)
-  - Flipper-DoubleConversion (= 3.2.0)
+  - Flipper-DoubleConversion (= 3.2.0.1)
   - Flipper-Fmt (= 7.1.7)
   - Flipper-Folly (= 2.6.10)
-  - Flipper-Glog (= 0.5.0.4)
+  - Flipper-Glog (= 0.5.0.5)
   - Flipper-PeerTalk (= 0.0.4)
   - Flipper-RSocket (= 1.4.3)
   - FlipperKit (= 0.125.0)
@@ -1155,6 +410,8 @@ DEPENDENCIES:
   - FlipperKit/FlipperKitUserDefaultsPlugin (= 0.125.0)
   - FlipperKit/SKIOSNetworkPlugin (= 0.125.0)
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
+  - hermes-engine (from `../node_modules/react-native/sdks/hermes-engine/hermes-engine.podspec`)
+  - libevent (~> 2.1.12)
   - OpenSSL-Universal (= 1.1.1100)
   - RCT-Folly (from `../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec`)
   - RCTRequired (from `../node_modules/react-native/Libraries/RCTRequired`)
@@ -1167,14 +424,15 @@ DEPENDENCIES:
   - React-Core/RCTWebSocket (from `../node_modules/react-native/`)
   - React-CoreModules (from `../node_modules/react-native/React/CoreModules`)
   - React-cxxreact (from `../node_modules/react-native/ReactCommon/cxxreact`)
+  - React-hermes (from `../node_modules/react-native/ReactCommon/hermes`)
   - React-jsi (from `../node_modules/react-native/ReactCommon/jsi`)
   - React-jsiexecutor (from `../node_modules/react-native/ReactCommon/jsiexecutor`)
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - React-logger (from `../node_modules/react-native/ReactCommon/logger`)
-  - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - React-perflogger (from `../node_modules/react-native/ReactCommon/reactperflogger`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
   - React-RCTAnimation (from `../node_modules/react-native/Libraries/NativeAnimation`)
+  - React-RCTAppDelegate (from `../node_modules/react-native/Libraries/AppDelegate`)
   - React-RCTBlob (from `../node_modules/react-native/Libraries/Blob`)
   - React-RCTImage (from `../node_modules/react-native/Libraries/Image`)
   - React-RCTLinking (from `../node_modules/react-native/Libraries/LinkingIOS`)
@@ -1184,29 +442,11 @@ DEPENDENCIES:
   - React-RCTVibration (from `../node_modules/react-native/Libraries/Vibration`)
   - React-runtimeexecutor (from `../node_modules/react-native/ReactCommon/runtimeexecutor`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
-  - "RNCCheckbox (from `../node_modules/@react-native-community/checkbox`)"
-  - "RNCPicker (from `../node_modules/@react-native-picker/picker`)"
-  - "RNFBApp (from `../node_modules/@react-native-firebase/app`)"
-  - "RNFBAuth (from `../node_modules/@react-native-firebase/auth`)"
-  - "RNFBFirestore (from `../node_modules/@react-native-firebase/firestore`)"
-  - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
-  - "RNGoogleSignin (from `../node_modules/@react-native-google-signin/google-signin`)"
-  - RNScreens (from `../node_modules/react-native-screens`)
-  - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
   trunk:
-    - abseil
-    - AppAuth
-    - Base64
-    - BoringSSL-GRPC
     - CocoaAsyncSocket
-    - Firebase
-    - FirebaseAuth
-    - FirebaseCore
-    - FirebaseCoreDiagnostics
-    - FirebaseFirestore
     - Flipper
     - Flipper-Boost-iOSX
     - Flipper-DoubleConversion
@@ -1217,29 +457,14 @@ SPEC REPOS:
     - Flipper-RSocket
     - FlipperKit
     - fmt
-    - GoogleDataTransport
-    - GoogleSignIn
-    - GoogleUtilities
-    - "gRPC-C++"
-    - gRPC-Core
-    - GTMAppAuth
-    - GTMSessionFetcher
-    - JWT
-    - leveldb-library
     - libevent
-    - Libuv-gRPC
-    - nanopb
     - OpenSSL-Universal
-    - PromisesObjC
     - SocketRocket
-    - SSZipArchive
     - YogaKit
 
 EXTERNAL SOURCES:
   boost:
     :podspec: "../node_modules/react-native/third-party-podspecs/boost.podspec"
-  CodePush:
-    :path: "../node_modules/react-native-code-push"
   DoubleConversion:
     :podspec: "../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec"
   FBLazyVector:
@@ -1248,6 +473,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/React/FBReactNativeSpec"
   glog:
     :podspec: "../node_modules/react-native/third-party-podspecs/glog.podspec"
+  hermes-engine:
+    :podspec: "../node_modules/react-native/sdks/hermes-engine/hermes-engine.podspec"
   RCT-Folly:
     :podspec: "../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec"
   RCTRequired:
@@ -1266,6 +493,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/React/CoreModules"
   React-cxxreact:
     :path: "../node_modules/react-native/ReactCommon/cxxreact"
+  React-hermes:
+    :path: "../node_modules/react-native/ReactCommon/hermes"
   React-jsi:
     :path: "../node_modules/react-native/ReactCommon/jsi"
   React-jsiexecutor:
@@ -1274,14 +503,14 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/jsinspector"
   React-logger:
     :path: "../node_modules/react-native/ReactCommon/logger"
-  react-native-safe-area-context:
-    :path: "../node_modules/react-native-safe-area-context"
   React-perflogger:
     :path: "../node_modules/react-native/ReactCommon/reactperflogger"
   React-RCTActionSheet:
     :path: "../node_modules/react-native/Libraries/ActionSheetIOS"
   React-RCTAnimation:
     :path: "../node_modules/react-native/Libraries/NativeAnimation"
+  React-RCTAppDelegate:
+    :path: "../node_modules/react-native/Libraries/AppDelegate"
   React-RCTBlob:
     :path: "../node_modules/react-native/Libraries/Blob"
   React-RCTImage:
@@ -1300,108 +529,60 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/runtimeexecutor"
   ReactCommon:
     :path: "../node_modules/react-native/ReactCommon"
-  RNCCheckbox:
-    :path: "../node_modules/@react-native-community/checkbox"
-  RNCPicker:
-    :path: "../node_modules/@react-native-picker/picker"
-  RNFBApp:
-    :path: "../node_modules/@react-native-firebase/app"
-  RNFBAuth:
-    :path: "../node_modules/@react-native-firebase/auth"
-  RNFBFirestore:
-    :path: "../node_modules/@react-native-firebase/firestore"
-  RNGestureHandler:
-    :path: "../node_modules/react-native-gesture-handler"
-  RNGoogleSignin:
-    :path: "../node_modules/@react-native-google-signin/google-signin"
-  RNScreens:
-    :path: "../node_modules/react-native-screens"
-  RNVectorIcons:
-    :path: "../node_modules/react-native-vector-icons"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
-  abseil: ebe5b5529fb05d93a8bdb7951607be08b7fa71bc
-  AppAuth: 80317d99ac7ff2801a2f18ff86b48cd315ed465d
-  Base64: cecfb41a004124895a7bcee567a89bae5a89d49b
-  boost: a7c83b31436843459a1961bfd74b96033dc77234
-  BoringSSL-GRPC: 3175b25143e648463a56daeaaa499c6cb86dad33
+  boost: 57d2868c099736d80fcd648bf211b4431e51a558
   CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
-  CodePush: b51b7ac64c07d4eacfc8cc5750a1dd28adbf2528
-  DoubleConversion: 831926d9b8bf8166fd87886c4abab286c2422662
-  FBLazyVector: a7a655862f6b09625d11c772296b01cd5164b648
-  FBReactNativeSpec: 81ce99032d5b586fddd6a38d450f8595f7e04be4
-  Firebase: 5f8193dff4b5b7c5d5ef72ae54bb76c08e2b841d
-  FirebaseAuth: 3e73bf8abf4fbb40f8b421f361f4cc48ee57388c
-  FirebaseCore: 5743c5785c074a794d35f2fff7ecc254a91e08b1
-  FirebaseCoreDiagnostics: 92e07a649aeb66352b319d43bdd2ee3942af84cb
-  FirebaseFirestore: d7023faff8e1b4fd69d0adbcf18e65129bc03842
+  DoubleConversion: 5189b271737e1565bdce30deb4a08d647e3f5f54
+  FBLazyVector: 61839cba7a48c570b7ac3e1cd8a4d0948382202f
+  FBReactNativeSpec: 5a14398ccf5e27c1ca2d7109eb920594ce93c10d
   Flipper: 26fc4b7382499f1281eb8cb921e5c3ad6de91fe0
   Flipper-Boost-iOSX: fd1e2b8cbef7e662a122412d7ac5f5bea715403c
-  Flipper-DoubleConversion: 3d3d04a078d4f3a1b6c6916587f159dc11f232c4
+  Flipper-DoubleConversion: 2dc99b02f658daf147069aad9dbd29d8feb06d30
   Flipper-Fmt: 60cbdd92fc254826e61d669a5d87ef7015396a9b
   Flipper-Folly: 584845625005ff068a6ebf41f857f468decd26b3
-  Flipper-Glog: 87bc98ff48de90cb5b0b5114ed3da79d85ee2dd4
+  Flipper-Glog: 70c50ce58ddaf67dc35180db05f191692570f446
   Flipper-PeerTalk: 116d8f857dc6ef55c7a5a75ea3ceaafe878aadc9
   Flipper-RSocket: d9d9ade67cbecf6ac10730304bf5607266dd2541
   FlipperKit: cbdee19bdd4e7f05472a66ce290f1b729ba3cb86
   fmt: ff9d55029c625d3757ed641535fd4a75fedc7ce9
-  glog: 476ee3e89abb49e07f822b48323c51c57124b572
-  GoogleDataTransport: 5fffe35792f8b96ec8d6775f5eccd83c998d5a3b
-  GoogleSignIn: 3c68388ac221f379676e8f1cb115df3aaf73b93f
-  GoogleUtilities: e0913149f6b0625b553d70dae12b49fc62914fd1
-  "gRPC-C++": 9675f953ace2b3de7c506039d77be1f2e77a8db2
-  gRPC-Core: 943e491cb0d45598b0b0eb9e910c88080369290b
-  GTMAppAuth: 4d8f864896f3646f0c33baf38a28362f4c601e15
-  GTMSessionFetcher: 5595ec75acf5be50814f81e9189490412bad82ba
-  JWT: ef71dfb03e1f842081e64dc42eef0e164f35d251
-  leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
+  glog: 04b94705f318337d7ead9e6d17c019bd9b1f6b1b
+  hermes-engine: f6e715aa6c8bd38de6c13bc85e07b0a337edaa89
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
-  Libuv-gRPC: 55e51798e14ef436ad9bc45d12d43b77b49df378
-  nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   OpenSSL-Universal: ebc357f1e6bc71fa463ccb2fe676756aff50e88c
-  PromisesObjC: ab77feca74fa2823e7af4249b8326368e61014cb
-  RCT-Folly: 4d8508a426467c48885f1151029bc15fa5d7b3b8
-  RCTRequired: 3e917ea5377751094f38145fdece525aa90545a0
-  RCTTypeSafety: c43c072a4bd60feb49a9570b0517892b4305c45e
-  React: 176dd882de001854ced260fad41bb68a31aa4bd0
-  React-callinvoker: c2864d1818d6e64928d2faf774a3800dfc38fe1f
-  React-Codegen: 98b6f97f0a7abf7d67e4ce435c77c05b7a95cf05
-  React-Core: fdaa2916b1c893f39f02cff0476d1fb0cab1e352
-  React-CoreModules: fd8705b80699ec36c2cdd635c2ce9d874b9cfdfc
-  React-cxxreact: 1832d971f7b0cb2c7b943dc0ec962762c90c906e
-  React-jsi: 72af715135abe8c3f0dcf3b2548b71d048b69a7e
-  React-jsiexecutor: b7b553412f2ec768fe6c8f27cd6bafdb9d8719e6
-  React-jsinspector: c5989c77cb89ae6a69561095a61cce56a44ae8e8
-  React-logger: a0833912d93b36b791b7a521672d8ee89107aff1
-  react-native-safe-area-context: 6c12e3859b6f27b25de4fee8201cfb858432d8de
-  React-perflogger: a18b4f0bd933b8b24ecf9f3c54f9bf65180f3fe6
-  React-RCTActionSheet: 547fe42fdb4b6089598d79f8e1d855d7c23e2162
-  React-RCTAnimation: bc9440a1c37b06ae9ebbb532d244f607805c6034
-  React-RCTBlob: a1295c8e183756d7ef30ba6e8f8144dfe8a19215
-  React-RCTImage: a30d1ee09b1334067fbb6f30789aae2d7ac150c9
-  React-RCTLinking: ffc6d5b88d1cb9aca13c54c2ec6507fbf07f2ac4
-  React-RCTNetwork: f807a2facab6cf5cf36d592e634611de9cf12d81
-  React-RCTSettings: 861806819226ed8332e6a8f90df2951a34bb3e7f
-  React-RCTText: f3fb464cc41a50fc7a1aba4deeb76a9ad8282cb9
-  React-RCTVibration: 79040b92bfa9c3c2d2cb4f57e981164ec7ab9374
-  React-runtimeexecutor: b960b687d2dfef0d3761fbb187e01812ebab8b23
-  ReactCommon: 095366164a276d91ea704ce53cb03825c487a3f2
-  RNCCheckbox: ed1b4ca295475b41e7251ebae046360a703b6eb5
-  RNCPicker: 0250e95ad170569a96f5b0555cdd5e65b9084dca
-  RNFBApp: 9646e09d041ea159b84584865212e4cf33acd179
-  RNFBAuth: af943e3ba071b5f4d18896c31e6cba3a77b1fa08
-  RNFBFirestore: 70f47946084f6ce68c827c4a770613e0adb46da3
-  RNGestureHandler: 61628a2c859172551aa2100d3e73d1e57878392f
-  RNGoogleSignin: b2179ba653c759b936404a7746fc5302f9de6a5a
-  RNScreens: 40a2cb40a02a609938137a1e0acfbf8fc9eebf19
-  RNVectorIcons: 7923e585eaeb139b9f4531d25a125a1500162a0b
+  RCT-Folly: 424b8c9a7a0b9ab2886ffe9c3b041ef628fd4fb1
+  RCTRequired: dea3e4163184ea57c50288c15c32c1529265c58f
+  RCTTypeSafety: a0834ab89159a346731e8aae55ad6e2cce61c327
+  React: d877d055ff2137ca0325a4babdef3411e11f3cb7
+  React-callinvoker: 77bd2701eee3acac154b11ec219e68d5a1f780ad
+  React-Codegen: bccc516adc1551ccfe04b0de27e345d38829b204
+  React-Core: 4035f59e5bec8f3053583c6108d99c7516deb760
+  React-CoreModules: b6a1f76423fea57a03e0d7a2f79d3b55cf193f2c
+  React-cxxreact: fe5f6ec8ae875bebc71309d1e8ef89bb966d61a6
+  React-hermes: 3c8ea5e8f402db2a08b57051206d7f2ba9c75565
+  React-jsi: dbf0f82c93bfd828fa05c50f2ee74dc81f711050
+  React-jsiexecutor: 060dd495f1e2af3d87216f7ca8a94c55ec885b4f
+  React-jsinspector: 5061fcbec93fd672183dfb39cc2f65e55a0835db
+  React-logger: a6c0b3a807a8e81f6d7fea2e72660766f55daa50
+  React-perflogger: e5fc4149e9bbb972b8520277f3b23141faa47a36
+  React-RCTActionSheet: 991de88216bf03ab9bb1d213d73c62ecbe64ade7
+  React-RCTAnimation: b74e3d1bf5280891a573e447b487fa1db0713b5b
+  React-RCTAppDelegate: f52667f2dbc510f87b7988c5204e8764d50bf0c1
+  React-RCTBlob: 6762787c01d5d8d18efed03764b0d58d3b79595a
+  React-RCTImage: 9ed7eba8dd192a49def2cad2ecaedee7e7e315b4
+  React-RCTLinking: 0b58eed9af0645a161b80bf412b6b721e4585c66
+  React-RCTNetwork: dc075b0eea00d8a98c928f011d9bc2458acc7092
+  React-RCTSettings: 30fb3f498cfaf8a4bb47334ff9ffbe318ef78766
+  React-RCTText: a631564e84a227fe24bae7c04446f36faea7fcf5
+  React-RCTVibration: 55c91eccdbd435d7634efbe847086944389475b0
+  React-runtimeexecutor: ac80782d9d76ba2b0f709f4de0c427fe33c352dc
+  ReactCommon: 20e38a9be5fe1341b5e422220877cc94034776ba
   SocketRocket: fccef3f9c5cedea1353a9ef6ada904fde10d6608
-  SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
-  Yoga: 99652481fcd320aefa4a7ef90095b95acd181952
+  Yoga: c618b544ff8bd8865cdca602f00cbcdb92fd6d31
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: 4838d46488ab5e386c7c2f28ede2fd45fcf9ae23
+PODFILE CHECKSUM: 75f54645b5054b4301b91a6e6159b689b3c2c51c
 
 COCOAPODS: 1.11.3
